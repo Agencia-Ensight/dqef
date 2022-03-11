@@ -3,6 +3,8 @@ import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
 import Head from "next/head";
 
+import { ChakraProvider } from "@chakra-ui/react";
+
 import GlobalStyle from "../styles/global";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -85,7 +87,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <NavBar />
-      <Component {...pageProps} />
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
       <GlobalStyle />
       <Footer />
     </>
