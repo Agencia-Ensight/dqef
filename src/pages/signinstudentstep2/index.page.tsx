@@ -1,7 +1,7 @@
 import { ButtonKnewave } from "../../components/ButtonKnewave";
 import * as S from "./styles";
 
-export default function signinstudent() {
+export default function signinstudentstep2() {
     return (
         <S.Wrapper>
             <S.ContainerImage>
@@ -10,9 +10,9 @@ export default function signinstudent() {
 
             <S.ContainerInformation>
             <a href="#">Voltar</a>
-            <h1>Preencha os Campos</h1>
-            <p>Vamos enviar um e-mail para você, para confirmar a sua identidade</p>
-            <ButtonKnewave   variant="PRIMARY" size="sm" >Próximo</ButtonKnewave>
+            <h1>Informações Extras</h1>
+            <p>Insira alguns dados para completar o seu cadastro</p>
+            <ButtonKnewave   variant="PRIMARY" size="sm" >Confirmar E-mail</ButtonKnewave>
 
             </S.ContainerInformation>
 
