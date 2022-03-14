@@ -1,8 +1,9 @@
 import { ButtonKnewave } from "../../components/ButtonKnewave";
 import * as S from "./styles";
 import { Checkbox, CheckboxGroup } from '@chakra-ui/react';
+import { AiOutlineReload } from "react-icons/ai";
 
-export default function signinstudentstep2() {
+export default function signinstudentstep4() {
     return (
         <S.Wrapper>
             <S.ContainerImage>
@@ -11,13 +12,14 @@ export default function signinstudentstep2() {
 
             <S.ContainerInformation>
             <a href="#">Voltar</a>
-            <h1>Informações Extras</h1>
-            <p>Insira alguns dados para completar o seu cadastro.</p>
+            <h1>Inserir Código</h1>
+            <p>Insira o código que você recebeu no e-mail.</p>
+            
             <div>
-            <Checkbox defaultChecked>Aceitar Termos de Uso</Checkbox>
+            <AiOutlineReload color="var(--blue)"/>
+            <h2>Enviar Código Novamente</h2>
             </div>
-            <Checkbox defaultChecked>Aceitar Políticas de Privacidade</Checkbox>
-            <ButtonKnewave   variant="PRIMARY" size="sm" >Confirmar E-mail</ButtonKnewave>
+            <ButtonKnewave   variant="PRIMARY" size="sm" >Criar Conta</ButtonKnewave>
             </S.ContainerInformation>
 
 

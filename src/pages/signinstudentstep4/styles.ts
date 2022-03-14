@@ -39,9 +39,19 @@ p{
 
 
 }
+div{
+    display:flex;
+    align-items: center;
+}
+h2{
+    font-size: 16px;
+    font-weight: 400;
+    color: #4e4e4e;
+
+}
 
 
 
-padding: 160px 120px 151px 69px;
+padding: 243px 120px 269px 69px;
 
 `

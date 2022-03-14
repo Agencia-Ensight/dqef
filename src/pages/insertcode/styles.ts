@@ -1,19 +1,16 @@
 import styled from "styled-components";
 
 export const Image = styled.img`
-
+margin: 50px 0;
 
 `
 export const Wrapper = styled.div`
 display: flex;
+`
 
-span{
-    color: #4e4e4e;
-    font-weight: 400;
-    font-size: 16px;
-    
+export const Line = styled.div`
 
-}
+
 `
 export const ContainerImage = styled.div`
 
@@ -21,7 +18,8 @@ export const ContainerImage = styled.div`
 export const ContainerInformation = styled.div`
 a{
     text-decoration: none;
-    color: var(--blue);
+
+
 }
 h1 {
     margin-top: 10px;
@@ -40,8 +38,45 @@ p{
 
 }
 
+span{ 
+    color: var(--blue);
 
 
-padding: 160px 120px 151px 69px;
+    
+}
+
+button{ 
+    margin-top: 50px;
+
+}
+
+div{
+    display: flex;
+    align-items: center;
+    margin-top: 24.5px;
+    
+
+
+}
+
+h2{
+    margin-left: 5px;
+
+
+
+}
+
+hr {
+    width: 100%;
+    
+    background-color: #d1d1d1;
+    margin-top: 50px;
+    height: 0.5px;
+    
+}
+
+
+
+padding: 241px 120px 236px 69px;
 
 `

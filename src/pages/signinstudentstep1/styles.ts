@@ -6,6 +6,14 @@ export const Image = styled.img`
 `
 export const Wrapper = styled.div`
 display: flex;
+
+span{
+    color: #4e4e4e;
+    font-weight: 400;
+    font-size: 16px;
+    
+
+}
 `
 export const ContainerImage = styled.div`
 

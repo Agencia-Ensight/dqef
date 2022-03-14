@@ -1,19 +1,11 @@
 import styled from "styled-components";
 
 export const Image = styled.img`
-
+margin: 50px 0;
 
 `
 export const Wrapper = styled.div`
 display: flex;
-
-span{
-    color: #4e4e4e;
-    font-weight: 400;
-    font-size: 16px;
-    
-
-}
 `
 export const ContainerImage = styled.div`
 
@@ -40,8 +32,21 @@ p{
 
 }
 
+span{ 
+    color: var(--blue);
 
 
-padding: 160px 120px 151px 69px;
+    
+}
+
+button{ 
+    margin-top: 50px;
+
+}
+
+
+
+
+padding: 144px 331px 143.7px 113px;
 
 `
