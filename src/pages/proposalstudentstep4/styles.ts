@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Image = styled.img`
-margin: 50px 0;
+
 
 `
 export const Wrapper = styled.div`
@@ -11,6 +11,8 @@ export const ContainerImage = styled.div`
 
 `
 export const ContainerInformation = styled.div`
+
+padding: 144px 331px 143.7px 113px;
 a{
     text-decoration: none;
     color: var(--blue);
@@ -47,6 +49,6 @@ button{
 
 
 
-padding: 144px 331px 143.7px 113px;
+
 
 `

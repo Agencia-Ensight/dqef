@@ -24,7 +24,7 @@ export function ProfileCard({ img, profileName, course }: Props) {
       </S.RatingContainer>
       <S.InfoContainer>
         <FaPuzzlePiece size={20} color="#42A4EF" />
-        <S.InfoTitle>Propostas Enviadas</S.InfoTitle>
+        <S.InfoTitle>Trabalhos Publicados</S.InfoTitle>
       </S.InfoContainer>
       <S.Line />
       <S.InfoContainer>
