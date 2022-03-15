@@ -1,8 +1,8 @@
-import { ButtonKnewave } from "../../../components/ButtonKnewave";
-import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
 import * as S from "./styles";
 
-export function UrgentWorks() {
+import { UrgentWorkCard } from "../../components/UrgentWorkCard";
+
+function urgentWorks() {
   return (
     <S.Wrapper>
       <S.SubTitle>IMPORTANTE</S.SubTitle>
@@ -75,11 +75,8 @@ export function UrgentWorks() {
           urgent={true}
         />
       </S.MainContainer>
-      <S.ButtonContainer>
-        <ButtonKnewave variant="PRIMARY" size="lg">
-          <a href="/urgent-works">Ver Todos</a>
-        </ButtonKnewave>
-      </S.ButtonContainer>
     </S.Wrapper>
   );
 }
+
+export default urgentWorks;

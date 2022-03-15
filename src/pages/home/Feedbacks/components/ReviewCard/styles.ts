@@ -13,6 +13,8 @@ export const Wrapper = styled.div`
 export const ProfileImage = styled.img`
     width: 60px;
     border-radius: 9999px;
+    display: block;
+    margin: 0 auto;
 `
 
 export const ProfileName = styled.h1`

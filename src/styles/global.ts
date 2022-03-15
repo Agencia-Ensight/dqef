@@ -55,7 +55,7 @@ export default createGlobalStyle `
     }
 
     body{
-        background-color: var(--main-background);
+        background: #fafafa;
         font-family: 'Lato', sans-serif;
     }
 `;

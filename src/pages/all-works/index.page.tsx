@@ -1,9 +1,7 @@
-import { ButtonKnewave } from "../../../components/ButtonKnewave";
-import { ProfileCard } from "../../../components/ProfileCard";
-import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
+import { UrgentWorkCard } from "../../components/UrgentWorkCard";
 import * as S from "./styles";
 
-export function Works() {
+function allWorks() {
   return (
     <S.Wrapper>
       <S.SubTitle>PADRÃO</S.SubTitle>
@@ -135,17 +133,9 @@ export function Works() {
           typeOfWork="Banana"
           urgent={false}
         />
-        <ProfileCard
-          img="/images/profile-img.png"
-          course="Direito"
-          profileName="Enrico Silvestre"
-        />
       </S.MainContainer>
-      <S.ButtonContainer>
-        <ButtonKnewave size="lg" variant="PRIMARY">
-          <a href="/all-works">Ver Todos</a>
-        </ButtonKnewave>
-      </S.ButtonContainer>
     </S.Wrapper>
   );
 }
+
+export default allWorks;

@@ -8,11 +8,31 @@ export function Feedbacks() {
         <S.Title>Feedbacks</S.Title>
         <S.SubTitle>Veja o que estão falando da Deixa Que Eu Faço</S.SubTitle>
         <S.MainContainer>
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
+          <ReviewCard
+            description="trabalho muito bom, nota 10."
+            img="/images/profile-img.png"
+            profileName="Bruno Vencato"
+          />
+          <ReviewCard
+            description="trabalho muito bom, nota 10."
+            img="/images/profile-img.png"
+            profileName="Bruno Vencato"
+          />
+          <ReviewCard
+            description="trabalho muito bom, nota 10."
+            img="/images/profile-img.png"
+            profileName="Bruno Vencato"
+          />
+          <ReviewCard
+            description="trabalho muito bom, nota 10."
+            img="/images/profile-img.png"
+            profileName="Bruno Vencato"
+          />
+          <ReviewCard
+            description="trabalho muito bom, nota 10."
+            img="/images/profile-img.png"
+            profileName="Bruno Vencato"
+          />
         </S.MainContainer>
       </S.Container>
     </S.Wrapper>

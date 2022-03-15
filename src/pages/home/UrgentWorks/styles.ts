@@ -43,4 +43,8 @@ export const ButtonContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 4rem;
+
+    a{
+        text-decoration: none;
+    }
 `
