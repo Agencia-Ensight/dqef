@@ -39,10 +39,25 @@ p{
 
 
 }
+div{
+    display:flex;
+    align-items: center;
+    margin-top: 50px;
+    
+
+}
+h2{
+    font-size: 16px;
+    font-weight: 400;
+    color: #4e4e4e;
+
+}
+button{ 
+    margin-right: 25px;
+
+}
 
 
-
-
-padding: 160px 120px 151px 69px;
+padding: 202px 127px 179.7px 69px;
 
 `

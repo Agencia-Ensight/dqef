@@ -42,7 +42,6 @@ p{
 
 
 
-
-padding: 160px 120px 151px 69px;
+padding: 47px 120px 26px 69px;
 
 `
