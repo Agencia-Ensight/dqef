@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     margin: 0 5%;
-    padding-top: 6rem;
+    padding-top: 3rem;
 `
 
 export const Title = styled.h1`
@@ -38,16 +38,4 @@ export const MainContainer = styled.div`
         flex-wrap: nowrap;
         overflow-y: scroll;
     }
-`
-
-export const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 4rem;
-
-    a{
-        text-decoration: none;
-    }
-
 `

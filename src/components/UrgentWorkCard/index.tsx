@@ -15,7 +15,7 @@ export function UrgentWorkCard({
   return (
     <S.Wrapper>
       {urgent === true ? <S.RocketImage src="/images/rocket.png" /> : ""}
-      <S.CourseContainer>
+      <S.CourseContainer course={course}>
         <S.Course>{course}</S.Course>
       </S.CourseContainer>
       <S.MainContainer>

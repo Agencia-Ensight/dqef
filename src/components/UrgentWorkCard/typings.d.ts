@@ -1,4 +1,4 @@
-type CourseVariant =   
+export type CourseVariant =   
 | 'DIREITO'
 | 'ENG-CIVIL'
 | 'PEDAGOGIA'
@@ -9,7 +9,7 @@ type CourseVariant =
 | 'ADM'
 | 'PSICOLOGIA';
 
-export type Props = CardProps & {
+export type Props = CardProps & CourseContainerProps & {
     title: string;
     discipline: string;
     theme: string;
@@ -17,6 +17,10 @@ export type Props = CardProps & {
     price: number;
     date: string;
 } 
+
+type CourseContainerProps = {
+    course: CourseVariant;
+}
 
 export type CardProps = {
     /**
