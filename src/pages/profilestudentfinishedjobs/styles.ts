@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Image = styled.img`
-
+margin: 50px 0;
 
 `
 export const Wrapper = styled.div`
@@ -18,7 +18,7 @@ export const ContainerImage = styled.div`
 export const ContainerInformation = styled.div`
 a{
     text-decoration: none;
-
+    margin-left: 5px;
 
 }
 h1 {
@@ -75,6 +75,6 @@ hr {
 
 
 
-padding: 241px 120px 236px 69px;
+padding: 139px 120px 131px 69px;
 
 `
