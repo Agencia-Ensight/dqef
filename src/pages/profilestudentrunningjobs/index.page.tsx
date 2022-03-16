@@ -9,7 +9,7 @@ import { UrgentWorkCard } from "../../components/UrgentWorkCard";
 import { ProfileCard } from "../../components/ProfileCard";
 
 
-export default function profilestudentfinishedjobs() {
+export default function profilestudentrunningjobs() {
     return (
         <S.Wrapper>
             <S.ContainerProfileCard>
@@ -17,7 +17,7 @@ export default function profilestudentfinishedjobs() {
             </S.ContainerProfileCard>
 
             <div>
-            <h4>Trabalhos Finalizados</h4>   
+            <h4>Trabalhos em Andamento</h4>   
             
             <S.ContainerJobCard>
             
