@@ -50,7 +50,8 @@ margin-top: 35px;
 export const ContainerJobCard = styled.div`
 display: flex;
 flex-wrap: wrap;
-gap: 30px;
+gap: 38px;
+
 
 `
 
