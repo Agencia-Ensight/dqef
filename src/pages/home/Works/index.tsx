@@ -1,5 +1,6 @@
 import { ButtonKnewave } from "../../../components/ButtonKnewave";
 import { ProfileCard } from "../../../components/ProfileCard";
+import { ProfileCardEmployee } from "../../../components/ProfileCardEmployee";
 import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
 import * as S from "./styles";
 
@@ -139,6 +140,14 @@ export function Works() {
           img="/images/profile-img.png"
           course="Direito"
           profileName="Enrico Silvestre"
+        />
+        <ProfileCardEmployee
+          course="Direito"
+          img="/images/profile-img.png"
+          price={150}
+          jobs={60}
+          studying="Cursando Oitavo Período"
+          profileName="Bruno Vencato"
         />
       </S.MainContainer>
       <S.ButtonContainer>
