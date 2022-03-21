@@ -50,6 +50,9 @@ export const ProfileImage = styled.img`
 export const ProfileName = styled.h1`
     font-size: 2.3rem;
     color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
 `
 
