@@ -63,7 +63,7 @@ flex-wrap: wrap;
 export const ContainerBigCard = styled.div`
 width: 807px;
 height: auto;
-background-color #ffffff;
+background-color: #ffffff;
 border-radius: 15px;
 box-shadow: 0px 0px 20px rgb(198 198 198 / 25%);
 padding: 28px 100px 27.71px 32.5px;
