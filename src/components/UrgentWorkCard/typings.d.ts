@@ -9,6 +9,21 @@ export type CourseVariant =
 | 'ADM'
 | 'PSICOLOGIA';
 
+export type IStatus = 
+| 'EMPLOYEE-SEND' 
+| 'EMPLOYEE-PAID' 
+| 'EMPLOYEE-START' 
+| 'EMPLOYEE-BILL'
+| 'EMPLOYEE-CHANGE'
+| 'EMPLOYEE-DONE'
+| 'EMPLOYEE-WANT'
+| 'EMPLOYEE-SEE'
+| 'STUDENT-CREATE'
+| 'STUDENT-GET'
+| 'STUDENT-DONE'
+| 'STUDENT'
+| 'STUDENT-EDIT';
+
 export type Props = CardProps & CourseContainerProps & {
     title: string;
     discipline: string;
@@ -16,6 +31,7 @@ export type Props = CardProps & CourseContainerProps & {
     typeOfWork: string;
     price: number;
     date: string;
+    status: IStatus;
 } 
 
 type CourseContainerProps = {
