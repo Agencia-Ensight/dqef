@@ -4,8 +4,12 @@ import { ProfileCard } from "../../../components/ProfileCard";
 import { ProfileCardEmployee } from "../../../components/ProfileCardEmployee";
 import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
 import { useModal } from "../../../hooks/useModal";
+import { ModalAlright } from "../../components/modal/ModalAlright";
+import { ModalApproved } from "../../components/modal/ModalApproved";
 import { ModalDealDone } from "../../components/modal/ModalDealDone";
+import { ModalNotApproved } from "../../components/modal/ModalNotApproved";
 import { ModalRules } from "../../components/modal/ModalRules";
+import { ModalWontFinish } from "../../components/modal/ModalWontFinish";
 
 import * as S from "./styles";
 
@@ -168,8 +172,8 @@ export function Works() {
         <Modal
           isShown={isShown}
           hide={toggle}
-          headerText="Banana 123"
-          modalContent={<ModalRules />}
+          headerText="Trabalho Aprovado"
+          modalContent={<ModalNotApproved/>}
         />
       </S.ButtonContainer>
     </S.Wrapper>

@@ -29,7 +29,7 @@ export const StyledModal = styled.div`
 border-radius: 35px;
 border: 3px solid #42A4EF;
   width: 70vw;
-  height: 70vh;
+  height: 85vh;
   padding: 71px 58px 30px 58px; 
 `;
 
