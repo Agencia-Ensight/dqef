@@ -6,9 +6,14 @@ import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
 import { useModal } from "../../../hooks/useModal";
 import { ModalAlright } from "../../components/modal/ModalAlright";
 import { ModalApproved } from "../../components/modal/ModalApproved";
+import { ModalChanges } from "../../components/modal/ModalChanges";
 import { ModalDealDone } from "../../components/modal/ModalDealDone";
+import { ModalFeedback } from "../../components/modal/ModalFeedback";
+import { ModalInsertWork } from "../../components/modal/ModalInsertWork ";
 import { ModalNotApproved } from "../../components/modal/ModalNotApproved";
 import { ModalRules } from "../../components/modal/ModalRules";
+import { ModalSendWork } from "../../components/modal/ModalSendWork";
+import { ModalVerifying } from "../../components/modal/ModalVerifying";
 import { ModalWontFinish } from "../../components/modal/ModalWontFinish";
 
 import * as S from "./styles";
@@ -172,8 +177,8 @@ export function Works() {
         <Modal
           isShown={isShown}
           hide={toggle}
-          headerText="Trabalho Aprovado"
-          modalContent={<ModalNotApproved/>}
+          headerText="Um momento, estamos verificando"
+          modalContent={<ModalFeedback/>}
         />
       </S.ButtonContainer>
     </S.Wrapper>
