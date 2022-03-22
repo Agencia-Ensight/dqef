@@ -7,11 +7,8 @@ import { useModal } from "../../../hooks/useModal";
 import { ModalAlright } from "../../components/modal/ModalAlright";
 import { ModalApproved } from "../../components/modal/ModalApproved";
 import { ModalDealDone } from "../../components/modal/ModalDealDone";
-<<<<<<< HEAD
 import { ModalHelp } from "../../components/modal/ModalHelp";
-=======
 import { ModalNotApproved } from "../../components/modal/ModalNotApproved";
->>>>>>> 049e3c159a23c3fc79b82294545a199588247d56
 import { ModalRules } from "../../components/modal/ModalRules";
 import { ModalWontFinish } from "../../components/modal/ModalWontFinish";
 
@@ -186,13 +183,8 @@ export function Works() {
         <Modal
           isShown={isShown}
           hide={toggle}
-<<<<<<< HEAD
-          headerText="Banana 123"
-          modalContent={<ModalDealDone />}
-=======
           headerText="Trabalho Aprovado"
-          modalContent={<ModalNotApproved/>}
->>>>>>> 049e3c159a23c3fc79b82294545a199588247d56
+          modalContent={<ModalNotApproved />}
         />
       </S.ButtonContainer>
     </S.Wrapper>
