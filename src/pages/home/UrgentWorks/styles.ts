@@ -36,6 +36,7 @@ export const MainContainer = styled.div`
     padding-top: 3rem;
     overflow-y: scroll;
     padding-left: 2rem;
+    padding-bottom: 1rem;
 `
 
 export const ButtonContainer = styled.div`

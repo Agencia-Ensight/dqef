@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { CourseContainerProps } from './typings'
+import { CourseContainerProps, CardProps } from './typings'
 
 export const Wrapper = styled.div`
     position: relative;
@@ -114,11 +114,25 @@ export const Price = styled.p`
     font-weight: 600;
 `
 
-export const Date = styled.p`
+export const Date = styled.p<CardProps>`
     margin-top: 0.2rem;
     font-size: 1.2rem;
     font-weight: 600;
 
+    ${({urgent}) => urgent === true && css`
+        background-color: red;
+        background-image: var(--danger-linear);
+        background-size: 100%;
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        -moz-background-clip: text;
+        -moz-text-fill-color: transparent;
+    `}
 
+    ${({urgent}) => urgent === false && css`
+        color: #2F80ED;
+        font-weight: bold;
+    `}
  
 `

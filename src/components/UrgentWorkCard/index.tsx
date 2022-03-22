@@ -38,7 +38,7 @@ export function UrgentWorkCard({
         </S.InformationContainer>
         <S.InformationContainer>
           <S.Subtitle>Data de Entrega</S.Subtitle>
-          <S.Date>
+          <S.Date urgent={urgent}>
             {date}
             {urgent === true ? "- Entrega Urgente" : ""}
           </S.Date>
