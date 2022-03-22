@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
+import { ISelected } from "./typings";
+
 
 export const Wrapper = styled.div`
     margin: 0 5%;
@@ -69,4 +71,17 @@ export const Description = styled.p`
 
 export const Highlight = styled.span`
     color: var(--blue);
+
+
+`
+
+export const Button = styled.button<ISelected>`
+    color: #969696;
+    margin: 0 0.5rem;
+
+
+  
+    ${({selected}) => selected === true && css`
+    color: var(--blue);
+    `}
 `

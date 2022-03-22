@@ -1,10 +1,18 @@
 import { ButtonKnewave } from "../../../components/ButtonKnewave";
+import { Modal } from "../../../components/Modal ";
 import { ProfileCard } from "../../../components/ProfileCard";
 import { ProfileCardEmployee } from "../../../components/ProfileCardEmployee";
 import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
+import { useModal } from "../../../hooks/useModal";
+import { ModalDealDone } from "../../components/modal/ModalDealDone";
+import { ModalRules } from "../../components/modal/ModalRules";
+
 import * as S from "./styles";
 
 export function Works() {
+  const { isShown, toggle } = useModal();
+  const onConfirm = () => toggle();
+  const onCancel = () => toggle();
   return (
     <S.Wrapper>
       <S.SubTitle>PADRÃO</S.SubTitle>
@@ -154,6 +162,15 @@ export function Works() {
         <ButtonKnewave size="lg" variant="PRIMARY">
           <a href="/all-works">Ver Todos</a>
         </ButtonKnewave>
+        <ButtonKnewave size="lg" variant="PRIMARY" onClick={toggle}>
+          Open Modal
+        </ButtonKnewave>
+        <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Banana 123"
+          modalContent={<ModalRules />}
+        />
       </S.ButtonContainer>
     </S.Wrapper>
   );
