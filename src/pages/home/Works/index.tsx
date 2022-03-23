@@ -1,5 +1,5 @@
 import { ButtonKnewave } from "../../../components/ButtonKnewave";
-import { Modal } from "../../../components/Modal ";
+import { Modal } from "../../../components/Modal";
 import { ProfileCard } from "../../../components/ProfileCard";
 import { ProfileCardEmployee } from "../../../components/ProfileCardEmployee";
 import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
@@ -7,7 +7,11 @@ import { useModal } from "../../../hooks/useModal";
 import { ModalAlright } from "../../components/modal/ModalAlright";
 import { ModalApproved } from "../../components/modal/ModalApproved";
 import { ModalChanges } from "../../components/modal/ModalChanges";
+
 import { ModalConfirmInformation } from "../../components/modal/ModalConfirmInformation";
+
+import { ModalCounterProposal } from "../../components/modal/ModalCounterProposal";
+
 import { ModalDealDone } from "../../components/modal/ModalDealDone";
 import { ModalExplanation } from "../../components/modal/ModalExplanation";
 import { ModalFeedback } from "../../components/modal/ModalFeedback";
@@ -49,6 +53,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-SEND"
         />
         <UrgentWorkCard
           course="ARQUITETURA"
@@ -59,6 +64,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-START"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -69,6 +75,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -79,6 +86,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-CHANGE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -89,6 +97,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-DONE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -99,6 +108,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-WANT"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -109,6 +119,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-PAID"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -119,6 +130,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -129,6 +141,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="STUDENT"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -139,6 +152,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="STUDENT-CREATE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -149,6 +163,7 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="STUDENT-DONE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -159,19 +174,18 @@ export function Works() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="STUDENT-EDIT"
         />
-        <ProfileCard
-          img="/images/profile-img.png"
-          course="Direito"
-          profileName="Enrico Silvestre"
-        />
-        <ProfileCardEmployee
-          course="Direito"
-          img="/images/profile-img.png"
-          price={150}
-          jobs={60}
-          studying="Cursando Oitavo Período"
-          profileName="Bruno Vencato"
+        <UrgentWorkCard
+          course="ECONOMIA"
+          date="23/04"
+          discipline="arroz"
+          price={20}
+          theme="banana"
+          title="Arroz"
+          typeOfWork="Banana"
+          urgent={false}
+          status="STUDENT-GET"
         />
       </S.MainContainer>
       <S.ButtonContainer>
@@ -185,7 +199,11 @@ export function Works() {
           isShown={isShown}
           hide={toggle}
           headerText="Um momento, estamos verificando"
+
           modalContent={<ModalConfirmInformation/>}
+
+
+
         />
       </S.ButtonContainer>
     </S.Wrapper>

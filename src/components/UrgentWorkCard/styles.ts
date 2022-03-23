@@ -3,7 +3,11 @@ import styled, { css } from "styled-components";
 import { CourseContainerProps, CardProps } from './typings'
 
 export const Wrapper = styled.div`
-    position: relative;
+ 
+`
+
+export const Container = styled.div`
+   position: relative;
     min-width: 280px;
 
     height: auto;
@@ -84,6 +88,7 @@ export const Title = styled.h2`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: bold;
 `
 
 export const MainContainer = styled.div`
@@ -105,6 +110,8 @@ export const Description = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: 0.2rem;
+    font-weight: bold;
+
 `
 
 export const Price = styled.p`
@@ -135,4 +142,39 @@ export const Date = styled.p<CardProps>`
         font-weight: bold;
     `}
  
+`
+
+export const WaitStudent = styled.p`
+    color: black;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+`
+
+export const FooterContainer = styled.div`
+position: relative;
+    background: #ffffff;
+    border-radius: 15px;
+    margin-top: 0.5rem;
+    padding: 12px 17px 12px 17px;
+    box-shadow: 0px 32px 32px rgba(31, 47, 70, 0.06);
+
+    button{
+        margin: 0 0.1rem;
+    }
+`
+
+export const NextBill = styled.p`
+    font-size: 0.9rem;
+    color: black;
+
+    span{
+        font-weight: bold;
+    }
+`
+
+export const Bill = styled.p`
+    font-size: 0.9rem;
+    color: #ED3561;
+
 `
