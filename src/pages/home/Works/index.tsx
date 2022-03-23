@@ -7,13 +7,23 @@ import { useModal } from "../../../hooks/useModal";
 import { ModalAlright } from "../../components/modal/ModalAlright";
 import { ModalApproved } from "../../components/modal/ModalApproved";
 import { ModalChanges } from "../../components/modal/ModalChanges";
+
+import { ModalConfirmInformation } from "../../components/modal/ModalConfirmInformation";
+
 import { ModalCounterProposal } from "../../components/modal/ModalCounterProposal";
+
 import { ModalDealDone } from "../../components/modal/ModalDealDone";
+import { ModalExplanation } from "../../components/modal/ModalExplanation";
 import { ModalFeedback } from "../../components/modal/ModalFeedback";
 import { ModalInsertWork } from "../../components/modal/ModalInsertWork ";
 import { ModalNotApproved } from "../../components/modal/ModalNotApproved";
+import { ModalOpenWork } from "../../components/modal/ModalOpenWork";
+import { ModalOpenWorkStep2 } from "../../components/modal/ModalOpenWorkStep2";
+import { ModalRating } from "../../components/modal/ModalRating";
+import { ModalRequestChanges } from "../../components/modal/ModalRequestChanges";
 import { ModalRules } from "../../components/modal/ModalRules";
 import { ModalSendWork } from "../../components/modal/ModalSendWork";
+import { ModalSentProposal } from "../../components/modal/ModalSentProposal";
 import { ModalVerifying } from "../../components/modal/ModalVerifying";
 import { ModalWontFinish } from "../../components/modal/ModalWontFinish";
 
@@ -189,7 +199,11 @@ export function Works() {
           isShown={isShown}
           hide={toggle}
           headerText="Um momento, estamos verificando"
-          modalContent={<ModalCounterProposal/>}
+
+          modalContent={<ModalConfirmInformation/>}
+
+
+
         />
       </S.ButtonContainer>
     </S.Wrapper>
