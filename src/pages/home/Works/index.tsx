@@ -7,6 +7,7 @@ import { useModal } from "../../../hooks/useModal";
 import { ModalAlright } from "../../components/modal/ModalAlright";
 import { ModalApproved } from "../../components/modal/ModalApproved";
 import { ModalChanges } from "../../components/modal/ModalChanges";
+import { ModalCounterProposal } from "../../components/modal/ModalCounterProposal";
 import { ModalDealDone } from "../../components/modal/ModalDealDone";
 import { ModalFeedback } from "../../components/modal/ModalFeedback";
 import { ModalInsertWork } from "../../components/modal/ModalInsertWork ";
@@ -188,7 +189,7 @@ export function Works() {
           isShown={isShown}
           hide={toggle}
           headerText="Um momento, estamos verificando"
-          modalContent={<ModalFeedback/>}
+          modalContent={<ModalCounterProposal/>}
         />
       </S.ButtonContainer>
     </S.Wrapper>

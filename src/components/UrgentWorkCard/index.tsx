@@ -1,7 +1,19 @@
+import { ModalFeedback } from "../../pages/components/modal/ModalFeedback";
 import { Button } from "../Button";
 import * as S from "./styles";
 
 import { Props } from "./typings";
+import { useModal } from "../../hooks/useModal";
+import { Modal } from "../Modal";
+import { ModalInsertWork } from "../../pages/components/modal/ModalInsertWork ";
+import { ModalSendWork } from "../../pages/components/modal/ModalSendWork";
+import { ModalDone } from "../../pages/components/modal/ModalDone";
+import { ModalChanges } from "../../pages/components/modal/ModalChanges";
+import { ModalRules } from "../../pages/components/modal/ModalRules";
+import { ModalCounterProposal } from "../../pages/components/modal/ModalCounterProposal";
+import { ModalDealDone } from "../../pages/components/modal/ModalDealDone";
+
+
 
 export function UrgentWorkCard({
   course,
@@ -14,6 +26,8 @@ export function UrgentWorkCard({
   urgent,
   status,
 }: Props) {
+  const { isShown, toggle } = useModal();
+  const { isShown:isShown2, toggle:toggle2 } = useModal();
   return (
     <S.Wrapper>
       <S.Container>
@@ -66,43 +80,109 @@ export function UrgentWorkCard({
       {/* Employee */}
       {status === "EMPLOYEE-PAID" && (
         <S.FooterContainer>
-          <Button variant="primary">Iniciar Trabalho</Button>
+          <Button onClick={toggle} variant="primary">Iniciar Trabalho</Button>
+          <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Negócio Fechado!"
+          modalContent={<ModalDealDone/>}
+        />
         </S.FooterContainer>
       )}
       {status === "EMPLOYEE-START" && (
         <S.FooterContainer>
-          <Button variant="primary">Entregar</Button>
+          <Button  onClick={toggle} variant="primary">Entregar</Button>
+          <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Deseja enviar o trabalho?"
+          modalContent={<ModalInsertWork/>}
+        />
+            <a href="/inside-job" >
           <Button variant="secondary">Ver Mais</Button>
+              
+            </a>
+            <a target="_blank" href="https://wa.me/5541999959588">
           <Button variant="tertiary">Problema</Button>
+          </a>
         </S.FooterContainer>
       )}
       {status === "EMPLOYEE-BILL" && (
         <S.FooterContainer>
-          <Button variant="primary">Entregar</Button>
+          <Button onClick={toggle} variant="primary">Entregar</Button>
+          <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Deseja enviar o trabalho?"
+          modalContent={<ModalInsertWork/>}
+        /> <a href="/inside-job">
           <Button variant="secondary">Ver Mais</Button>
-          <Button variant="tertiary">Cobrança</Button>
+          </a>
+          <Button onClick={toggle} variant="tertiary">Cobrança</Button>
+          <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Olá, Enrico!"
+          modalContent={<ModalDone/>}
+        />
         </S.FooterContainer>
       )}
       {status === "EMPLOYEE-CHANGE" && (
         <S.FooterContainer>
-          <Button variant="primary">Entregar</Button>
+          <Button onClick={toggle2} variant="primary">Entregar</Button>
+          <Modal
+          isShown={isShown2}
+          hide={toggle2}
+          headerText="Deseja enviar o trabalho?"
+          modalContent={<ModalInsertWork/>}
+        />
+          <a href="/inside-job">
           <Button variant="secondary">Ver Mais</Button>
-          <Button variant="quinternary">Alterações</Button>
+          </a>
+          <Button onClick={toggle} variant="quinternary">Alterações</Button>
+          <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Olá, Bruno. Essas são as alterações solicitadas"
+          modalContent={<ModalChanges/>}
+        />
         </S.FooterContainer>
       )}
       {status === "EMPLOYEE-DONE" && (
         <S.FooterContainer>
-          <Button variant="primary">Ver FeedBack</Button>
+          <Button onClick={toggle} variant="primary">Ver FeedBack</Button>
+          <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Feedback do Estudante"
+          modalContent={<ModalFeedback/>}
+        />
         </S.FooterContainer>
+        
       )}
       {status === "EMPLOYEE-SEE" && (
         <S.FooterContainer>
+          <a href="/inside-job">
           <Button variant="primary">Ver Mais</Button>
+          </a>
         </S.FooterContainer>
       )}
       {status === "EMPLOYEE-WANT" && (
         <S.FooterContainer>
-          <Button variant="primary">Quero Realizar</Button>
+          <Button onClick={toggle} variant="primary">Aceitar Proposta</Button>
+          <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Informações da Entrega"
+          modalContent={<ModalRules/>}
+        />
+          <Button onClick={toggle2} variant="secondary">Contraproposta</Button>
+          <Modal
+          isShown={isShown2}
+          hide={toggle2}
+          headerText="Alterar Valor"
+          modalContent={<ModalCounterProposal/>}
+        />
         </S.FooterContainer>
       )}
       {/* Student */}
@@ -120,7 +200,7 @@ export function UrgentWorkCard({
       )}
       {status === "STUDENT-DONE" && (
         <S.FooterContainer>
-          <Button variant="primary">Entregar</Button>
+          <Button variant="primary">Entrega</Button>
           <Button variant="secondary">Ver Mais</Button>
           <Button variant="quaternary">Avaliar</Button>
         </S.FooterContainer>
