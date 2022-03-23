@@ -8,12 +8,8 @@ import { ModalAlright } from "../../components/modal/ModalAlright";
 import { ModalApproved } from "../../components/modal/ModalApproved";
 import { ModalChanges } from "../../components/modal/ModalChanges";
 import { ModalDealDone } from "../../components/modal/ModalDealDone";
-<<<<<<< HEAD
 import { ModalFeedback } from "../../components/modal/ModalFeedback";
 import { ModalInsertWork } from "../../components/modal/ModalInsertWork ";
-=======
-import { ModalHelp } from "../../components/modal/ModalHelp";
->>>>>>> 526140d8a2550a79b47b147f715fae67720e2b24
 import { ModalNotApproved } from "../../components/modal/ModalNotApproved";
 import { ModalRules } from "../../components/modal/ModalRules";
 import { ModalSendWork } from "../../components/modal/ModalSendWork";
@@ -191,13 +187,8 @@ export function Works() {
         <Modal
           isShown={isShown}
           hide={toggle}
-<<<<<<< HEAD
           headerText="Um momento, estamos verificando"
           modalContent={<ModalFeedback/>}
-=======
-          headerText="Trabalho Aprovado"
-          modalContent={<ModalNotApproved />}
->>>>>>> 526140d8a2550a79b47b147f715fae67720e2b24
         />
       </S.ButtonContainer>
     </S.Wrapper>
