@@ -12,6 +12,10 @@ import { ModalChanges } from "../../pages/components/modal/ModalChanges";
 import { ModalRules } from "../../pages/components/modal/ModalRules";
 import { ModalCounterProposal } from "../../pages/components/modal/ModalCounterProposal";
 import { ModalDealDone } from "../../pages/components/modal/ModalDealDone";
+import { ModalRating } from "../../pages/components/modal/ModalRating";
+import { ModalOpenWork } from "../../pages/components/modal/ModalOpenWork";
+import { ModalOpenWorkStep2 } from "../../pages/components/modal/ModalOpenWorkStep2";
+import { ModalRequestChanges } from "../../pages/components/modal/ModalRequestChanges";
 
 
 
@@ -188,21 +192,52 @@ export function UrgentWorkCard({
       {/* Student */}
       {status === "STUDENT-CREATE" && (
         <S.FooterContainer>
+          <a href="/studentviewproposals">
           <Button variant="primary">Ver Propostas</Button>
+          </a>
         </S.FooterContainer>
       )}
       {status === "STUDENT-GET" && (
         <S.FooterContainer>
-          <Button variant="primary">Entregar</Button>
+        <Button onClick={toggle} variant="primary">Entrega</Button>
+          <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Olá, Enrico."
+          modalContent={<ModalOpenWorkStep2/>}
+        />
+          <a href="/inside-job">
           <Button variant="secondary">Ver Mais</Button>
-          <Button variant="tertiary">Alterações</Button>
+          </a>
+          <Button onClick={toggle2} variant="tertiary">Alterações</Button>
+          <Modal
+          isShown={isShown2}
+          hide={toggle2}
+          headerText="Solicitar Alteração"
+          modalContent={<ModalRequestChanges/>}
+        />
         </S.FooterContainer>
       )}
       {status === "STUDENT-DONE" && (
         <S.FooterContainer>
-          <Button variant="primary">Entrega</Button>
+          <Button onClick={toggle} variant="primary">Entrega</Button>
+          <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Olá, Enrico."
+          modalContent={<ModalOpenWork/>}
+        />
+          <a href="/inside-job">
           <Button variant="secondary">Ver Mais</Button>
-          <Button variant="quaternary">Avaliar</Button>
+          </a>
+          <Button onClick={toggle2} variant="quaternary">Avaliar</Button>
+          <Modal
+          isShown={isShown2}
+          hide={toggle2}
+          headerText="Olá, Enrico"
+          modalContent={<ModalRating/>}
+        />
+
         </S.FooterContainer>
       )}
       {status === "STUDENT" && ""}
