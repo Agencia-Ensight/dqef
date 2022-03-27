@@ -243,7 +243,9 @@ export function UrgentWorkCard({
       {status === "STUDENT" && ""}
       {status === "STUDENT-EDIT" && (
         <S.FooterContainer>
+          <a href="/editpage">
           <Button variant="primary">Editar Trabalho</Button>
+          </a>
         </S.FooterContainer>
       )}
     </S.Wrapper>
