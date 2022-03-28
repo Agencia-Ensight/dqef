@@ -1,15 +1,17 @@
 import styled from "styled-components";
 
+
 export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 5%;
+    margin: 0 2%;
 `
 
 export const LogoWrapper = styled.div`
     img{
         cursor: pointer;
+
     }
 `
 
@@ -25,6 +27,9 @@ export const MenuItem = styled.a`
     color: var(--black-text);
     margin-right: 1.5rem;
     cursor: pointer;
+
+    
+    
 `
 
 export const Line = styled.div`
@@ -32,5 +37,14 @@ export const Line = styled.div`
   height: 20px;
   margin-right: 1.5rem;
 
+
 `
+
+export const ImagePadrao = styled.div`
+ margin-left: 30px;
+
+
+
+`
+
 
