@@ -42,6 +42,7 @@ p{
 div{
     display:flex;
     align-items: center;
+    margin: 1rem 0rem;
 }
 h2{
     font-size: 16px;
@@ -53,5 +54,11 @@ h2{
 
 
 padding: 243px 120px 269px 69px;
+
+`
+
+export const InputContainer = styled.div`
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 
 `

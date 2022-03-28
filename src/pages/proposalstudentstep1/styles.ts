@@ -6,6 +6,25 @@ export const Image = styled.img`
 `
 export const Wrapper = styled.div`
 display: flex;
+
+label{
+        color: #53647E;
+        font-size: 18px;
+        margin-bottom: 10px;
+         }
+
+    select{
+        border: 2px solid #42A4EF;
+        border-radius: 99px;
+        width: 100%;
+        font-size: 18px;
+
+
+        &::placeholder {
+            color:#848484;
+
+        }
+    }
 `
 export const ContainerImage = styled.div`
 
@@ -42,9 +61,6 @@ p{
 
 span{ 
     color: var(--blue);
-
-
-    
 }
 
 button{ 
@@ -52,9 +68,21 @@ button{
 
 }
 
-
-
-
-
-
 `
+
+export const InputFields = styled.div`
+    margin-bottom: 1.5rem;
+    margin-top: 2.8rem;
+`
+
+export const FirstInputContainer = styled.div`
+    display: flex;
+    gap: 50px;
+`
+
+export const SecondInputContainer = styled.div`
+    display: flex;
+    gap: 20px;
+`
+
+

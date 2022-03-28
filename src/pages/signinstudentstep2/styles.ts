@@ -14,6 +14,10 @@ span{
     
 
 }
+
+button{
+    margin-top: 3.5rem;
+}
 `
 export const ContainerImage = styled.div`
 
@@ -45,4 +49,32 @@ p{
 
 padding: 160px 120px 151px 69px;
 
+`
+
+export const InputContainer = styled.div`
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+
+    div{
+        margin-bottom: 1rem;
+    }
+
+    label{
+        color: #53647E;
+        font-size: 18px;
+        margin-bottom: 10px;
+         }
+
+    select{
+        border: 2px solid #42A4EF;
+        border-radius: 99px;
+        width: 100%;
+        font-size: 18px;
+
+
+        &::placeholder {
+            color:#848484;
+
+        }
+    }
 `

@@ -45,3 +45,8 @@ p{
 padding: 237px 120px 296px 69px;
 
 `
+export const InputContainer = styled.div`
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+
+`
