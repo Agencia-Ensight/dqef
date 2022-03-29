@@ -78,3 +78,12 @@ hr {
 padding: 139px 120px 131px 69px;
 
 `
+
+export const InputContainer = styled.div`
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+
+    div{
+        margin-bottom: 1rem;
+    }
+`
