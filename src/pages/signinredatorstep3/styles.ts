@@ -35,11 +35,17 @@ p{
     color: #4e4e4e;
     font-weight: 400;
     font-size: 18px;
+    margin-bottom: 30px;
     
 
 
 }
 
+
+div{ 
+    margin-top: 30px;
+
+}
 
 
 padding: 47px 120px 26px 69px;

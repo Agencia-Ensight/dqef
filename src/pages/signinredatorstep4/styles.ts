@@ -18,6 +18,16 @@ span{
 export const ContainerImage = styled.div`
 
 `
+
+export const ContainerInformationDosBang = styled.div`
+display: flex;
+align-items: center;
+margin-bottom: 20px;
+
+
+`
+
+
 export const ContainerInformation = styled.div`
 a{
     text-decoration: none;
@@ -35,13 +45,13 @@ p{
     color: #4e4e4e;
     font-weight: 400;
     font-size: 18px;
+    margin-bottom: 20px;
     
 
 
 }
 div{
-    display:flex;
-    align-items: center;
+    margin-bottom: 30px;
 }
 h2{
     font-size: 16px;

@@ -67,6 +67,13 @@ export default function signinredatorstep2() {
             <option value="option46">Sistemas de Informação</option>
             
           </Select>
+          <h3>Áreas de conhecimento</h3> 
+          <Select placeholder="Selecione da nossa lista">
+            <option value="option1">Administração</option>
+            <option value="option2">Agronegócio</option>
+            <option value="option3">Agronomia</option>
+           
+          </Select>
 
           <h3>Formação</h3> 
           <Select placeholder="Selecione">
@@ -85,7 +92,7 @@ export default function signinredatorstep2() {
             <S.ContainerDoBang>
             <Checkbox defaultChecked>Aceitar Políticas de Privacidade</Checkbox>
             </S.ContainerDoBang>
-            <ButtonKnewave variant="PRIMARY" size="sm" >Enviar Código</ButtonKnewave>
+            <ButtonKnewave variant="PRIMARY" size="sm" >Confirmar e-mail</ButtonKnewave>
             </S.ContainerInformation>
         
                         
