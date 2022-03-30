@@ -5,7 +5,15 @@ export const Image = styled.img`
 
 `
 export const Wrapper = styled.div`
-display: flex;
+    display: flex;
+    width: 1500px;
+    max-width: 100%;
+    position: relative;
+    margin: 0 auto;
+
+    @media (max-width: 1300px) {
+    margin: auto 0px;
+    }
 `
 
 export const Line = styled.div`
@@ -50,12 +58,7 @@ button{
 
 }
 
-div{
-    display: flex;
-    align-items: center;
 
-
-}
 
 h2{
     margin-top: 50px;
@@ -84,6 +87,12 @@ export const InputContainer = styled.div`
     margin-bottom: 2rem;
 
     div{
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
+`
+
+export const IconContainer = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
 `

@@ -18,20 +18,22 @@ export default function login() {
           <span> Fazer Login</span>
         </p>
         <h1>Bem-vindo de Volta</h1>
-        <div>
-          <RiLockPasswordFill size={20} color="var(--blue)" />
-          <a href="#">
-            Esqueci minha <span>senha</span>
-          </a>
-        </div>
-        <div>
-          <Input label="E-mail" placeholder="teste@gmail.com" />
-          <Input label="Senha" placeholder="Senha" />
-        </div>
+        <form>
+          <S.InputContainer>
+            <Input label="E-mail" placeholder="teste@gmail.com" required />
+            <Input label="Senha" placeholder="Senha" required />
+          </S.InputContainer>
+          <S.IconContainer>
+            <RiLockPasswordFill size={20} color="var(--blue)" />
+            <a href="/forgotpassword">
+              Esqueci minha <span>senha</span>
+            </a>
+          </S.IconContainer>
+          <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
+            Entrar
+          </ButtonKnewave>
+        </form>
 
-        <ButtonKnewave variant="PRIMARY" size="sm">
-          Entrar
-        </ButtonKnewave>
         <hr />
         <h2>
           Não tenho Conta,
