@@ -24,7 +24,13 @@ a{
     font-weight: 600;
     color: #42A4EF;
     margin-bottom: 10px;
+}
 
+button{
+    font-size: 18px;
+    font-weight: 600;
+    color: #42A4EF;
+    margin-bottom: 10px;
 }
 
 h1{

@@ -6,6 +6,15 @@ export const Image = styled.img`
 `
 export const Wrapper = styled.div`
 display: flex;
+display: flex;
+    width: 1500px;
+    max-width: 100%;
+    position: relative;
+    margin: 0 auto;
+
+    @media (max-width: 1300px) {
+    margin: auto 0px;
+    }
 `
 
 export const Line = styled.div`
@@ -51,7 +60,7 @@ button{
 }
 
 div{
-    display: flex;
+
     align-items: center;
     margin-top: 24.5px;
     
@@ -79,4 +88,9 @@ hr {
 
 padding: 241px 120px 236px 69px;
 
+`
+
+export const IconContainer = styled.div`
+    display: flex;
+    align-items: center;
 `
