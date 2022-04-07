@@ -11,7 +11,7 @@ export function ModalHelp() {
         <S.Button>Preciso de mais tempo</S.Button>
       </S.ButtonContainer>
       <S.ButtonContainer>
-        <S.Button>Tirar uma dúvida</S.Button>
+        <S.Button>Tirar uma dúvida com estudante</S.Button>
       </S.ButtonContainer>
       <S.Description>Nenhuma das opções?</S.Description>
       <S.Description>Então converse com nossa equipe</S.Description>
