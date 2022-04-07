@@ -5,7 +5,7 @@ import * as S from "./styles";
 import { Props } from "./typings";
 import { useModal } from "../../hooks/useModal";
 import { Modal } from "../Modal";
-import { ModalInsertWork } from "../../pages/components/modal/ModalInsertWork ";
+import { ModalInsertWork } from "../../pages/components/modal/ModalInsertWork";
 import { ModalSendWork } from "../../pages/components/modal/ModalSendWork";
 import { ModalDone } from "../../pages/components/modal/ModalDone";
 import { ModalChanges } from "../../pages/components/modal/ModalChanges";
