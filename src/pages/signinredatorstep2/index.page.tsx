@@ -3,26 +3,27 @@ import * as S from "./styles";
 import { Checkbox, Select } from "@chakra-ui/react";
 import { Input } from "../../components/Input";
 
-
 export default function signinredatorstep2() {
-    return (
-        <S.Wrapper>
-            <S.ContainerImage>
-            <S.Image src="/images/signinredator.png" />
-            </S.ContainerImage>
+  return (
+    <S.Wrapper>
+      <S.ContainerImage>
+        <S.Image src="/images/signinredator.png" />
+      </S.ContainerImage>
 
-            <S.ContainerInformation>
-            <a href="#">Voltar</a>
-            <h1>Informações Extras</h1>
-            <p>Insira alguns dados para completar o seu cadastro.</p>
+      <S.ContainerInformation>
+        <a href="#">Voltar</a>
+        <h1>Informações Extras</h1>
+        <p>Insira alguns dados para completar o seu cadastro.</p>
 
-            <S.InputContainer>
-           <h3>Curso</h3> 
+        <S.InputContainer>
+          <h3>Curso</h3>
           <Select placeholder="Selecione da nossa lista">
             <option value="option1">Administração</option>
             <option value="option2">Agronegócio</option>
             <option value="option3">Agronomia</option>
-            <option value="option4">Análise e Desenvolvimento de Sistemas</option>
+            <option value="option4">
+              Análise e Desenvolvimento de Sistemas
+            </option>
             <option value="option5">Biomedicina</option>
             <option value="option6">Ciência da Computação</option>
             <option value="option7">Ciências Biológicas</option>
@@ -65,17 +66,15 @@ export default function signinredatorstep2() {
             <option value="option44">Relações Internacionais</option>
             <option value="option45">Serviço Social</option>
             <option value="option46">Sistemas de Informação</option>
-            
           </Select>
-          <h3>Áreas de conhecimento</h3> 
+          <h3>Áreas de conhecimento</h3>
           <Select placeholder="Selecione da nossa lista">
             <option value="option1">Administração</option>
             <option value="option2">Agronegócio</option>
             <option value="option3">Agronomia</option>
-           
           </Select>
 
-          <h3>Formação</h3> 
+          <h3>Formação</h3>
           <Select placeholder="Selecione">
             <option value="option1">Cursando</option>
             <option value="option2">Graduado</option>
@@ -84,21 +83,21 @@ export default function signinredatorstep2() {
             <option value="option3">Doutorado</option>
           </Select>
           <Input label="CPF" placeholder="000.000.000-00" />
-          <Input label="Forma de Pagamento" placeholder="Insira o seu Pix" />
+          <Input
+            label="Forma de Pagamento"
+            placeholder="Insira o seu pix ou dados de pagamento"
+          />
         </S.InputContainer>
-            <S.ContainerDoBang>
-            <Checkbox defaultChecked>Aceitar Termos de Uso</Checkbox>
-            </S.ContainerDoBang>
-            <S.ContainerDoBang>
-            <Checkbox defaultChecked>Aceitar Políticas de Privacidade</Checkbox>
-            </S.ContainerDoBang>
-            <ButtonKnewave variant="PRIMARY" size="sm" >Confirmar e-mail</ButtonKnewave>
-            </S.ContainerInformation>
-        
-                        
-
-
-
-        </S.Wrapper>
-    )
-    }
+        <S.ContainerDoBang>
+          <Checkbox defaultChecked>Aceitar Termos de Uso</Checkbox>
+        </S.ContainerDoBang>
+        <S.ContainerDoBang>
+          <Checkbox defaultChecked>Aceitar Políticas de Privacidade</Checkbox>
+        </S.ContainerDoBang>
+        <ButtonKnewave variant="PRIMARY" size="sm">
+          Confirmar e-mail
+        </ButtonKnewave>
+      </S.ContainerInformation>
+    </S.Wrapper>
+  );
+}
