@@ -92,3 +92,42 @@ export const TagsContainer = styled.div`
         display: none;
     }
 `
+
+export const Footer = styled.div`
+    background: #FFFFFF;
+
+    box-shadow: 0px 10px 25px rgba(198, 198, 198, 0.1);
+    border-radius: 15px;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+`
+
+export const ButtonSee = styled.button`
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(180deg, #56CCF2 0%, #2F80ED 100%);
+
+    border-radius: 99px;
+
+    font-size: 1rem;
+    color: white !important;
+    padding: 8px 28.5px;
+
+`
+export const ButtonStart = styled.button`
+    border: none;
+    cursor: pointer;
+
+    background: linear-gradient(190.27deg, #35ED68 6.53%, #17CD4A 91.31%);
+
+    border-radius: 99px;
+
+
+    font-size: 1rem;
+    color: white !important;
+    padding: 8px 28.5px;
+
+`

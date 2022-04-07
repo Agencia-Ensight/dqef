@@ -16,7 +16,7 @@ export function UrgentWorks() {
       <S.MainContainer>
         <UrgentWorkCard
           course="ARQUITETURA"
-          date="23/04"
+          date="23/04 às 17h"
           discipline="arroz"
           price={20}
           theme="banana"
@@ -26,7 +26,7 @@ export function UrgentWorks() {
         />
         <UrgentWorkCard
           course="ECONOMIA"
-          date="23/04"
+          date="23/04 às 17h"
           discipline="arroz"
           price={20}
           theme="banana"
@@ -36,7 +36,7 @@ export function UrgentWorks() {
         />
         <UrgentWorkCard
           course="ECONOMIA"
-          date="23/04"
+          date="23/04 às 17h"
           discipline="arroz"
           price={20}
           theme="banana"
@@ -46,7 +46,7 @@ export function UrgentWorks() {
         />
         <UrgentWorkCard
           course="ECONOMIA"
-          date="23/04"
+          date="23/04 às 17h"
           discipline="arroz"
           price={20}
           theme="banana"
@@ -56,7 +56,7 @@ export function UrgentWorks() {
         />
         <UrgentWorkCard
           course="ECONOMIA"
-          date="23/04"
+          date="23/04 às 17h"
           discipline="arroz"
           price={20}
           theme="banana"
@@ -66,7 +66,7 @@ export function UrgentWorks() {
         />
         <UrgentWorkCard
           course="ECONOMIA"
-          date="23/04"
+          date="23/04 às 17h"
           discipline="arroz"
           price={20}
           theme="banana"

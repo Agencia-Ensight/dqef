@@ -6,6 +6,7 @@ import Head from "next/head";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import GlobalStyle from "../styles/global";
+import { Menu } from "../components/NavBar/components/Menu";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -87,6 +88,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <NavBar />
+      <Menu />
       <ChakraProvider>
         <Component {...pageProps} />
       </ChakraProvider>

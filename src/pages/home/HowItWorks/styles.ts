@@ -5,41 +5,27 @@ import { ISelected } from "./typings";
 export const Wrapper = styled.div`
     margin: 0 5%;
     padding-top: 8rem;
+    padding-bottom: 3rem;
+
+    span{
+        color: #42A4EF;
+        font-weight: 500;
+    }
 `
 
 export const Container = styled.div`
-    width: 100%;
-    border: 5px solid #42A4EF;
-    box-shadow: 0px 0px 50px rgba(198, 198, 198, 0.25);
-    border-radius: 50px;
-    padding: 3rem 4rem 4rem 3rem;
-    display: flex;
-    align-items: center;
-    gap: 0px 40px;
+  
     
-    @media (max-width: 900px){
-        flex-direction: column;
-    }
+    
 `
 
-export const Image = styled.img`
-    width: 40%;
-    height: auto;
 
-    @media (max-width: 900px){
-        width: 80%;
-        display: block;
-        margin: 0 auto;
-        margin-bottom: 2rem;
-    }
 
-    @media (max-width: 600px){
-        width: 100%;
-    }
-`
 
-export const Info = styled.div`
 
+export const TitleContainer = styled.div`
+    display: flex;
+    justify-content: center;
 `
 
 export const Title = styled.h1`
@@ -62,11 +48,15 @@ export const SubTitle = styled.h2`
     color: var(--muted-text);
     font-size: 1.2rem;
     margin-bottom: 1.3rem;
+    text-align: center;
+
 `
 
 export const Description = styled.p`
     font-size: 1.2rem;
     margin-top: 1.6rem;
+    text-align: center;
+
 `
 
 export const Highlight = styled.span`
@@ -85,3 +75,25 @@ export const Button = styled.button<ISelected>`
     color: var(--blue);
     `}
 `
+export const InfoContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 77px;
+    overflow-y: scroll;
+    justify-content: center;
+
+    @media (max-width: 500px){
+        justify-content: flex-start;
+    }
+    
+
+    @media (max-width: 320px){
+        flex-wrap: wrap;
+    }
+`
+
+
+
+
+

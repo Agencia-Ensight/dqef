@@ -6,6 +6,11 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     margin: 0 2%;
+    @media (max-width: 800px) {
+    display: none;
+  }
+
+  
 `
 
 export const LogoWrapper = styled.div`
@@ -13,11 +18,21 @@ export const LogoWrapper = styled.div`
         cursor: pointer;
 
     }
+
+   
 `
 
 export const Wrapper = styled.div`
     display: flex;
     align-items: center;
+
+    button{
+
+    @media (max-width: 800px) {
+    display: none;
+  }
+    }
+
 `
 
 export const MenuItem = styled.a`
@@ -28,6 +43,9 @@ export const MenuItem = styled.a`
     margin-right: 1.5rem;
     cursor: pointer;
 
+    @media (max-width: 800px) {
+    display: none;
+  }
     
     
 `

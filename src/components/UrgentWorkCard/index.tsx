@@ -17,8 +17,6 @@ import { ModalOpenWork } from "../../pages/components/modal/ModalOpenWork";
 import { ModalOpenWorkStep2 } from "../../pages/components/modal/ModalOpenWorkStep2";
 import { ModalRequestChanges } from "../../pages/components/modal/ModalRequestChanges";
 
-
-
 export function UrgentWorkCard({
   course,
   title,
@@ -31,7 +29,7 @@ export function UrgentWorkCard({
   status,
 }: Props) {
   const { isShown, toggle } = useModal();
-  const { isShown:isShown2, toggle:toggle2 } = useModal();
+  const { isShown: isShown2, toggle: toggle2 } = useModal();
   return (
     <S.Wrapper>
       <S.Container>
@@ -58,11 +56,10 @@ export function UrgentWorkCard({
             <S.Price>R${price}</S.Price>
           </S.InformationContainer>
           <S.InformationContainer>
-            <S.Subtitle>Data de Entrega</S.Subtitle>
-            <S.Date urgent={urgent}>
-              {date}
-              {urgent === true ? "- Entrega Urgente" : ""}
-            </S.Date>
+            <S.Subtitle>
+              Data de Entrega {urgent === true && "Urgente"}
+            </S.Subtitle>
+            <S.Date urgent={urgent}>{date}</S.Date>
             {/* Employee */}
             {status === "EMPLOYEE-SEND" && (
               <S.WaitStudent>Aguardando Estudante ...</S.WaitStudent>
@@ -84,167 +81,191 @@ export function UrgentWorkCard({
       {/* Employee */}
       {status === "EMPLOYEE-PAID" && (
         <S.FooterContainer>
-          <Button onClick={toggle} variant="primary">Iniciar Trabalho</Button>
+          <Button onClick={toggle} variant="primary">
+            Iniciar Trabalho
+          </Button>
           <Modal
-          isShown={isShown}
-          hide={toggle}
-          headerText="Negócio Fechado!"
-          modalContent={<ModalDealDone/>}
-        />
+            isShown={isShown}
+            hide={toggle}
+            headerText="Negócio Fechado!"
+            modalContent={<ModalDealDone />}
+          />
         </S.FooterContainer>
       )}
       {status === "EMPLOYEE-START" && (
         <S.FooterContainer>
-          <Button  onClick={toggle} variant="primary">Entregar</Button>
+          <Button onClick={toggle} variant="primary">
+            Entregar
+          </Button>
           <Modal
-          isShown={isShown}
-          hide={toggle}
-          headerText="Deseja enviar o trabalho?"
-          modalContent={<ModalInsertWork/>}
-        />
-            <a href="/inside-job" >
-          <Button variant="secondary">Ver Mais</Button>
-              
-            </a>
-            <a target="_blank" href="https://wa.me/5541999959588">
-          <Button variant="tertiary">Problema</Button>
+            isShown={isShown}
+            hide={toggle}
+            headerText="Deseja enviar o trabalho?"
+            modalContent={<ModalInsertWork />}
+          />
+          <a href="/inside-job">
+            <Button variant="secondary">Ver Mais</Button>
+          </a>
+          <a target="_blank" href="https://wa.me/5541999959588">
+            <Button variant="tertiary">Problema</Button>
           </a>
         </S.FooterContainer>
       )}
       {status === "EMPLOYEE-BILL" && (
         <S.FooterContainer>
-          <Button onClick={toggle} variant="primary">Entregar</Button>
+          <Button onClick={toggle} variant="primary">
+            Entregar
+          </Button>
           <Modal
-          isShown={isShown}
-          hide={toggle}
-          headerText="Deseja enviar o trabalho?"
-          modalContent={<ModalInsertWork/>}
-        /> <a href="/inside-job">
-          <Button variant="secondary">Ver Mais</Button>
+            isShown={isShown}
+            hide={toggle}
+            headerText="Deseja enviar o trabalho?"
+            modalContent={<ModalInsertWork />}
+          />{" "}
+          <a href="/inside-job">
+            <Button variant="secondary">Ver Mais</Button>
           </a>
-          <Button onClick={toggle} variant="tertiary">Cobrança</Button>
+          <Button onClick={toggle} variant="tertiary">
+            Cobrança
+          </Button>
           <Modal
-          isShown={isShown}
-          hide={toggle}
-          headerText="Olá, Enrico!"
-          modalContent={<ModalDone/>}
-        />
+            isShown={isShown}
+            hide={toggle}
+            headerText="Olá, Enrico!"
+            modalContent={<ModalDone />}
+          />
         </S.FooterContainer>
       )}
       {status === "EMPLOYEE-CHANGE" && (
         <S.FooterContainer>
-          <Button onClick={toggle2} variant="primary">Entregar</Button>
+          <Button onClick={toggle2} variant="primary">
+            Entregar
+          </Button>
           <Modal
-          isShown={isShown2}
-          hide={toggle2}
-          headerText="Deseja enviar o trabalho?"
-          modalContent={<ModalInsertWork/>}
-        />
+            isShown={isShown2}
+            hide={toggle2}
+            headerText="Deseja enviar o trabalho?"
+            modalContent={<ModalInsertWork />}
+          />
           <a href="/inside-job">
-          <Button variant="secondary">Ver Mais</Button>
+            <Button variant="secondary">Ver Mais</Button>
           </a>
-          <Button onClick={toggle} variant="quinternary">Alterações</Button>
+          <Button onClick={toggle} variant="quinternary">
+            Alterações
+          </Button>
           <Modal
-          isShown={isShown}
-          hide={toggle}
-          headerText="Olá, Bruno. Essas são as alterações solicitadas"
-          modalContent={<ModalChanges/>}
-        />
+            isShown={isShown}
+            hide={toggle}
+            headerText="Olá, Bruno. Essas são as alterações solicitadas"
+            modalContent={<ModalChanges />}
+          />
         </S.FooterContainer>
       )}
       {status === "EMPLOYEE-DONE" && (
         <S.FooterContainer>
-          <Button onClick={toggle} variant="primary">Ver FeedBack</Button>
+          <Button onClick={toggle} variant="primary">
+            Ver FeedBack
+          </Button>
           <Modal
-          isShown={isShown}
-          hide={toggle}
-          headerText="Feedback do Estudante"
-          modalContent={<ModalFeedback/>}
-        />
+            isShown={isShown}
+            hide={toggle}
+            headerText="Feedback do Estudante"
+            modalContent={<ModalFeedback />}
+          />
         </S.FooterContainer>
-        
       )}
       {status === "EMPLOYEE-SEE" && (
         <S.FooterContainer>
           <a href="/inside-job">
-          <Button variant="primary">Ver Mais</Button>
+            <Button variant="primary">Ver Mais</Button>
           </a>
         </S.FooterContainer>
       )}
       {status === "EMPLOYEE-WANT" && (
         <S.FooterContainer>
-          <Button onClick={toggle} variant="primary">Aceitar Proposta</Button>
+          <Button onClick={toggle} variant="primary">
+            Aceitar Proposta
+          </Button>
           <Modal
-          isShown={isShown}
-          hide={toggle}
-          headerText="Informações da Entrega"
-          modalContent={<ModalRules/>}
-        />
-          <Button onClick={toggle2} variant="secondary">Contraproposta</Button>
+            isShown={isShown}
+            hide={toggle}
+            headerText="Informações da Entrega"
+            modalContent={<ModalRules />}
+          />
+          <Button onClick={toggle2} variant="secondary">
+            Contraproposta
+          </Button>
           <Modal
-          isShown={isShown2}
-          hide={toggle2}
-          headerText="Alterar Valor"
-          modalContent={<ModalCounterProposal/>}
-        />
+            isShown={isShown2}
+            hide={toggle2}
+            headerText="Alterar Valor"
+            modalContent={<ModalCounterProposal />}
+          />
         </S.FooterContainer>
       )}
       {/* Student */}
       {status === "STUDENT-CREATE" && (
         <S.FooterContainer>
           <a href="/studentviewproposals">
-          <Button variant="primary">Ver Propostas</Button>
+            <Button variant="primary">Ver Propostas</Button>
           </a>
         </S.FooterContainer>
       )}
       {status === "STUDENT-GET" && (
         <S.FooterContainer>
-        <Button onClick={toggle} variant="primary">Entrega</Button>
+          <Button onClick={toggle} variant="primary">
+            Entrega
+          </Button>
           <Modal
-          isShown={isShown}
-          hide={toggle}
-          headerText="Olá, Enrico."
-          modalContent={<ModalOpenWorkStep2/>}
-        />
+            isShown={isShown}
+            hide={toggle}
+            headerText="Olá, Enrico."
+            modalContent={<ModalOpenWorkStep2 />}
+          />
           <a href="/inside-job">
-          <Button variant="secondary">Ver Mais</Button>
+            <Button variant="secondary">Ver Mais</Button>
           </a>
-          <Button onClick={toggle2} variant="tertiary">Alterações</Button>
+          <Button onClick={toggle2} variant="tertiary">
+            Alterações
+          </Button>
           <Modal
-          isShown={isShown2}
-          hide={toggle2}
-          headerText="Solicitar Alteração"
-          modalContent={<ModalRequestChanges/>}
-        />
+            isShown={isShown2}
+            hide={toggle2}
+            headerText="Solicitar Alteração"
+            modalContent={<ModalRequestChanges />}
+          />
         </S.FooterContainer>
       )}
       {status === "STUDENT-DONE" && (
         <S.FooterContainer>
-          <Button onClick={toggle} variant="primary">Entrega</Button>
+          <Button onClick={toggle} variant="primary">
+            Entrega
+          </Button>
           <Modal
-          isShown={isShown}
-          hide={toggle}
-          headerText="Olá, Enrico."
-          modalContent={<ModalOpenWork/>}
-        />
+            isShown={isShown}
+            hide={toggle}
+            headerText="Olá, Enrico."
+            modalContent={<ModalOpenWork />}
+          />
           <a href="/inside-job">
-          <Button variant="secondary">Ver Mais</Button>
+            <Button variant="secondary">Ver Mais</Button>
           </a>
-          <Button onClick={toggle2} variant="quaternary">Avaliar</Button>
+          <Button onClick={toggle2} variant="quaternary">
+            Avaliar
+          </Button>
           <Modal
-          isShown={isShown2}
-          hide={toggle2}
-          headerText="Olá, Enrico"
-          modalContent={<ModalRating/>}
-        />
-
+            isShown={isShown2}
+            hide={toggle2}
+            headerText="Olá, Enrico"
+            modalContent={<ModalRating />}
+          />
         </S.FooterContainer>
       )}
       {status === "STUDENT" && ""}
       {status === "STUDENT-EDIT" && (
         <S.FooterContainer>
           <a href="/editpage">
-          <Button variant="primary">Editar Trabalho</Button>
+            <Button variant="primary">Editar Trabalho</Button>
           </a>
         </S.FooterContainer>
       )}

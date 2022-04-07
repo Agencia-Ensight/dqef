@@ -28,6 +28,7 @@ export const Info = styled.div`
 export const Title = styled.h1`
     font-size: 3rem;
     color: rgba(33, 33, 33, 1);
+    font-weight: 700;
 `
 
 export const Highlight = styled.span`
@@ -39,8 +40,8 @@ export const Highlight = styled.span`
 `
 
 export const Description = styled.p`
-    color: #434343;
-    font-size: 1.2rem;
+    color: #4e4e4e;
+    font-size: 1.1rem;
     margin-top: 1.8rem;
-    font-weight: 400;
+    font-weight: 500;
 `

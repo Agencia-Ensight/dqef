@@ -1,7 +1,9 @@
 import { ButtonKnewave } from "../../components/ButtonKnewave";
 import * as S from "./styles";
-import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { Input } from "../../components/Input";
+
+import api from "../../services/api";
+import { useEffect } from "react";
 
 export default function signinstudentstep1() {
   return (
@@ -22,6 +24,7 @@ export default function signinstudentstep1() {
               label="Nome completo"
               placeholder="Insira o seu nome"
               type="text"
+              onChange={}
               required
             />
             <Input label="Email" placeholder="teste@gmail.com" required />

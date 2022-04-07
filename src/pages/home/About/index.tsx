@@ -10,16 +10,20 @@ export function About() {
             Sobre a <S.Highlight>DQEF</S.Highlight>
           </S.Title>
           <S.Description>
-            Estamos fazendo diferente e facilitando a sua empresa.
+            A Deixa Que Eu Faço é uma plataforma educacional que tem como
+            objetivo conceder aquilo que o universitário mais precisa: tempo e
+            dinheiro!
           </S.Description>
           <S.Description>
-            O nosso objetivo é ajudar no processo de contratação de freelancers
-            para empresas. Facilitando o fluxo e organização dos projetos.
+            Mas como fazemos isso? Através do nosso site, conectamos o
+            universitário que está sem tempo e atolado de trabalhos acadêmicos,
+            a outro universitário, que está disposto a realizar essas atividades
+            e descolar uma renda extra!
           </S.Description>
           <S.Description>
-            Sabemos que qualidade é muito importante, e por esse motivo contamos
-            com um processo de verificação com os melhores prestadores de
-            serviços. Garantindo confiança e credibilidade.
+            Resultados: Ajudamos mais de 2.000 universitários em todo Brasil;
+            Índice de Satisfação acima de 95%; Juntamos mais de 1000 redatores
+            dos mais diversos assuntos em um único lugar.
           </S.Description>
         </S.Info>
       </S.Container>

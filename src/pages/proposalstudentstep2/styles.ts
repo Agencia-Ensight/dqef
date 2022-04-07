@@ -10,6 +10,8 @@ display: flex;
 export const ContainerImage = styled.div`
 
 `
+
+
 export const ContainerInformation = styled.div`
 
 padding: 144px 331px 143.7px 113px;
@@ -52,9 +54,31 @@ button{
 
 }
 
+    
+label{
+        color: #53647E;
+        font-size: 18px;
+         }
+
+input{
+    border: 2px solid #42A4EF;
+        border-radius: 99px;
+        width: 100%;
+        font-size: 18px;
+       height: 51px;
+       padding: 0 20px;
+       margin-top: 10px;
 
 
+        &::placeholder {
+            color:#848484;
 
+        }
+    }
+}
+`;
 
-
+export const Description = styled.p`
+    color: #4E4E4E;
+    font-size: 18px;
 `
