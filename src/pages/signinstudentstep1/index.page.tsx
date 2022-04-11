@@ -24,7 +24,6 @@ export default function signinstudentstep1() {
               label="Nome completo"
               placeholder="Insira o seu nome"
               type="text"
-              onChange={}
               required
             />
             <Input label="Email" placeholder="teste@gmail.com" required />
