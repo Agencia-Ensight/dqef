@@ -1,6 +1,6 @@
 import { apiClient } from './api';
 
-interface SignUpData {
+export interface ISignUpData {
     email: string;
 	password: string;
 	name: string;
@@ -11,7 +11,7 @@ interface SignUpData {
 	course: number;
 	college: number;
 }
-export const signUp = async (data: SignUpData) => {
+export const signUp = async (data: ISignUpData) => {
     const response = await apiClient.post('/auth/sign-up', data);
     return response.data;
 }

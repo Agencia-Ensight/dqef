@@ -10,6 +10,7 @@ export function MultiStepForm({ firstStep, onSubmit, onFail, stateName, children
     const form = e.currentTarget;
     const data = new FormData(form);
     let formData = Object.fromEntries(data);
+    console.log(formData);
 
     // Get existing data
     if (!firstStep) {

@@ -28,69 +28,69 @@ export default function signinredatorstep2() {
           <S.InputContainer>
             <h3>Curso</h3>
             <Select name="course" placeholder="Selecione da nossa lista">
-              <option value="option1">Administração</option>
-              <option value="option2">Agronegócio</option>
-              <option value="option3">Agronomia</option>
-              <option value="option4">
+              <option value={1}>Administração</option>
+              <option value={2}>Agronegócio</option>
+              <option value={3}>Agronomia</option>
+              <option value={4}>
                 Análise e Desenvolvimento de Sistemas
               </option>
-              <option value="option5">Biomedicina</option>
-              <option value="option6">Ciência da Computação</option>
-              <option value="option7">Ciências Biológicas</option>
-              <option value="option8">Ciências Contábeis</option>
-              <option value="option9">Ciências Econômicas</option>
-              <option value="option10">Design de Interiores</option>
-              <option value="option11">Design do Produto</option>
-              <option value="option12">Design Gráfico</option>
-              <option value="option13">Direito</option>
-              <option value="option14">Educação Física</option>
-              <option value="option15">Enfermagem</option>
-              <option value="option16">Engenharia Agronômica</option>
-              <option value="option17">Engenharia Ambiental</option>
-              <option value="option18">Engenharia Civil</option>
-              <option value="option19">Engenharia de Alimentos</option>
-              <option value="option20">Engenharia de Produção</option>
-              <option value="option21">Engenharia de Software</option>
-              <option value="option22">Engenharia de Telecomunicações</option>
-              <option value="option23">Engenharia Elétrica</option>
-              <option value="option24">Engenharia Mecânica</option>
-              <option value="option25">Engenharia Química</option>
-              <option value="option26">Farmácia</option>
-              <option value="option27">Física</option>
-              <option value="option28">Fisioterapia</option>
-              <option value="option29">Fonoaudiologia</option>
-              <option value="option30">História</option>
-              <option value="option31">Jornalismo</option>
-              <option value="option32">Letras</option>
-              <option value="option33">Marketing</option>
-              <option value="option34">Matemática</option>
-              <option value="option35">Medicina</option>
-              <option value="option36">Medicina Veterinária</option>
-              <option value="option37">Nutrição</option>
-              <option value="option38">Odontologia</option>
-              <option value="option39">Pedagogia</option>
-              <option value="option40">Psicologia</option>
-              <option value="option41">Publicidade e Propaganda</option>
-              <option value="option42">Química</option>
-              <option value="option43">Recursos Humanos</option>
-              <option value="option44">Relações Internacionais</option>
-              <option value="option45">Serviço Social</option>
-              <option value="option46">Sistemas de Informação</option>
+              <option value={5}>Biomedicina</option>
+              <option value={6}>Ciência da Computação</option>
+              <option value={7}>Ciências Biológicas</option>
+              <option value={8}>Ciências Contábeis</option>
+              <option value={9}>Ciências Econômicas</option>
+              <option value={10}>Design de Interiores</option>
+              <option value={11}>Design do Produto</option>
+              <option value={12}>Design Gráfico</option>
+              <option value={13}>Direito</option>
+              <option value={14}>Educação Física</option>
+              <option value={15}>Enfermagem</option>
+              <option value={16}>Engenharia Agronômica</option>
+              <option value={17}>Engenharia Ambiental</option>
+              <option value={18}>Engenharia Civil</option>
+              <option value={19}>Engenharia de Alimentos</option>
+              <option value={20}>Engenharia de Produção</option>
+              <option value={21}>Engenharia de Software</option>
+              <option value={22}>Engenharia de Telecomunicações</option>
+              <option value={23}>Engenharia Elétrica</option>
+              <option value={24}>Engenharia Mecânica</option>
+              <option value={25}>Engenharia Química</option>
+              <option value={26}>Farmácia</option>
+              <option value={27}>Física</option>
+              <option value={28}>Fisioterapia</option>
+              <option value={29}>Fonoaudiologia</option>
+              <option value={30}>História</option>
+              <option value={31}>Jornalismo</option>
+              <option value={32}>Letras</option>
+              <option value={33}>Marketing</option>
+              <option value={34}>Matemática</option>
+              <option value={35}>Medicina</option>
+              <option value={36}>Medicina Veterinária</option>
+              <option value={37}>Nutrição</option>
+              <option value={38}>Odontologia</option>
+              <option value={39}>Pedagogia</option>
+              <option value={40}>Psicologia</option>
+              <option value={41}>Publicidade e Propaganda</option>
+              <option value={42}>Química</option>
+              <option value={43}>Recursos Humanos</option>
+              <option value={44}>Relações Internacionais</option>
+              <option value={45}>Serviço Social</option>
+              <option value={46}>Sistemas de Informação</option>
             </Select>
             <h3>Áreas de conhecimento</h3>
-            <Select name="type" placeholder="Selecione da nossa lista">
-              <option value="option1">Administração</option>
-              <option value="option2">Agronegócio</option>
-              <option value="option3">Agronomia</option>
+            <Select name="college" placeholder="Selecione da nossa lista">
+              <option value={1}>Administração</option>
+              <option value={2}>Agronegócio</option>
+              <option value={3}>Agronomia</option>
             </Select>
 
             <h3>Formação</h3>
             <Select name="formation" placeholder="Selecione">
-              <option value="option1">Cursando</option>
-              <option value="option2">Graduado</option>
-              <option value="option3">Pós-graduado</option>
-              <option value="option3">Mestrado</option>
-              <option value="option3">Doutorado</option>
+              <option value={1}>Cursando</option>
+              <option value={2}>Graduado</option>
+              <option value={3}>Pós-graduado</option>
+              <option value={4}>Mestrado</option>
+              <option value={5}>Doutorado</option>
             </Select>
             <Input name="cpf" label="CPF" placeholder="000.000.000-00" />
             <Input
