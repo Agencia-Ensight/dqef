@@ -1,4 +1,5 @@
-import { apiClient } from './api';
+import { gql } from '@apollo/client';
+import { axiosClient, apolloClient } from './api';
 
 export interface ISignUpData {
   email: string;
@@ -12,7 +13,7 @@ export interface ISignUpData {
   college: number;
 }
 export const signUp = async (data: ISignUpData) => {
-  const response = await apiClient.post('/auth/sign-up', data);
+  const response = await axiosClient.post('/auth/sign-up', data);
   return response.data;
 }
 
@@ -22,6 +23,24 @@ export interface IValidateCodeData {
   password: string;
 }
 export const validateCode = async (data: IValidateCodeData) => {
-  const response = await apiClient.post('/auth/sign-up/code', data);
+  const response = await axiosClient.post('/auth/sign-up/code', data);
   return response.data;
+}
+
+export interface ICourse {
+  id: number;
+  name: string;
+}
+export const getCourses = async (): Promise<ICourse[]> => {
+  const result = await apolloClient.query({
+    query: gql`
+      query {
+        higher_courses {
+          id
+          name
+        }
+      }
+    `
+  })
+  return result.data.higher_courses;
 }
