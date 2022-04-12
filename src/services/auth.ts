@@ -44,3 +44,21 @@ export const getCourses = async (): Promise<ICourse[]> => {
   })
   return result.data.higher_courses;
 }
+
+export interface IFormation {
+  id: number;
+  name: string;
+}
+export const getFormations = async (): Promise<IFormation[]> => {
+  const result = await apolloClient.query({
+    query: gql`
+      query {
+        formations {
+          id
+          name
+        }
+      }
+    `
+  })
+  return result.data.formations;
+}

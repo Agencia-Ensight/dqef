@@ -5,18 +5,25 @@ import { Input } from "../../components/Input";
 import Router from "next/router";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import React, { useEffect } from "react";
-import { getCourses, ICourse } from "../../services/auth";
+import { getCourses, getFormations, ICourse, IFormation } from "../../services/auth";
 
 export default function signinredatorstep2() {
   const [courses, setCourses] = React.useState<ICourse[]>([]);
+  const [formations, setFormations] = React.useState<IFormation[]>([]);
 
   useEffect(() => {
     async function loadCourses() {
       const res = await getCourses();
       setCourses(res);
     }
-    
+
+    async function loadFormations() {
+      const res = await getFormations();
+      setFormations(res);
+    }
+
     loadCourses();
+    loadFormations();
   }, []);
 
   return (
@@ -56,11 +63,11 @@ export default function signinredatorstep2() {
 
             <h3>Formação</h3>
             <Select name="formation" placeholder="Selecione">
-              <option value={1}>Cursando</option>
-              <option value={2}>Graduado</option>
-              <option value={3}>Pós-graduado</option>
-              <option value={4}>Mestrado</option>
-              <option value={5}>Doutorado</option>
+              {
+                formations.map((formation: IFormation) => (
+                  <option key={formation.id} value={formation.id}>{formation.name}</option>
+                ))
+              }
             </Select>
             <Input name="cpf" label="CPF" placeholder="000.000.000-00" />
             <Input
