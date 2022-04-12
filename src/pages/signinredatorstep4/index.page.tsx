@@ -4,67 +4,18 @@ import { Checkbox, CheckboxGroup } from '@chakra-ui/react';
 import { AiOutlineReload } from "react-icons/ai";
 import { Input } from "../../components/Input";
 import { ISignUpData, IValidateCodeData, signUp, validateCode } from "../../services/auth";
-import React from "react";
+import React, { useMemo } from "react";
 import Router from "next/router";
+import { getSignupStep4 } from "../../shared/signup";
 
 
 export default function signinredatorstep4() {
   const [emailCode, setEmailCode] = React.useState("");
 
-  const getSignupData = () => {
-    const existingData = sessionStorage.getItem('signupData');
-    if (existingData) {
-      return JSON.parse(existingData);
-    }
-    return null;
-  };
-
-  const resendCode = async () => {
-    const data = getSignupData();
-    if (data) {
-      const payload: ISignUpData = {
-        email: data.email,
-        password: data.password,
-        name: data.name,
-        phone: data.phone,
-        cpf: data.cpf,
-        type: 2,
-        formation: parseInt(data.formation),
-        course: parseInt(data.course),
-        college: parseInt(data.college),
-      };
-      return await signUp(payload);
-
-    }
-  }
-
-  const validateEmailCode = async () => {
-    const data = getSignupData();
-    if (data) {
-      const payload: IValidateCodeData = {
-        email: data.email,
-        code: emailCode,
-        password: data.password,
-      }
-      return await validateCode(payload);
-    }
-  }
-
-  function handleError(error: any) {
-    // TODO: implement error handling
-    console.error(error);
-  }
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      await validateEmailCode();
-      Router.push("/signinredatorstep5");
-    } catch (error) {
-      handleError(error);
-    }
-  }
-
+  const {
+    handleSubmit,
+    resendCode
+  } = useMemo(() => getSignupStep4(2, '/signinredatorstep5', emailCode), [emailCode]);
 
   return (
     <S.Wrapper>
