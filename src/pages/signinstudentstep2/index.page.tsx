@@ -2,8 +2,21 @@ import { ButtonKnewave } from "../../components/ButtonKnewave";
 import * as S from "./styles";
 import { Checkbox, Select } from "@chakra-ui/react";
 import { Input } from "../../components/Input";
+import React, { useEffect } from "react";
+import { getCourses, ICourse } from "../../services/auth";
 
 export default function signinstudentstep2() {
+  const [courses, setCourses] = React.useState<ICourse[]>([]);
+
+  useEffect(() => {
+    async function loadCourses() {
+      const res = await getCourses();
+      setCourses(res);
+    }
+
+    loadCourses();
+  }, []);
+
   return (
     <S.Wrapper>
       <S.ContainerImage>
@@ -17,9 +30,11 @@ export default function signinstudentstep2() {
         <S.InputContainer>
           <label>Curso</label>
           <Select placeholder="Select option">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+            {
+              courses.map((course: ICourse) => (
+                <option key={course.id} value={course.id}>{course.name}</option>
+              ))
+            }
           </Select>
           <Input label="Faculdade" placeholder="Insira aqui" />
         </S.InputContainer>
