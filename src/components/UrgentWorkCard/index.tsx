@@ -59,7 +59,10 @@ export function UrgentWorkCard({
             <S.Subtitle>
               Data de Entrega {urgent === true && "Urgente"}
             </S.Subtitle>
+            
+
             <S.Date urgent={urgent}>{date}</S.Date>
+            
             {/* Employee */}
             {status === "EMPLOYEE-SEND" && (
               <S.WaitStudent>Aguardando Estudante ...</S.WaitStudent>
@@ -77,6 +80,7 @@ export function UrgentWorkCard({
             {status === "EMPLOYEE-BILL" && <S.Bill>Responda a Cobrança</S.Bill>}
           </S.InformationContainer>
         </S.MainContainer>
+        
       </S.Container>
       {/* Employee */}
       {status === "EMPLOYEE-PAID" && (
@@ -177,7 +181,7 @@ export function UrgentWorkCard({
       {status === "EMPLOYEE-SEE" && (
         <S.FooterContainer>
           <a href="/inside-job">
-            <Button variant="primary">Ver Mais</Button>
+            <Button variant="secondary">Ver Mais</Button>
           </a>
         </S.FooterContainer>
       )}
@@ -208,6 +212,9 @@ export function UrgentWorkCard({
         <S.FooterContainer>
           <a href="/studentviewproposals">
             <Button variant="primary">Ver Propostas</Button>
+          </a>
+          <a href="/studentviewproposals">
+            <Button variant="secondary">Ver Mais</Button>
           </a>
         </S.FooterContainer>
       )}

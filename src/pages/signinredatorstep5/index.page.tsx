@@ -17,8 +17,9 @@ export default function signinredatorstep5() {
 grana!</p>
             
             <div>
+                <a href="/">
             <ButtonKnewave   margin-left= "25px" variant="PRIMARY" size="sm" >Explorar</ButtonKnewave>
-            
+                </a>
             </div>
             </S.ContainerInformation>
 
