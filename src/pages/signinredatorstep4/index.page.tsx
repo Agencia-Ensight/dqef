@@ -15,7 +15,7 @@ export default function signinredatorstep4() {
   const {
     handleSubmit,
     resendCode
-  } = useMemo(() => getSignupStep4(2, '/signinredatorstep5', emailCode), [emailCode]);
+  } = useMemo(() => getSignupStep4(2, '/signinredatorstep5', emailCode, 'signupData'), [emailCode]);
 
   return (
     <S.Wrapper>

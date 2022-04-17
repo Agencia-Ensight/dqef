@@ -37,9 +37,9 @@ export const getSignupStep3 = (userType: number, nextRoute: string, handleError?
   }
 }
 
-export const getSignupStep4 = (userType: number, nextRoute: string, emailCode: string, handleError?: Function) => {
+export const getSignupStep4 = (userType: number, nextRoute: string, emailCode: string, existingDataName: string, handleError?: Function) => {
   const getSignupData = () => {
-    const existingData = sessionStorage.getItem('signupData');
+    const existingData = sessionStorage.getItem(existingDataName);
     if (existingData) {
       return JSON.parse(existingData);
     }

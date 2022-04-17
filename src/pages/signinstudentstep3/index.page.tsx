@@ -32,7 +32,7 @@ export default function signinstudentstep3() {
           <S.InputContainer>
             <Input placeholder="Insira seu email" />
           </S.InputContainer>
-          <ButtonKnewave variant="PRIMARY" size="sm">
+          <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
             Enviar Código
           </ButtonKnewave>
         </MultiStepForm>
