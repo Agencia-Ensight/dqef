@@ -1,6 +1,12 @@
 import { gql } from '@apollo/client';
 import { axiosClient, apolloClient } from './api';
 
+export interface IDefaultResponse {
+  status: number;
+  message: string;
+  data: any;
+}
+
 export interface ISignUpData {
   email: string;
   password: string;
@@ -79,4 +85,10 @@ export const getKnowledges = async (): Promise<IKnowledge[]> => {
     `
   })
   return result.data.knowledges;
+}
+
+
+export const forgotPassword = async (email: string): Promise<IDefaultResponse> => {
+  const response = await axiosClient.post('/auth/forget-password', { email });
+  return response.data;
 }
