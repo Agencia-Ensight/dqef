@@ -62,3 +62,21 @@ export const getFormations = async (): Promise<IFormation[]> => {
   })
   return result.data.formations;
 }
+
+export interface IKnowledge {
+  id: number;
+  name: string;
+}
+export const getKnowledges = async (): Promise<IKnowledge[]> => {
+  const result = await apolloClient.query({
+    query: gql`
+      query {
+        knowledges {
+          id
+          name
+        }
+      }
+    `
+  })
+  return result.data.knowledges;
+}

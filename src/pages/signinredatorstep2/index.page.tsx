@@ -5,11 +5,12 @@ import { Input } from "../../components/Input";
 import Router from "next/router";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import React, { useEffect } from "react";
-import { getCourses, getFormations, ICourse, IFormation } from "../../services/auth";
+import { getCourses, getFormations, getKnowledges, ICourse, IFormation, IKnowledge } from "../../services/auth";
 
 export default function signinredatorstep2() {
   const [courses, setCourses] = React.useState<ICourse[]>([]);
   const [formations, setFormations] = React.useState<IFormation[]>([]);
+  const [knowledges, setKnowledges] = React.useState<IKnowledge[]>([]);
 
   useEffect(() => {
     async function loadCourses() {
@@ -22,8 +23,14 @@ export default function signinredatorstep2() {
       setFormations(res);
     }
 
+    async function loadKnowledges() {
+      const res = await getKnowledges();
+      setKnowledges(res);
+    }
+
     loadCourses();
     loadFormations();
+    loadKnowledges();
   }, []);
 
   return (
@@ -56,9 +63,11 @@ export default function signinredatorstep2() {
             </Select>
             <h3>Áreas de conhecimento</h3>
             <Select name="college" placeholder="Selecione da nossa lista">
-              <option value={1}>Administração</option>
-              <option value={2}>Agronegócio</option>
-              <option value={3}>Agronomia</option>
+              {
+                knowledges.map((knowledge: IKnowledge) => (
+                  <option key={knowledge.id} value={knowledge.id}>{knowledge.name}</option>
+                ))
+              }
             </Select>
 
             <h3>Formação</h3>
