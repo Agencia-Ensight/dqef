@@ -7,17 +7,20 @@ import { Input } from "../../components/Input";
 import { useState } from "react";
 import { signIn } from "../../services/auth";
 import Router from "next/router";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setToken } = useAuth();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     
     console.log(email, password);
 
-    signIn(email, password).then(() => {
+    signIn(email, password).then((response) => {
+      setToken(response.data.toke.token);
       Router.push("/");
     }).catch(() => {
       alert("Erro ao logar");
