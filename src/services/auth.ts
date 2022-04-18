@@ -97,3 +97,8 @@ export const forgotPasswordCode = async (email: string, code: string, password: 
   const response = await axiosClient.post('/auth/forget-password/code', { email, code, password });
   return response.data;
 }
+
+export const signIn = async (email: string, password: string): Promise<IDefaultResponse> => {
+  const response = await axiosClient.post('/auth/sign-in', { email, password });
+  return response.data;
+}

@@ -4,8 +4,25 @@ import * as S from "./styles";
 
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Input } from "../../components/Input";
+import { useState } from "react";
+import { signIn } from "../../services/auth";
+import Router from "next/router";
 
 export default function login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    
+    console.log(email, password);
+
+    signIn(email, password).then(() => {
+      Router.push("/");
+    }).catch(() => {
+      alert("Erro ao logar");
+    })
+  };
   return (
     <S.Wrapper>
       <S.ContainerImage>
@@ -18,10 +35,10 @@ export default function login() {
           <span> Fazer Login</span>
         </p>
         <h1>Bem-vindo de Volta</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <S.InputContainer>
-            <Input label="E-mail" placeholder="teste@gmail.com" required />
-            <Input label="Senha" placeholder="Senha" required />
+            <Input label="E-mail" placeholder="teste@gmail.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input label="Senha" placeholder="Senha" required value={password} onChange={(e) => setPassword(e.target.value)} />
           </S.InputContainer>
           <S.IconContainer>
             <RiLockPasswordFill size={20} color="var(--blue)" />
