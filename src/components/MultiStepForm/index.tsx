@@ -2,6 +2,14 @@ import Router from "next/router";
 import React from "react";
 import { Props } from './typings';
 
+export const getSessionStorageData = (key: string) => {
+  const existingData = sessionStorage.getItem(key);
+  if (existingData) {
+    return JSON.parse(existingData);
+  }
+  return null;
+};
+
 export function MultiStepForm({ firstStep, onSubmit, onFail, stateName, children }: Props) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
