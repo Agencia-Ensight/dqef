@@ -7,15 +7,13 @@ import { Input } from "../../components/Input";
 import { useState } from "react";
 import Router from "next/router";
 import { forgotPassword } from "../../services/auth";
+import { MultiStepForm } from "../../components/MultiStepForm";
 
 export default function forgotpassword() {
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (data: any) => {
+    const { email } = data;
     forgotPassword(email).then(() => {
-      // Router.push("/changepassword");
-      alert("Enviamos um e-mail para você, para alterar sua senha.");
+      Router.push("/insertcode");
     }).catch(() => {
       alert("Erro ao enviar o código de recuperação");
     });
@@ -25,28 +23,33 @@ export default function forgotpassword() {
       <S.ContainerImage>
         <S.Image src="/images/forgotpassword.png" />
       </S.ContainerImage>
-
-      <S.ContainerInformation>
-        <a href="#">
-          <span>Voltar</span>
-        </a>
-        <h1>Insira o seu e-mail</h1>
-        <p>
-          Vamos enviar um e-mail para você, para confirmar a sua identidade.
-        </p>
-        <form onSubmit={handleSubmit}>
+      <MultiStepForm
+        firstStep={true}
+        stateName="forgotPasswordData"
+        onSubmit={handleSubmit}
+        onFail={() => {
+          Router.push("/forgotpassword");
+        }}
+      >
+        <S.ContainerInformation>
+          <a href="#">
+            <span>Voltar</span>
+          </a>
+          <h1>Insira o seu e-mail</h1>
+          <p>
+            Vamos enviar um e-mail para você, para confirmar a sua identidade.
+          </p>
           <Input
             placeholder="teste@gmail.com"
             label="Esqueci minha senha"
+            name="email"
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
           <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
             Enviar Código
           </ButtonKnewave>
-        </form>
-      </S.ContainerInformation>
+        </S.ContainerInformation>
+      </MultiStepForm>
     </S.Wrapper>
   );
 }
