@@ -1,4 +1,5 @@
 import { UrgentWorkCard } from "../../components/UrgentWorkCard";
+import { AllJobs } from "../components/jobs/AllJobs";
 import * as S from "./styles";
 
 function allWorks() {
@@ -13,126 +14,7 @@ function allWorks() {
         </S.Description>
       </S.HeaderContainer>
       <S.MainContainer>
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ARQUITETURA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-        />
+        <AllJobs />
       </S.MainContainer>
     </S.Wrapper>
   );
