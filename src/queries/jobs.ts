@@ -1,9 +1,5 @@
 import { gql } from "@apollo/client";
 
-export type GenericData<T, U extends string> = {
-  [_ in U]: T[];
-};
-
 export type Job = {
   id: number;
   date_limit: string
@@ -27,7 +23,9 @@ export type Job = {
     }
   }[]
 };
-export type JobsData = GenericData<Job, 'jobs'>;
+export type JobData = {
+  jobs: Job[]
+};
 export const JOBS_QUERY = gql`
   query JobsQuery {
     jobs {

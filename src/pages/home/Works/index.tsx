@@ -1,12 +1,12 @@
 import { gql, useQuery } from "@apollo/client";
 import { ButtonKnewave } from "../../../components/ButtonKnewave";
 import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
-import { JobsData, JOBS_QUERY } from "../../../queries/jobs";
+import { JobData, JOBS_QUERY } from "../../../queries/jobs";
 
 import * as S from "./styles";
 
 const Jobs = (): JSX.Element => {
-  const { loading, error, data } = useQuery<JobsData>(JOBS_QUERY);
+  const { loading, error, data } = useQuery<JobData>(JOBS_QUERY);
 
 
   if (loading) return <p>Loading...</p >;
