@@ -22,6 +22,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ARQUITETURA"
@@ -32,6 +33,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -42,6 +44,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -52,6 +55,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -62,6 +66,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -72,6 +77,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -82,6 +88,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -92,6 +99,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -102,6 +110,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -112,6 +121,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -122,6 +132,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -132,6 +143,7 @@ function allWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={false}
+          status="EMPLOYEE-BILL"
         />
       </S.MainContainer>
     </S.Wrapper>

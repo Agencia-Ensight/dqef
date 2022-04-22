@@ -15,6 +15,7 @@ function insideJob() {
         title="Faz Meu Trabalho"
         typeOfWork="Banana"
         urgent={false}
+        status="STUDENT-EDIT"
       />
       <S.Container>
         <InfoCard

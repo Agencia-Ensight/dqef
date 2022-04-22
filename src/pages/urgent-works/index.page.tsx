@@ -23,6 +23,7 @@ function urgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -33,6 +34,7 @@ function urgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -43,6 +45,7 @@ function urgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -53,6 +56,7 @@ function urgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -63,6 +67,7 @@ function urgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -73,6 +78,7 @@ function urgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
       </S.MainContainer>
     </S.Wrapper>
