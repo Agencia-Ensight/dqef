@@ -1,5 +1,5 @@
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from "react";
 
 export type Props = InputHTMLAttributes<HTMLInputElement> & {
-    label?: string;
-}
+  label?: string;
+};

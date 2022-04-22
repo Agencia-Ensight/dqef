@@ -4,9 +4,8 @@ import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { Input } from "../../components/Input";
 import Router from "next/router";
 import { MultiStepForm } from "../../components/MultiStepForm";
-
+import InputMask from "react-input-mask";
 export default function signinredatorstep1() {
-
   return (
     <S.Wrapper>
       <S.ContainerImage>
@@ -37,7 +36,12 @@ export default function signinredatorstep1() {
               type="text"
               required
             />
-            <Input label="Email" name="email" placeholder="teste@gmail.com" required />
+            <Input
+              label="Email"
+              name="email"
+              placeholder="teste@gmail.com"
+              required
+            />
             <Input
               label="Crie sua senha"
               name="password"
@@ -56,6 +60,13 @@ export default function signinredatorstep1() {
               type="number"
               required
             />
+            {/* TODO */}
+            <h3>Telefone para contato</h3>
+            <InputMask
+              name="phone"
+              mask="99 99999-9999"
+              placeholder="99 99999-9999"
+            />
           </S.InputContainer>
           <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
             Próximo
@@ -63,5 +74,5 @@ export default function signinredatorstep1() {
         </MultiStepForm>
       </S.ContainerInformation>
     </S.Wrapper>
-  )
+  );
 }
