@@ -16,6 +16,7 @@ import { ModalRating } from "../../pages/components/modal/ModalRating";
 import { ModalOpenWork } from "../../pages/components/modal/ModalOpenWork";
 import { ModalOpenWorkStep2 } from "../../pages/components/modal/ModalOpenWorkStep2";
 import { ModalRequestChanges } from "../../pages/components/modal/ModalRequestChanges";
+import { ModalCalmaLa } from "../../pages/components/modal/ModalCalmaLa";
 
 export function UrgentWorkCard({
   course,
