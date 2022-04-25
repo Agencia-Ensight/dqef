@@ -31,7 +31,7 @@ export default function profileredatorfinishedjobs() {
             typeOfWork="Lista de Exercício"
             price={500}
             date="10/04/2022"
-            status="STUDENT-DONE"
+            status="EMPLOYEE-DONE"
           />
           <UrgentWorkCard
             title="Faz Meu Trabalho Por Favor"
@@ -41,7 +41,7 @@ export default function profileredatorfinishedjobs() {
             typeOfWork="Lista de Exercício"
             price={500}
             date="10/04/2022"
-            status="STUDENT-DONE"
+            status="EMPLOYEE-DONE"
           />
           <UrgentWorkCard
             title="Faz Meu Trabalho Por Favor"
@@ -51,7 +51,7 @@ export default function profileredatorfinishedjobs() {
             typeOfWork="Lista de Exercício"
             price={500}
             date="10/04/2022"
-            status="STUDENT-DONE"
+            status="EMPLOYEE-DONE"
           />
           <UrgentWorkCard
             title="Faz Meu Trabalho Por Favor"
@@ -61,7 +61,7 @@ export default function profileredatorfinishedjobs() {
             typeOfWork="Lista de Exercício"
             price={500}
             date="10/04/2022"
-            status="STUDENT-DONE"
+            status="EMPLOYEE-DONE"
           />
           <UrgentWorkCard
             title="Faz Meu Trabalho Por Favor"
@@ -71,7 +71,7 @@ export default function profileredatorfinishedjobs() {
             typeOfWork="Lista de Exercício"
             price={500}
             date="10/04/2022"
-            status="STUDENT-DONE"
+            status="EMPLOYEE-DONE"
           />
           <UrgentWorkCard
             title="Faz Meu Trabalho Por Favor"
@@ -81,7 +81,7 @@ export default function profileredatorfinishedjobs() {
             typeOfWork="Lista de Exercício"
             price={500}
             date="10/04/2022"
-            status="STUDENT-DONE"
+            status="EMPLOYEE-DONE"
           />
         </S.ContainerJobCard>
       </div>
