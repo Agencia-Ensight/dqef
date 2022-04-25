@@ -7,6 +7,10 @@ export const Image = styled.img`
 export const Wrapper = styled.div`
   padding: 85px 213px 78px 213px;
 
+  @media (max-width: 600px) {
+    padding: 10% 5%;
+  }
+
   span {
     color: #42a4ef;
     font-weight: 400;
@@ -36,6 +40,10 @@ export const ContainerButtons = styled.div`
     text-align: center;
     margin-top: 10px;
     margin-bottom: 15px;
+
+    @media (max-width: 600px) {
+      font-size: 32px;
+    }
   }
 
   h2 {
@@ -43,6 +51,9 @@ export const ContainerButtons = styled.div`
     font-weight: 400;
     text-align: center;
     margin-bottom: 50px;
+    @media (max-width: 600px) {
+      font-size: 18px;
+    }
   }
 
   p {
@@ -56,6 +67,9 @@ export const ContainerButtons = styled.div`
     font-size: 24px;
     font-weight: 400;
     color: #42a4ef;
+    @media (max-width: 600px) {
+      font-size: 18px;
+    }
   }
 
   image {
@@ -67,9 +81,14 @@ export const ContainerButtons = styled.div`
 export const ContainerChoose = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 50px;
   box-sizing: border-box;
   color: #42a4ef;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
 
   p {
     text-align: center;

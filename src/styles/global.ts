@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export default createGlobalStyle `
+export default createGlobalStyle`
     *{
         margin: 0;
         padding: 0;
@@ -46,6 +46,7 @@ export default createGlobalStyle `
         height: 100vh;
         display: flex;
         flex-direction: column;
+        scroll-behavior: smooth;
     }
 
     #__next{
@@ -59,4 +60,6 @@ export default createGlobalStyle `
         background: #fafafa !important;
         font-family: 'Lato', sans-serif;
     }
+
+
 `;

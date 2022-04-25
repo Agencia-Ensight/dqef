@@ -16,15 +16,17 @@ export default function login() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    
+
     console.log(email, password);
 
-    signIn(email, password).then((response) => {
-      setToken(response.data.toke.token);
-      Router.push("/");
-    }).catch(() => {
-      alert("Erro ao logar");
-    })
+    signIn(email, password)
+      .then((response) => {
+        setToken(response.data.toke.token);
+        Router.push("/");
+      })
+      .catch(() => {
+        alert("Erro ao logar");
+      });
   };
   return (
     <S.Wrapper>
@@ -34,14 +36,25 @@ export default function login() {
 
       <S.ContainerInformation>
         <p>
-          {" "}
           <span> Fazer Login</span>
         </p>
         <h1>Bem-vindo de Volta</h1>
         <form onSubmit={handleSubmit}>
           <S.InputContainer>
-            <Input label="E-mail" placeholder="teste@gmail.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
-            <Input label="Senha" placeholder="Senha" required value={password} onChange={(e) => setPassword(e.target.value)} />
+            <Input
+              label="E-mail"
+              placeholder="teste@gmail.com"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              label="Senha"
+              placeholder="Senha"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </S.InputContainer>
           <S.IconContainer>
             <RiLockPasswordFill size={20} color="var(--blue)" />
@@ -57,7 +70,7 @@ export default function login() {
         <hr />
         <h2>
           Não tenho Conta,
-          <a href="#">
+          <a href="/chooseprofile">
             <span>criar a conta</span>
           </a>
         </h2>

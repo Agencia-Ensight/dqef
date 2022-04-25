@@ -3,6 +3,8 @@ import { FileCard } from "./components/FileCard";
 import { InfoCard } from "./components/InfoCard";
 import * as S from "./styles";
 
+import ScrollContainer from "react-indiana-drag-scroll";
+
 function insideJob() {
   return (
     <S.Wrapper>
@@ -26,7 +28,11 @@ function insideJob() {
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates quam, quo culpa officia commodi, placeat eos voluptatem itaque fugit iste illo blanditiis numquam aperiam illum at sequi, cum distinctio odio!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates quam, quo culpa officia commodi, placeat eos voluptatem itaque fugit iste illo blanditiis numquam aperiam illum at sequi, cum distinctio odio!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates quam, quo culpa officia commodi, placeat eos voluptatem itaque fugit iste illo blanditiis numquam aperiam illum at sequi, cum distinctio odio!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates quam, quo culpa officia commodi, placeat eos voluptatem itaque fugit iste illo blanditiis numquam aperiam illum at sequi, cum distinctio odio!"
           observations="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates quam, quo culpa officia commodi, placeat eos voluptatem itaque fugit iste illo blanditiis numquam aperiam illum at sequi, cum distinctio odio!"
         />
-        <S.FilesContainer>
+        <ScrollContainer
+          horizontal={true}
+          hideScrollbars={true}
+          className="files-container"
+        >
           <FileCard title="Arquivo" />
           <FileCard title="Arquivo" />
           <FileCard title="Arquivo" />
@@ -35,7 +41,7 @@ function insideJob() {
           <FileCard title="Arquivo" />
           <FileCard title="Arquivo" />
           <FileCard title="Arquivo" />
-        </S.FilesContainer>
+        </ScrollContainer>
       </S.Container>
     </S.Wrapper>
   );

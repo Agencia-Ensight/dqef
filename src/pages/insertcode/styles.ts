@@ -15,7 +15,11 @@ export const Wrapper = styled.div`
 `;
 
 export const Line = styled.div``;
-export const ContainerImage = styled.div``;
+export const ContainerImage = styled.div`
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
 export const ContainerInformation = styled.div`
   a {
     text-decoration: none;
@@ -60,6 +64,10 @@ export const ContainerInformation = styled.div`
   }
 
   padding: 241px 120px 236px 69px;
+
+  @media (max-width: 600px) {
+    padding: 10% 5%;
+  }
 `;
 
 export const IconContainer = styled.div`

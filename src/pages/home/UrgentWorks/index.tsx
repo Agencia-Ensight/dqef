@@ -23,7 +23,7 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
-          status="EMPLOYEE-BILL"
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -34,7 +34,7 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
-          status="EMPLOYEE-BILL"
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -45,7 +45,7 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
-          status="EMPLOYEE-BILL"
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -56,7 +56,7 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
-          status="EMPLOYEE-BILL"
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -67,7 +67,7 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
-          status="EMPLOYEE-BILL"
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
           course="ECONOMIA"
@@ -78,7 +78,7 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
-          status="EMPLOYEE-BILL"
+          status="EMPLOYEE-SEE"
         />
       </S.MainContainer>
       <S.ButtonContainer>

@@ -18,20 +18,28 @@ export function NavBar() {
         </S.LogoWrapper>
       </Link>
       <S.Wrapper>
-        <S.MenuItem>Home</S.MenuItem>
-        <S.MenuItem>Urgentes</S.MenuItem>
-        <S.MenuItem>Trabalhos</S.MenuItem>
-        <S.MenuItem>Sobre Nós</S.MenuItem>
+        <Link href="/urgent-works" passHref>
+          <S.MenuItem>Urgentes</S.MenuItem>
+        </Link>
+        <Link href="/all-works">
+          <S.MenuItem>Trabalhos</S.MenuItem>
+        </Link>
+        <Link href="/#about">
+          <S.MenuItem>Sobre Nós</S.MenuItem>
+        </Link>
         <S.MenuItem>
           <ButtonKnewave size="sm" variant="PRIMARY">
             Publicar Trabalho
           </ButtonKnewave>
         </S.MenuItem>
-        <S.MenuItem>
-          <ButtonKnewave size="sm" variant="SECONDARY">
-            Entrar
-          </ButtonKnewave>
-        </S.MenuItem>
+        <Link href="/login" passhref>
+          <S.MenuItem>
+            <ButtonKnewave size="sm" variant="SECONDARY">
+              Entrar
+            </ButtonKnewave>
+          </S.MenuItem>
+        </Link>
+
         <S.Line></S.Line>
         <button>
           <S.ImagePadrao>
