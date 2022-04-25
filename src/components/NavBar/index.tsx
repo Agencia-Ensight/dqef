@@ -32,7 +32,7 @@ export function NavBar() {
             Publicar Trabalho
           </ButtonKnewave>
         </S.MenuItem>
-        <Link href="/login" passhref>
+        <Link href="/login" passHref>
           <S.MenuItem>
             <ButtonKnewave size="sm" variant="SECONDARY">
               Entrar
