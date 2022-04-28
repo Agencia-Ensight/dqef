@@ -22,32 +22,33 @@ export default function proposalstudentstep1() {
               placeholder="Insira o título"
               required
             />
-            <div>
-              <label>Título do trabalho</label>
-              <Select placeholder="Select option">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </Select>
-            </div>
-          </S.FirstInputContainer>
-          <S.SecondInputContainer>
-            <Select placeholder="Select option">
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-            </Select>
-            <Select placeholder="Select option">
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
-            </Select>
             <Input
-              label="Tema do trabalho"
-              placeholder="Digite o Tema"
+              label="Título do trabalho"
+              placeholder="Insira o título"
               required
             />
-          </S.SecondInputContainer>
+            </S.FirstInputContainer>
+            <S.TextInputContainer>
+            <Select className="padrao" placeholder="Curso do Trabalho">
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </Select>
+            <Select className="padrao" placeholder="Curso do Trabalho">
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </Select>
+            <Select className="padrao" placeholder="Curso do Trabalho">
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </Select>
+            </S.TextInputContainer>
+
+            
+            <textarea name="" id="" rows={5}></textarea>
+        
           <S.SecondInputContainer></S.SecondInputContainer>
         </S.InputFields>
         <ButtonKnewave variant="PRIMARY" size="sm">

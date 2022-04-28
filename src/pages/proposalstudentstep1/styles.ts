@@ -1,11 +1,25 @@
 import styled from "styled-components";
 
 export const Image = styled.img`
-
+width: 100%;
 
 `
 export const Wrapper = styled.div`
 display: flex;
+
+textarea {
+    width: 100%;
+
+    border: 2px solid #42a4ef;
+    border-radius: 15px;
+
+    font-size: 18px;
+    padding: 10px 29px;
+
+    &::placeholder {
+      color: #848484;
+    }
+  }
 
 label{
         color: #53647E;
@@ -19,19 +33,31 @@ label{
         width: 100%;
         font-size: 18px;
 
+        
+
 
         &::placeholder {
             color:#848484;
 
         }
     }
+    .padrao{
+        width: 259.57px;
+        height: 50px;
+
+    }
+
 `
 export const ContainerImage = styled.div`
+width: 40%;
 
 `
 export const ContainerInformation = styled.div`
+margin: 4% 5%;
 
-padding: 144px 331px 143.7px 113px;
+width: 60%;
+
+/* padding: 144px 331px 143.7px 113px; */
 a{
     text-decoration: none;
     color: var(--blue);
@@ -77,12 +103,44 @@ export const InputFields = styled.div`
 
 export const FirstInputContainer = styled.div`
     display: flex;
-    gap: 50px;
+    gap: 0px;
+    margin-bottom: 30px;
+
+
+
+
+    
+
+
+
+
+`
+export const TextInputContainer = styled.div`
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+   
+
+
+
+
+    
+
+
+
+
 `
 
 export const SecondInputContainer = styled.div`
-    display: flex;
+    width: 100%;
     gap: 20px;
+    
+    
+    
+
+
+    
+
 `
 
 

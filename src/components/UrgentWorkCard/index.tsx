@@ -17,6 +17,7 @@ import { ModalOpenWork } from "../../pages/components/modal/ModalOpenWork";
 import { ModalOpenWorkStep2 } from "../../pages/components/modal/ModalOpenWorkStep2";
 import { ModalRequestChanges } from "../../pages/components/modal/ModalRequestChanges";
 import { ModalCalmaLa } from "../../pages/components/modal/ModalCalmaLa";
+import { ModalPayment } from "../../pages/components/modal/ModalPayment";
 
 export function UrgentWorkCard({
   course,
@@ -150,7 +151,7 @@ export function UrgentWorkCard({
             isShown={isShown2}
             hide={toggle2}
             headerText="Deseja enviar o trabalho?"
-            modalContent={<ModalInsertWork />}
+            modalContent={<ModalPayment/>}
           />
           <a href="/inside-job">
             <Button variant="secondary">Ver Mais</Button>
