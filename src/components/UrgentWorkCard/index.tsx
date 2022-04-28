@@ -151,7 +151,7 @@ export function UrgentWorkCard({
             isShown={isShown2}
             hide={toggle2}
             headerText="Deseja enviar o trabalho?"
-            modalContent={<ModalPayment/>}
+            modalContent={<ModalSendWork/>}
           />
           <a href="/inside-job">
             <Button variant="secondary">Ver Mais</Button>
