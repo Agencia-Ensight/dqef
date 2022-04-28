@@ -1,5 +1,6 @@
 import { MdSegment, MdClose } from "react-icons/md";
 import Image from "next/image";
+import Link from "next/link";
 
 import { useState } from "react";
 import * as S from "./styles";
@@ -47,6 +48,7 @@ export function Menu() {
         <S.SubTitle>Urgentes</S.SubTitle>
         <S.SubTitle>Trabalhos</S.SubTitle>
         <S.SubTitle>Sobre Nós</S.SubTitle>
+        <S.SubTitle>FAQ</S.SubTitle>
       </S.Container>
     </>
   );

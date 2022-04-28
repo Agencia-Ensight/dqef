@@ -2,8 +2,8 @@ import { ButtonKnewave } from "../../components/ButtonKnewave";
 import * as S from "./styles";
 import { Input } from "../../components/Input";
 
-import api from "../../services/api";
-import { useEffect } from "react";
+import { MultiStepForm } from "../../components/MultiStepForm";
+import Router from "next/router";
 
 export default function signinstudentstep1() {
   return (
@@ -18,28 +18,41 @@ export default function signinstudentstep1() {
         <p>
           Vamos enviar um e-mail para você, para confirmar a sua identidade.
         </p>
-        <form>
+        <MultiStepForm
+          firstStep={true}
+          stateName="signupStudentData"
+          onSubmit={(_) => {
+            Router.push("/signinstudentstep2");
+          }}
+          onFail={() => {
+            Router.push("/signinstudentstep1");
+          }}
+        >
           <S.InputContainer>
             <Input
               label="Nome completo"
+              name="name"
               placeholder="Insira o seu nome"
               type="text"
-            
+
               required
             />
-            <Input label="Email" placeholder="teste@gmail.com" required />
+            <Input label="Email" name="email" placeholder="teste@gmail.com" required />
             <Input
               label="Crie sua senha"
+              name="password"
               placeholder="Insira sua senha "
               required
             />
             <Input
               label="Confirme sua senha "
+              name="password"
               placeholder="Repita ela"
               required
             />
             <Input
               label="Telefone para contato"
+              name="phone"
               placeholder="41 99555-6667"
               type="number"
               required
@@ -48,7 +61,7 @@ export default function signinstudentstep1() {
           <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
             Próximo
           </ButtonKnewave>
-        </form>
+        </MultiStepForm>
       </S.ContainerInformation>
     </S.Wrapper>
   );
