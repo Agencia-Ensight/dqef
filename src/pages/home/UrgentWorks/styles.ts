@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   margin: 0 5%;
-  padding-top: 6rem;
+  padding-top: 3rem;
 `;
 
 export const Title = styled.h1`
@@ -35,7 +35,7 @@ export const MainContainer = styled.div`
   padding-top: 3rem;
   overflow-y: scroll;
   padding-left: 2rem;
-  padding-bottom: 1rem;
+  padding-bottom: 4rem;
 
   ::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
@@ -46,7 +46,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 1rem;
 
   a {
     text-decoration: none;

@@ -177,7 +177,7 @@ export function UrgentWorkCard({
       {status === "EMPLOYEE-SEE" && (
         <S.FooterContainer>
           <a href="/inside-job">
-            <Button variant="primary">Ver Mais</Button>
+            <Button variant="secondary">Ver Mais</Button>
           </a>
         </S.FooterContainer>
       )}

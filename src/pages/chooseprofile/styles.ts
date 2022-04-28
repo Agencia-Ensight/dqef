@@ -5,8 +5,7 @@ export const Image = styled.img`
   margin: 0 auto;
 `;
 export const Wrapper = styled.div`
-  padding: 85px 213px 78px 213px;
-
+  padding-bottom: 30px;
   @media (max-width: 600px) {
     padding: 10% 5%;
   }
@@ -101,6 +100,14 @@ export const Containerstudent = styled.div`
   border-radius: 15px;
   width: 482px;
   height: auto;
+  padding: 10px 35px;
+
+  h5 {
+    color: black;
+    font-size: 36px;
+    font-weight: 500;
+    text-align: center;
+  }
 
   div {
     display: flex;

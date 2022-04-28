@@ -7,6 +7,20 @@ export const Image = styled.img`
 export const Wrapper = styled.div`
   display: flex;
 
+  textarea {
+    width: 100%;
+
+    border: 2px solid #42a4ef;
+    border-radius: 15px;
+
+    font-size: 18px;
+    padding: 10px 29px;
+
+    &::placeholder {
+      color: #848484;
+    }
+  }
+
   span {
     color: #4e4e4e;
     font-weight: 400;
@@ -41,9 +55,6 @@ export const SpecialOne = styled.div`
 `;
 
 export const ContainerMini = styled.div`
-  align-items: center;
-  width: 260px;
-
   @media (max-width: 600px) {
     width: 100%;
   }

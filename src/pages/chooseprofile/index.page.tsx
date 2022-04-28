@@ -16,6 +16,7 @@ export default function signinstudentstep1() {
       <S.ContainerChoose>
         <S.Containerstudent>
           <S.Image src="/images/Estudante.png" />
+          <h5>Estudante</h5>
           <p>
             Se você precisa de ajuda acadêmica, crie sua conta como estudante!
           </p>
@@ -30,6 +31,7 @@ export default function signinstudentstep1() {
 
         <S.Containerstudent>
           <S.Image src="/images/Redator.png" />
+          <h5>Redator</h5>
           <p>
             Se você deseja realizar os trabalhos publicados e ganhar uma grana
             extra, crie sua conta de redator!
@@ -44,7 +46,7 @@ export default function signinstudentstep1() {
         </S.Containerstudent>
       </S.ContainerChoose>
       <S.ContainerBang>
-        <a href="/login">Já tenho conta</a>
+        <a href="/login">Já tenho uma conta</a>
       </S.ContainerBang>
     </S.Wrapper>
   );
