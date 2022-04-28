@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
-
 export const Image = styled.img`
-width: 100%;
-
-`
+  width: 100%;
+`;
 export const Wrapper = styled.div`
-display: flex;
+  display: flex;
 
-textarea {
+  textarea {
     width: 100%;
 
     border: 2px solid #42a4ef;
@@ -22,43 +20,38 @@ textarea {
     }
   }
 
-label{
-        color: #53647E;
-        font-size: 18px;
-        margin-bottom: 10px;
-         }
+  label {
+    color: #53647e;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 
-    select{
-        border: 2px solid #42A4EF;
-        border-radius: 99px;
-        width: 100%;
-        font-size: 18px;
-        
-          &::placeholder {
+  select {
+    border: 2px solid #42a4ef;
+    border-radius: 99px;
+    width: 100%;
+    font-size: 18px;
+
+    &::placeholder {
       color: #848484;
     }
-    }
+  }
 
-
-    .padrao{
-        width: 259.57px;
-        height: 50px;
-
-    }
-
-`
+  .padrao {
+    width: 259.57px;
+    height: 50px;
+  }
+`;
 export const ContainerImage = styled.div`
-width: 40%;
-
-`
+  width: 40%;
+`;
 export const ContainerInformation = styled.div`
-margin: 4% 5%;
+  margin: 4% 5%;
 
-width: 60%;
+  width: 60%;
 
-/* padding: 144px 331px 143.7px 113px; */
-a{
-
+  /* padding: 144px 331px 143.7px 113px; */
+  a {
     text-decoration: none;
     color: var(--blue);
   }
@@ -96,51 +89,20 @@ export const InputFields = styled.div`
 `;
 
 export const FirstInputContainer = styled.div`
-
-    display: flex;
-    gap: 0px;
-    margin-bottom: 30px;
-
-
-
-
-    
-
-
-
-
-`
+  display: flex;
+  gap: 0px;
+  margin-bottom: 30px;
+`;
 export const TextInputContainer = styled.div`
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
-   
-
-
-
-
-    
-
-
-
-
-`
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+`;
 
 export const SecondInputContainer = styled.div`
-    width: 100%;
-    gap: 20px;
-    
-    
-    
-
-
-    
-
-`
-
+  width: 100%;
+  gap: 20px;
 
   display: flex;
   gap: 50px;
 `;
-
-
