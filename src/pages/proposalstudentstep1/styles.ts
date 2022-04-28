@@ -1,38 +1,64 @@
 import styled from "styled-components";
 
-export const Image = styled.img``;
+
+export const Image = styled.img`
+width: 100%;
+
+`
 export const Wrapper = styled.div`
-  display: flex;
+display: flex;
 
-  label {
-    color: #53647e;
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-
-  select {
-    border: 2px solid #42a4ef;
-    border-radius: 99px;
+textarea {
     width: 100%;
+
+    border: 2px solid #42a4ef;
+    border-radius: 15px;
+
     font-size: 18px;
+    padding: 10px 29px;
 
     &::placeholder {
       color: #848484;
     }
   }
-`;
-export const ContainerImage = styled.div`
-  @media (max-width: 600px) {
-    display: none;
-  }
-`;
-export const ContainerInformation = styled.div`
-  padding: 144px 331px 143.7px 113px;
 
-  @media (max-width: 600px) {
-    padding: 10% 5%;
-  }
-  a {
+label{
+        color: #53647E;
+        font-size: 18px;
+        margin-bottom: 10px;
+         }
+
+    select{
+        border: 2px solid #42A4EF;
+        border-radius: 99px;
+        width: 100%;
+        font-size: 18px;
+        
+          &::placeholder {
+      color: #848484;
+    }
+    }
+
+
+    .padrao{
+        width: 259.57px;
+        height: 50px;
+
+    }
+
+`
+export const ContainerImage = styled.div`
+width: 40%;
+
+`
+export const ContainerInformation = styled.div`
+margin: 4% 5%;
+
+width: 60%;
+
+/* padding: 144px 331px 143.7px 113px; */
+a{
+
     text-decoration: none;
     color: var(--blue);
   }
@@ -70,11 +96,51 @@ export const InputFields = styled.div`
 `;
 
 export const FirstInputContainer = styled.div`
+
+    display: flex;
+    gap: 0px;
+    margin-bottom: 30px;
+
+
+
+
+    
+
+
+
+
+`
+export const TextInputContainer = styled.div`
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+   
+
+
+
+
+    
+
+
+
+
+`
+
+export const SecondInputContainer = styled.div`
+    width: 100%;
+    gap: 20px;
+    
+    
+    
+
+
+    
+
+`
+
+
   display: flex;
   gap: 50px;
 `;
 
-export const SecondInputContainer = styled.div`
-  display: flex;
-  gap: 20px;
-`;
+

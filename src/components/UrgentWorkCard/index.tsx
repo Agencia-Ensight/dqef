@@ -16,6 +16,8 @@ import { ModalRating } from "../../pages/components/modal/ModalRating";
 import { ModalOpenWork } from "../../pages/components/modal/ModalOpenWork";
 import { ModalOpenWorkStep2 } from "../../pages/components/modal/ModalOpenWorkStep2";
 import { ModalRequestChanges } from "../../pages/components/modal/ModalRequestChanges";
+import { ModalCalmaLa } from "../../pages/components/modal/ModalCalmaLa";
+import { ModalPayment } from "../../pages/components/modal/ModalPayment";
 
 export function UrgentWorkCard({
   course,
@@ -59,7 +61,10 @@ export function UrgentWorkCard({
             <S.Subtitle>
               Data de Entrega {urgent === true && "Urgente"}
             </S.Subtitle>
+            
+
             <S.Date urgent={urgent}>{date}</S.Date>
+            
             {/* Employee */}
             {status === "EMPLOYEE-SEND" && (
               <S.WaitStudent>Aguardando Estudante ...</S.WaitStudent>
@@ -77,6 +82,7 @@ export function UrgentWorkCard({
             {status === "EMPLOYEE-BILL" && <S.Bill>Responda a Cobrança</S.Bill>}
           </S.InformationContainer>
         </S.MainContainer>
+        
       </S.Container>
       {/* Employee */}
       {status === "EMPLOYEE-PAID" && (
@@ -145,7 +151,7 @@ export function UrgentWorkCard({
             isShown={isShown2}
             hide={toggle2}
             headerText="Deseja enviar o trabalho?"
-            modalContent={<ModalInsertWork />}
+            modalContent={<ModalSendWork/>}
           />
           <a href="/inside-job">
             <Button variant="secondary">Ver Mais</Button>
@@ -208,6 +214,9 @@ export function UrgentWorkCard({
         <S.FooterContainer>
           <a href="/studentviewproposals">
             <Button variant="primary">Ver Propostas</Button>
+          </a>
+          <a href="/studentviewproposals">
+            <Button variant="secondary">Ver Mais</Button>
           </a>
         </S.FooterContainer>
       )}
