@@ -3,8 +3,6 @@ import * as S from "./styles";
 import { UrgentWorkCard } from "../../components/UrgentWorkCard";
 
 function urgentWorks() {
-  const [filterParam, setFilterParam] = useState(["All"]);
-
   return (
     <S.Wrapper>
       <S.SubTitle>IMPORTANTE</S.SubTitle>
@@ -16,17 +14,6 @@ function urgentWorks() {
             premium possuem permissão para realizar.
           </S.Description>
         </div>
-        <select>
-          <option
-            value="All"
-            onChange={(e: any) => {
-              setFilterParam(e.target.value);
-            }}
-          >
-            Todos
-          </option>
-          <option value="Arquitetura">Arquitetura</option>
-        </select>
       </S.HeaderContainer>
       <S.MainContainer>
         <UrgentWorkCard
