@@ -1,8 +1,21 @@
 import styled from "styled-components";
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  width: 100%;
+
+  @media (max-width: 1300px) {
+    width: 70%;
+  }
+
+  @media (max-width: 1100px) {
+    width: 60%;
+  }
+`;
 export const Wrapper = styled.div`
-  display: flex;
+  width: 1500px;
+  max-width: 100%;
+  position: relative;
+  margin: 0 auto;
 
   span {
     color: #4e4e4e;
@@ -11,6 +24,12 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
+  /* right: 300px;
+  top: 0;
+  bottom: 0;
+  left: 0; */
+  position: fixed;
+
   @media (max-width: 600px) {
     display: none;
   }
@@ -65,9 +84,12 @@ export const ContainerDoBang = styled.div`
 `;
 
 export const ContainerInformation = styled.div`
+float: right;
+
 a{
     text-decoration: none;
     color: var(--blue);
+    cursor: pointer;
 }
 h1 {
     margin-top: 10px;

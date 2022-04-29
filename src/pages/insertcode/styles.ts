@@ -21,6 +21,11 @@ export const ContainerImage = styled.div`
   }
 `;
 export const ContainerInformation = styled.div`
+  input {
+    /* width: fit-content; */
+    width: 130px;
+  }
+
   a {
     text-decoration: none;
   }
