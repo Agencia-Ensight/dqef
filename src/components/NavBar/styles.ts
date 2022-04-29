@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const MainWrapper = styled.div`
   width: 100%;
   border-bottom: 1px solid #d1d1d1;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: white;
 `;
 
 export const Container = styled.div`

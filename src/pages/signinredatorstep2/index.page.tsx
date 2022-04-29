@@ -5,6 +5,8 @@ import { Input } from "../../components/Input";
 import Router from "next/router";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+
 import {
   getCourses,
   getFormations,
@@ -19,6 +21,8 @@ export default function signinredatorstep2() {
   const [courses, setCourses] = React.useState<ICourse[]>([]);
   const [formations, setFormations] = React.useState<IFormation[]>([]);
   const [knowledges, setKnowledges] = React.useState<IKnowledge[]>([]);
+
+  const router = useRouter();
 
   useEffect(() => {
     async function loadCourses() {
@@ -49,14 +53,14 @@ export default function signinredatorstep2() {
       <MultiStepForm
         stateName="signupData"
         onSubmit={(_) => {
-          Router.push("/signinredatorstep3");
+          Router.push("/signinredatorstep4");
         }}
         onFail={() => {
           Router.push("/signinredatorstep1");
         }}
       >
         <S.ContainerInformation>
-          <a href="#">Voltar</a>
+          <a onClick={() => router.back()}>Voltar</a>
           <h1>Informações Extras</h1>
           <p>Insira alguns dados para completar o seu cadastro.</p>
 
@@ -86,7 +90,7 @@ export default function signinredatorstep2() {
                 </option>
               ))}
             </Select>
-            <Input name="cpf" label="CPF" placeholder="000.000.000-00" />
+            {/* <Input name="cpf" label="CPF" placeholder="000.000.000-00" /> */}
             {/* TODO */}
             <h3>CPF</h3>
             <InputMask
@@ -101,10 +105,10 @@ export default function signinredatorstep2() {
             />
           </S.InputContainer>
           <S.ContainerDoBang>
-            <Checkbox defaultChecked>Aceitar Termos de Uso</Checkbox>
+            <Checkbox required>Aceitar Termos de Uso</Checkbox>
           </S.ContainerDoBang>
           <S.ContainerDoBang>
-            <Checkbox defaultChecked>Aceitar Políticas de Privacidade</Checkbox>
+            <Checkbox required>Aceitar Políticas de Privacidade</Checkbox>
           </S.ContainerDoBang>
           <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
             Confirmar e-mail
