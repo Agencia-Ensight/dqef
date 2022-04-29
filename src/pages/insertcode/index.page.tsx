@@ -63,13 +63,14 @@ export default function forgotpassword() {
               placeholder="- - - - - -"
               maxLength={6}
             />
-            <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
-              Enviar Código
-            </ButtonKnewave>
             <S.IconContainer onClick={resendCode}>
               <AiOutlineReload color="var(--blue)" />
               <h2>Enviar Código Novamente</h2>
             </S.IconContainer>
+            <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
+              Alterar senha
+            </ButtonKnewave>
+            
           </div>
         </S.ContainerInformation>
       </MultiStepForm>

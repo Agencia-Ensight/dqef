@@ -78,4 +78,5 @@ export const ContainerInformation = styled.div`
 export const IconContainer = styled.div`
   display: flex;
   align-items: center;
+
 `;
