@@ -5,8 +5,9 @@ import { MobileBanner } from "./components/MobileBanner";
 
 const images = [
   { url: "images/slider-1.png" },
-  { url: "images/slider-1.png" },
-  { url: "images/slider-1.png" },
+  { url: "images/slider-2.png" },
+  { url: "images/slider-3.png" },
+  { url: "images/slider-4.png" },
 ];
 
 export function Banner() {
