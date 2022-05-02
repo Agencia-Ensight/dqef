@@ -4,7 +4,7 @@ export const Image = styled.img``;
 export const Wrapper = styled.div`
   display: flex;
   gap: 51px;
-  margin: 0;
+  margin: 0 2%;
   margin-top: 58px;
 
   @media (max-width: 600px) {

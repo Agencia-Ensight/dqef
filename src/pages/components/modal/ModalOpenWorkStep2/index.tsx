@@ -18,6 +18,7 @@ export function ModalOpenWorkStep2() {
 
        <S.TextInformation>
          <p>Para ver o seu trabalho basta baixar o item desejado</p> 
+         
          </S.TextInformation> 
 
         

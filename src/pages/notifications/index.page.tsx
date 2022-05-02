@@ -14,7 +14,7 @@ export default function forgotpassword() {
           <h1>Notificações</h1>
           <h2>Seu painel com todas as notificações.</h2>
         </S.ContainerInformation>
-        <ButtonKnewave size="sm" variant="SECONDARY">
+        <ButtonKnewave  className="botaopadraosolido" size="sm" variant="PRIMARY">
           Limpar
         </ButtonKnewave>
       </div>
@@ -32,7 +32,7 @@ export default function forgotpassword() {
             <td>Maria Anders</td>
             <td>Matheus publicou o trabalho e está esperando o seu review</td>
             <td>
-              <ButtonKnewave size="sm" variant="PRIMARY">
+              <ButtonKnewave className="botaopadraosolido" size="sm" variant="PRIMARY">
                 Ir até lá
               </ButtonKnewave>{" "}
             </td>
@@ -43,7 +43,7 @@ export default function forgotpassword() {
             <td>Francisco Chang</td>
             <td>Matheus publicou o trabalho e está esperando o seu review</td>
             <td>
-              <ButtonKnewave size="sm" variant="PRIMARY">
+              <ButtonKnewave className="botaopadraosolido" size="sm" variant="PRIMARY">
                 Ir até lá
               </ButtonKnewave>{" "}
             </td>
@@ -53,7 +53,7 @@ export default function forgotpassword() {
             <td>Francisco Chang</td>
             <td>Matheus publicou o trabalho e está esperando o seu review</td>
             <td>
-              <ButtonKnewave size="sm" variant="PRIMARY">
+              <ButtonKnewave className="botaopadraosolido" size="sm" variant="PRIMARY">
                 Ir até lá
               </ButtonKnewave>
             </td>

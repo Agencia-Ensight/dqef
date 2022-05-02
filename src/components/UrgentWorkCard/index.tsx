@@ -151,7 +151,7 @@ export function UrgentWorkCard({
             isShown={isShown2}
             hide={toggle2}
             headerText="Deseja enviar o trabalho?"
-            modalContent={<ModalSendWork/>}
+            modalContent={<ModalInsertWork/>}
           />
           <a href="/inside-job">
             <Button variant="secondary">Ver Mais</Button>
@@ -171,6 +171,9 @@ export function UrgentWorkCard({
         <S.FooterContainer>
           <Button onClick={toggle} variant="primary">
             Ver FeedBack
+          </Button>
+          <Button onClick={toggle} variant="secondary">
+            Ver mais
           </Button>
           <Modal
             isShown={isShown}

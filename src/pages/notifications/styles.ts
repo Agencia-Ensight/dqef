@@ -4,10 +4,22 @@ export const Image = styled.img``;
 export const Wrapper = styled.div`
   margin: 67px 60px 269.99px 130px;
 
+  .botaopadraosolido{ 
+    font-family: arial, sans-serif
+
+  }
+
+  @media(max-width:600px){
+    margin: 10%;
+  }
+
   table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+
+
+
 
     @media (max-width: 600px) {
       display: none;
@@ -29,7 +41,7 @@ export const Wrapper = styled.div`
   }
 
   tr {
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     width: 100%;
   }
 
