@@ -9,7 +9,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 import GlobalStyle from "../styles/global";
 import { Menu } from "../components/NavBar/components/Menu";
 import HelpButton from "../components/HelpButton";
-import AuthProvider from '../contexts/AuthContext';
+import AuthProvider, { AuthContext } from '../contexts/AuthContext';
+import { useContext, useEffect } from "react";
+import Router from "next/router";
 
 export const apolloClient = new ApolloClient({
   uri: 'https://api.deixaqueeufaco.io/v1/graphql',
@@ -20,7 +22,27 @@ export const apolloClient = new ApolloClient({
   }
 });
 
-function MyApp({ Component, pageProps }: AppProps) {
+function ProtectedRoute({ children }: any) {
+  const { isAuthenticated } = useContext(AuthContext)!;
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      Router.push('/login');
+    }
+  }, [isAuthenticated]);
+
+  if (isAuthenticated) {
+    return children
+  }
+
+  return <div>Loading...</div>
+}
+
+interface AppPropsCust extends AppProps {
+  Component: any;
+}
+
+function MyApp({ Component, pageProps }: AppPropsCust) {
   return (
     <>
       <ApolloProvider client={apolloClient}>
@@ -104,7 +126,13 @@ function MyApp({ Component, pageProps }: AppProps) {
           <NavBar />
           <Menu />
           <ChakraProvider>
-            <Component {...pageProps} />
+            {Component.auth ? (
+              <ProtectedRoute>
+                <Component {...pageProps} />
+              </ProtectedRoute>
+            ) : (
+              <Component {...pageProps} />
+            )}
           </ChakraProvider>
           <GlobalStyle />
           <HelpButton />

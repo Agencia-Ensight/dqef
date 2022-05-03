@@ -134,3 +134,5 @@ export default function proposalstudentstep1() {
     </S.Wrapper>
   );
 }
+
+proposalstudentstep1.auth = true;
