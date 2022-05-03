@@ -3,7 +3,7 @@ import * as S from "./styles";
 export function About() {
   return (
     <S.Wrapper>
-      <S.Container>
+      <S.Container id="about">
         <S.Image src="/images/about.png" />
         <S.Info>
           <S.Title>

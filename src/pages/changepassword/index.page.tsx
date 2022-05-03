@@ -11,12 +11,14 @@ import { forgotPasswordCode } from "../../services/auth";
 export default function changepassword() {
   const handleSubmit = (data: any) => {
     const { password, email, code } = data;
-    forgotPasswordCode(email, code, password).then(() => {
-      console.log("Senha alterada com sucesso");
-      Router.push("/");
-    }).catch(() => {
-      alert("Erro ao enviar o código de recuperação");
-    });
+    forgotPasswordCode(email, code, password)
+      .then(() => {
+        console.log("Senha alterada com sucesso");
+        Router.push("/");
+      })
+      .catch(() => {
+        alert("Erro ao enviar o código de recuperação");
+      });
   };
 
   return (

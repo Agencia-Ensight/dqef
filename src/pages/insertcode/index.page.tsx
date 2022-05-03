@@ -10,9 +10,8 @@ import Router from "next/router";
 import { forgotPassword } from "../../services/auth";
 
 export default function forgotpassword() {
-  
   const getSignupData = () => {
-    const existingData = sessionStorage.getItem('forgotPasswordData');
+    const existingData = sessionStorage.getItem("forgotPasswordData");
     if (existingData) {
       return JSON.parse(existingData);
     }
@@ -21,16 +20,18 @@ export default function forgotpassword() {
 
   const resendCode = () => {
     const { email } = getSignupData();
-    forgotPassword(email).then(() => {
-      console.log('Código enviado com sucesso');
-    }).catch(() => {
-      alert("Erro ao enviar o código de recuperação");
-    });
-  }
+    forgotPassword(email)
+      .then(() => {
+        console.log("Código enviado com sucesso");
+      })
+      .catch(() => {
+        alert("Erro ao enviar o código de recuperação");
+      });
+  };
 
   const handleSubmit = (data: any) => {
     Router.push("/changepassword");
-  }
+  };
 
   return (
     <S.Wrapper>
@@ -59,15 +60,17 @@ export default function forgotpassword() {
               required
               name="code"
               type="text"
-              placeholder="- - - -"
+              placeholder="- - - - - -"
+              maxLength={6}
             />
-            <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
-              Enviar Código
-            </ButtonKnewave>
             <S.IconContainer onClick={resendCode}>
               <AiOutlineReload color="var(--blue)" />
               <h2>Enviar Código Novamente</h2>
             </S.IconContainer>
+            <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
+              Alterar senha
+            </ButtonKnewave>
+            
           </div>
         </S.ContainerInformation>
       </MultiStepForm>

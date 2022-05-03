@@ -8,31 +8,83 @@ import { UrgentWorkCard } from "../../components/UrgentWorkCard";
 
 import { ProfileCard } from "../../components/ProfileCard";
 
-
 export default function profileredatorfinishedjobs() {
-    return (
-        <S.Wrapper>
-            <S.ContainerProfileCard>
-            <ProfileCard  img="/images/redatorpicture.png" profileName="Murilo Ricioli" course="Medicina" />
-            </S.ContainerProfileCard>
+  return (
+    <S.Wrapper>
+      <S.ContainerProfileCard>
+        <ProfileCard
+          img="/images/redatorpicture.png"
+          profileName="Murilo Ricioli"
+          course="Medicina"
+        />
+      </S.ContainerProfileCard>
 
-            <div>
-            <h4>Trabalhos Finalizados</h4>   
-            
-            <S.ContainerJobCard>
-            
-            
-            <UrgentWorkCard title="Faz Meu Trabalho Por Favor" course="MEDICINA" discipline="Direito Penal" theme="Teoria do Crime" typeOfWork="Lista de Exercício" price={500} date="10/04/2022" />
-            <UrgentWorkCard title="Faz Meu Trabalho Por Favor" course="MEDICINA" discipline="Direito Penal" theme="Teoria do Crime" typeOfWork="Lista de Exercício" price={500} date="10/04/2022" />
-            <UrgentWorkCard title="Faz Meu Trabalho Por Favor" course="MEDICINA" discipline="Direito Penal" theme="Teoria do Crime" typeOfWork="Lista de Exercício" price={500} date="10/04/2022" />
-            <UrgentWorkCard title="Faz Meu Trabalho Por Favor" course="MEDICINA" discipline="Direito Penal" theme="Teoria do Crime" typeOfWork="Lista de Exercício" price={500} date="10/04/2022" />
-            <UrgentWorkCard title="Faz Meu Trabalho Por Favor" course="MEDICINA" discipline="Direito Penal" theme="Teoria do Crime" typeOfWork="Lista de Exercício" price={500} date="10/04/2022" />
-            <UrgentWorkCard title="Faz Meu Trabalho Por Favor" course="MEDICINA" discipline="Direito Penal" theme="Teoria do Crime" typeOfWork="Lista de Exercício" price={500} date="10/04/2022" />
-            
-            </S.ContainerJobCard>
-            </div>
+      <div>
+        <h4>Trabalhos Finalizados</h4>
 
-
-        </S.Wrapper>
-    )
-    }
+        <S.ContainerJobCard>
+          <UrgentWorkCard
+            title="Faz Meu Trabalho Por Favor"
+            course="MEDICINA"
+            discipline="Direito Penal"
+            theme="Teoria do Crime"
+            typeOfWork="Lista de Exercício"
+            price={500}
+            date="10/04/2022"
+            status="EMPLOYEE-DONE"
+          />
+          <UrgentWorkCard
+            title="Faz Meu Trabalho Por Favor"
+            course="MEDICINA"
+            discipline="Direito Penal"
+            theme="Teoria do Crime"
+            typeOfWork="Lista de Exercício"
+            price={500}
+            date="10/04/2022"
+            status="EMPLOYEE-DONE"
+          />
+          <UrgentWorkCard
+            title="Faz Meu Trabalho Por Favor"
+            course="MEDICINA"
+            discipline="Direito Penal"
+            theme="Teoria do Crime"
+            typeOfWork="Lista de Exercício"
+            price={500}
+            date="10/04/2022"
+            status="EMPLOYEE-DONE"
+          />
+          <UrgentWorkCard
+            title="Faz Meu Trabalho Por Favor"
+            course="MEDICINA"
+            discipline="Direito Penal"
+            theme="Teoria do Crime"
+            typeOfWork="Lista de Exercício"
+            price={500}
+            date="10/04/2022"
+            status="EMPLOYEE-DONE"
+          />
+          <UrgentWorkCard
+            title="Faz Meu Trabalho Por Favor"
+            course="MEDICINA"
+            discipline="Direito Penal"
+            theme="Teoria do Crime"
+            typeOfWork="Lista de Exercício"
+            price={500}
+            date="10/04/2022"
+            status="EMPLOYEE-DONE"
+          />
+          <UrgentWorkCard
+            title="Faz Meu Trabalho Por Favor"
+            course="MEDICINA"
+            discipline="Direito Penal"
+            theme="Teoria do Crime"
+            typeOfWork="Lista de Exercício"
+            price={500}
+            date="10/04/2022"
+            status="EMPLOYEE-DONE"
+          />
+        </S.ContainerJobCard>
+      </div>
+    </S.Wrapper>
+  );
+}

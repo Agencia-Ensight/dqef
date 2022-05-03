@@ -34,6 +34,7 @@ export default function signinstudentstep1() {
               name="name"
               placeholder="Insira o seu nome"
               type="text"
+
               required
             />
             <Input label="Email" name="email" placeholder="teste@gmail.com" required />

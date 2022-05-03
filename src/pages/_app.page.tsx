@@ -8,6 +8,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 import GlobalStyle from "../styles/global";
 import { Menu } from "../components/NavBar/components/Menu";
+import HelpButton from "../components/HelpButton";
 
 export const apolloClient = new ApolloClient({
   uri: 'https://api.deixaqueeufaco.io/v1/graphql',
@@ -104,7 +105,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </ChakraProvider>
         <GlobalStyle />
-        <Footer />
+        <HelpButton />
       </ApolloProvider>
     </>
   );

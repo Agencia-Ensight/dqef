@@ -4,8 +4,12 @@ import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { Input } from "../../components/Input";
 import Router from "next/router";
 import { MultiStepForm } from "../../components/MultiStepForm";
+import InputMask from "react-input-mask";
+
+import { useRouter } from "next/router";
 
 export default function signinredatorstep1() {
+  const router = useRouter();
 
   return (
     <S.Wrapper>
@@ -14,7 +18,7 @@ export default function signinredatorstep1() {
       </S.ContainerImage>
 
       <S.ContainerInformation>
-        <a href="#">Voltar</a>
+        <a onClick={() => router.back}>Voltar</a>
         <h1>Preencha os Campos</h1>
         <p>
           Vamos enviar um e-mail para você, para confirmar a sua identidade.
@@ -37,23 +41,38 @@ export default function signinredatorstep1() {
               type="text"
               required
             />
-            <Input label="Email" name="email" placeholder="teste@gmail.com" required />
+            <Input
+              label="Email"
+              name="email"
+              placeholder="teste@gmail.com"
+              required
+            />
             <Input
               label="Crie sua senha"
               name="password"
+              type="password"
               placeholder="Insira sua senha "
               required
             />
             <Input
+              type="password"
               label="Confirme sua senha "
               placeholder="Repita ela"
               required
             />
-            <Input
+            {/* <Input
               label="Telefone para contato"
               name="phone"
               placeholder="41 99555-6667"
               type="number"
+              required
+            /> */}
+            {/* TODO */}
+            <h3>Telefone para contato</h3>
+            <InputMask
+              name="phone"
+              mask="99 99999-9999"
+              placeholder="99 99999-9999"
               required
             />
           </S.InputContainer>
@@ -63,5 +82,5 @@ export default function signinredatorstep1() {
         </MultiStepForm>
       </S.ContainerInformation>
     </S.Wrapper>
-  )
+  );
 }

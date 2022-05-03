@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Description = styled.div`
     width: 100%;
-    height: 293px;
+    height: 150px;
     border: solid #42A4EF;
     border-radius: 15px;
     margin-top: 20px;
@@ -85,10 +85,7 @@ export const TextInformation = styled.div`
 
     }
 
-    span{
-        color: #E6DE22;
 
-    }
 
 
 
@@ -97,8 +94,46 @@ export const TextInformation = styled.div`
 export const ButtonFinaleira = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 30px;
     gap: 20px;
 
 
 `
+
+export const ContainerTitle = styled.div`
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+    h4{ 
+        font-size: 24px;
+        font-weight: 400, Regular;
+        color: #4E4E4E;
+
+    }
+
+
+`
+export const ContainerLastDescription = styled.div`
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    
+    h3{ 
+        font-size: 18px;
+        font-weight: 600;
+        color: #1A1A1A;
+
+    }
+
+    span{ 
+        text-decoration: underline;
+
+    }
+
+
+`
+
+
+
