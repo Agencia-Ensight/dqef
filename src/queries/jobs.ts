@@ -53,3 +53,100 @@ export const JOBS_QUERY = gql`
     }
   }
 `;
+
+export type JobType = {
+  id: number;
+  name: string;
+}
+export type JobTypesData = {
+  'job_types': JobType[];
+}
+
+export const JOB_TYPES = gql`
+  query JobTypes {
+    job_types {
+      id
+      name
+    }
+  }
+`;
+
+export type HigherCourse = {
+  id: number;
+  name: string;
+}
+export type HigherCoursesData = {
+  'higher_courses': HigherCourse[];
+}
+
+export const HIGHER_COURSES = gql`
+  query HigherCourses {
+    higher_courses {
+      id
+      name
+    }
+  }
+`;
+
+export type Knowledges = {
+  id: number;
+  name: string;
+}
+export type KnowledgesData = {
+  'knowledges': Knowledges[];
+}
+
+export const KNOWLEDGES = gql`
+  query Knowledges {
+    knowledges {
+      id
+      name
+    }
+  }
+`;
+
+export type JobFormat = {
+  id: number;
+  name: string;
+}
+export type JobFormatsData = {
+  'job_formats': JobFormat[];
+}
+
+export const JOB_FORMATS = gql`
+  query JobFormats {
+    job_formats {
+      id
+      name
+    }
+  }
+`;
+
+export const INSERT_JOB = gql`
+  mutation InsertJob($higher_course_id: Int!, $job_status_id: Int!, $job_type_id: Int!, $title: String!, $value: Float!, $value_pay: Float!, $date_limit: date!, $delivery: date!, $theme: String!, $knowledge_id: Int!, $user_id: uuid!, $pages: Int!, $words: Int!) {
+    insert_jobs_one(object: {
+      higher_course_id: $higher_course_id,
+      instructions: "", 
+      job_type_id: $job_type_id, 
+      words: $words, 
+      pages: $pages,, 
+      user_id: $user_id, 
+      theme: $theme, 
+      title: $title,, 
+      job_has_knowledges: {
+        data: {
+          knowledge_id: $knowledge_id
+        }
+      }, 
+      job_status_id: $job_status_id,
+      job_format_id: 1,
+      value: $value,
+      value_pay: $value_pay,
+      date_limit: $date_limit,
+      delivery: $delivery
+    }
+  ) {
+    id
+    }
+  }
+`;
