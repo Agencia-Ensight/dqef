@@ -21,8 +21,8 @@ export default function login() {
 
     signIn(email, password)
       .then((response) => {
-        setToken(response.data.toke.token);
-        Router.push("/");
+        setToken(response.data.hasura);
+        window.location.href = '/';
       })
       .catch(() => {
         alert("Erro ao logar");

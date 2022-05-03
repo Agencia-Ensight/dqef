@@ -3,8 +3,41 @@ import Link from "next/link";
 import * as S from "./styles";
 import { ButtonKnewave } from "../../components/ButtonKnewave";
 import { Menu } from "./components/Menu";
+import { useAuth } from "../../hooks/useAuth";
+import { useMemo } from "react";
 
 export function NavBar() {
+  const { isAuthenticated, setToken } = useAuth();
+
+  const getLoginOrLogout = useMemo(() => {
+    const logout = () => {
+      setToken(null);
+      window.location.href = '/';
+    };
+
+    if (!isAuthenticated) {
+      return (
+        <Link href="/login" passHref>
+          <S.MenuItem>
+            <ButtonKnewave size="sm" variant="SECONDARY">
+              Entrar
+            </ButtonKnewave>
+          </S.MenuItem>
+        </Link>
+      );
+    } else {
+      return (
+        <Link href="#" passHref>
+          <S.MenuItem>
+            <ButtonKnewave onClick={logout} size="sm" variant="SECONDARY">
+              Sair
+            </ButtonKnewave>
+          </S.MenuItem>
+        </Link>
+      )
+    }
+  }, [isAuthenticated, setToken]);
+
   return (
     <S.MainWrapper>
       <S.Container>
@@ -41,13 +74,7 @@ export function NavBar() {
               Publicar Trabalho
             </ButtonKnewave>
           </S.MenuItem>
-          <Link href="/login" passHref>
-            <S.MenuItem>
-              <ButtonKnewave size="sm" variant="SECONDARY">
-                Entrar
-              </ButtonKnewave>
-            </S.MenuItem>
-          </Link>
+          {getLoginOrLogout}
 
           <S.Line></S.Line>
           <button>

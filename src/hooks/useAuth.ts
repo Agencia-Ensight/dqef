@@ -6,12 +6,15 @@ export const useAuth = () => {
   
   useEffect(() => {
     const token = localStorage.getItem('token');
+    console.log('Started', token)
     if (token) {
       setToken(token);
     }
   }, []);
 
   useEffect(() => {
+    console.log('Updated', token)
+    console.log('Updated bool', isAuthenticated)
     if (token) {
       localStorage.setItem('token', token);
     } else {
