@@ -66,7 +66,9 @@ export default function proposalstudentstep3() {
         pages: values.pages, 
         words: values.words,
       }
-    })
+    }).then(() => {
+      router.push("/proposalstudentstep4");
+    });
   }
 
   return (
