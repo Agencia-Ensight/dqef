@@ -4,15 +4,15 @@ import * as S from "./styles";
 
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Input } from "../../components/Input";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { signIn } from "../../services/auth";
 import Router from "next/router";
-import { useAuth } from "../../hooks/useAuth";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setToken } = useAuth();
+  const { setToken } = useContext(AuthContext)!;
 
   const handleSubmit = (e: any) => {
     e.preventDefault();

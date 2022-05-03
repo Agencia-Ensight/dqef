@@ -123,10 +123,9 @@ export const JOB_FORMATS = gql`
 `;
 
 export const INSERT_JOB = gql`
-  mutation InsertJob($higher_course_id: Int!, $job_status_id: Int!, $job_type_id: Int!, $title: String!, $value: Float!, $value_pay: Float!, $date_limit: date!, $delivery: date!, $theme: String!, $knowledge_id: Int!, $user_id: uuid!, $pages: Int!, $words: Int!) {
+  mutation InsertJob($higher_course_id: Int!, $job_status_id: Int!, $job_type_id: Int!, $title: String!, $value: Float!, $value_pay: Float!, $date_limit: date!, $delivery: date!, $theme: String!, $knowledge_id: Int!, $user_id: uuid!, $pages: Int!, $words: Int!, $instructions: String!, $job_format_id: Int!) {
     insert_jobs_one(object: {
       higher_course_id: $higher_course_id,
-      instructions: "", 
       job_type_id: $job_type_id, 
       words: $words, 
       pages: $pages,, 
@@ -139,11 +138,12 @@ export const INSERT_JOB = gql`
         }
       }, 
       job_status_id: $job_status_id,
-      job_format_id: 1,
+      job_format_id: $job_format_id,
       value: $value,
       value_pay: $value_pay,
       date_limit: $date_limit,
-      delivery: $delivery
+      delivery: $delivery,
+      instructions: $instructions,
     }
   ) {
     id

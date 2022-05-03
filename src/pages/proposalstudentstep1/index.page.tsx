@@ -107,7 +107,7 @@ export default function proposalstudentstep1() {
             </label>
             <textarea
               name="instructions"
-              id=""
+              id="instructions"
               rows={5}
               placeholder="ex: Descrição do que deve ser feito no trabalho. Explique de forma objetiva e clara, tudo que o redator deverá realizar para você. Coloque as informações importantes para o melhor entendimento do trabalho."
             ></textarea>

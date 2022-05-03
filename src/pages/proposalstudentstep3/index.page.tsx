@@ -9,9 +9,13 @@ import * as S from "./styles";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import { INSERT_JOB, JobFormatsData, JOB_FORMATS } from "../../queries/jobs";
 import { useMutation, useQuery } from "@apollo/client";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useContext } from "react";
 
 export default function proposalstudentstep3() {
   const router = useRouter();
+
+  const { userData } = useContext(AuthContext)!;
 
   const { data: jobFormats } = useQuery<JobFormatsData>(JOB_FORMATS);
   const [insertJob, { loading, error }] = useMutation(INSERT_JOB);
@@ -25,20 +29,40 @@ export default function proposalstudentstep3() {
   ));
 
   const handleSubmit = async (values: any) => {
-    console.log(values);
-    insertJob({
+    console.log({
       variables: {
         higher_course_id: values.higher_course_id,
         job_status_id: 1,
         job_type_id: values.job_type_id, 
+        job_format_id: values.job_format_id,
         title: values.title, 
         value: values.value, 
+        instructions: values.instructions,
         value_pay: values.value,
-        date_limit: new Date(),
+        date_limit: values.date_limit,
         delivery: new Date(), 
         theme: values.theme, 
         knowledge_id: values.knowledge_id,
-        user_id: 'b06d149f-66d5-417f-b5b6-0976b54b8040',
+        user_id: userData.id,
+        pages: values.pages, 
+        words: values.words,
+      }
+    });
+    insertJob({
+      variables: {
+        higher_course_id: values.higher_course_id,
+        job_status_id: '1',
+        job_type_id: values.job_type_id, 
+        job_format_id: values.job_format_id,
+        instructions: values.instructions,
+        title: values.title, 
+        value: values.value, 
+        value_pay: values.value,
+        date_limit: values.date_limit,
+        delivery: new Date(), 
+        theme: values.theme, 
+        knowledge_id: values.knowledge_id,
+        user_id: userData.id,
         pages: values.pages, 
         words: values.words,
       }

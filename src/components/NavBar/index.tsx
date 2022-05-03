@@ -3,11 +3,11 @@ import Link from "next/link";
 import * as S from "./styles";
 import { ButtonKnewave } from "../../components/ButtonKnewave";
 import { Menu } from "./components/Menu";
-import { useAuth } from "../../hooks/useAuth";
-import { useMemo } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useContext, useMemo } from "react";
 
 export function NavBar() {
-  const { isAuthenticated, setToken } = useAuth();
+  const { isAuthenticated, setToken } = useContext(AuthContext)!;
 
   const getLoginOrLogout = useMemo(() => {
     const logout = () => {
