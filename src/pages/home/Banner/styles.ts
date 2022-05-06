@@ -1,18 +1,16 @@
 import styled from "styled-components";
 
 export const Banner = styled.div`
+  width: 100%;
 
-width: 100%;
-
-@media(max-width: 800px){
+  @media (max-width: 800px) {
     display: none;
-}
+  }
 
-    
-div:nth-child(1){
-        width: 100% !important;
-    }
-    .rsis-image{
-        background-size: 100% 100% !important;
-    }
-`
+  div:nth-child(1) {
+    width: 100% !important;
+  }
+  .rsis-image {
+    background-size: 100% 100% !important;
+  }
+`;

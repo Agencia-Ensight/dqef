@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
     box-sizing: border-box;
     border-radius: 15px;
     height: 100px;
+    margin-top: 10px;
   }
 
   .input-root {
@@ -26,6 +27,7 @@ export const Wrapper = styled.div`
 
     font-size: 18px;
     padding: 10px 29px;
+    margin-bottom: 30px;
 
     &::placeholder {
       color: #848484;
@@ -74,6 +76,7 @@ export const ContainerInformation = styled.div`
 
   @media (max-width: 600px) {
     padding: 10% 5%;
+    width: 100%;
   }
   a {
     text-decoration: none;

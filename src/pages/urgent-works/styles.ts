@@ -31,8 +31,9 @@ export const HeaderContainer = styled.div`
 export const MainContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 60px 50px;
+  gap: 60px 30px;
   padding-top: 3rem;
+  /* justify-content: center; */
 
   @media (max-width: 600px) {
     justify-content: center;

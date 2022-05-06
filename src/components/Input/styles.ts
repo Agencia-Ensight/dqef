@@ -28,5 +28,9 @@ export const Wrapper = styled.div<LabelProps>`
     &::placeholder {
       color: #848484;
     }
+
+    &:disabled {
+      background: #e0e0e0;
+    }
   }
 `;

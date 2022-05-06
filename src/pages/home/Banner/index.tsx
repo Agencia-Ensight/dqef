@@ -16,7 +16,7 @@ export function Banner() {
       <S.Banner>
         <SimpleImageSlider
           width={100}
-          height={350}
+          height={340}
           images={images}
           showBullets={true}
           showNavs={true}

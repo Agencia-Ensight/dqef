@@ -77,14 +77,15 @@ export default function proposalstudentstep3() {
             rows={2}
             placeholder="ex: Espaço para adicionar algum comentário, dica ou pedido ao redator."
           ></textarea>
-
+          <label className="label-file">
+            Anexar Arquivos<span>*</span>
+          </label>
           <section className="container">
             <div {...getRootProps({ className: "dropzone" })}>
               <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here, or click to select files</p>
+              <p>Clique para adicionar arquivos</p>
             </div>
             <aside>
-              <h4>Files</h4>
               <ul>{files}</ul>
             </aside>
           </section>
