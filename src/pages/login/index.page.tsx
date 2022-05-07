@@ -21,7 +21,7 @@ export default function login() {
 
     signIn(email, password)
       .then((response) => {
-        setToken(response.data.hasura);
+        setToken(response.data.token.token);
         window.location.href = '/';
       })
       .catch(() => {
