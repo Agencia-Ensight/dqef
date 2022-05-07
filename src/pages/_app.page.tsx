@@ -23,10 +23,10 @@ export const apolloClient = new ApolloClient({
 });
 
 function ProtectedRoute({ children }: any) {
-  const { isAuthenticated } = useContext(AuthContext)!;
+  const { isAuthenticated, isLoading } = useContext(AuthContext)!;
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !isLoading) {
       Router.push('/login');
     }
   }, [isAuthenticated]);
