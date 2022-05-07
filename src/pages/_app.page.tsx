@@ -29,7 +29,7 @@ function ProtectedRoute({ children }: any) {
     if (!isAuthenticated && !isLoading) {
       Router.push('/login');
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isLoading]);
 
   if (isAuthenticated) {
     return children
