@@ -30,8 +30,8 @@ const AuthProvider = ({children}: any) => {
   }, []);
 
   useEffect(() => {
+    setIsLoading(false);
     if (token) {
-      setIsLoading(false);
       localStorage.setItem('token', token);
     } else {
       localStorage.removeItem('token');
