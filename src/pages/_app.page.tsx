@@ -26,8 +26,6 @@ function ProtectedRoute({ children }: any) {
   const { isAuthenticated, isLoading } = useContext(AuthContext)!;
 
   useEffect(() => {
-    console.log('isAuthenticated', isAuthenticated);
-    console.log('isLoading', isLoading);
     if (!isAuthenticated && !isLoading) {
       Router.push('/login');
     }
