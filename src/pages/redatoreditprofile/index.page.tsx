@@ -138,3 +138,5 @@ export default function redatoreditprofile() {
     </S.Wrapper>
   )
 }
+
+redatoreditprofile.auth = true;
