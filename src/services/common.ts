@@ -30,7 +30,32 @@ export interface IProfile {
     updated_at: Date;
   }
 }
-export const getProfile = async (): Promise<IProfile> => {
-  const response = await axiosClient.get('/profile');
-  return response.data;
+export const getProfile = async (token: string): Promise<IProfile> => {
+  const response = await axiosClient.get('/profile', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  return response.data.data[0];
+}
+
+
+export interface IProfileSimple {
+  name?: string;
+  phone?: string;
+  cpf?: string;
+  password?: string;
+  type?: number;
+  formation?: number;
+  course?: number;
+  college?: number;
+  email?: string;
+}
+export const updateProfile = async (token: string, payload: IProfileSimple): Promise<boolean> => {
+  const response = await axiosClient.put('/profile', payload, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  return true;
 }
