@@ -12,7 +12,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setToken } = useContext(AuthContext)!;
+  const { setToken, setHasuraToken } = useContext(AuthContext)!;
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -21,7 +21,8 @@ export default function login() {
 
     signIn(email, password)
       .then((response) => {
-        setToken(response.data.token.token);
+        setToken(response.data.hasura);
+        setHasuraToken(response.data.token.token);
         window.location.href = '/';
       })
       .catch(() => {
