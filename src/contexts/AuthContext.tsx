@@ -27,20 +27,33 @@ const AuthProvider = ({children}: any) => {
   
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log('Started', token)
+    const hasuraToken = localStorage.getItem('hasuraToken');
+    
     if (token) {
       setToken(token);
+    }
+    
+    if (hasuraToken) {
+      setHasuraToken(hasuraToken);
     }
   }, []);
 
   useEffect(() => {
     setIsLoading(false);
+
     if (token) {
       localStorage.setItem('token', token);
     } else {
       localStorage.removeItem('token');
     }
-  }, [token]);
+
+    if (hasuraToken) {
+      localStorage.setItem('hasuraToken', hasuraToken);
+    } else {
+      localStorage.removeItem('hasuraToken');
+    }
+
+  }, [token, hasuraToken]);
 
   const userData: UserData = useMemo(() => {
     if (!token) {
