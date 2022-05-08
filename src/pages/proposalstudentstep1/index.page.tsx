@@ -8,9 +8,14 @@ import Router, { useRouter } from "next/router";
 import * as S from "./styles";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import { HigherCoursesData, HIGHER_COURSES, Job, JobTypesData, JOB_TYPES, KNOWLEDGES, KnowledgesData } from "../../queries/jobs";
+import { useEffect } from "react";
 
 export default function proposalstudentstep1(job?: Job) {
   const router = useRouter();
+
+  useEffect(() => {
+    console.log(job);
+  }, []);
 
   const { data: jobTypes } = useQuery<JobTypesData>(JOB_TYPES);
   const { data: higherCourses } = useQuery<HigherCoursesData>(HIGHER_COURSES);
@@ -58,10 +63,10 @@ export default function proposalstudentstep1(job?: Job) {
                 <label>
                   Tipo do Trabalho<span>*</span>
                 </label>
-                <Select className="padrao" placeholder="Tipo do Trabalho" name="job_type_id" defaultValue={job?.job_type.id}>
+                <Select className="padrao" placeholder="Tipo do Trabalho" name="job_type_id" defaultValue={job?.job_type?.id}>
                   {
                     jobTypes?.job_types.map((jobType) => (
-                      <option key={jobType.id} value={jobType.id} selected={jobType.id === job?.job_type.id}>
+                      <option key={jobType.id} value={jobType.id} selected={jobType.id === job?.job_type?.id}>
                         {jobType.name}
                       </option>
                     ))
@@ -74,10 +79,10 @@ export default function proposalstudentstep1(job?: Job) {
                 <label>
                   Curso do Trabalho<span>*</span>
                 </label>
-                <Select className="padrao" placeholder="Curso do Trabalho" name="higher_course_id" defaultValue={job?.higher_course.id}>
+                <Select className="padrao" placeholder="Curso do Trabalho" name="higher_course_id" defaultValue={job?.higher_course?.id}>
                   {
                     higherCourses?.higher_courses.map((higherCourse) => (
-                      <option key={higherCourse.id} value={higherCourse.id} selected={higherCourse.id === job?.higher_course.id}>
+                      <option key={higherCourse.id} value={higherCourse.id} selected={higherCourse.id === job?.higher_course?.id}>
                         {higherCourse.name}
                       </option>
                     ))
@@ -91,7 +96,7 @@ export default function proposalstudentstep1(job?: Job) {
                 <Select className="padrao" placeholder="Disciplina do Trabalho" name="knowledge_id">
                   {
                     knowledges?.knowledges.map((knowledge) => (
-                      <option key={knowledge.id} value={knowledge.id} selected={!!job?.job_has_knowledges.find((jobKnowledge) => jobKnowledge.knowledge.id === knowledge.id)}>
+                      <option key={knowledge.id} value={knowledge.id} selected={!!job?.job_has_knowledges?.find((jobKnowledge) => jobKnowledge.knowledge.id === knowledge.id)}>
                         {knowledge.name}
                       </option>
                     ))

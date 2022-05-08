@@ -24,6 +24,7 @@ export type Job = {
   plagiarism: number,
   instructions: string,
   job_format: {
+    id: number
     name: string
   }
   job_has_knowledges: {

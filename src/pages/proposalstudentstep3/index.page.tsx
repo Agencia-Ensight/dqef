@@ -7,12 +7,12 @@ import { useDropzone } from "react-dropzone";
 
 import * as S from "./styles";
 import { MultiStepForm } from "../../components/MultiStepForm";
-import { INSERT_JOB, JobFormatsData, JOB_FORMATS } from "../../queries/jobs";
+import { INSERT_JOB, Job, JobFormatsData, JOB_FORMATS } from "../../queries/jobs";
 import { useMutation, useQuery } from "@apollo/client";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 
-export default function proposalstudentstep3() {
+export default function proposalstudentstep3(job?: Job) {
   const router = useRouter();
 
   const { userData } = useContext(AuthContext)!;
@@ -101,15 +101,16 @@ export default function proposalstudentstep3() {
                 mandatory={true}
                 required
                 type="number"
+                defaultValue={job?.plagiarism}
               />
               <S.SelectContainer>
                 <label>
                   Formato do Trabalho<span>*</span>
                 </label>
-                <Select className="padrao" placeholder="Selecione o Formato" name="job_format_id">
+                <Select className="padrao" placeholder="Selecione o Formato" name="job_format_id" defaultValue={job?.job_format.id}>
                   {
                     jobFormats?.job_formats.map((jobFormat) => (
-                      <option key={jobFormat.id} value={jobFormat.id}>
+                      <option key={jobFormat.id} value={jobFormat.id} selected={jobFormat.id === job?.job_format.id}>
                         {jobFormat.name}
                       </option>
                     ))
@@ -124,6 +125,7 @@ export default function proposalstudentstep3() {
                 mandatory={true}
                 required
                 name="value"
+                defaultValue={job?.value}
               />
               <Input
                 placeholder="R$"
