@@ -214,3 +214,19 @@ export const INSERT_JOB = gql`
     }
   }
 `;
+
+export const UPDATE_JOB_BY_PK = gql`
+  mutation UpdateJobByPk($id: uuid!, $object: jobs_set_input!, $knowledges: [job_has_knowledges_insert_input!]!) {
+    update_jobs_by_pk(pk_columns: {id: $id}, _set: $object) {
+      id
+    }
+    delete_job_has_knowledges(where: {job_id: {_eq: $id}}) {
+      returning {
+        id
+      }
+    }
+    insert_job_has_knowledges(objects: $knowledges) {
+      affected_rows
+    }
+  }
+`;
