@@ -9,6 +9,7 @@ import { Job, JobByPk, JOB_QUERY } from "../../queries/jobs";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { apolloClient } from "../_app.page";
+import { FAQCard } from "./components/FAQCard";
 
 function insideJob() {
   const [job, setJob] = useState<Job | null>(null);
@@ -66,6 +67,7 @@ function insideJob() {
           <FileCard title="Arquivo" />
           <FileCard title="Arquivo" />
         </ScrollContainer>
+        <FAQCard />
       </S.Container>
     </S.Wrapper>
   );
