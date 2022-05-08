@@ -7,9 +7,9 @@ import Router, { useRouter } from "next/router";
 
 import * as S from "./styles";
 import { MultiStepForm } from "../../components/MultiStepForm";
-import { HigherCoursesData, HIGHER_COURSES, JobTypesData, JOB_TYPES, KNOWLEDGES, KnowledgesData } from "../../queries/jobs";
+import { HigherCoursesData, HIGHER_COURSES, Job, JobTypesData, JOB_TYPES, KNOWLEDGES, KnowledgesData } from "../../queries/jobs";
 
-export default function proposalstudentstep1() {
+export default function proposalstudentstep1(job?: Job) {
   const router = useRouter();
 
   const { data: jobTypes } = useQuery<JobTypesData>(JOB_TYPES);
@@ -27,7 +27,11 @@ export default function proposalstudentstep1() {
           firstStep={true}
           stateName="proposalData"
           onSubmit={(_) => {
-            Router.push("/proposalstudentstep2");
+            if (job) {
+              router.push(`/proposalstudentstep2/${job.id}`);
+            } else {
+              Router.push("/proposalstudentstep2");
+            }
           }}
           onFail={() => {
             Router.push("/proposalstudentstep1");
@@ -46,6 +50,7 @@ export default function proposalstudentstep1() {
                 label="Título do trabalho"
                 name="title"
                 placeholder="Insira o título"
+                defaultValue={job?.title}
                 mandatory={true}
                 required
               />
@@ -53,10 +58,10 @@ export default function proposalstudentstep1() {
                 <label>
                   Tipo do Trabalho<span>*</span>
                 </label>
-                <Select className="padrao" placeholder="Tipo do Trabalho" name="job_type_id">
+                <Select className="padrao" placeholder="Tipo do Trabalho" name="job_type_id" defaultValue={job?.job_type.id}>
                   {
                     jobTypes?.job_types.map((jobType) => (
-                      <option key={jobType.id} value={jobType.id}>
+                      <option key={jobType.id} value={jobType.id} selected={jobType.id === job?.job_type.id}>
                         {jobType.name}
                       </option>
                     ))
@@ -69,10 +74,10 @@ export default function proposalstudentstep1() {
                 <label>
                   Curso do Trabalho<span>*</span>
                 </label>
-                <Select className="padrao" placeholder="Curso do Trabalho" name="higher_course_id">
+                <Select className="padrao" placeholder="Curso do Trabalho" name="higher_course_id" defaultValue={job?.higher_course.id}>
                   {
                     higherCourses?.higher_courses.map((higherCourse) => (
-                      <option key={higherCourse.id} value={higherCourse.id}>
+                      <option key={higherCourse.id} value={higherCourse.id} selected={higherCourse.id === job?.higher_course.id}>
                         {higherCourse.name}
                       </option>
                     ))
@@ -86,7 +91,7 @@ export default function proposalstudentstep1() {
                 <Select className="padrao" placeholder="Disciplina do Trabalho" name="knowledge_id">
                   {
                     knowledges?.knowledges.map((knowledge) => (
-                      <option key={knowledge.id} value={knowledge.id}>
+                      <option key={knowledge.id} value={knowledge.id} selected={!!job?.job_has_knowledges.find((jobKnowledge) => jobKnowledge.knowledge.id === knowledge.id)}>
                         {knowledge.name}
                       </option>
                     ))
@@ -100,6 +105,7 @@ export default function proposalstudentstep1() {
                 mandatory={true}
                 required
                 name="theme"
+                defaultValue={job?.theme}
               />
             </S.TextInputContainer>
             <label>
@@ -110,6 +116,7 @@ export default function proposalstudentstep1() {
               id="instructions"
               rows={5}
               placeholder="ex: Descrição do que deve ser feito no trabalho. Explique de forma objetiva e clara, tudo que o redator deverá realizar para você. Coloque as informações importantes para o melhor entendimento do trabalho."
+              defaultValue={job?.instructions}
             ></textarea>
             <S.LastInputs>
               <Input
@@ -117,12 +124,14 @@ export default function proposalstudentstep1() {
                 placeholder="Quantidade"
                 required
                 name="pages"
+                defaultValue={job?.pages}
               />
               <Input
                 label="Número de palavras"
                 placeholder="Quantidade"
                 required
                 name="words"
+                defaultValue={job?.words}
               />
             </S.LastInputs>
           </S.InputFields>

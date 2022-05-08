@@ -8,9 +8,10 @@ import { useRouter } from "next/router";
 import * as S from "./styles";
 import { useState } from "react";
 import { MultiStepForm } from "../../components/MultiStepForm";
+import { Job } from "../../queries/jobs";
 
-export default function proposalstudentstep2() {
-  const [startDate, setStartDate] = useState(new Date());
+export default function proposalstudentstep2(job?: Job) {
+  const [startDate, setStartDate] = useState(job?.date_limit ? new Date(job.date_limit) : new Date());
 
   const router = useRouter();
 
@@ -24,9 +25,17 @@ export default function proposalstudentstep2() {
         <MultiStepForm
           stateName="proposalData"
           onSubmit={(data: any) => {
+            if (job) {
+              router.push(`/proposalstudentstep3/${job.id}`);
+              return;
+            }
             router.push("/proposalstudentstep3");
           }}
           onFail={() => {
+            if (job) {
+              router.push(`/proposalstudentstep1/${job.id}`);
+              return;
+            }
             router.push("/proposalstudentstep1");
           }}
         >

@@ -4,12 +4,14 @@ export type Job = {
   id: string;
   date_limit: string
   higher_course: {
+    id: number;
     name: string
   },
   job_status: {
     name: string
   },
   job_type: {
+    id: number
     name: string
   },
   theme: string
@@ -18,6 +20,7 @@ export type Job = {
   value: number
   delivery: string,
   pages: number,
+  words: number,
   plagiarism: number,
   instructions: string,
   job_format: {
@@ -25,6 +28,7 @@ export type Job = {
   }
   job_has_knowledges: {
     knowledge: {
+      id: number
       name: string
     }
   }[]
@@ -43,21 +47,27 @@ export const JOBS_QUERY = gql`
       value_pay
       value
       pages
+      words
       instructions
       job_format {
+        id
         name
       }
       higher_course {
+        id
         name
       }
       job_status {
+        id
         name
       }
       job_type {
+        id
         name
       }
       job_has_knowledges {
         knowledge {
+          id
           name
         }
       }
@@ -78,21 +88,27 @@ export const JOB_QUERY = gql`
       value_pay
       value
       pages
+      words
       instructions
       job_format {
+        id
         name
       }
       higher_course {
+        id
         name
       }
       job_status {
+        id
         name
       }
       job_type {
+        id
         name
       }
       job_has_knowledges {
         knowledge {
+          id
           name
         }
       }
