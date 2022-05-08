@@ -17,6 +17,12 @@ export type Job = {
   value_pay: number
   value: number
   delivery: string,
+  pages: number,
+  plagiarism: number,
+  instructions: string,
+  job_format: {
+    name: string
+  }
   job_has_knowledges: {
     knowledge: {
       name: string
@@ -36,6 +42,11 @@ export const JOBS_QUERY = gql`
       title
       value_pay
       value
+      pages
+      instructions
+      job_format {
+        name
+      }
       higher_course {
         name
       }
@@ -50,6 +61,42 @@ export const JOBS_QUERY = gql`
           name
         }
       }
+    }
+  }
+`;
+
+export type JobByPk = {
+  jobs_by_pk: Job
+};
+export const JOB_QUERY = gql`
+  query JobQuery($id: uuid!) {
+    jobs_by_pk(id: $id) {
+      date_limit
+      delivery
+      theme
+      title
+      value_pay
+      value
+      pages
+      instructions
+      job_format {
+        name
+      }
+      higher_course {
+        name
+      }
+      job_status {
+        name
+      }
+      job_type {
+        name
+      }
+      job_has_knowledges {
+        knowledge {
+          name
+        }
+      }
+      id
     }
   }
 `;
