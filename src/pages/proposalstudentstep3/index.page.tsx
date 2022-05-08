@@ -11,6 +11,8 @@ import { INSERT_JOB, Job, JobFormatsData, JOB_FORMATS } from "../../queries/jobs
 import { useMutation, useQuery } from "@apollo/client";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
+import JobStep1 from "../components/jobs/JobSteps/step1";
+import JobStep2 from "../components/jobs/JobSteps/step3";
 
 export default function proposalstudentstep3(job?: Job) {
   const router = useRouter();
@@ -19,14 +21,6 @@ export default function proposalstudentstep3(job?: Job) {
 
   const { data: jobFormats } = useQuery<JobFormatsData>(JOB_FORMATS);
   const [insertJob, { loading, error }] = useMutation(INSERT_JOB);
-
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
-
-  const files = acceptedFiles.map((file, key) => (
-    <li key={key}>
-      {file.name} - {file.size} bytes
-    </li>
-  ));
 
   const handleSubmit = async (values: any) => {
     console.log({
@@ -93,72 +87,7 @@ export default function proposalstudentstep3(job?: Job) {
             <S.Steps>3 de 3</S.Steps>
           </S.HeaderContainer>
           <p>Insira os detalhes finais antes de publicar.</p>
-          <S.InputFields>
-            <S.FirstInputContainer>
-              <Input
-                label="Máximo de Plágio Aceitável"
-                placeholder="Insira o Valor"
-                mandatory={true}
-                required
-                type="number"
-                defaultValue={job?.plagiarism}
-              />
-              <S.SelectContainer>
-                <label>
-                  Formato do Trabalho<span>*</span>
-                </label>
-                <Select className="padrao" placeholder="Selecione o Formato" name="job_format_id" defaultValue={job?.job_format.id}>
-                  {
-                    jobFormats?.job_formats.map((jobFormat) => (
-                      <option key={jobFormat.id} value={jobFormat.id} selected={jobFormat.id === job?.job_format.id}>
-                        {jobFormat.name}
-                      </option>
-                    ))
-                  }
-                </Select>
-              </S.SelectContainer>
-            </S.FirstInputContainer>
-            <S.FirstInputContainer>
-              <Input
-                placeholder="Disposto a Pagar"
-                label="Disposto a Pagar"
-                mandatory={true}
-                required
-                name="value"
-                defaultValue={job?.value}
-              />
-              <Input
-                placeholder="R$"
-                label="Valor Pago ao Redator"
-                mandatory={false}
-                disabled
-                name="value_pay"
-              />
-            </S.FirstInputContainer>
-            <S.FirstInputContainer>
-              <Input label="Cupom de desconto" mandatory={false} disabled />
-            </S.FirstInputContainer>
-            <label>
-              Observações<span>*</span>
-            </label>
-            <textarea
-              name=""
-              id=""
-              rows={2}
-              placeholder="ex: Espaço para adicionar algum comentário, dica ou pedido ao redator."
-            ></textarea>
-
-            <section className="container">
-              <div {...getRootProps({ className: "dropzone" })}>
-                <input {...getInputProps()} />
-                <p>Drag 'n' drop some files here, or click to select files</p>
-              </div>
-              <aside>
-                <h4>Files</h4>
-                <ul>{files}</ul>
-              </aside>
-            </section>
-          </S.InputFields>
+          <JobStep2 jobFormats={jobFormats?.job_formats ?? []} />
           <ButtonKnewave variant="PRIMARY" type="submit" size="sm">
             Publicar
           </ButtonKnewave>
