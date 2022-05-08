@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export type Job = {
-  id: number;
+  id: string;
   date_limit: string
   higher_course: {
     name: string

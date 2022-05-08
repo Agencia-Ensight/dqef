@@ -85,6 +85,14 @@ export const AnswerIcon = styled.img`
   margin-right: 0.5rem;
 `;
 
+export const AnswerText = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
 export const AnswerTitle = styled.h3`
   color: #53647E;
   font-size: 1rem;

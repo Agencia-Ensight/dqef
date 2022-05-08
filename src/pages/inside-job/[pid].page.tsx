@@ -67,7 +67,7 @@ function insideJob() {
           <FileCard title="Arquivo" />
           <FileCard title="Arquivo" />
         </ScrollContainer>
-        <FAQCard />
+        <FAQCard jobId={job.id} />
       </S.Container>
     </S.Wrapper>
   );
