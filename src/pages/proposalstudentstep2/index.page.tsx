@@ -1,14 +1,9 @@
 import { ButtonKnewave } from "../../components/ButtonKnewave";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import pt from "date-fns/locale/pt";
 
 import { useRouter } from "next/router";
 
 import * as S from "./styles";
-import { useState } from "react";
 import { MultiStepForm } from "../../components/MultiStepForm";
-import { Job } from "../../queries/jobs";
 import JobStep2 from "../components/jobs/JobSteps/step2";
 
 export default function proposalstudentstep2() {
