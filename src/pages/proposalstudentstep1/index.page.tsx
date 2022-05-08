@@ -9,12 +9,8 @@ import { HigherCoursesData, HIGHER_COURSES, Job, JobTypesData, JOB_TYPES, KNOWLE
 import { useEffect } from "react";
 import JobStep1 from "../components/jobs/JobSteps/step1";
 
-export default function proposalstudentstep1(job?: Job) {
+export default function proposalstudentstep1() {
   const router = useRouter();
-
-  useEffect(() => {
-    console.log(job);
-  }, []);
 
   const { data: jobTypes } = useQuery<JobTypesData>(JOB_TYPES);
   const { data: higherCourses } = useQuery<HigherCoursesData>(HIGHER_COURSES);
@@ -31,11 +27,7 @@ export default function proposalstudentstep1(job?: Job) {
           firstStep={true}
           stateName="proposalData"
           onSubmit={(_) => {
-            if (job) {
-              router.push(`/proposalstudentstep2/${job.id}`);
-            } else {
-              Router.push("/proposalstudentstep2");
-            }
+            Router.push("/proposalstudentstep2");
           }}
           onFail={() => {
             Router.push("/proposalstudentstep1");
@@ -48,11 +40,10 @@ export default function proposalstudentstep1(job?: Job) {
           </S.HeaderContainer>
 
           <p>Para publicar seu trabalho, insira as seguintes informações.</p>
-          <JobStep1 
-            job={job}
-            jobTypes={jobTypes ?? { job_types: [] }}
-            higherCourses={higherCourses ?? { higher_courses: [] }}
-            knowledges={knowledges ?? { knowledges: [] }}
+          <JobStep1
+            jobTypes={jobTypes?.job_types ?? [] }
+            higherCourses={higherCourses?.higher_courses ??  [] }
+            knowledges={knowledges?.knowledges ?? []}
           />
           <ButtonKnewave variant="PRIMARY" type="submit" size="sm">
             Próximo

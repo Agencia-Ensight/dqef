@@ -1,6 +1,6 @@
 import { Select } from "@chakra-ui/react";
 import { Input } from "../../../../components/Input";
-import { HigherCoursesData, Job, JobType, JobTypesData, KnowledgesData } from "../../../../queries/jobs";
+import { HigherCourse, HigherCoursesData, Job, JobType, JobTypesData, Knowledges, KnowledgesData } from "../../../../queries/jobs";
 import * as S from "./styles1";
 
 const JobStep1 = ({
@@ -10,9 +10,9 @@ const JobStep1 = ({
     knowledges,
 }: {
     job?: Job;
-    jobTypes: JobTypesData;
-    higherCourses: HigherCoursesData;
-    knowledges: KnowledgesData;
+    jobTypes: JobType[];
+    higherCourses: HigherCourse[];
+    knowledges: Knowledges[];
 }) => {
     return (
         <S.InputFields>
@@ -31,7 +31,7 @@ const JobStep1 = ({
                 </label>
                 <Select className="padrao" placeholder="Tipo do Trabalho" name="job_type_id" defaultValue={job?.job_type?.id}>
                   {
-                    jobTypes?.job_types.map((jobType) => (
+                    jobTypes?.map((jobType) => (
                       <option key={jobType.id} value={jobType.id} selected={jobType.id === job?.job_type?.id}>
                         {jobType.name}
                       </option>
@@ -47,7 +47,7 @@ const JobStep1 = ({
                 </label>
                 <Select className="padrao" placeholder="Curso do Trabalho" name="higher_course_id" defaultValue={job?.higher_course?.id}>
                   {
-                    higherCourses?.higher_courses.map((higherCourse) => (
+                    higherCourses?.map((higherCourse) => (
                       <option key={higherCourse.id} value={higherCourse.id} selected={higherCourse.id === job?.higher_course?.id}>
                         {higherCourse.name}
                       </option>
@@ -61,7 +61,7 @@ const JobStep1 = ({
                 </label>
                 <Select className="padrao" placeholder="Disciplina do Trabalho" name="knowledge_id">
                   {
-                    knowledges?.knowledges.map((knowledge) => (
+                    knowledges?.map((knowledge) => (
                       <option key={knowledge.id} value={knowledge.id} selected={!!job?.job_has_knowledges?.find((jobKnowledge) => jobKnowledge.knowledge.id === knowledge.id)}>
                         {knowledge.name}
                       </option>

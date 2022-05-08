@@ -11,7 +11,7 @@ import { MultiStepForm } from "../../components/MultiStepForm";
 import { Job } from "../../queries/jobs";
 import JobStep2 from "../components/jobs/JobSteps/step2";
 
-export default function proposalstudentstep2(job?: Job) {
+export default function proposalstudentstep2() {
   const router = useRouter();
 
   return (
@@ -24,17 +24,9 @@ export default function proposalstudentstep2(job?: Job) {
         <MultiStepForm
           stateName="proposalData"
           onSubmit={(data: any) => {
-            if (job) {
-              router.push(`/proposalstudentstep3/${job.id}`);
-              return;
-            }
             router.push("/proposalstudentstep3");
           }}
           onFail={() => {
-            if (job) {
-              router.push(`/proposalstudentstep1/${job.id}`);
-              return;
-            }
             router.push("/proposalstudentstep1");
           }}
         >
