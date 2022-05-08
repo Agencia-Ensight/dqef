@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ForwardedRef, forwardRef, useContext, useImperativeHandle, useMemo, useState } from "react";
 import DatePicker from "react-datepicker";
 import pt from "date-fns/locale/pt";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,16 +7,34 @@ import * as S from "./styles3";
 import { Input } from "../../../../components/Input";
 import { Select } from "@chakra-ui/react";
 import { useDropzone } from "react-dropzone";
+import { axiosClient } from "../../../../services/api";
+import { AuthContext } from "../../../../contexts/AuthContext";
+import { uploadJobAttachment } from "../../../../services/common";
 
-const JobStep2 = ({
+
+export interface Ref {
+  uploadFiles: (jobId: string) => Promise<any>;
+}
+const JobStep3 = forwardRef(({
   job,
   jobFormats
 }: {
   job?: Job;
   jobFormats: JobFormat[];
-}) => {
-
+}, ref: ForwardedRef<Ref>) => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+  const { hasuraToken } = useContext(AuthContext)!;
+
+  useImperativeHandle(ref, () => ({
+
+    async uploadFiles(jobId: string) {
+      let promiseArr = acceptedFiles.map(async (file) => {
+        return uploadJobAttachment(hasuraToken!, jobId, file);
+      })
+      return await Promise.all(promiseArr);
+    }
+
+  }));
 
   const files = acceptedFiles.map((file, key) => (
     <li key={key}>
@@ -82,7 +100,7 @@ const JobStep2 = ({
 
       <section className="container">
         <div {...getRootProps({ className: "dropzone" })}>
-          <input {...getInputProps()} />
+          <input {...getInputProps()} name="attachments" />
           <p>Drag 'n' drop some files here, or click to select files</p>
         </div>
         <aside>
@@ -92,6 +110,6 @@ const JobStep2 = ({
       </section>
     </S.InputFields>
   );
-}
+});
 
-export default JobStep2;
+export default JobStep3;

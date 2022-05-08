@@ -10,9 +10,8 @@ import { MultiStepForm } from "../../components/MultiStepForm";
 import { INSERT_JOB, Job, JobFormatsData, JOB_FORMATS } from "../../queries/jobs";
 import { useMutation, useQuery } from "@apollo/client";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useContext } from "react";
-import JobStep1 from "../components/jobs/JobSteps/step1";
-import JobStep2 from "../components/jobs/JobSteps/step3";
+import { useContext, useRef } from "react";
+import JobStep3, { Ref } from "../components/jobs/JobSteps/step3";
 
 export default function proposalstudentstep3(job?: Job) {
   const router = useRouter();
@@ -21,6 +20,8 @@ export default function proposalstudentstep3(job?: Job) {
 
   const { data: jobFormats } = useQuery<JobFormatsData>(JOB_FORMATS);
   const [insertJob, { loading, error }] = useMutation(INSERT_JOB);
+
+  const step3Ref = useRef<Ref>(null);
 
   const handleSubmit = async (values: any) => {
     console.log({
@@ -60,8 +61,13 @@ export default function proposalstudentstep3(job?: Job) {
         pages: values.pages, 
         words: values.words,
       }
-    }).then(() => {
-      router.push("/proposalstudentstep4");
+    }).then((response) => {
+      const jobId = response.data.insert_jobs_one.id;
+      if (step3Ref.current) {
+        step3Ref.current.uploadFiles(jobId).then(() => {
+          router.push(`/proposalstudentstep4`);
+        });
+      }
     });
   }
 
@@ -87,7 +93,7 @@ export default function proposalstudentstep3(job?: Job) {
             <S.Steps>3 de 3</S.Steps>
           </S.HeaderContainer>
           <p>Insira os detalhes finais antes de publicar.</p>
-          <JobStep2 jobFormats={jobFormats?.job_formats ?? []} />
+          <JobStep3 jobFormats={jobFormats?.job_formats ?? []} ref={step3Ref} />
           <ButtonKnewave variant="PRIMARY" type="submit" size="sm">
             Publicar
           </ButtonKnewave>

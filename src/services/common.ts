@@ -59,3 +59,15 @@ export const updateProfile = async (token: string, payload: IProfileSimple): Pro
   });
   return true;
 }
+
+export const uploadJobAttachment = async (token: string, jobId: string, file: File): Promise<boolean> => {
+  const payload = new FormData();
+  payload.append('file', file);
+  const response = await axiosClient.put(`/jobs/my/${jobId}/attachment`, payload, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return true;
+}
