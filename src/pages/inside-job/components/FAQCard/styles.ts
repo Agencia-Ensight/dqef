@@ -14,6 +14,19 @@ export const Title = styled.h1`
   margin-bottom: 1.5rem;
 `;
 
+export const QuestionForm = styled.form`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+`;
+
+export const InputWrapper = styled.div`
+  align-items: center;
+  width: 100%;
+`;
+
 export const QuestionHeader = styled.div`
   display: flex;
 `;

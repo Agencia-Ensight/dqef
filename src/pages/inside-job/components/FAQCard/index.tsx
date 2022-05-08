@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { text } from "stream/consumers";
+import { ButtonKnewave } from "../../../../components/ButtonKnewave";
+import { Input } from "../../../../components/Input";
 import * as S from "./styles";
 import { Props } from "./typings";
 
@@ -8,15 +10,26 @@ export function FAQCard({
   return (
     <S.Wrapper>
       <S.Title>Perguntas frequentes</S.Title>
+
+      <S.QuestionForm>
+        <S.InputWrapper>
+          <Input
+            name="question"
+            placeholder="Faça sua pergunta"
+            required
+          />
+        </S.InputWrapper>
+        <ButtonKnewave variant="PRIMARY" type="submit" size="sm">
+          Enviar
+        </ButtonKnewave>
+      </S.QuestionForm>
+
       <S.QuestionHeader>
-        {/* Avatar img rounded */}
         <S.AvatarImg src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar" />
         <S.QuestionHeaderText>
-          {/* Question redator name */}
           <S.QuestionHeaderName>
             Name
           </S.QuestionHeaderName>
-          {/* Redator Rating */}
           <S.QuestionHeaderRating>
             <S.QuestionHeaderRatingIcon src="https://img.icons8.com/color/48/000000/star.png" alt="rating" />
             5.0
