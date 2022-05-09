@@ -58,14 +58,11 @@ function insideJob() {
           hideScrollbars={true}
           className="files-container"
         >
-          <FileCard title="Arquivo" />
-          <FileCard title="Arquivo" />
-          <FileCard title="Arquivo" />
-          <FileCard title="Arquivo" />
-          <FileCard title="Arquivo" />
-          <FileCard title="Arquivo" />
-          <FileCard title="Arquivo" />
-          <FileCard title="Arquivo" />
+          {job.job_has_medias.map(({ media: { id: media_id, title: media_name, link: media_url } }) => (
+            <FileCard
+              title={media_name}
+              />
+          ))}
         </ScrollContainer>
         <FAQCard jobId={job.id} />
       </S.Container>
