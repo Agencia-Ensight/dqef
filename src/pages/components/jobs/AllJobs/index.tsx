@@ -11,8 +11,9 @@ export const AllJobs = (): JSX.Element => {
 
   return <>
     {
-      data!.jobs.map(({ value_pay, title, theme, job_type: { name: job_type_name }, higher_course: { name: higher_course_name }, delivery, job_has_knowledges }) => (
+      data!.jobs.map(({ id, value_pay, title, theme, job_type: { name: job_type_name }, higher_course: { name: higher_course_name }, delivery, job_has_knowledges }) => (
         <UrgentWorkCard
+          jobId={id}
           course="ECONOMIA" // higher_course_name TODO: Sincronizar com o banco de dados?
           date={delivery}
           discipline={job_has_knowledges.map(({ knowledge: { name: knowledge_name } }) => knowledge_name).join(", ")}
