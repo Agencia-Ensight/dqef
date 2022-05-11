@@ -24,6 +24,7 @@ export default function profilestudentrunningjobs() {
 
         <S.ContainerJobCard>
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
@@ -34,6 +35,7 @@ export default function profilestudentrunningjobs() {
             status="STUDENT-GET"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
@@ -44,6 +46,7 @@ export default function profilestudentrunningjobs() {
             status="STUDENT-GET"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
@@ -54,6 +57,7 @@ export default function profilestudentrunningjobs() {
             status="STUDENT-GET"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
@@ -64,6 +68,7 @@ export default function profilestudentrunningjobs() {
             status="STUDENT-GET"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
@@ -74,6 +79,7 @@ export default function profilestudentrunningjobs() {
             status="STUDENT-GET"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"

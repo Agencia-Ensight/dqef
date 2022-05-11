@@ -136,7 +136,7 @@ export default function proposalstudentstep3(job?: Job) {
             rows={2}
             placeholder="ex: Espaço para adicionar algum comentário, dica ou pedido ao redator."
           ></textarea>
-          <label className="label-file">
+          {/* <label className="label-file">
             Anexar Arquivos<span>*</span>
           </label>
           <section className="container">
@@ -145,9 +145,9 @@ export default function proposalstudentstep3(job?: Job) {
               <p>Clique para adicionar arquivos</p>
             </div>
             <aside>
-              <ul>{files}</ul>
+              <ul>{File}</ul>
             </aside>
-          </section>
+          </section> */}
         </S.InputFields>
         <ButtonKnewave variant="PRIMARY" size="sm">
           Publicar

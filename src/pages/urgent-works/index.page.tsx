@@ -17,6 +17,7 @@ function urgentWorks() {
       </S.HeaderContainer>
       <S.MainContainer>
         <UrgentWorkCard
+          jobId="1"
           course="ARQUITETURA"
           date="23/04"
           discipline="arroz"
@@ -28,6 +29,7 @@ function urgentWorks() {
           status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
+          jobId="1"
           course="ECONOMIA"
           date="23/04"
           discipline="arroz"
@@ -39,6 +41,7 @@ function urgentWorks() {
           status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
+          jobId="1"
           course="ECONOMIA"
           date="23/04"
           discipline="arroz"
@@ -50,6 +53,7 @@ function urgentWorks() {
           status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
+          jobId="1"
           course="ECONOMIA"
           date="23/04"
           discipline="arroz"
@@ -61,6 +65,7 @@ function urgentWorks() {
           status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
+          jobId="1"
           course="ECONOMIA"
           date="23/04"
           discipline="arroz"
@@ -72,6 +77,7 @@ function urgentWorks() {
           status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
+          jobId="1"
           course="ECONOMIA"
           date="23/04"
           discipline="arroz"
