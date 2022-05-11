@@ -26,6 +26,10 @@ export const Wrapper = styled.div`
     width: 40%;
     height: 100%;
     padding: 5% 5%;
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
   }
 `;
 export const ContainerImage = styled.div`

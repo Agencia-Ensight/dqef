@@ -16,12 +16,15 @@ export function Menu() {
   return (
     <>
       <S.Wrapper visible={isOpen}>
-        <Image
-          src="/images/logo-mobile.png"
-          alt="DQEF"
-          width={60}
-          height={60}
-        />
+        <Link href="/" passHref>
+          <Image
+            src="/images/logo-mobile.png"
+            alt="DQEF"
+            width={60}
+            height={60}
+          />
+        </Link>
+
         <a onClick={handleOpen}>
           {isOpen ? (
             <MdClose size={40} color="black" />
@@ -41,7 +44,7 @@ export function Menu() {
         </Link>
 
         <S.Title>Conta</S.Title>
-        <Link href="/" passHref>
+        <Link href="/proposalstudentstep1" passHref>
           <ButtonKnewave variant="PRIMARY" size="sm" onClick={handleOpen}>
             Publicar Trabalho
           </ButtonKnewave>

@@ -122,5 +122,6 @@ export const ContainerInformation = styled.div`
 
   @media (max-width: 600px) {
     padding: 10% 5%;
+    width: 100%;
   }
 `;
