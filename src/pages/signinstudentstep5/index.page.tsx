@@ -1,7 +1,6 @@
 import { ButtonKnewave } from "../../components/ButtonKnewave";
 import * as S from "./styles";
-import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
-import { AiOutlineReload } from "react-icons/ai";
+import Link from "next/link";
 
 export default function signinstudentstep5() {
   return (
@@ -11,7 +10,7 @@ export default function signinstudentstep5() {
       </S.ContainerImage>
 
       <S.ContainerInformation>
-        <S.Image src="/images/nerdzin.png" />
+        <S.CongratulationImage src="/images/nerdzin.png" />
         <h1>Sucesso :)</h1>
         <p>
           Bem-vindo, agora navegue na plataforma <br /> e publique seus
@@ -19,9 +18,12 @@ export default function signinstudentstep5() {
         </p>
 
         <div>
-          <ButtonKnewave margin-left="25px" variant="SECONDARY" size="sm">
-            Explorar
-          </ButtonKnewave>
+          <Link href="/" passHref>
+            <ButtonKnewave margin-left="25px" variant="SECONDARY" size="sm">
+              Explorar
+            </ButtonKnewave>
+          </Link>
+
           <ButtonKnewave variant="PRIMARY" size="sm">
             Publicar Trabalho
           </ButtonKnewave>

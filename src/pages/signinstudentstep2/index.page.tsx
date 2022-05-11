@@ -5,10 +5,12 @@ import { Input } from "../../components/Input";
 import React, { useEffect } from "react";
 import { getCourses, ICourse } from "../../services/auth";
 import { MultiStepForm } from "../../components/MultiStepForm";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 
 export default function signinstudentstep2() {
   const [courses, setCourses] = React.useState<ICourse[]>([]);
+
+  const router = useRouter();
 
   useEffect(() => {
     async function loadCourses() {
@@ -26,7 +28,7 @@ export default function signinstudentstep2() {
       </S.ContainerImage>
 
       <S.ContainerInformation>
-        <a href="#">Voltar</a>
+        <a onClick={() => router.back()}>Voltar</a>
         <h1>Informações Extras</h1>
         <p>Insira alguns dados para completar o seu cadastro.</p>
         <MultiStepForm
@@ -41,11 +43,11 @@ export default function signinstudentstep2() {
           <S.InputContainer>
             <label>Curso</label>
             <Select name="course" placeholder="Select option">
-              {
-                courses.map((course: ICourse) => (
-                  <option key={course.id} value={course.id}>{course.name}</option>
-                ))
-              }
+              {courses.map((course: ICourse) => (
+                <option key={course.id} value={course.id}>
+                  {course.name}
+                </option>
+              ))}
             </Select>
             <Input name="college" label="Faculdade" placeholder="Insira aqui" />
           </S.InputContainer>

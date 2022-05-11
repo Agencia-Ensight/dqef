@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Image = styled.img`
   width: 100%;
-
+  height: 100%;
   @media (max-width: 1300px) {
     width: 70%;
   }
@@ -13,9 +13,14 @@ export const Image = styled.img`
 `;
 export const Wrapper = styled.div`
   width: 1500px;
+  display: flex;
   max-width: 100%;
   position: relative;
   margin: 0 auto;
+  justify-content: center;
+  overflow: hidden;
+
+  height: 90vh;
 
   span {
     color: #4e4e4e;
@@ -24,11 +29,8 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
-  /* right: 300px;
-  top: 0;
-  bottom: 0;
-  left: 0; */
-  position: fixed;
+  width: auto;
+  height: 100%;
 
   @media (max-width: 600px) {
     display: none;
@@ -84,46 +86,41 @@ export const ContainerDoBang = styled.div`
 `;
 
 export const ContainerInformation = styled.div`
-float: right;
+  width: 40%;
+  height: 100%;
+  overflow-y: scroll;
 
-a{
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  a {
     text-decoration: none;
     color: var(--blue);
     cursor: pointer;
-}
-h1 {
+  }
+  h1 {
     margin-top: 10px;
     font-weight: 500;
     color: black;
     font-size: 36px;
-}
+  }
 
-h3{ 
-    color: #53647E;
+  h3 {
+    color: #53647e;
     font-size: 18px;
     margin-bottom: 10px;
-         }
+  }
 
-}
-
-p{ 
+  p {
     margin-top: 10px;
     color: #4e4e4e;
     font-weight: 400;
     font-size: 18px;
-    
-
-
-}
-
-
-
-
-
-padding: 47px 120px 26px 69px;
-
-@media (max-width: 600px) {
-    padding: 10% 5%;
   }
 
+  padding: 5% 5%;
+
+  @media (max-width: 600px) {
+    padding: 10% 5%;
+  }
 `;

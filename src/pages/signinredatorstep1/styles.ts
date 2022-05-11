@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Image = styled.img`
   width: 100%;
+  height: 100%;
 
   @media (max-width: 1300px) {
     width: 70%;
@@ -13,9 +14,14 @@ export const Image = styled.img`
 `;
 export const Wrapper = styled.div`
   width: 1500px;
+  display: flex;
   max-width: 100%;
   position: relative;
   margin: 0 auto;
+  justify-content: center;
+  overflow: hidden;
+
+  height: 90vh;
 
   @media (max-width: 1300px) {
     margin: auto 0px;
@@ -28,18 +34,21 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
-  /* width: 60%;
-  height: 100%; */
-
-  position: fixed;
+  width: auto;
+  height: 100%;
 
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const ContainerInformation = styled.div`
-  float: right;
+  width: 40%;
+  height: 100%;
+  overflow-y: scroll;
 
+  ::-webkit-scrollbar {
+    display: none;
+  }
   @media (max-width: 600px) {
     width: 100%;
   }
@@ -81,7 +90,7 @@ export const ContainerInformation = styled.div`
     }
   }
 
-  padding: 47px 120px 26px 0px;
+  padding: 5% 5%;
 
   @media (max-width: 600px) {
     padding: 10% 5%;

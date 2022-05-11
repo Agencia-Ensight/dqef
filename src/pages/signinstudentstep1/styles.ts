@@ -10,6 +10,10 @@ export const Wrapper = styled.div`
   max-width: 100%;
   position: relative;
   margin: 0 auto;
+  justify-content: center;
+  overflow: hidden;
+
+  height: 90vh;
 
   @media (max-width: 1300px) {
     margin: auto 0px;
@@ -22,7 +26,7 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
-  width: 60%;
+  width: auto;
   height: 100%;
 
   @media (max-width: 600px) {
@@ -31,6 +35,12 @@ export const ContainerImage = styled.div`
 `;
 export const ContainerInformation = styled.div`
   width: 40%;
+  height: 100%;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (max-width: 600px) {
     width: 100%;
@@ -57,6 +67,7 @@ export const ContainerInformation = styled.div`
   a {
     text-decoration: none;
     color: var(--blue);
+    cursor: pointer;
   }
   h1 {
     margin-top: 10px;

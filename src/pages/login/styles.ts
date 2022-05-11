@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Image = styled.img`
   height: 100%;
+  width: 100%;
 `;
 export const Wrapper = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ export const Wrapper = styled.div`
   max-width: 100%;
   position: relative;
   margin: 0 auto;
+  justify-content: center;
   height: 100vh;
   @media (max-width: 1300px) {
     margin: auto 0px;
@@ -18,6 +20,7 @@ export const Wrapper = styled.div`
 export const Line = styled.div``;
 export const ContainerImage = styled.div`
   height: 90vh;
+
   @media (max-width: 600px) {
     display: none;
     height: 50vh;

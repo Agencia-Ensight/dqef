@@ -30,9 +30,8 @@ export default function signinredatorstep4() {
       <S.ContainerImage>
         <S.Image src="/images/signinredator.png" />
       </S.ContainerImage>
-
-      <form onSubmit={handleSubmit}>
-        <S.ContainerInformation>
+      <S.ContainerInformation>
+        <form onSubmit={handleSubmit}>
           <a onClick={() => router.back()}>Voltar</a>
           <h1>Inserir Código</h1>
           <p>Insira o código que você recebeu no e-mail.</p>
@@ -52,8 +51,8 @@ export default function signinredatorstep4() {
           <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
             Criar Conta
           </ButtonKnewave>
-        </S.ContainerInformation>
-      </form>
+        </form>
+      </S.ContainerInformation>
     </S.Wrapper>
   );
 }

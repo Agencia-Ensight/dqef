@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     border-radius: 99px;
     width: 100%;
     font-size: 18px;
-    padding: 10px 29px;
+    padding: 0px 29px;
   }
 
   .css-1rhbuit-multiValue {

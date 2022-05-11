@@ -12,7 +12,7 @@ export function NavBar() {
   const getLoginOrLogout = useMemo(() => {
     const logout = () => {
       setToken(null);
-      window.location.href = '/';
+      window.location.href = "/";
     };
 
     if (!isAuthenticated) {
@@ -34,7 +34,7 @@ export function NavBar() {
             </ButtonKnewave>
           </S.MenuItem>
         </Link>
-      )
+      );
     }
   }, [isAuthenticated, setToken]);
 
@@ -70,9 +70,11 @@ export function NavBar() {
             </a>
           </Link>
           <S.MenuItem>
-            <ButtonKnewave size="sm" variant="PRIMARY">
-              Publicar Trabalho
-            </ButtonKnewave>
+            <Link href="/proposalstudentstep1" passHref>
+              <ButtonKnewave size="sm" variant="PRIMARY">
+                Publicar Trabalho
+              </ButtonKnewave>
+            </Link>
           </S.MenuItem>
           {getLoginOrLogout}
 

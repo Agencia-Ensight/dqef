@@ -51,16 +51,16 @@ export default function signinredatorstep2() {
       <S.ContainerImage>
         <S.Image src="/images/signinredator.png" />
       </S.ContainerImage>
-      <MultiStepForm
-        stateName="signupData"
-        onSubmit={(_) => {
-          Router.push("/signinredatorstep4");
-        }}
-        onFail={() => {
-          Router.push("/signinredatorstep1");
-        }}
-      >
-        <S.ContainerInformation>
+      <S.ContainerInformation>
+        <MultiStepForm
+          stateName="signupData"
+          onSubmit={(_) => {
+            Router.push("/signinredatorstep4");
+          }}
+          onFail={() => {
+            Router.push("/signinredatorstep1");
+          }}
+        >
           <a onClick={() => router.back()}>Voltar</a>
           <h1>Informações Extras</h1>
           <p>Insira alguns dados para completar o seu cadastro.</p>
@@ -114,8 +114,8 @@ export default function signinredatorstep2() {
           <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
             Confirmar e-mail
           </ButtonKnewave>
-        </S.ContainerInformation>
-      </MultiStepForm>
+        </MultiStepForm>
+      </S.ContainerInformation>
     </S.Wrapper>
   );
 }

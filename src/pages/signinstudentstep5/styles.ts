@@ -1,8 +1,20 @@
 import styled from "styled-components";
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+`;
 export const Wrapper = styled.div`
   display: flex;
+  width: 1500px;
+  max-width: 100%;
+  position: relative;
+  margin: 0 auto;
+  justify-content: center;
+  overflow: hidden;
+  align-items: center;
+
+  height: 90vh;
   @media (max-width: 600px) {
     display: block;
   }
@@ -14,6 +26,9 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
+  width: 40%;
+  height: 100%;
+
   @media (max-width: 600px) {
     display: none;
   }
@@ -62,3 +77,5 @@ export const ContainerInformation = styled.div`
     padding: 5% 10%;
   }
 `;
+
+export const CongratulationImage = styled.img``;

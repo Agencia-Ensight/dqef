@@ -1,8 +1,19 @@
 import styled from "styled-components";
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+`;
 export const Wrapper = styled.div`
+  width: 1500px;
   display: flex;
+  max-width: 100%;
+  position: relative;
+  margin: 0 auto;
+  justify-content: center;
+  overflow: hidden;
+
+  height: 90vh;
 
   span {
     color: #4e4e4e;
@@ -11,14 +22,20 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
+  width: auto;
+  height: 100%;
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const ContainerInformation = styled.div`
+  width: 40%;
+  height: 100%;
+
   a {
     text-decoration: none;
     color: var(--blue);
+    cursor: pointer;
   }
   h1 {
     margin-top: 10px;
@@ -39,7 +56,7 @@ export const ContainerInformation = styled.div`
     margin-top: 30px;
   }
 
-  padding: 47px 120px 26px 69px;
+  padding: 5% 5%;
 
   @media (max-width: 600px) {
     padding: 10% 5%;

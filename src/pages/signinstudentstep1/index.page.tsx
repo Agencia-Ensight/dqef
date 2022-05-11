@@ -4,9 +4,11 @@ import { Input } from "../../components/Input";
 import InputMask from "react-input-mask";
 
 import { MultiStepForm } from "../../components/MultiStepForm";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 
 export default function signinstudentstep1() {
+  const router = useRouter();
+
   return (
     <S.Wrapper>
       <S.ContainerImage>
@@ -14,7 +16,7 @@ export default function signinstudentstep1() {
       </S.ContainerImage>
 
       <S.ContainerInformation>
-        <a href="#">Voltar</a>
+        <a onClick={() => router.back()}>Voltar</a>
         <h1>Preencha os Campos</h1>
         <p>
           Vamos enviar um e-mail para você, para confirmar a sua identidade.
