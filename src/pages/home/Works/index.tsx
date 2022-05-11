@@ -1,5 +1,5 @@
 import { ButtonKnewave } from "../../../components/ButtonKnewave";
-import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
+import { AllJobs } from "../../components/jobs/AllJobs";
 
 import * as S from "./styles";
 
@@ -15,17 +15,7 @@ export function Works() {
         </S.Description>
       </S.HeaderContainer>
       <S.MainContainer>
-        <UrgentWorkCard
-          course="ECONOMIA"
-          date="23/04 às 17h"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={false}
-          status="EMPLOYEE-SEE"
-        />
+        <AllJobs />
       </S.MainContainer>
       <S.ButtonContainer>
         <ButtonKnewave size="lg" variant="PRIMARY">

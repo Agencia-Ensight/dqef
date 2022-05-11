@@ -20,6 +20,7 @@ import { ModalCalmaLa } from "../../pages/components/modal/ModalCalmaLa";
 import { ModalPayment } from "../../pages/components/modal/ModalPayment";
 
 export function UrgentWorkCard({
+  jobId,
   course,
   title,
   discipline,
@@ -108,7 +109,7 @@ export function UrgentWorkCard({
             headerText="Deseja enviar o trabalho?"
             modalContent={<ModalInsertWork />}
           />
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <a target="_blank" href="https://wa.me/5541999959588">
@@ -127,7 +128,7 @@ export function UrgentWorkCard({
             headerText="Deseja enviar o trabalho?"
             modalContent={<ModalInsertWork />}
           />{" "}
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle} variant="tertiary">
@@ -152,7 +153,7 @@ export function UrgentWorkCard({
             headerText="Deseja enviar o trabalho?"
             modalContent={<ModalInsertWork />}
           />
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle} variant="quinternary">
@@ -184,7 +185,7 @@ export function UrgentWorkCard({
       )}
       {status === "EMPLOYEE-SEE" && (
         <S.FooterContainer>
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
         </S.FooterContainer>
@@ -233,7 +234,7 @@ export function UrgentWorkCard({
             headerText="Olá, Enrico."
             modalContent={<ModalOpenWorkStep2 />}
           />
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle2} variant="tertiary">
@@ -258,7 +259,7 @@ export function UrgentWorkCard({
             headerText="Olá, Enrico."
             modalContent={<ModalOpenWork />}
           />
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle2} variant="quaternary">
@@ -275,7 +276,7 @@ export function UrgentWorkCard({
       {status === "STUDENT" && ""}
       {status === "STUDENT-EDIT" && (
         <S.FooterContainer>
-          <a href="/editpage">
+          <a href={`/proposalstudentedit/${jobId}`}>
             <Button variant="primary">Editar Trabalho</Button>
           </a>
         </S.FooterContainer>

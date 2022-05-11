@@ -4,15 +4,15 @@ import * as S from "./styles";
 
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Input } from "../../components/Input";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { signIn } from "../../services/auth";
 import Router from "next/router";
-import { useAuth } from "../../hooks/useAuth";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setToken } = useAuth();
+  const { setToken, setHasuraToken } = useContext(AuthContext)!;
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -21,8 +21,9 @@ export default function login() {
 
     signIn(email, password)
       .then((response) => {
-        setToken(response.data.toke.token);
-        Router.push("/");
+        setToken(response.data.hasura);
+        setHasuraToken(response.data.token.token);
+        window.location.href = '/';
       })
       .catch(() => {
         alert("Erro ao logar");
