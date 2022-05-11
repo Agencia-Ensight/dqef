@@ -19,7 +19,7 @@ export default function studentviewproposals() {
               img="/images/fotobraba.png"
               price={150}
               course="Direito"
-              profileName="Bruno Vencato"
+              profileName="Bruno..."
               jobs={25}
               studying="Cursando Oitavo Período"
             />
@@ -29,7 +29,7 @@ export default function studentviewproposals() {
               img="/images/fotobraba.png"
               price={150}
               course="Direito"
-              profileName="Bruno Vencato"
+              profileName="Bruno..."
               jobs={25}
               studying="Cursando Oitavo Período"
             />
@@ -39,7 +39,7 @@ export default function studentviewproposals() {
               img="/images/fotobraba.png"
               price={150}
               course="Direito"
-              profileName="Bruno Vencato"
+              profileName="Bruno..."
               jobs={25}
               studying="Cursando Oitavo Período"
             />

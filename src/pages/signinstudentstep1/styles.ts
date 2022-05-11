@@ -35,6 +35,25 @@ export const ContainerInformation = styled.div`
   @media (max-width: 600px) {
     width: 100%;
   }
+
+  h3 {
+    color: #53647e;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    border: 2px solid #42a4ef;
+    border-radius: 99px;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    padding: 10px 29px;
+
+    &::placeholder {
+      color: #848484;
+    }
+  }
   a {
     text-decoration: none;
     color: var(--blue);
@@ -54,6 +73,10 @@ export const ContainerInformation = styled.div`
   }
 
   padding: 47px 120px 26px 69px;
+
+  @media (max-width: 600px) {
+    padding: 10% 5%;
+  }
 `;
 
 export const InputContainer = styled.div`

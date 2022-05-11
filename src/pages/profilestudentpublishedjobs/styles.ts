@@ -4,8 +4,10 @@ export const Image = styled.img``;
 export const Wrapper = styled.div`
   display: flex;
   gap: 51px;
-  margin: 0;
+
   margin-top: 58px;
+  margin-left: 5%;
+  margin-right: 2%;
 
   @media (max-width: 600px) {
     flex-direction: column;

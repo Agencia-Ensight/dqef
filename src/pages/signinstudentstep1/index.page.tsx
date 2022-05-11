@@ -1,6 +1,7 @@
 import { ButtonKnewave } from "../../components/ButtonKnewave";
 import * as S from "./styles";
 import { Input } from "../../components/Input";
+import InputMask from "react-input-mask";
 
 import { MultiStepForm } from "../../components/MultiStepForm";
 import Router from "next/router";
@@ -34,27 +35,34 @@ export default function signinstudentstep1() {
               name="name"
               placeholder="Insira o seu nome"
               type="text"
-
               required
             />
-            <Input label="Email" name="email" placeholder="teste@gmail.com" required />
+            <Input
+              label="Email"
+              name="email"
+              placeholder="teste@gmail.com"
+              required
+            />
             <Input
               label="Crie sua senha"
               name="password"
               placeholder="Insira sua senha "
               required
+              type="password"
             />
             <Input
               label="Confirme sua senha "
               name="password"
               placeholder="Repita ela"
               required
+              type="password"
             />
-            <Input
-              label="Telefone para contato"
+
+            <h3>Telefone para contato</h3>
+            <InputMask
               name="phone"
-              placeholder="41 99555-6667"
-              type="number"
+              mask="99 99999-9999"
+              placeholder="99 99999-9999"
               required
             />
           </S.InputContainer>

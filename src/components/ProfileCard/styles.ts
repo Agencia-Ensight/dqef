@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const MainWrapper = styled.div`
+  @media (max-width: 600px) {
+    overflow-x: hidden;
+  }
+`;
+
 export const Wrapper = styled.div`
   width: 388px;
   min-width: 388px;
@@ -11,6 +17,8 @@ export const Wrapper = styled.div`
   @media (max-width: 600px) {
     width: 330px;
     min-width: 330px;
+
+    padding-bottom: 20px;
   }
 `;
 
@@ -43,6 +51,12 @@ export const RatingContainer = styled.div`
   margin-top: 0.6rem;
 `;
 
+export const MainInfo = styled.div`
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+
 export const InfoContainer = styled.div`
   display: flex;
   align-items: center;
@@ -55,9 +69,33 @@ export const InfoTitle = styled.h3`
   font-size: 1.2rem;
   color: #4e4e4e;
   margin-left: 0.5rem;
+  cursor: pointer;
+
+  @media (max-width: 600px) {
+    white-space: nowrap;
+  }
+
+  &.selected {
+    color: #42a4ef;
+  }
 `;
 
 export const Line = styled.hr`
   width: 100%;
   border: 1px solid #42a4ef;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+
+export const MobileContainer = styled.div`
+  display: none;
+
+  @media (max-width: 600px) {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 30px;
+    overflow-y: scroll;
+  }
 `;

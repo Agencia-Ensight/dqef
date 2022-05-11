@@ -3,9 +3,14 @@ import styled from "styled-components";
 export const Image = styled.img`
   display: block;
   margin: 0 auto;
+  width: 50%;
+  height: 50%;
 `;
 export const Wrapper = styled.div`
   padding-bottom: 30px;
+
+  height: 70vh;
+
   @media (max-width: 600px) {
     padding: 10% 5%;
   }

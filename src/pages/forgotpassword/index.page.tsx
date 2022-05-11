@@ -12,11 +12,13 @@ import { MultiStepForm } from "../../components/MultiStepForm";
 export default function forgotpassword() {
   const handleSubmit = (data: any) => {
     const { email } = data;
-    forgotPassword(email).then(() => {
-      Router.push("/insertcode");
-    }).catch(() => {
-      alert("Erro ao enviar o código de recuperação");
-    });
+    forgotPassword(email)
+      .then(() => {
+        Router.push("/insertcode");
+      })
+      .catch(() => {
+        alert("Erro ao enviar o código de recuperação");
+      });
   };
   return (
     <S.Wrapper>
@@ -37,7 +39,8 @@ export default function forgotpassword() {
           </a>
           <h1>Insira o seu e-mail</h1>
           <p>
-            Vamos enviar um e-mail para você, para confirmar a sua identidade.
+            Vamos enviar um código por e-mail para você confirmar a sua
+            identidade.
           </p>
           <Input
             placeholder="teste@gmail.com"

@@ -5,7 +5,7 @@ import * as S from "./styles";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Input } from "../../components/Input";
 import { MultiStepForm } from "../../components/MultiStepForm";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { forgotPasswordCode } from "../../services/auth";
 
 export default function changepassword() {
@@ -21,6 +21,8 @@ export default function changepassword() {
       });
   };
 
+  const router = useRouter();
+
   return (
     <S.Wrapper>
       <S.ContainerImage>
@@ -34,16 +36,22 @@ export default function changepassword() {
         }}
       >
         <S.ContainerInformation>
-          <a href="#">
+          <a onClick={() => router.back()}>
             <span>Voltar</span>
           </a>
-          <h1>Alterar Senha.</h1>
+          <h1>Alterar Senha</h1>
           <p>Insira a nova senha</p>
-          <Input label="Nova Senha" placeholder="Insira ela" required />
+          <Input
+            label="Nova Senha"
+            placeholder="Insira ela"
+            required
+            type="password"
+          />
           <Input
             label="Confirme a nova senha"
             name="password"
             placeholder="Insira ela"
+            type="password"
             required
           />
           <ButtonKnewave variant="PRIMARY" size="sm" type="submit">

@@ -7,6 +7,9 @@ export const Wrapper = styled.div`
   max-width: 100%;
   position: relative;
   margin: 0 auto;
+  align-items: center;
+  height: 80vh;
+  gap: 69px;
 
   @media (max-width: 1300px) {
     margin: auto 0px;
@@ -71,7 +74,7 @@ export const ContainerInformation = styled.div`
     height: 0.5px;
   }
 
-  padding: 204px 120px 195px 69px;
+  /* padding: 204px 120px 195px 69px; */
 
   @media (max-width: 600px) {
     padding: 5% 10%;

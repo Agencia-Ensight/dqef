@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  height: 100%;
+`;
 export const Wrapper = styled.div`
   display: flex;
   width: 1500px;
   max-width: 100%;
   position: relative;
   margin: 0 auto;
-
+  height: 100vh;
   @media (max-width: 1300px) {
     margin: auto 0px;
   }
@@ -15,8 +17,10 @@ export const Wrapper = styled.div`
 
 export const Line = styled.div``;
 export const ContainerImage = styled.div`
+  height: 90vh;
   @media (max-width: 600px) {
     display: none;
+    height: 50vh;
   }
 `;
 export const ContainerInformation = styled.div`
@@ -56,12 +60,18 @@ export const ContainerInformation = styled.div`
     background-color: #d1d1d1;
     margin-top: 50px;
     height: 0.5px;
+
+    @media (max-width: 600px) {
+      margin-top: 10px;
+    }
   }
 
-  padding: 139px 120px 131px 69px;
+  /* padding: 139px 120px 131px 69px; */
+  /* padding: 10% 5%; */
+  padding: 1% 5% 0 5%;
 
   @media (max-width: 600px) {
-    padding: 10% 5%;
+    padding: 0 5%;
   }
 `;
 
