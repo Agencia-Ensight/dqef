@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 69px;
 
-  height: 70vh;
+  height: 78vh;
 
   @media (max-width: 1300px) {
     margin: auto 0px;
@@ -19,11 +19,14 @@ export const Wrapper = styled.div`
 
 export const Line = styled.div``;
 export const ContainerImage = styled.div`
+    width: 70%;
+    height: 93vh;
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const ContainerInformation = styled.div`
+
   a {
     text-decoration: none;
   }
@@ -66,9 +69,9 @@ export const ContainerInformation = styled.div`
     height: 0.5px;
   }
 
-  /* padding: 241px 120px 236px 69px; */
+  padding: 10% 10%;
 
   @media (max-width: 600px) {
-    padding: 10% 5%;
+    padding: 10% 10%;
   }
 `;

@@ -32,7 +32,7 @@ export default function login() {
   return (
     <S.Wrapper>
       <S.ContainerImage>
-        <S.Image src="/images/login.png" />
+        <S.Image src="/images/loginfixed.png" />
       </S.ContainerImage>
 
       <S.ContainerInformation>

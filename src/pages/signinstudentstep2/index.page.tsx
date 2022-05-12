@@ -42,13 +42,16 @@ export default function signinstudentstep2() {
         >
           <S.InputContainer>
             <label>Curso</label>
-            <Select name="course" placeholder="Select option">
+
+
+            <Select className="testesolidopadrao" name="course" placeholder="Selecione o curso">
               {courses.map((course: ICourse) => (
                 <option key={course.id} value={course.id}>
                   {course.name}
                 </option>
               ))}
             </Select>
+
             <Input name="college" label="Faculdade" placeholder="Insira aqui" />
           </S.InputContainer>
           <div>

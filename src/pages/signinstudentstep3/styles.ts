@@ -4,6 +4,7 @@ export const Image = styled.img``;
 export const Wrapper = styled.div`
   display: flex;
 
+
   span {
     color: #4e4e4e;
     font-weight: 400;
@@ -11,6 +12,8 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
+width: 70%;
+    height: 93vh;
   @media (max-width: 600px) {
     display: none;
   }

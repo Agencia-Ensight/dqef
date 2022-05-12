@@ -19,7 +19,9 @@ export const Wrapper = styled.div`
 
 export const Line = styled.div``;
 export const ContainerImage = styled.div`
-  height: 90vh;
+  width: 70%;
+    height: 93vh;
+
 
   @media (max-width: 600px) {
     display: none;
@@ -27,6 +29,9 @@ export const ContainerImage = styled.div`
   }
 `;
 export const ContainerInformation = styled.div`
+width: 60%;
+
+
   a {
     text-decoration: none;
     margin-left: 5px;
@@ -74,6 +79,7 @@ export const ContainerInformation = styled.div`
   padding: 1% 5% 0 5%;
 
   @media (max-width: 600px) {
+    width: 100%;
     padding: 0 5%;
   }
 `;

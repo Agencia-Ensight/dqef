@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   overflow: hidden;
 
-  height: 90vh;
+  height: 100vh;
 
   span {
     color: #4e4e4e;
@@ -26,8 +26,8 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
-  width: auto;
-  height: 100%;
+  width: 60%;
+    height: 93vh;
   @media (max-width: 600px) {
     display: none;
   }
@@ -67,9 +67,27 @@ export const ContainerInformation = styled.div`
   }
 `;
 
+
+
 export const InputContainer = styled.div`
   margin-top: 3rem;
   margin-bottom: 2rem;
+
+
+  .testesolidopadrao{ 
+    border: 2px solid #42a4ef;
+    border-radius: 99px;
+    width: 100%;
+    height: 51px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+
+    
+
+
+  }
+  
 
   div {
     margin-bottom: 1rem;
@@ -81,11 +99,17 @@ export const InputContainer = styled.div`
     margin-bottom: 10px;
   }
 
+  
+
   select {
     border: 2px solid #42a4ef;
     border-radius: 99px;
     width: 100%;
     font-size: 18px;
+
+    
+
+
 
     &::placeholder {
       color: #848484;

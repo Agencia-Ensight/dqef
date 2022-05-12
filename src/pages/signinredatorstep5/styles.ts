@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   overflow: hidden;
 
-  height: 90vh;
+  height: 100vh;
 
   span {
     color: #4e4e4e;
@@ -22,13 +22,15 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
-  width: auto;
-  height: 100%;
+   width: 70%;
+    height: 93vh;
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const ContainerInformation = styled.div`
+  width: 60%;
+
   a {
     text-decoration: none;
     color: var(--blue);
