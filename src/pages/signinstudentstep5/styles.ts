@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   overflow: hidden;
   align-items: center;
 
-  height: 90vh;
+  height: 100vh;
   @media (max-width: 600px) {
     display: block;
   }
@@ -26,14 +26,16 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
-  width: 40%;
-  height: 100%;
-
+    width: 60%;
+    height: 93vh;
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const ContainerInformation = styled.div`
+height: 100%;
+width: 40%;
+
   a {
     text-decoration: none;
     color: var(--blue);
@@ -65,13 +67,13 @@ export const ContainerInformation = styled.div`
     color: #4e4e4e;
   }
   button {
-    margin-right: 25px;
+    margin-left: 25px;
     @media (max-width: 600px) {
       margin-top: 30px;
     }
   }
 
-  padding: 202px 160px 202.7px 69px;
+  padding: 202px 100px 202.7px 69px;
 
   @media (max-width: 600px) {
     padding: 5% 10%;

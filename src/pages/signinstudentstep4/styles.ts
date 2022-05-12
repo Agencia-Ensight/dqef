@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
   overflow: hidden;
   align-items: center;
 
-  height: 90vh;
+  height: 100vh;
 
   span {
     color: #4e4e4e;
@@ -33,13 +33,16 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
-  width: auto;
-  height: 100%;
+  width: 60%;
+    height: 93vh;
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const ContainerInformation = styled.div`
+
+  height: 100%;
+  overflow-y: scroll;
   a {
     text-decoration: none;
     color: var(--blue);
@@ -67,6 +70,7 @@ export const ContainerInformation = styled.div`
     font-size: 16px;
     font-weight: 400;
     color: #4e4e4e;
+    margin-left: 8px;
   }
 
   /* padding: 5% 5%; */
