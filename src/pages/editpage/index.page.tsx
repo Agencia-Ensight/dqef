@@ -104,6 +104,8 @@ export default function editpage() {
           />
         </S.ContainerLine>
 
+        <h1>Preencha os Campos</h1>
+        <p>Edite o os campos desejados e salve no final da página</p>
         <ButtonKnewave variant="PRIMARY" size="sm">
           Próximo
         </ButtonKnewave>

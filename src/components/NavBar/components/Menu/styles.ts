@@ -1,14 +1,12 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 type Props = {
-    visible: boolean;
-  };
+  visible: boolean;
+};
 
 export const Wrapper = styled.div<Props>`
-position: relative;
-    display: none;
-
-    
+  position: relative;
+  display: none;
 
   a {
     z-index: 2;
@@ -21,17 +19,18 @@ position: relative;
     align-items: center;
     width: 100%;
     padding: 0 2%;
+    border-bottom: 1px solid #d1d1d1;
   }
-`
+`;
 
 export const Container = styled.div<Props>`
-    display: block;
+  display: block;
   z-index: 3;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  background: #FFFFFF;
+  background: #ffffff;
   width: 250px;
   transform: translateX(-110%);
   transition: 0.6s;
@@ -45,22 +44,21 @@ export const Container = styled.div<Props>`
       transform: translateX(0);
     `}
 
-  button{
+  button {
     margin-top: 20px;
   }
-`
+`;
 
 export const Title = styled.h1`
   font-size: 28px;
-  font-family: 'Knewave', sans-serif;
-  color: #42A4EF;
+  font-family: "Knewave", sans-serif;
+  color: #42a4ef;
   margin-top: 30px;
-`
+`;
 
 export const SubTitle = styled.h3`
   color: black;
   font-size: 18px;
   margin-top: 20px;
   font-weight: 500;
-
-`
+`;

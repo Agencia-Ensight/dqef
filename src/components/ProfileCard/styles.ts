@@ -15,8 +15,7 @@ export const Wrapper = styled.div`
   padding: 50px 40px 10px 40px;
 
   @media (max-width: 600px) {
-    width: 330px;
-    min-width: 330px;
+    width: 100%;
 
     padding-bottom: 20px;
   }
@@ -49,6 +48,14 @@ export const RatingContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 0.6rem;
+  align-items: center;
+`;
+
+export const RatingNumber = styled.h2`
+  color: var(--text-body);
+  font-weight: 600;
+  font-size: 18px;
+  margin-left: 8px;
 `;
 
 export const MainInfo = styled.div`

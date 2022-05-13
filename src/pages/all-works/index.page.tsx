@@ -1,4 +1,3 @@
-import { UrgentWorkCard } from "../../components/UrgentWorkCard";
 import { AllJobs } from "../components/jobs/AllJobs";
 import * as S from "./styles";
 

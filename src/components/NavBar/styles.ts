@@ -9,6 +9,17 @@ export const MainWrapper = styled.div`
   background: white;
 `;
 
+export const ButtonLogin = styled.button`
+  border: 3px solid #42a4ef;
+  background: transparent;
+  padding: 4px 20px;
+  font-size: 16px;
+  color: var(--text-title);
+  font-weight: 700;
+
+  border-radius: 99px;
+`;
+
 export const Container = styled.div`
   display: flex;
   align-items: center;

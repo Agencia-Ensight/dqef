@@ -16,6 +16,7 @@ export default function profilestudentfinishedjobs() {
           img="/images/profilepicture.png"
           profileName="Enrico Silvestri"
           course="Direito"
+          variant="STUDENT"
         />
       </S.ContainerProfileCard>
 

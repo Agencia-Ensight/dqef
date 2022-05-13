@@ -16,6 +16,7 @@ export default function profileredatorsentproposal() {
           img="/images/redatorpicture.png"
           profileName="Murilo Ricioli"
           course="Medicina"
+          variant="EMPLOYEE"
         />
       </S.ContainerProfileCard>
 
