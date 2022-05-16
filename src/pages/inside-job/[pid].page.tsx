@@ -49,7 +49,7 @@ function insideJob() {
         <InfoCard
           title={job!.title}
           pages={job!.pages}
-          plagiarism={job!.plagiarism}
+          plagiarism={job!.maximum_plagiarism}
           format={job!.job_format.name}
           description={job!.instructions}
           observations={job!.obs}
