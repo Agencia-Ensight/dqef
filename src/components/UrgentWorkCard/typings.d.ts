@@ -25,7 +25,7 @@ export type IStatus =
 | 'STUDENT-EDIT';
 
 export type Props = CardProps & CourseContainerProps & {
-    jobId: string;
+    jobId?: string;
     title: string;
     discipline: string;
     theme: string;
