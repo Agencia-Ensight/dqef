@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import pt from "date-fns/locale/pt";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { Job } from "../../queries/jobs";
 
 export default function editpage({ job }: { job?: Job }) {
   const [startDate, setStartDate] = useState(
