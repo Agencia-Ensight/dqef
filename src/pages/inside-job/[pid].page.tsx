@@ -52,7 +52,7 @@ function insideJob() {
           plagiarism={job!.plagiarism}
           format={job!.job_format.name}
           description={job!.instructions}
-          observations="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates quam, quo culpa officia commodi, placeat eos voluptatem itaque fugit iste illo blanditiis numquam aperiam illum at sequi, cum distinctio odio!"
+          observations={job!.obs}
         />
         <ScrollContainer
           horizontal={true}
