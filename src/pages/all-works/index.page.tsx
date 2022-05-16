@@ -1,10 +1,13 @@
 import { AllJobs } from "../components/jobs/AllJobs";
 import * as S from "./styles";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 function allWorks() {
+  const router = useRouter();
   return (
     <S.Wrapper>
-      <S.SubTitle>PADRÃO</S.SubTitle>
+      <S.SubTitle onClick={() => router.back()}>Voltar</S.SubTitle>
       <S.Title>Lista de Trabalhos</S.Title>
       <S.HeaderContainer>
         <S.Description>

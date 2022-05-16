@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   width: 1500px;
   max-width: 100%;
   position: relative;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   justify-content: center;
   overflow: hidden;
   align-items: center;
@@ -26,15 +26,15 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
-    width: 60%;
-    height: 93vh;
+  width: 60%;
+  height: 93vh;
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const ContainerInformation = styled.div`
-height: 100%;
-width: 40%;
+  height: 100%;
+  width: 40%;
 
   a {
     text-decoration: none;

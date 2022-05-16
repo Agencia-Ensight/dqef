@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   margin: 50px 90px 72px 120px;
 
   @media (max-width: 600px) {
-    margin: 5% 10%;
+    margin: 5% 5%;
   }
 
   h4 {
@@ -35,6 +35,10 @@ export const Wrapper = styled.div`
     font-size: 36px;
     font-weight: 500;
     color: #000000;
+
+    @media (max-width: 600px) {
+      font-size: 26px;
+    }
   }
 `;
 
@@ -46,4 +50,8 @@ export const ContainerJobCard = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 38px;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 `;

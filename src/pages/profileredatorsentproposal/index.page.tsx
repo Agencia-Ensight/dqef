@@ -33,7 +33,7 @@ export default function profileredatorsentproposal() {
             typeOfWork="Lista de Exercício"
             price={500}
             date="10/04/2022"
-            status="EMPLOYEE-SEE"
+            status="EMPLOYEE-PAID"
           />
           <UrgentWorkCard
             jobId="1"
@@ -55,7 +55,7 @@ export default function profileredatorsentproposal() {
             typeOfWork="Lista de Exercício"
             price={500}
             date="10/04/2022"
-            status="EMPLOYEE-SEE"
+            status="EMPLOYEE-SEND"
           />
           <UrgentWorkCard
             jobId="1"

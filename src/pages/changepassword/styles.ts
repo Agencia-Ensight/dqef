@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+`;
 export const Wrapper = styled.div`
   display: flex;
   width: 1500px;
   max-width: 100%;
   position: relative;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   align-items: center;
-  height: 80vh;
+  height: 91vh;
   gap: 69px;
 
   @media (max-width: 1300px) {
@@ -28,6 +31,8 @@ export const Wrapper = styled.div`
 
 export const Line = styled.div``;
 export const ContainerImage = styled.div`
+  width: 60%;
+  height: 100%;
   @media (max-width: 600px) {
     display: none;
   }

@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { signIn } from "../../services/auth";
 import Router from "next/router";
 import { AuthContext } from "../../contexts/AuthContext";
+import { Checkbox } from "@chakra-ui/react";
 
 export default function login() {
   const [email, setEmail] = useState("");
@@ -23,7 +24,7 @@ export default function login() {
       .then((response) => {
         setToken(response.data.hasura);
         setHasuraToken(response.data.token.token);
-        window.location.href = '/';
+        window.location.href = "/";
       })
       .catch(() => {
         alert("Erro ao logar");
@@ -58,6 +59,10 @@ export default function login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </S.InputContainer>
+          <Checkbox>
+            <h5>Manter-me conectado</h5>
+          </Checkbox>
+
           <S.IconContainer>
             <RiLockPasswordFill size={20} color="var(--blue)" />
             <a href="/forgotpassword">

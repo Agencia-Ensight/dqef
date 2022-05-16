@@ -1,16 +1,27 @@
 import styled from "styled-components";
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+
+  @media (max-width: 1300px) {
+    width: 70%;
+  }
+
+  @media (max-width: 1100px) {
+    width: 60%;
+  }
+`;
 export const Wrapper = styled.div`
-  display: flex;
   width: 1500px;
+  display: flex;
   max-width: 100%;
   position: relative;
-  margin: 0 auto;
-  align-items: center;
-  gap: 69px;
+  /* margin: 0 auto; */
+  justify-content: center;
+  overflow: hidden;
 
-  height: 78vh;
+  height: 100vh;
 
   @media (max-width: 1300px) {
     margin: auto 0px;
@@ -19,14 +30,15 @@ export const Wrapper = styled.div`
 
 export const Line = styled.div``;
 export const ContainerImage = styled.div`
-    width: 70%;
-    height: 93vh;
+  width: 70%;
+  height: 100%;
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const ContainerInformation = styled.div`
-
+  width: 60%;
+  height: 100%;
   a {
     text-decoration: none;
   }
@@ -73,5 +85,6 @@ export const ContainerInformation = styled.div`
 
   @media (max-width: 600px) {
     padding: 10% 10%;
+    width: 100%;
   }
 `;

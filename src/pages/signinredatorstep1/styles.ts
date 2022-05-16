@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   display: flex;
   max-width: 100%;
   position: relative;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   justify-content: center;
   overflow: hidden;
 
@@ -35,7 +35,7 @@ export const Wrapper = styled.div`
 `;
 export const ContainerImage = styled.div`
   width: 70%;
-    height: 93vh;
+  height: 93vh;
 
   @media (max-width: 600px) {
     display: none;

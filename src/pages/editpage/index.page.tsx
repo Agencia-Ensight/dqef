@@ -3,7 +3,16 @@ import * as S from "./styles";
 import { Checkbox, CheckboxGroup, Select } from "@chakra-ui/react";
 import { Input } from "../../components/Input";
 
-export default function editpage() {
+import DatePicker from "react-datepicker";
+import pt from "date-fns/locale/pt";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
+
+export default function editpage({ job }: { job?: Job }) {
+  const [startDate, setStartDate] = useState(
+    job?.date_limit ? new Date(job.date_limit) : new Date()
+  );
+
   return (
     <S.Wrapper>
       <S.ContainerImage>
@@ -106,6 +115,37 @@ export default function editpage() {
 
         <h1>Preencha os Campos</h1>
         <p>Edite o os campos desejados e salve no final da página</p>
+        <S.InputsContainer>
+          <div>
+            <label>
+              Data de entrega solicitada pelo professor<span>*</span>
+            </label>
+            <DatePicker
+              name="date_limit"
+              selected={startDate}
+              onChange={(date: Date) => setStartDate(date)}
+              locale={pt}
+              placeholderText="Selecione a Data"
+              minDate={new Date()}
+              showTimeSelect
+              // showTimeInput
+              // timeFormat="90"
+              // timeCaption="32"
+              // showTimeSelectOnly
+            />
+          </div>
+          <div>
+            <label>Nossa previsão de entrega</label>
+            <DatePicker
+              selected={startDate}
+              onChange={(date: Date) => setStartDate(date)}
+              locale={pt}
+              placeholderText="Selecione a Data"
+              minDate={new Date()}
+              disabled
+            />
+          </div>
+        </S.InputsContainer>
         <ButtonKnewave variant="PRIMARY" size="sm">
           Próximo
         </ButtonKnewave>

@@ -21,6 +21,7 @@ export const Wrapper = styled.div`
 
     @media (max-width: 600px) {
       text-align: center;
+      font-size: 30px;
     }
   }
 `;

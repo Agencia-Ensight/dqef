@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   width: 1500px;
   max-width: 100%;
   position: relative;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   justify-content: center;
   overflow: hidden;
 
@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
 `;
 export const ContainerImage = styled.div`
   width: 60%;
-    height: 93vh;
+  height: 93vh;
   @media (max-width: 600px) {
     display: none;
   }
@@ -67,14 +67,11 @@ export const ContainerInformation = styled.div`
   }
 `;
 
-
-
 export const InputContainer = styled.div`
   margin-top: 3rem;
   margin-bottom: 2rem;
 
-
-  .testesolidopadrao{ 
+  .testesolidopadrao {
     border: 2px solid #42a4ef;
     border-radius: 99px;
     width: 100%;
@@ -82,12 +79,7 @@ export const InputContainer = styled.div`
     margin-top: 10px;
     display: flex;
     align-items: center;
-
-    
-
-
   }
-  
 
   div {
     margin-bottom: 1rem;
@@ -99,17 +91,11 @@ export const InputContainer = styled.div`
     margin-bottom: 10px;
   }
 
-  
-
   select {
     border: 2px solid #42a4ef;
     border-radius: 99px;
     width: 100%;
     font-size: 18px;
-
-    
-
-
 
     &::placeholder {
       color: #848484;

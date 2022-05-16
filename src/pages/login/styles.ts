@@ -9,8 +9,9 @@ export const Wrapper = styled.div`
   width: 1500px;
   max-width: 100%;
   position: relative;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   justify-content: center;
+  overflow: hidden;
   height: 100vh;
   @media (max-width: 1300px) {
     margin: auto 0px;
@@ -20,8 +21,7 @@ export const Wrapper = styled.div`
 export const Line = styled.div``;
 export const ContainerImage = styled.div`
   width: 70%;
-    height: 93vh;
-
+  height: 93vh;
 
   @media (max-width: 600px) {
     display: none;
@@ -29,8 +29,13 @@ export const ContainerImage = styled.div`
   }
 `;
 export const ContainerInformation = styled.div`
-width: 60%;
+  width: 60%;
 
+  height: 100%;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   a {
     text-decoration: none;
@@ -59,7 +64,12 @@ width: 60%;
   }
 
   h2 {
-    margin-top: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  h5 {
+    color: black;
   }
 
   hr {
@@ -96,5 +106,5 @@ export const InputContainer = styled.div`
 export const IconContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
 `;

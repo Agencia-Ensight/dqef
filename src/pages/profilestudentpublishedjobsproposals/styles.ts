@@ -4,10 +4,11 @@ export const Image = styled.img``;
 export const Wrapper = styled.div`
   display: flex;
   gap: 38px;
-  margin: 50px 90px 72px 120px;
+  /* margin: 50px 90px 72px 120px; */
 
   @media (max-width: 600px) {
     justify-content: center;
+    margin: 10% 5%;
   }
 
   h4 {
@@ -28,6 +29,10 @@ export const Wrapper = styled.div`
     font-size: 36px;
     font-weight: 500;
     color: #000000;
+
+    @media (max-width: 600px) {
+      font-size: 24px;
+    }
   }
 `;
 
@@ -39,4 +44,8 @@ export const ContainerJobCard = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 `;

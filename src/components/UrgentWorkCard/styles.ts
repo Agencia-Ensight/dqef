@@ -7,7 +7,7 @@ export const Wrapper = styled.div``;
 export const Container = styled.div`
   position: relative;
   min-width: 280px;
-
+  width: 280px;
   height: auto;
   background: white;
   border-radius: 15px;
@@ -128,6 +128,7 @@ export const Description = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 100%;
   margin-top: 0.2rem;
   font-weight: bold;
 `;

@@ -75,13 +75,13 @@ export default function signinredatorstep2() {
               ))}
             </SelectReact>
             <h3>Áreas de conhecimento</h3>
-            <SelectReact name="college" placeholder="Selecione da nossa lista">
+            {/* <SelectReact name="college" placeholder="Selecione da nossa lista">
               {knowledges.map((knowledge: IKnowledge) => (
                 <option key={knowledge.id} value={knowledge.id}>
                   {knowledge.name}
                 </option>
               ))}
-            </SelectReact>
+            </SelectReact> */}
             <MultiSelect />
             <h3>Formação</h3>
             <SelectReact name="formation" placeholder="Selecione">

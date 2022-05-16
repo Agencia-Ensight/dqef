@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
     margin-bottom: 41px;
     @media (max-width: 600px) {
       text-align: center;
+      font-size: 30px;
     }
   }
 `;

@@ -14,13 +14,13 @@ export function Banner() {
   return (
     <>
       <S.Banner>
-        {/* <SimpleImageSlider
+        <SimpleImageSlider
           width={100}
           height={280}
           images={images}
           showBullets={true}
           showNavs={true}
-        /> */}
+        />
       </S.Banner>
       <MobileBanner />
     </>

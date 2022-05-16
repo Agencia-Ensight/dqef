@@ -28,7 +28,7 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 30%;
 
   @media (max-width: 600px) {
@@ -115,4 +115,52 @@ export const ContainerInformation = styled.div`
     padding: 10% 5%;
   }
   padding: 47px 120px 26px 69px;
+`;
+
+export const InputsContainer = styled.div`
+  margin-top: 50px;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 50px;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  label{
+    color: #53647E;
+    font-size: 18px;
+
+    span{
+      color: #e62f5b;
+    
+    }
+     }
+
+input{
+border: 2px solid #42A4EF;
+    border-radius: 99px;
+    width: 350px;
+    font-size: 18px;
+   height: 51px;
+   padding: 0 20px;
+   margin-top: 10px;
+
+   @media (max-width: 600px) {
+width: 100%;
+}
+
+
+    &::placeholder {
+        color:#848484;
+
+    }
+
+    :disabled{
+      background: #E0E0E0;
+      cursor: not-allowed;
+
+    }
+}
+}
 `;

@@ -16,6 +16,8 @@ export const SubTitle = styled.h2`
   font-weight: 600;
   font-size: 1.2rem;
   color: var(--blue);
+
+  cursor: pointer;
 `;
 
 export const Description = styled.p`
