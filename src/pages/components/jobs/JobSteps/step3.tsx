@@ -51,7 +51,9 @@ const JobStep3 = forwardRef(({
           mandatory={true}
           required
           type="number"
-          defaultValue={job?.plagiarism}
+          name="maximum_plagiarism"
+          id="maximum_plagiarism"
+          defaultValue={job?.maximum_plagiarism}
         />
         <S.SelectContainer>
           <label>
@@ -92,9 +94,10 @@ const JobStep3 = forwardRef(({
         Observações<span>*</span>
       </label>
       <textarea
-        name=""
-        id=""
+        name="obs"
+        id="obs"
         rows={2}
+        defaultValue={job?.obs}
         placeholder="ex: Espaço para adicionar algum comentário, dica ou pedido ao redator."
       ></textarea>
 

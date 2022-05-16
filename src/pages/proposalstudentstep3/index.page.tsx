@@ -46,6 +46,8 @@ export default function proposalstudentstep3(job?: Job) {
         user_id: userData.id,
         pages: values.pages,
         words: values.words,
+        maximum_plagiarism: values.maximum_plagiarism,
+        obs: values.obs,
       },
     });
     insertJob({
@@ -65,6 +67,8 @@ export default function proposalstudentstep3(job?: Job) {
         user_id: userData.id,
         pages: values.pages,
         words: values.words,
+        maximum_plagiarism: values.maximum_plagiarism,
+        obs: values.obs,
       },
     }).then((response) => {
       const jobId = response.data.insert_jobs_one.id;

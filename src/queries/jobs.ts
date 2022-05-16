@@ -21,7 +21,8 @@ export type Job = {
   delivery: string,
   pages: number,
   words: number,
-  plagiarism: number,
+  obs: string,
+  maximum_plagiarism: string,
   instructions: string,
   job_format: {
     id: number
@@ -57,6 +58,8 @@ export const JOBS_FRAGMENT = gql`
     pages
     words
     instructions
+    obs
+    maximum_plagiarism
     job_format {
       id
       name
@@ -179,15 +182,17 @@ export const JOB_FORMATS = gql`
 `;
 
 export const INSERT_JOB = gql`
-  mutation InsertJob($higher_course_id: Int!, $job_status_id: Int!, $job_type_id: Int!, $title: String!, $value: Float!, $value_pay: Float!, $date_limit: date!, $delivery: date!, $theme: String!, $knowledge_id: Int!, $user_id: uuid!, $pages: Int!, $words: Int!, $instructions: String!, $job_format_id: Int!) {
+  mutation InsertJob($higher_course_id: Int!, $job_status_id: Int!, $job_type_id: Int!, $title: String!, $value: Float!, $value_pay: Float!, $date_limit: date!, $delivery: date!, $theme: String!, $knowledge_id: Int!, $user_id: uuid!, $pages: Int!, $words: Int!, $instructions: String!, $job_format_id: Int!, $obs: String!, $maximum_plagiarism: String!) {
   insert_jobs_one(object: {
     higher_course_id: $higher_course_id,
     job_type_id: $job_type_id,
     words: $words,
-    pages: $pages,,
+    pages: $pages,
     user_id: $user_id,
     theme: $theme,
-    title: $title,,
+    title: $title,
+    obs: $obs,
+    maximum_plagiarism: $maximum_plagiarism
     job_has_knowledges: {
       data: {
         knowledge_id: $knowledge_id
