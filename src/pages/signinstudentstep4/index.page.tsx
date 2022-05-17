@@ -39,7 +39,7 @@ export default function signinstudentstep4() {
             <AiOutlineReload color="var(--blue)" />
             <h2>Enviar Código Novamente</h2>
           </div>
-          <ButtonKnewave variant="PRIMARY" size="sm">
+          <ButtonKnewave variant="PRIMARY" type="submit" size="sm">
             Criar Conta
           </ButtonKnewave>
         </S.ContainerInformation>
