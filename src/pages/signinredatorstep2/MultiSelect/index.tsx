@@ -1,21 +1,35 @@
-import Select from "react-select";
+import Select, { createFilter } from "react-select";
 import * as S from "./styles";
+import { Props } from "./typings"
 
 import { colourOptions } from "./data";
+import React, { useMemo } from "react";
 
-export function MultiSelect() {
+export function MultiSelect({ options, id, name, labelField = 'name', valueField = 'id'}: Props) {
+  const [selectedOption, setSelectedOption] = React.useState<any>([]);
+
+  const handleChange = (selectedOption: any) => {
+    setSelectedOption(selectedOption);
+  };
+
+  const inputValue = useMemo(() => {
+    return selectedOption?.map((option: any) => option.id).join(",");
+  }, [selectedOption]);
+
   return (
     <S.Wrapper>
       <Select
-        defaultValue={[colourOptions[2], colourOptions[3]]}
         isMulti
-        name="colors"
-        options={colourOptions}
-        className="basic-multi-select"
+        options={options}
+        value={selectedOption}
+        getOptionLabel={(option) => option[labelField]}
+        getOptionValue={(option) => option[valueField]}
+        filterOption={createFilter({ ignoreAccents: false })}
         classNamePrefix="Selecione da nossa Lista"
-
-        // defaultInputValue="Banan"
+        className="basic-multi-select"
+        onChange={(e) => handleChange(e)}
       />
+      <input type="hidden" name={name} id={id} value={inputValue} />
     </S.Wrapper>
   );
 }

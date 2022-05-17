@@ -83,7 +83,7 @@ export default function signinredatorstep2() {
                 </option>
               ))}
             </SelectReact> */}
-            <MultiSelect />
+            <MultiSelect options={knowledges} id="knowledge" name="knowledge" />
             <h3>Formação</h3>
             <SelectReact name="formation" placeholder="Selecione">
               {formations.map((formation: IFormation) => (
