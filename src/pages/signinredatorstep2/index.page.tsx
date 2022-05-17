@@ -17,8 +17,11 @@ import {
 } from "../../services/auth";
 import InputMask from "react-input-mask";
 import { MultiSelect } from "./MultiSelect";
+import { getSignupStep3 } from "../../shared/signup";
 
 export default function signinredatorstep2() {
+  const { handleSubmit } = getSignupStep3(2, "/signinredatorstep4");
+
   const [courses, setCourses] = React.useState<ICourse[]>([]);
   const [formations, setFormations] = React.useState<IFormation[]>([]);
   const [knowledges, setKnowledges] = React.useState<IKnowledge[]>([]);
@@ -54,9 +57,7 @@ export default function signinredatorstep2() {
       <S.ContainerInformation>
         <MultiStepForm
           stateName="signupData"
-          onSubmit={(_) => {
-            Router.push("/signinredatorstep4");
-          }}
+          onSubmit={handleSubmit}
           onFail={() => {
             Router.push("/signinredatorstep1");
           }}
