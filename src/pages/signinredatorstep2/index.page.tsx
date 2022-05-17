@@ -16,7 +16,7 @@ import {
   IKnowledge,
 } from "../../services/auth";
 import InputMask from "react-input-mask";
-import { MultiSelect } from "./MultiSelect";
+import { MultiSelect } from "../../components/MultiSelect";
 import { getSignupStep3 } from "../../shared/signup";
 
 export default function signinredatorstep2() {
@@ -83,7 +83,7 @@ export default function signinredatorstep2() {
                 </option>
               ))}
             </SelectReact> */}
-            <MultiSelect options={knowledges} id="knowledge" name="knowledge" />
+            <MultiSelect options={knowledges} id="knowledges" name="knowledges" />
             <h3>Formação</h3>
             <SelectReact name="formation" placeholder="Selecione">
               {formations.map((formation: IFormation) => (

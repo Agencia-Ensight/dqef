@@ -28,6 +28,7 @@ export const getSignupStep3 = (userType: number, nextRoute: string, handleError?
       formation: parseInt(data.formation),
       course: parseInt(data.course),
       college: parseInt(data.college),
+      knowledges: data.knowledges ? data.knowledges.split(',').map(Number) : undefined
     };
     return await signUp(payload);
   }

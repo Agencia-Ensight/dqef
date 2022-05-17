@@ -17,6 +17,7 @@ export interface ISignUpData {
   formation: number;
   course: number;
   college: number;
+  knowledges?: number[];
 }
 export const signUp = async (data: ISignUpData) => {
   const response = await axiosClient.post('/auth/sign-up', data);
