@@ -6,11 +6,15 @@ import React, { useEffect } from "react";
 import { getCourses, ICourse } from "../../services/auth";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import Router, { useRouter } from "next/router";
+import { getSignupStep3 } from "../../shared/signup";
 
 export default function signinstudentstep2() {
   const [courses, setCourses] = React.useState<ICourse[]>([]);
 
   const router = useRouter();
+
+  const { handleSubmit } = getSignupStep3(1, "/signinstudentstep4");
+
 
   useEffect(() => {
     async function loadCourses() {
@@ -33,9 +37,7 @@ export default function signinstudentstep2() {
         <p>Insira alguns dados para completar o seu cadastro.</p>
         <MultiStepForm
           stateName="signupStudentData"
-          onSubmit={(_) => {
-            Router.push("/signinstudentstep3");
-          }}
+          onSubmit={handleSubmit}
           onFail={() => {
             Router.push("/signinstudentstep1");
           }}
