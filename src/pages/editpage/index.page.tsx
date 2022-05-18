@@ -29,7 +29,7 @@ export default function editpage({ job }: { job?: Job }) {
           <S.ContainerLine>
             <Input
               label="Título do Trabalho*"
-              placeholder="Trabalho 1"
+              placeholder="Insira o trabalho"
               type="text"
               required
             />
