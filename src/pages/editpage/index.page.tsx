@@ -79,16 +79,7 @@ export default function editpage({ job }: { job?: Job }) {
           </S.ContainerLine>
         </S.ContainerInformationDosBang>
 
-        <S.ContainerLine>
-          <S.SpecialOne>
-            <Input
-              label="Áreas de Conhecimento"
-              placeholder="Tags aqui"
-              type="text"
-              required
-            />
-          </S.SpecialOne>
-        </S.ContainerLine>
+        
         <S.ContainerMini>
           <h3>Instruções*</h3>
           <textarea
@@ -114,8 +105,9 @@ export default function editpage({ job }: { job?: Job }) {
           />
         </S.ContainerLine>
 
-        <h1>Preencha os Campos</h1>
-        <p>Edite o os campos desejados e salve no final da página</p>
+        <h1>Informações de Entrega</h1>
+        
+        
         <S.InputsContainer>
           <div>
             <label>
@@ -147,6 +139,100 @@ export default function editpage({ job }: { job?: Job }) {
             />
           </div>
         </S.InputsContainer>
+        <p>Conforme previsão acima, a entrega do seu trabalho é efetuada com grande antecedência. Isso porque, o estudante tem direito de solicitar as alterações que desejar, após a entrega. A previsão é calculada com base no dia do pagamento do trabalho, logo após o interesse do redator, portanto, pode variar.</p>
+        <h1>Informações Extras</h1>
+
+        <S.ContainerInformationDosBang>
+          <S.ContainerLine>
+            <Input
+              label="Máximo de plágio aceitável*"
+              placeholder="Insira o valor"
+              type="text"
+              required
+            />
+
+            <S.ContainerMini>
+              <h3>Formato do trabalho*</h3>
+              <Select placeholder="Selecione">
+                <option value="option1">Análise</option>
+                <option value="option2">Apresentação</option>
+                <option value="option3">Artigo Acadêmico</option>
+                <option value="option4">Canvas</option>
+                <option value="option5">Contrato</option>
+                <option value="option6">Crítica</option>
+                <option value="option7">Desenho Técnico</option>
+                <option value="option8">Dissertação</option>
+                <option value="option9">Ensaio</option>
+                <option value="option10">Ensaio Acadêmico</option>
+                <option value="option11">Estudo de Caso</option>
+                <option value="option12">Fichamento</option>
+                <option value="option13">Formatação</option>
+                <option value="option14">Formulário</option>
+                <option value="option15">Lista de Exercícios</option>
+                <option value="option16">Mapa Mental</option>
+                <option value="option17">Monografia</option>
+                <option value="option18">Paper</option>
+                <option value="option19">Parecer</option>
+                <option value="option20">Peça Processual</option>
+                <option value="option21">Pesquisa</option>
+                <option value="option22">Planilha</option>
+                <option value="option23">Plano de Negócio</option>
+                <option value="option24">Planta Estrutural</option>
+                <option value="option25">Programação</option>
+                <option value="option26">Projeto de Pesquisa</option>
+                <option value="option27">Projeto Integrador</option>
+                <option value="option28">Quadro Comparativo</option>
+                <option value="option29">Redação</option>
+                <option value="option30">Relatório</option>
+                <option value="option31">Resenha</option>
+                <option value="option32">Resenha Crítica</option>
+                <option value="option33">Resumo</option>
+                <option value="option34">Revisão</option>
+                <option value="option35">Revisão Bibliográfica</option>
+                <option value="option36">Revisão de Artigo</option>
+                <option value="option37">Seminário</option>
+                <option value="option38">Vídeo</option>
+                
+              </Select>
+            </S.ContainerMini>
+          </S.ContainerLine>
+        </S.ContainerInformationDosBang>
+        <S.ContainerInformationDosBang>
+          <S.ContainerLine>
+            <S.ContainerMini>
+            <Input
+                label="Disposto a Pagar"
+                placeholder="Insira o valor"
+                type="text"
+                required
+              />
+            </S.ContainerMini>
+            <S.ContainerMini>
+            <Input
+                label="Valor Pago ao Redator"
+                placeholder="R$"
+                type="text"
+                required
+                disabled
+              />
+            </S.ContainerMini>
+            <S.ContainerMiniPadrao>
+          <h3>Observações*</h3>
+          <textarea
+            name=""
+            id=""
+            rows={5}
+            placeholder="Ex: Espaço para adicionar algum comentário, dica ou pedido ao redator."
+          ></textarea>
+        </S.ContainerMiniPadrao>
+            
+          
+
+
+          </S.ContainerLine>
+        </S.ContainerInformationDosBang>
+        
+        
         <ButtonKnewave variant="PRIMARY" size="sm">
           Próximo
         </ButtonKnewave>

@@ -17,11 +17,18 @@ export const Wrapper = styled.div`
 
 export const Line = styled.div``;
 export const ContainerImage = styled.div`
+
+width: 70%;
+  height: 84vh;
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const ContainerInformation = styled.div`
+width: 60%;
+  height: 100%;
+
+
   input {
     /* width: fit-content; */
     width: 130px;

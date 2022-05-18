@@ -6,6 +6,7 @@ export const Image = styled.img`
 `;
 export const Wrapper = styled.div`
   display: flex;
+  overflow: hidden;
 
   textarea {
     width: 100%;
@@ -54,7 +55,18 @@ export const SpecialOne = styled.div`
   }
 `;
 
+export const ContainerMiniPadrao = styled.div`
+  width: 100%;
+  h3 {
+    color: #53647e;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  `
+
 export const ContainerMini = styled.div`
+
   @media (max-width: 600px) {
     width: 100%;
   }
@@ -88,6 +100,11 @@ export const ContainerInformationDosBang = styled.div`
 `;
 
 export const ContainerInformation = styled.div`
+overflow-y: scroll;
+
+::-webkit-scrollbar {
+  display: none;
+}
   width: 70%;
   @media (max-width: 600px) {
     width: 100%;
@@ -98,6 +115,7 @@ export const ContainerInformation = styled.div`
   }
   h1 {
     margin-top: 10px;
+    margin-bottom: 20px;
     font-weight: 500;
     color: black;
     font-size: 36px;
