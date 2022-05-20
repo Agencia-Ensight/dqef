@@ -4,7 +4,20 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 import * as S from "./styles";
-import { HigherCoursesData, HIGHER_COURSES, Job, JobByPk, JobFormatsData, JobTypesData, JOB_FORMATS, JOB_QUERY, JOB_TYPES, KNOWLEDGES, KnowledgesData, UPDATE_JOB_BY_PK } from "../../queries/jobs";
+import {
+  HigherCoursesData,
+  HIGHER_COURSES,
+  Job,
+  JobByPk,
+  JobFormatsData,
+  JobTypesData,
+  JOB_FORMATS,
+  JOB_QUERY,
+  JOB_TYPES,
+  KNOWLEDGES,
+  KnowledgesData,
+  UPDATE_JOB_BY_PK,
+} from "../../queries/jobs";
 import { useEffect, useState } from "react";
 import { apolloClient } from "../../services/api";
 import JobStep1 from "../components/jobs/JobSteps/step1";
@@ -23,14 +36,16 @@ export default function proposalstudentedit() {
 
   useEffect(() => {
     if (router.isReady) {
-      apolloClient.query({
-        query: JOB_QUERY,
-        variables: {
-          id: router.query.id
-        }
-      }).then(({ data }: { data: JobByPk }) => {
-        setJob(data.jobs_by_pk);
-      })
+      apolloClient
+        .query({
+          query: JOB_QUERY,
+          variables: {
+            id: router.query.id,
+          },
+        })
+        .then(({ data }: { data: JobByPk }) => {
+          setJob(data.jobs_by_pk);
+        });
     }
   }, [router.query, router.isReady]);
 
@@ -41,7 +56,6 @@ export default function proposalstudentedit() {
     const form = e.currentTarget;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-
 
     const payload: any = {
       higher_course_id: data.higher_course_id,
@@ -56,32 +70,40 @@ export default function proposalstudentedit() {
       theme: data.theme,
       pages: data.pages,
       words: data.words,
-    }
+    };
 
-    const knowledges = [{
-      knowledge_id: data.knowledge_id,
-      job_id: router.query.id,
-    }];
+    const knowledges = [
+      {
+        knowledge_id: data.knowledge_id,
+        job_id: router.query.id,
+      },
+    ];
 
     // Remove empty null or undefined values
-    Object.keys(payload).forEach(key => {
-      if (payload[key] === null || payload[key] === undefined || payload[key] === "") {
+    Object.keys(payload).forEach((key) => {
+      if (
+        payload[key] === null ||
+        payload[key] === undefined ||
+        payload[key] === ""
+      ) {
         delete payload[key];
       }
     });
 
     // Update job
-    apolloClient.mutate({
-      mutation: UPDATE_JOB_BY_PK,
-      variables: {
-        id: router.query.id,
-        object: payload,
-        knowledges: knowledges
-      }
-    }).then(() => {
-      alert("Job updated");
-    });
-  }
+    apolloClient
+      .mutate({
+        mutation: UPDATE_JOB_BY_PK,
+        variables: {
+          id: router.query.id,
+          object: payload,
+          knowledges: knowledges,
+        },
+      })
+      .then(() => {
+        alert("Job updated");
+      });
+  };
 
   return (
     <S.Wrapper>

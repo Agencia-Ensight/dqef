@@ -85,99 +85,16 @@ export default function proposalstudentstep3(job?: Job) {
       <S.ContainerImage>
         <S.Image src="/images/proposalstudent.png" />
       </S.ContainerImage>
-
       <S.ContainerInformation>
-        {/* meu */}
-        <a onClick={() => router.back()}>Voltar</a>
         <S.HeaderContainer>
           <h1>Últimos Ajustes</h1>
           <S.Steps>3 de 3</S.Steps>
         </S.HeaderContainer>
         <p>Insira os detalhes finais antes de publicar.</p>
-        <S.InputFields>
-          <S.FirstInputContainer>
-            <Input
-              label="Máximo de Plágio Aceitável"
-              placeholder="Insira o Valor"
-              mandatory={true}
-              required
-              type="number"
-            />
-            <S.SelectContainer>
-              <label>
-                Formato do Trabalho<span>*</span>
-              </label>
-              <Select className="padrao" placeholder="Selecione o Formato">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </Select>
-            </S.SelectContainer>
-          </S.FirstInputContainer>
-          <S.FirstInputContainer>
-            <Input
-              placeholder="Disposto a Pagar"
-              label="Disposto a Pagar"
-              mandatory={true}
-              required
-            />
-            <Input
-              placeholder="R$"
-              label="Valor Pago ao Redator"
-              mandatory={false}
-              disabled
-            />
-          </S.FirstInputContainer>
-          <S.FirstInputContainer>
-            <Input label="Cupom de desconto" mandatory={false} disabled />
-          </S.FirstInputContainer>
-          <label>
-            Observações<span>*</span>
-          </label>
-          <textarea
-            name=""
-            id=""
-            rows={2}
-            placeholder="ex: Espaço para adicionar algum comentário, dica ou pedido ao redator."
-          ></textarea>
-          {/* <label className="label-file">
-            Anexar Arquivos<span>*</span>
-          </label>
-          <section className="container">
-            <div {...getRootProps({ className: "dropzone" })}>
-              <input {...getInputProps()} />
-              <p>Clique para adicionar arquivos</p>
-            </div>
-            <aside>
-              <ul>{File}</ul>
-            </aside>
-          </section> */}
-        </S.InputFields>
-        <ButtonKnewave variant="PRIMARY" size="sm">
+        <JobStep3 jobFormats={jobFormats?.job_formats ?? []} ref={step3Ref} />
+        <ButtonKnewave variant="PRIMARY" type="submit" size="sm">
           Publicar
         </ButtonKnewave>
-        {/* eduardo */}
-
-        <MultiStepForm
-          stateName="proposalData"
-          onSubmit={(data: any) => {
-            handleSubmit(data);
-          }}
-          onFail={() => {
-            router.push("/proposalstudentstep1");
-          }}
-        >
-          <a onClick={() => router.back()}>Voltar</a>
-          <S.HeaderContainer>
-            <h1>Últimos Ajustes</h1>
-            <S.Steps>3 de 3</S.Steps>
-          </S.HeaderContainer>
-          <p>Insira os detalhes finais antes de publicar.</p>
-          <JobStep3 jobFormats={jobFormats?.job_formats ?? []} ref={step3Ref} />
-          <ButtonKnewave variant="PRIMARY" type="submit" size="sm">
-            Publicar
-          </ButtonKnewave>
-        </MultiStepForm>
       </S.ContainerInformation>
     </S.Wrapper>
   );

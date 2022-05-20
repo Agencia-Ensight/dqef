@@ -7,6 +7,7 @@ export const Wrapper = styled.button<Props>`
   border-radius: 99px;
   font-weight: bold;
   font-size: 12px;
+  white-space: nowrap;
 
   ${({ variant }) =>
     variant === "primary" &&
