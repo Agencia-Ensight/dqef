@@ -1,10 +1,13 @@
 import styled from "styled-components";
+import { Input } from "../../../../components/Input";
 
 export const Description = styled.p`
     font-size: 1.2rem;
     color: #4E4E4E;
     text-align: center;
 `
+
+
 
 export const List = styled.p`
     font-size: 1.2rem;
@@ -21,6 +24,25 @@ export const ButtonContainer = styled.div`
     justify-content: center;
 `
 
+export const ButtonInputSolid = styled.div`
+
+.inputsolido{ 
+    margin-top: 20px;
+    border-radius: 10px;
+    height: 80px;
+
+
+    &::placeholder{ 
+        text-align: center;
+
+    }
+
+}
+
+
+`
+
+
 export const ButtonBang = styled.div`
     width: 500px;
     height: 50px;
@@ -33,6 +55,7 @@ export const ButtonBang = styled.div`
     justify-content: center;
     gap: 10px;
     margin-top: 30px;
+
 
     
     p{ 
@@ -91,10 +114,12 @@ export const TextInformation = styled.div`
 
 `
 
+
+
 export const ButtonFinaleira = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 60px;
+    margin-top: 20px;
     gap: 20px;
 
 

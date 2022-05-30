@@ -1,5 +1,6 @@
 import { MdSegment, MdClose } from "react-icons/md";
 import Image from "next/image";
+import Link from "next/link";
 
 import { useState } from "react";
 import * as S from "./styles";
@@ -15,12 +16,15 @@ export function Menu() {
   return (
     <>
       <S.Wrapper visible={isOpen}>
-        <Image
-          src="/images/logo-mobile.png"
-          alt="DQEF"
-          width={60}
-          height={60}
-        />
+        <Link href="/" passHref>
+          <Image
+            src="/images/logo-mobile.png"
+            alt="DQEF"
+            width={60}
+            height={60}
+          />
+        </Link>
+
         <a onClick={handleOpen}>
           {isOpen ? (
             <MdClose size={40} color="black" />
@@ -30,23 +34,45 @@ export function Menu() {
         </a>
       </S.Wrapper>
       <S.Container visible={isOpen}>
-        <Image
-          src="/images/logo-text.png"
-          width={300}
-          height={60}
-          quality={100}
-        />
+        <Link href="/" passHref>
+          <Image
+            src="/images/logo-text.png"
+            width={300}
+            height={60}
+            quality={100}
+          />
+        </Link>
+
         <S.Title>Conta</S.Title>
-        <ButtonKnewave variant="PRIMARY" size="sm">
-          Publicar Trabalho
-        </ButtonKnewave>
-        <ButtonKnewave variant="SECONDARY" size="sm">
-          Entrar
-        </ButtonKnewave>
+        <Link href="/proposalstudentstep1" passHref>
+          <ButtonKnewave variant="PRIMARY" size="sm" onClick={handleOpen}>
+            Publicar Trabalho
+          </ButtonKnewave>
+        </Link>
+        <Link href="/login" passHref>
+          <ButtonKnewave variant="SECONDARY" size="sm" onClick={handleOpen}>
+            Entrar
+          </ButtonKnewave>
+        </Link>
+
         <S.Title>Menu</S.Title>
-        <S.SubTitle>Urgentes</S.SubTitle>
-        <S.SubTitle>Trabalhos</S.SubTitle>
-        <S.SubTitle>Sobre Nós</S.SubTitle>
+        <Link href="/urgent-works" passHref>
+          <S.SubTitle onClick={handleOpen}>Urgentes</S.SubTitle>
+        </Link>
+        <Link href="/all-works" passHref>
+          <S.SubTitle onClick={handleOpen}>Trabalhos</S.SubTitle>
+        </Link>
+        <Link href="/#about" passHref>
+          <S.SubTitle onClick={handleOpen}>Sobre Nós</S.SubTitle>
+        </Link>
+        <Link
+          href="https://deixaqueeufaco.notion.site/Como-podemos-ajudar-1105738216d84a37aa57233b1d495c8d"
+          passHref
+        >
+          <a target="_blank" onClick={handleOpen}>
+            <S.SubTitle>FAQ</S.SubTitle>
+          </a>
+        </Link>
       </S.Container>
     </>
   );

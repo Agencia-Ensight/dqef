@@ -7,6 +7,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { UrgentWorkCard } from "../../components/UrgentWorkCard";
 
 import { ProfileCard } from "../../components/ProfileCard";
+import { ProfileCardEmployee } from "../../components/ProfileCardEmployee";
 
 export default function profileredatorrunningjobs() {
   return (
@@ -16,6 +17,7 @@ export default function profileredatorrunningjobs() {
           img="/images/redatorpicture.png"
           profileName="Murilo Ricioli"
           course="Medicina"
+          variant="EMPLOYEE"
         />
       </S.ContainerProfileCard>
 
@@ -24,6 +26,7 @@ export default function profileredatorrunningjobs() {
 
         <S.ContainerJobCard>
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="MEDICINA"
             discipline="Direito Penal"
@@ -34,6 +37,7 @@ export default function profileredatorrunningjobs() {
             status="EMPLOYEE-CHANGE"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="MEDICINA"
             discipline="Direito Penal"
@@ -44,6 +48,7 @@ export default function profileredatorrunningjobs() {
             status="EMPLOYEE-CHANGE"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="MEDICINA"
             discipline="Direito Penal"
@@ -54,6 +59,7 @@ export default function profileredatorrunningjobs() {
             status="EMPLOYEE-CHANGE"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="MEDICINA"
             discipline="Direito Penal"
@@ -64,6 +70,7 @@ export default function profileredatorrunningjobs() {
             status="EMPLOYEE-CHANGE"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="MEDICINA"
             discipline="Direito Penal"
@@ -74,6 +81,7 @@ export default function profileredatorrunningjobs() {
             status="EMPLOYEE-CHANGE"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="MEDICINA"
             discipline="Direito Penal"

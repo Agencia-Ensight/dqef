@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: fixed;
-  top: 50%;
+  top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 700;
@@ -30,7 +30,7 @@ border-radius: 35px;
 border: 3px solid #42A4EF;
   width: 70vw;
   height: 85vh;
-  padding: 71px 58px 30px 58px; 
+  padding: 71px 58px 6px 58px; 
 `;
 
 export const Header = styled.div`
@@ -64,7 +64,7 @@ export const CloseButton = styled.button`
 
 export const Content = styled.div`
   padding: 10px;
-  max-height: 30rem;
+
   overflow-x: hidden;
   overflow-y: auto;
 `;

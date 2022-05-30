@@ -16,8 +16,11 @@ import { ModalRating } from "../../pages/components/modal/ModalRating";
 import { ModalOpenWork } from "../../pages/components/modal/ModalOpenWork";
 import { ModalOpenWorkStep2 } from "../../pages/components/modal/ModalOpenWorkStep2";
 import { ModalRequestChanges } from "../../pages/components/modal/ModalRequestChanges";
+import { ModalCalmaLa } from "../../pages/components/modal/ModalCalmaLa";
+import { ModalPayment } from "../../pages/components/modal/ModalPayment";
 
 export function UrgentWorkCard({
+  jobId,
   course,
   title,
   discipline,
@@ -59,10 +62,9 @@ export function UrgentWorkCard({
             <S.Subtitle>
               Data de Entrega {urgent === true && "Urgente"}
             </S.Subtitle>
-            
 
             <S.Date urgent={urgent}>{date}</S.Date>
-            
+
             {/* Employee */}
             {status === "EMPLOYEE-SEND" && (
               <S.WaitStudent>Aguardando Estudante ...</S.WaitStudent>
@@ -80,11 +82,11 @@ export function UrgentWorkCard({
             {status === "EMPLOYEE-BILL" && <S.Bill>Responda a Cobrança</S.Bill>}
           </S.InformationContainer>
         </S.MainContainer>
-        
       </S.Container>
       {/* Employee */}
       {status === "EMPLOYEE-PAID" && (
         <S.FooterContainer>
+          <Button variant="secondary">Ver mais</Button>
           <Button onClick={toggle} variant="primary">
             Iniciar Trabalho
           </Button>
@@ -107,7 +109,7 @@ export function UrgentWorkCard({
             headerText="Deseja enviar o trabalho?"
             modalContent={<ModalInsertWork />}
           />
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <a target="_blank" href="https://wa.me/5541999959588">
@@ -126,7 +128,7 @@ export function UrgentWorkCard({
             headerText="Deseja enviar o trabalho?"
             modalContent={<ModalInsertWork />}
           />{" "}
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle} variant="tertiary">
@@ -151,7 +153,7 @@ export function UrgentWorkCard({
             headerText="Deseja enviar o trabalho?"
             modalContent={<ModalInsertWork />}
           />
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle} variant="quinternary">
@@ -170,6 +172,9 @@ export function UrgentWorkCard({
           <Button onClick={toggle} variant="primary">
             Ver FeedBack
           </Button>
+          <Button onClick={toggle} variant="secondary">
+            Ver mais
+          </Button>
           <Modal
             isShown={isShown}
             hide={toggle}
@@ -180,7 +185,7 @@ export function UrgentWorkCard({
       )}
       {status === "EMPLOYEE-SEE" && (
         <S.FooterContainer>
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
         </S.FooterContainer>
@@ -229,7 +234,7 @@ export function UrgentWorkCard({
             headerText="Olá, Enrico."
             modalContent={<ModalOpenWorkStep2 />}
           />
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle2} variant="tertiary">
@@ -254,7 +259,7 @@ export function UrgentWorkCard({
             headerText="Olá, Enrico."
             modalContent={<ModalOpenWork />}
           />
-          <a href="/inside-job">
+          <a href={`/inside-job/${jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle2} variant="quaternary">
@@ -271,7 +276,7 @@ export function UrgentWorkCard({
       {status === "STUDENT" && ""}
       {status === "STUDENT-EDIT" && (
         <S.FooterContainer>
-          <a href="/editpage">
+          <a href={`/proposalstudentedit/${jobId}`}>
             <Button variant="primary">Editar Trabalho</Button>
           </a>
         </S.FooterContainer>

@@ -15,6 +15,7 @@ export function UrgentWorks() {
       </S.HeaderContainer>
       <S.MainContainer>
         <UrgentWorkCard
+          jobId="1"
           course="ARQUITETURA"
           date="23/04 às 17h"
           discipline="arroz"
@@ -23,8 +24,10 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
+          jobId="1"
           course="ECONOMIA"
           date="23/04 às 17h"
           discipline="arroz"
@@ -33,8 +36,10 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
+          jobId="1"
           course="ECONOMIA"
           date="23/04 às 17h"
           discipline="arroz"
@@ -43,8 +48,10 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
+          jobId="1"
           course="ECONOMIA"
           date="23/04 às 17h"
           discipline="arroz"
@@ -53,8 +60,10 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
+          jobId="1"
           course="ECONOMIA"
           date="23/04 às 17h"
           discipline="arroz"
@@ -63,8 +72,10 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
         <UrgentWorkCard
+          jobId="1"
           course="ECONOMIA"
           date="23/04 às 17h"
           discipline="arroz"
@@ -73,6 +84,7 @@ export function UrgentWorks() {
           title="Arroz"
           typeOfWork="Banana"
           urgent={true}
+          status="EMPLOYEE-SEE"
         />
       </S.MainContainer>
       <S.ButtonContainer>

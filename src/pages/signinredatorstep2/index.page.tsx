@@ -1,102 +1,121 @@
 import { ButtonKnewave } from "../../components/ButtonKnewave";
 import * as S from "./styles";
-import { Checkbox, Select } from "@chakra-ui/react";
+import { Checkbox, Select as SelectReact } from "@chakra-ui/react";
 import { Input } from "../../components/Input";
+import Router from "next/router";
+import { MultiStepForm } from "../../components/MultiStepForm";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+
+import {
+  getCourses,
+  getFormations,
+  getKnowledges,
+  ICourse,
+  IFormation,
+  IKnowledge,
+} from "../../services/auth";
+import InputMask from "react-input-mask";
+import { MultiSelect } from "../../components/MultiSelect";
+import { getSignupStep3 } from "../../shared/signup";
 
 export default function signinredatorstep2() {
+  const { handleSubmit } = getSignupStep3(2, "/signinredatorstep4");
+
+  const [courses, setCourses] = React.useState<ICourse[]>([]);
+  const [formations, setFormations] = React.useState<IFormation[]>([]);
+  const [knowledges, setKnowledges] = React.useState<IKnowledge[]>([]);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    async function loadCourses() {
+      const res = await getCourses();
+      setCourses(res);
+    }
+
+    async function loadFormations() {
+      const res = await getFormations();
+      setFormations(res);
+    }
+
+    async function loadKnowledges() {
+      const res = await getKnowledges();
+      setKnowledges(res);
+    }
+
+    loadCourses();
+    loadFormations();
+    loadKnowledges();
+  }, []);
+
   return (
     <S.Wrapper>
       <S.ContainerImage>
         <S.Image src="/images/signinredator.png" />
       </S.ContainerImage>
-
       <S.ContainerInformation>
-        <a href="#">Voltar</a>
-        <h1>Informações Extras</h1>
-        <p>Insira alguns dados para completar o seu cadastro.</p>
+        <MultiStepForm
+          stateName="signupData"
+          onSubmit={handleSubmit}
+          onFail={() => {
+            Router.push("/signinredatorstep1");
+          }}
+        >
+          <a onClick={() => router.back()}>Voltar</a>
+          <h1>Informações Extras</h1>
+          <p>Insira alguns dados para completar o seu cadastro.</p>
 
-        <S.InputContainer>
-          <h3>Curso</h3>
-          <Select placeholder="Selecione da nossa lista">
-            <option value="option1">Administração</option>
-            <option value="option2">Agronegócio</option>
-            <option value="option3">Agronomia</option>
-            <option value="option4">
-              Análise e Desenvolvimento de Sistemas
-            </option>
-            <option value="option5">Biomedicina</option>
-            <option value="option6">Ciência da Computação</option>
-            <option value="option7">Ciências Biológicas</option>
-            <option value="option8">Ciências Contábeis</option>
-            <option value="option9">Ciências Econômicas</option>
-            <option value="option10">Design de Interiores</option>
-            <option value="option11">Design do Produto</option>
-            <option value="option12">Design Gráfico</option>
-            <option value="option13">Direito</option>
-            <option value="option14">Educação Física</option>
-            <option value="option15">Enfermagem</option>
-            <option value="option16">Engenharia Agronômica</option>
-            <option value="option17">Engenharia Ambiental</option>
-            <option value="option18">Engenharia Civil</option>
-            <option value="option19">Engenharia de Alimentos</option>
-            <option value="option20">Engenharia de Produção</option>
-            <option value="option21">Engenharia de Software</option>
-            <option value="option22">Engenharia de Telecomunicações</option>
-            <option value="option23">Engenharia Elétrica</option>
-            <option value="option24">Engenharia Mecânica</option>
-            <option value="option25">Engenharia Química</option>
-            <option value="option26">Farmácia</option>
-            <option value="option27">Física</option>
-            <option value="option28">Fisioterapia</option>
-            <option value="option29">Fonoaudiologia</option>
-            <option value="option30">História</option>
-            <option value="option31">Jornalismo</option>
-            <option value="option32">Letras</option>
-            <option value="option33">Marketing</option>
-            <option value="option34">Matemática</option>
-            <option value="option35">Medicina</option>
-            <option value="option36">Medicina Veterinária</option>
-            <option value="option37">Nutrição</option>
-            <option value="option38">Odontologia</option>
-            <option value="option39">Pedagogia</option>
-            <option value="option40">Psicologia</option>
-            <option value="option41">Publicidade e Propaganda</option>
-            <option value="option42">Química</option>
-            <option value="option43">Recursos Humanos</option>
-            <option value="option44">Relações Internacionais</option>
-            <option value="option45">Serviço Social</option>
-            <option value="option46">Sistemas de Informação</option>
-          </Select>
-          <h3>Áreas de conhecimento</h3>
-          <Select placeholder="Selecione da nossa lista">
-            <option value="option1">Administração</option>
-            <option value="option2">Agronegócio</option>
-            <option value="option3">Agronomia</option>
-          </Select>
-
-          <h3>Formação</h3>
-          <Select placeholder="Selecione">
-            <option value="option1">Cursando</option>
-            <option value="option2">Graduado</option>
-            <option value="option3">Pós-graduado</option>
-            <option value="option3">Mestrado</option>
-            <option value="option3">Doutorado</option>
-          </Select>
-          <Input label="CPF" placeholder="000.000.000-00" />
-          <Input
-            label="Forma de Pagamento"
-            placeholder="Insira o seu pix ou dados de pagamento"
-          />
-        </S.InputContainer>
-        <S.ContainerDoBang>
-          <Checkbox defaultChecked>Aceitar Termos de Uso</Checkbox>
-        </S.ContainerDoBang>
-        <S.ContainerDoBang>
-          <Checkbox defaultChecked>Aceitar Políticas de Privacidade</Checkbox>
-        </S.ContainerDoBang>
-        <ButtonKnewave variant="PRIMARY" size="sm">
-          Confirmar e-mail
-        </ButtonKnewave>
+          <S.InputContainer>
+            <h3>Curso</h3>
+            <SelectReact name="course" placeholder="Selecione da nossa lista">
+              {courses.map((course: ICourse) => (
+                <option key={course.id} value={course.id}>
+                  {course.name}
+                </option>
+              ))}
+            </SelectReact>
+            <h3>Áreas de conhecimento</h3>
+            {/* <SelectReact name="college" placeholder="Selecione da nossa lista">
+              {knowledges.map((knowledge: IKnowledge) => (
+                <option key={knowledge.id} value={knowledge.id}>
+                  {knowledge.name}
+                </option>
+              ))}
+            </SelectReact> */}
+            <MultiSelect options={knowledges} id="knowledges" name="knowledges" />
+            <h3>Formação</h3>
+            <SelectReact name="formation" placeholder="Selecione">
+              {formations.map((formation: IFormation) => (
+                <option key={formation.id} value={formation.id}>
+                  {formation.name}
+                </option>
+              ))}
+            </SelectReact>
+            {/* <Input name="cpf" label="CPF" placeholder="000.000.000-00" /> */}
+            {/* TODO */}
+            <h3>CPF</h3>
+            <InputMask
+              placeholder="000.000.000-00"
+              mask="999.999.999-99"
+              className="cpf-input"
+              name="cpf"
+            />
+            <Input
+              label="Forma de Pagamento"
+              placeholder="Insira o seu pix ou dados de pagamento"
+            />
+          </S.InputContainer>
+          <S.ContainerDoBang>
+            <Checkbox required>Aceitar Termos de Uso</Checkbox>
+          </S.ContainerDoBang>
+          <S.ContainerDoBang>
+            <Checkbox required>Aceitar Políticas de Privacidade</Checkbox>
+          </S.ContainerDoBang>
+          <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
+            Confirmar e-mail
+          </ButtonKnewave>
+        </MultiStepForm>
       </S.ContainerInformation>
     </S.Wrapper>
   );

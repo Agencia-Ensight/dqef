@@ -16,6 +16,7 @@ export default function profilestudentpublishedjobs() {
           img="/images/profilepicture.png"
           profileName="Enrico Silvestri"
           course="Direito"
+          variant="STUDENT"
         />
       </S.ContainerProfileCard>
 
@@ -24,6 +25,7 @@ export default function profilestudentpublishedjobs() {
 
         <S.ContainerJobCard>
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
@@ -34,6 +36,7 @@ export default function profilestudentpublishedjobs() {
             status="STUDENT-CREATE"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
@@ -44,6 +47,7 @@ export default function profilestudentpublishedjobs() {
             status="STUDENT-CREATE"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
@@ -54,6 +58,7 @@ export default function profilestudentpublishedjobs() {
             status="STUDENT-CREATE"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
@@ -64,6 +69,7 @@ export default function profilestudentpublishedjobs() {
             status="STUDENT-CREATE"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
@@ -74,6 +80,7 @@ export default function profilestudentpublishedjobs() {
             status="STUDENT-CREATE"
           />
           <UrgentWorkCard
+            jobId="1"
             title="Faz Meu Trabalho Por Favor"
             course="DIREITO"
             discipline="Direito Penal"
