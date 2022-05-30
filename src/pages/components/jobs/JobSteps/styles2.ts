@@ -11,6 +11,14 @@ export const InputsContainer = styled.div`
   display: flex;
   gap: 50px;
 
+ .text-error{
+   color: red;
+ }
+
+ .text-success{
+   color: green;
+ }
+
   @media (max-width: 600px) {
     flex-wrap: wrap;
     gap: 20px;

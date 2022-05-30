@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 export const Image = styled.img`
   width: 100%;
+  height: 100%;
 `;
 export const Wrapper = styled.div`
   display: flex;
+  overflow: hidden;
 
   .input-root {
     @media (max-width: 600px) {
@@ -59,15 +61,20 @@ export const Wrapper = styled.div`
 `;
 export const ContainerImage = styled.div`
   width: 40%;
+  height: 93vh;
+
 
   @media (max-width: 600px) {
     display: none;
   }
 `;
 export const ContainerInformation = styled.div`
-  margin: 4% 5%;
-
+  padding: 4% 5%;
   width: 60%;
+  height: 100%;
+  overflow-y: scroll;
+
+
 
   @media (max-width: 600px) {
     width: 100%;

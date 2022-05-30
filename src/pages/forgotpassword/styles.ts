@@ -37,7 +37,7 @@ export const ContainerImage = styled.div`
   }
 `;
 export const ContainerInformation = styled.div`
-  width: 60%;
+  width: 100%;
   height: 100%;
   a {
     text-decoration: none;

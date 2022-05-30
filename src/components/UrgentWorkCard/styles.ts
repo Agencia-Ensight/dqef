@@ -181,6 +181,16 @@ export const FooterContainer = styled.div`
   padding: 12px 17px 12px 17px;
   box-shadow: 0px 32px 32px rgba(31, 47, 70, 0.06);
 
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  min-width: 280px;
+  width: 280px;
+  @media (max-width: 425px) {
+    /* min-width: 100%; */
+    min-width: 240px;
+  }
   @media (max-width: 425px) {
     padding: 8px;
   }

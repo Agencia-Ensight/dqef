@@ -33,6 +33,7 @@ export const ContainerInformationDosBang = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 
 export const ContainerInformation = styled.div`

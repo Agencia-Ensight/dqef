@@ -42,6 +42,10 @@ export const ContainerImage = styled.div`
 export const ContainerInformation = styled.div`
   height: 100%;
   overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
   a {
     text-decoration: none;
     color: var(--blue);
@@ -64,6 +68,7 @@ export const ContainerInformation = styled.div`
     display: flex;
     align-items: center;
     margin: 1rem 0rem;
+    cursor: pointer;
   }
   h2 {
     font-size: 16px;

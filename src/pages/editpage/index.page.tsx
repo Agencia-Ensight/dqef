@@ -1,6 +1,6 @@
 import { ButtonKnewave } from "../../components/ButtonKnewave";
 import * as S from "./styles";
-import { Checkbox, CheckboxGroup, Select } from "@chakra-ui/react";
+import { Select } from "@chakra-ui/react";
 import { Input } from "../../components/Input";
 
 import DatePicker from "react-datepicker";

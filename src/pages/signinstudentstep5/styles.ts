@@ -36,6 +36,11 @@ export const ContainerInformation = styled.div`
   height: 100%;
   width: 40%;
 
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
   a {
     text-decoration: none;
     color: var(--blue);
@@ -70,6 +75,7 @@ export const ContainerInformation = styled.div`
     margin-left: 25px;
     @media (max-width: 600px) {
       margin-top: 30px;
+      margin-left: 0px;
     }
   }
 
@@ -77,6 +83,7 @@ export const ContainerInformation = styled.div`
 
   @media (max-width: 600px) {
     padding: 5% 10%;
+    width: 100%;
   }
 `;
 
