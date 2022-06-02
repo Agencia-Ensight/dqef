@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { ButtonKnewave } from "../../../../components/ButtonKnewave";
+import { Modal } from "../../../../components/Modal";
+import { ModalSentProposal } from "../ModalSentProposal";
 import * as S from "./styles";
+import { useModal } from "../../../../hooks/useModal";
 
 export function ModalRules() {
   const [showMore, setShowMore] = useState(true);
+
+  const { toggle, isShown } = useModal();
   return (
     <>
       <S.Description>Infos para iniciar</S.Description>
@@ -37,9 +42,15 @@ export function ModalRules() {
         {showMore ? "Ler Mais" : "Aparecer Menos"}
       </S.Button>
       <S.ButtonContainer>
-        <ButtonKnewave variant="PRIMARY" size="lg">
+        <ButtonKnewave variant="PRIMARY" size="lg" onClick={toggle}>
           Iniciar
         </ButtonKnewave>
+        <Modal
+          isShown={isShown}
+          hide={toggle}
+          headerText="Proposta Enviada!"
+          modalContent={<ModalSentProposal />}
+        />
       </S.ButtonContainer>
     </>
   );
