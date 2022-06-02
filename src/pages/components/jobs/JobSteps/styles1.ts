@@ -7,7 +7,7 @@ export const InputFields = styled.div`
 
 export const FirstInputContainer = styled.div`
   display: flex;
-  gap: 100px;
+  gap: 30px;
   flex-wrap: wrap;
   margin-bottom: 30px;
 
@@ -17,7 +17,7 @@ export const FirstInputContainer = styled.div`
 `;
 export const TextInputContainer = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 30px;
   margin-bottom: 30px;
   flex-wrap: wrap;
 
