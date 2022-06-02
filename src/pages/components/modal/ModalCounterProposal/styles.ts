@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+    .input-root{
+ 
+
+        input {
+            width: 200px;
+        }
+    }
+`
+
 export const Description = styled.p`
     font-size: 1.2rem;
     color: #4E4E4E;
@@ -12,6 +22,14 @@ export const ButtonContainer = styled.div`
     margin-top: 2rem;
 
 `
+
+export const InputDiv = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+`
+
+
 
 export const Image = styled.img`
     display: block;

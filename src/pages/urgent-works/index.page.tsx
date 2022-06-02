@@ -1,8 +1,24 @@
 import * as S from "./styles";
 
 import { UrgentWorkCard } from "../../components/UrgentWorkCard";
+import { useEffect, useState } from "react";
+
+import { getUrgentJobs, IGetUrgentJobs } from "../../services/job";
 
 function urgentWorks() {
+  const [urgentJobs, setUrgentJobs] = useState<IGetUrgentJobs[]>([]);
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const response = await getUrgentJobs();
+        setUrgentJobs(response);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
   return (
     <S.Wrapper>
       <S.SubTitle>IMPORTANTE</S.SubTitle>
@@ -15,85 +31,26 @@ function urgentWorks() {
           </S.Description>
         </div>
       </S.HeaderContainer>
+
       <S.MainContainer>
-        <UrgentWorkCard
-          jobId="1"
-          course="ARQUITETURA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
+        {urgentJobs.map((job, index) => (
+          <UrgentWorkCard
+            key={index}
+            jobId={job.id}
+            course="ECONOMIA"
+            date={job.delivery}
+            discipline={job.job_has_knowledges[0].knowledge.name}
+            price={job.value_pay}
+            theme="banana"
+            title={job.title}
+            typeOfWork="bananan"
+            urgent={true}
+            status="EMPLOYEE-SEE"
+          />
+        ))}
       </S.MainContainer>
     </S.Wrapper>
   );
 }
 
 export default urgentWorks;
-function useState(arg0: string[]): [any, any] {
-  throw new Error("Function not implemented.");
-}

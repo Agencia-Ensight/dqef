@@ -1,8 +1,23 @@
 import { ButtonKnewave } from "../../../components/ButtonKnewave";
 import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
 import * as S from "./styles";
+import { useState, useEffect } from "react";
+import { getUrgentJobs, IGetUrgentJobs } from "../../../services/job";
 
 export function UrgentWorks() {
+  const [urgentJobs, setUrgentJobs] = useState<IGetUrgentJobs[]>([]);
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const response = await getUrgentJobs();
+        setUrgentJobs(response);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
   return (
     <S.Wrapper>
       <S.SubTitle>IMPORTANTE</S.SubTitle>
@@ -14,78 +29,20 @@ export function UrgentWorks() {
         </S.Description>
       </S.HeaderContainer>
       <S.MainContainer>
-        <UrgentWorkCard
-          jobId="1"
-          course="ARQUITETURA"
-          date="23/04 às 17h"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04 às 17h"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04 às 17h"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04 às 17h"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04 às 17h"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04 às 17h"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
+        {urgentJobs.map((job) => (
+          <UrgentWorkCard
+            jobId={job.id}
+            course="ARQUITETURA"
+            date={job.delivery}
+            discipline={job.higher_course.name}
+            price={job.value_pay}
+            theme="banana"
+            title={job.title}
+            typeOfWork="Banana"
+            urgent={true}
+            status="EMPLOYEE-SEE"
+          />
+        ))}
       </S.MainContainer>
       <S.ButtonContainer>
         <ButtonKnewave variant="PRIMARY" size="lg">
