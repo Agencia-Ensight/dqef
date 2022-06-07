@@ -2,7 +2,7 @@ import * as S from "./styles";
 
 import { useRouter } from "next/router";
 
-import { ProfileCardEmployee } from "../../components/ProfileCardEmployee";
+import { ProfileCardEmployee } from "../../../components/ProfileCardEmployee";
 
 export default function studentviewproposals() {
   const router = useRouter();
