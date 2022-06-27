@@ -6,6 +6,7 @@ export const Image = styled.img`
 `;
 export const Wrapper = styled.div`
   display: flex;
+  overflow: hidden;
 
   textarea {
     width: 100%;
@@ -62,6 +63,7 @@ export const ContainerMini = styled.div`
     color: #53647e;
     font-size: 18px;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   select {
@@ -88,6 +90,7 @@ export const ContainerInformationDosBang = styled.div`
 `;
 
 export const ContainerInformation = styled.div`
+ overflow-y: scroll;
   width: 70%;
   @media (max-width: 600px) {
     width: 100%;
@@ -116,6 +119,19 @@ export const ContainerInformation = styled.div`
   }
   padding: 47px 120px 26px 69px;
 `;
+
+export const IconContainer = styled.div`
+  width: 100%;
+  height: 100px;
+  border: 2px solid #42a4ef;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  margin-top: 15px;
+`;
+
 
 export const InputsContainer = styled.div`
   margin-top: 50px;
