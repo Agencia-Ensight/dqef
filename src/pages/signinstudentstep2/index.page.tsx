@@ -3,10 +3,10 @@ import * as S from "./styles";
 import { Checkbox, Select } from "@chakra-ui/react";
 import { Input } from "../../components/Input";
 import React, { useEffect } from "react";
-import { getCourses, ICourse } from "../../services/auth";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import Router, { useRouter } from "next/router";
 import { getSignupStep3 } from "../../shared/signup";
+import { getCourses, ICourse } from "../../services/course";
 
 export default function signinstudentstep2() {
   const [courses, setCourses] = React.useState<ICourse[]>([]);
@@ -14,7 +14,6 @@ export default function signinstudentstep2() {
   const router = useRouter();
 
   const { handleSubmit } = getSignupStep3(1, "/signinstudentstep4");
-
 
   useEffect(() => {
     async function loadCourses() {
@@ -45,8 +44,11 @@ export default function signinstudentstep2() {
           <S.InputContainer>
             <label>Curso</label>
 
-
-            <Select className="testesolidopadrao" name="course" placeholder="Selecione o curso">
+            <Select
+              className="testesolidopadrao"
+              name="course"
+              placeholder="Selecione o curso"
+            >
               {courses.map((course: ICourse) => (
                 <option key={course.id} value={course.id}>
                   {course.name}

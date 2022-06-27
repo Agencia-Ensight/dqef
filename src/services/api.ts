@@ -9,7 +9,7 @@ export const axiosClient = axios.create({
 });
 
 export const apolloClient = new ApolloClient({
-  uri: "https://api.deixaqueeufaco.io/v1/graphql",
+  uri: "https://api.xn--deixaqueeufao-tgb.com/v1/graphql",
   cache: new InMemoryCache(),
   headers: {
     "Content-Type": "application/json",

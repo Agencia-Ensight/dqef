@@ -7,17 +7,25 @@ import { MultiStepForm } from "../../components/MultiStepForm";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 
-import {
-  getCourses,
-  getFormations,
-  getKnowledges,
-  ICourse,
-  IFormation,
-  IKnowledge,
-} from "../../services/auth";
+// import {
+//   getCourses,
+//   getFormations,
+//   getKnowledges,
+//   ICourse,
+//   IFormation,
+//   IKnowledge,
+// } from "../../services/auth";
+
 import InputMask from "react-input-mask";
 import { MultiSelect } from "../../components/MultiSelect";
 import { getSignupStep3 } from "../../shared/signup";
+import { getCourses, ICourse } from "../../services/course";
+import {
+  getFormations,
+  getKnowledges,
+  IFormation,
+  IKnowledge,
+} from "../../services/common";
 
 export default function signinredatorstep2() {
   const { handleSubmit } = getSignupStep3(2, "/signinredatorstep4");
@@ -83,7 +91,11 @@ export default function signinredatorstep2() {
                 </option>
               ))}
             </SelectReact> */}
-            <MultiSelect options={knowledges} id="knowledges" name="knowledges" />
+            <MultiSelect
+              options={knowledges}
+              id="knowledges"
+              name="knowledges"
+            />
             <h3>Formação</h3>
             <SelectReact name="formation" placeholder="Selecione">
               {formations.map((formation: IFormation) => (
