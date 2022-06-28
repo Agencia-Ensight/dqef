@@ -17,6 +17,7 @@ export const Wrapper = styled.div`
 
 export const Line = styled.div``;
 export const ContainerImage = styled.div`
+height: 85vh;
   @media (max-width: 600px) {
     display: none;
   }
