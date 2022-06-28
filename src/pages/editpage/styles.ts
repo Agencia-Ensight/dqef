@@ -63,7 +63,7 @@ export const ContainerMini = styled.div`
     color: #53647e;
     font-size: 18px;
     margin-bottom: 10px;
-    margin-top: 10px;
+
   }
 
   select {
