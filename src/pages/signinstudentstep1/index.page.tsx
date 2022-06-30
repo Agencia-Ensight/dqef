@@ -5,9 +5,12 @@ import InputMask from "react-input-mask";
 
 import { MultiStepForm } from "../../components/MultiStepForm";
 import Router, { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function signinstudentstep1() {
   const router = useRouter();
+  const [password, setPassword] = useState("");
+  const [passwordConfimation, setPasswordConfimation] = useState("");
 
   return (
     <S.Wrapper>
@@ -49,12 +52,16 @@ export default function signinstudentstep1() {
               label="Crie sua senha"
               name="password"
               placeholder="Insira sua senha "
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               type="password"
             />
             <Input
               label="Confirme sua senha "
               name="password"
+              value={passwordConfimation}
+              onChange={(e) => setPasswordConfimation(e.target.value)}
               placeholder="Repita ela"
               required
               type="password"
@@ -68,7 +75,12 @@ export default function signinstudentstep1() {
               required
             />
           </S.InputContainer>
-          <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
+          <ButtonKnewave
+            variant="PRIMARY"
+            size="sm"
+            type="submit"
+            onClick={() => handlePassword()}
+          >
             Próximo
           </ButtonKnewave>
         </MultiStepForm>

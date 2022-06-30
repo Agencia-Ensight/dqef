@@ -17,15 +17,17 @@ function insideJob() {
 
   useEffect(() => {
     if (isReady) {
-      apolloClient.query({
-        query: JOB_QUERY,
-        variables: {
-          id: query.pid
-        }
-      }).then(({ data }: { data: JobByPk }) => {
-        console.log(data.jobs_by_pk);
-        setJob(data.jobs_by_pk);
-      })
+      apolloClient
+        .query({
+          query: JOB_QUERY,
+          variables: {
+            id: query.pid,
+          },
+        })
+        .then(({ data }: { data: JobByPk }) => {
+          console.log(data.jobs_by_pk);
+          setJob(data.jobs_by_pk);
+        });
     }
   }, [query, isReady]);
 
@@ -37,7 +39,9 @@ function insideJob() {
         jobId={job.id}
         course="ECONOMIA" // higher_course_name TODO: Sincronizar com o banco de dados?
         date={job.delivery}
-        discipline={job!.job_has_knowledges.map(({ knowledge: { name: knowledge_name } }) => knowledge_name).join(", ")}
+        discipline={job!.job_has_knowledges
+          .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
+          .join(", ")}
         price={job!.value_pay}
         theme={job!.theme}
         title={job!.title}
@@ -59,11 +63,13 @@ function insideJob() {
           hideScrollbars={true}
           className="files-container"
         >
-          {job.job_has_medias.map(({ media: { id: media_id, title: media_name, link: media_url } }) => (
-            <FileCard
-              title={media_name}
-              />
-          ))}
+          {job.job_has_medias.map(
+            ({
+              media: { id: media_id, title: media_name, link: media_url },
+            }) => (
+              <FileCard key={media_id} title={media_name} />
+            )
+          )}
         </ScrollContainer>
         <FAQCard jobId={job.id} />
       </S.Container>

@@ -31,7 +31,8 @@ export function UrgentWorks() {
             jobId={urgentJob.id}
             course="ECONOMIA"
             date={urgentJob.delivery}
-            discipline={urgentJob.job_has_knowledges[0].knowledge.name}
+            // discipline={urgentJob.job_has_knowledges[0].knowledge.name}
+
             price={urgentJob.value_pay}
             theme={urgentJob.theme}
             title={urgentJob.title}
