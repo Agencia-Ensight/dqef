@@ -119,7 +119,9 @@ const JobStep3 = forwardRef(
           defaultValue={job?.obs}
           placeholder="ex: Espaço para adicionar algum comentário, dica ou pedido ao redator."
         ></textarea>
-
+<label>
+          Anexar arquivos
+        </label>
         <section className="container">
           <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} name="attachments" />
@@ -128,7 +130,7 @@ const JobStep3 = forwardRef(
             </S.IconContainer>
           </div>
           <aside>
-            <h4>Arquivos</h4>
+            
             <ul>{files}</ul>
           </aside>
         </section>
