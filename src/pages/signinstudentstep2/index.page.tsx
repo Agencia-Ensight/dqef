@@ -2,14 +2,16 @@ import { ButtonKnewave } from "../../components/ButtonKnewave";
 import * as S from "./styles";
 import { Checkbox, Select } from "@chakra-ui/react";
 import { Input } from "../../components/Input";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import Router, { useRouter } from "next/router";
 import { getSignupStep3 } from "../../shared/signup";
 import { getCourses, ICourse } from "../../services/course";
+import { getColleges, ICollege } from "../../services/college";
 
 export default function signinstudentstep2() {
   const [courses, setCourses] = React.useState<ICourse[]>([]);
+  const [colleges, setColleges] = useState<ICollege[]>([]);
 
   const router = useRouter();
 
@@ -22,6 +24,15 @@ export default function signinstudentstep2() {
     }
 
     loadCourses();
+  }, []);
+
+  useEffect(() => {
+    async function loadColleges() {
+      const res = await getColleges();
+      setColleges(res);
+    }
+
+    loadColleges();
   }, []);
 
   return (
@@ -56,7 +67,19 @@ export default function signinstudentstep2() {
               ))}
             </Select>
 
-            <Input name="college" label="Faculdade" placeholder="Insira aqui" />
+            <label>Faculdade</label>
+
+            <Select
+              className="testesolidopadrao"
+              name="college"
+              placeholder="Selecione a faculdade"
+            >
+              {colleges.map((college: ICollege) => (
+                <option key={college.id} value={college.id}>
+                  {college.name} - {college.sigla}
+                </option>
+              ))}
+            </Select>
           </S.InputContainer>
           <div>
             <Checkbox>Aceitar Termos de Uso</Checkbox>
