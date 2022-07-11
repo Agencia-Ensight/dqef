@@ -99,6 +99,11 @@ export const ContainerInformation = styled.div`
     font-weight: 600;
     color: #42a4ef;
   }
+  h6{ 
+    color: red;
+    margin-top: 10px;
+
+  }
 
   p {
     margin-top: 10px;

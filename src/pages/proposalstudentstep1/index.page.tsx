@@ -40,6 +40,7 @@ export default function proposalstudentstep1() {
           </S.HeaderContainer>
 
           <p>Para publicar seu trabalho, insira as seguintes informações.</p>
+          <h6>Atenção! É expressamente proibido o compartilhamento de informações pessoais entre os usuários. Tal prática está sujeita ao banimento imediato de ambos os usuários por tempo indeterminado da plataforma.</h6>
           <JobStep1
             jobTypes={jobTypes?.job_types ?? [] }
             higherCourses={higherCourses?.higher_courses ??  [] }
