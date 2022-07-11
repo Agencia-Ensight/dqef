@@ -21,34 +21,18 @@ export const ButtonContainer = styled.div`
     justify-content: center;
 `
 
-export const ButtonBang = styled.div`
-    width: 500px;
-    height: 50px;
-    border: solid #E6DE22;
-    border-radius: 99px;
-    margin: 0 auto;
-    text-align: center;
-
-    
-    p{ 
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: 700;
-    color: black;
-
-
-    }
-
-    
-
-
-`
 export const NerdImage = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 10px;
 
+
+    @media (max-width: 600px){
+        img{
+            width: 200px;
+            height: 170px;
+        }
+    }
 
 
 `

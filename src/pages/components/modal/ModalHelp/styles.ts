@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
+    margin-top: 30px;
 `
 
 export const Button = styled.button`
@@ -21,6 +22,11 @@ export const Description = styled.h3`
     color: #4E4E4E;
     font-size: 1.5rem;
     text-align: center;
+
+`
+
+export const InfoDiv = styled.div`
+    margin-top: 30px;
 `
 
 export const Span = styled.a`

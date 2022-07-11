@@ -22,8 +22,7 @@ export const ButtonContainer = styled.div`
 `
 
 export const ButtonBang = styled.div`
-    width: 700px;
-    height: 50px;
+    padding: 10px 0px;
     border: solid #42A4EF;
     border-radius: 99px;
     margin: 0 auto;
@@ -62,11 +61,11 @@ export const NerdImage = styled.div`
 export const TextInformation = styled.div`
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin-top: 30px;
     gap: 30px;
     align-items: center;
     margin-bottom: 80px;
-
 
 
   p{ 
@@ -85,8 +84,13 @@ export const ButtonFinaleira = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    gap: 20px;
+    white-space: nowrap;
 
+    @media (max-width: 600px){
+        flex-wrap: wrap;
 
+    }
 
 `
 

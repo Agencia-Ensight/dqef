@@ -10,13 +10,14 @@ export const Description = styled.div`
     color: #4E4E4E;
     font-size: 24px;
     margin-bottom: 20px;
+
+  
+
    }
    h4{ 
     font-weight: 700;
     color: #4E4E4E;
     font-size: 18.14px;
-
-
    }
 
    h3{ 
@@ -39,7 +40,6 @@ export const Description = styled.div`
    }
 
 
-    
 
 `
 
@@ -59,6 +59,10 @@ export const Description1 = styled.button`
     color: #4E4E4E;
     font-size: 24px;
     margin-bottom: 20px;
+
+    @media (max-width: 600px){
+        font-size: 1rem;
+    }
    }
 
 
@@ -79,6 +83,10 @@ export const Descriptionsplit = styled.div`
     gap: 100px;
     
 
+    @media (max-width: 600px){
+        flex-direction: column;
+    }
+
 
 `
 
@@ -96,6 +104,9 @@ export const ContainerPadrao = styled.div`
     margin-bottom: 20px;
 
     
+    @media (max-width: 600px){
+        flex-direction: column;
+    }
 
 `
 
@@ -127,8 +138,7 @@ export const ButtonFinaleira = styled.div`
 
 `
 export const ButtonBang = styled.div`
-    width: 500px;
-    height: 50px;
+    padding: 8px;
     border: solid #42A4EF;
     border-radius: 99px;
     margin: 0 auto;

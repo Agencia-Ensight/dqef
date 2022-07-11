@@ -1,7 +1,10 @@
 import { ButtonKnewave } from "../../../../components/ButtonKnewave";
+import useMedia from "../../../../hooks/useMedia";
 import * as S from "./styles";
 
 export function ModalHelp() {
+  const isMobile = useMedia("(max-width:600px)");
+
   return (
     <>
       <S.ButtonContainer>
@@ -13,10 +16,12 @@ export function ModalHelp() {
       <S.ButtonContainer>
         <S.Button>Tirar uma dúvida com estudante</S.Button>
       </S.ButtonContainer>
-      <S.Description>Nenhuma das opções?</S.Description>
-      <S.Description>Então converse com nossa equipe</S.Description>
+      <S.InfoDiv>
+        <S.Description>Nenhuma das opções?</S.Description>
+        <S.Description>Então converse com nossa equipe</S.Description>
+      </S.InfoDiv>
       <S.ButtonContainer>
-        <ButtonKnewave variant="PRIMARY" size="lg">
+        <ButtonKnewave variant="PRIMARY" size={isMobile ? "sm" : "lg"}>
           Continuar
         </ButtonKnewave>
       </S.ButtonContainer>

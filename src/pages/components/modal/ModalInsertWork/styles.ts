@@ -44,8 +44,7 @@ export const ButtonInputSolid = styled.div`
 
 
 export const ButtonBang = styled.div`
-    width: 500px;
-    height: 50px;
+    padding: 10px 10px;
     border: solid #42A4EF;
     border-radius: 99px;
     margin: 0 auto;
@@ -75,6 +74,18 @@ export const NerdImage = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 20px;
+
+ 
+
+    @media(max-width: 600px){
+      
+
+        img{
+        width: 200px;
+        height: 170px;
+        
+    }
+    }
 
 
 

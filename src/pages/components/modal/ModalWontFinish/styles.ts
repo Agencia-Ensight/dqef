@@ -22,16 +22,14 @@ export const ButtonContainer = styled.div`
 `
 
 export const ButtonBang = styled.div`
-    width: 500px;
-    height: 50px;
+    padding: 8px;
     border: solid #ED3561;
     border-radius: 99px;
     margin: 0 auto;
     text-align: center;
-
     
+
     p{ 
-    margin-top: 10px;
     font-size: 16px;
     font-weight: 700;
     color: black;
@@ -48,7 +46,12 @@ export const NerdImage = styled.div`
     justify-content: center;
     margin-top: 20px;
 
-
+    img{
+        @media (max-width: 600px){
+        width: 200px;
+        height: 170px;
+    }
+    }
 
 `
 
@@ -65,6 +68,10 @@ export const TextInformation = styled.div`
         color: #4E4E4E;
 
 
+        @media (max-width: 600px){
+            font-size: 18px;
+            text-align: center;
+        }
     }
 
     span{

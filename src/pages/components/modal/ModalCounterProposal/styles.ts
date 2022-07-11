@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+    input{
+        margin-top: 50px;
+    }
+`
+
 export const Description = styled.p`
     font-size: 1.2rem;
     color: #4E4E4E;
@@ -23,5 +29,11 @@ export const Image = styled.img`
 
     @media (max-width: 980px){
         width: 150px;
+    }
+
+    @media (max-width: 600px){
+        width: 200px;
+        height: 170px;
+        margin-top: 30px;
     }
 `

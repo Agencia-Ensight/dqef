@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { ButtonKnewave } from "../../../../components/ButtonKnewave";
+import useMedia from "../../../../hooks/useMedia";
 import * as S from "./styles";
 
 export function ModalRules() {
   const [showMore, setShowMore] = useState(true);
+  const isMobile = useMedia("(max-width:600px)");
+
   return (
     <>
       <S.Description>Infos para iniciar</S.Description>
@@ -37,7 +40,7 @@ export function ModalRules() {
         {showMore ? "Ler Mais" : "Aparecer Menos"}
       </S.Button>
       <S.ButtonContainer>
-        <ButtonKnewave variant="PRIMARY" size="lg">
+        <ButtonKnewave variant="PRIMARY" size={isMobile ? "sm" : "lg"}>
           Iniciar
         </ButtonKnewave>
       </S.ButtonContainer>

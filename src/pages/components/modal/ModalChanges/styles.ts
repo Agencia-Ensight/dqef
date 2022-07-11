@@ -24,7 +24,7 @@ export const ButtonContainer = styled.div`
 `
 
 export const ButtonBang = styled.div`
-    width: 500px;
+    width: 100%;
     height: 50px;
     border: solid #42A4EF;
     border-radius: 99px;

@@ -45,6 +45,10 @@ export const NerdImage = styled.div`
     justify-content: center;
     margin-top: 20px;
 
+    @media (max-width: 600px){
+        display: none;
+    }
+
 
 
 

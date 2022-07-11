@@ -31,6 +31,13 @@ border: 3px solid #42A4EF;
   width: 70vw;
   height: 85vh;
   padding: 71px 58px 6px 58px; 
+
+  @media (max-width: 500px){
+    padding: 10% 5%;
+    width: 90vw;
+    height: 550px;
+    overflow-x: scroll;
+  }
 `;
 
 export const Header = styled.div`
@@ -60,6 +67,13 @@ export const CloseButton = styled.button`
  position: absolute;
  top: 12%;
  right: 5%;
+
+ @media (max-width: 500px){
+    top: 24px;
+    font-size: 15px;
+ padding: 4px 13px 4px 13px;
+
+  }
 `;
 
 export const Content = styled.div`

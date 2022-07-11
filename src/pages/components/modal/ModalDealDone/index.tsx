@@ -1,8 +1,11 @@
 import { ButtonKnewave } from "../../../../components/ButtonKnewave";
+import useMedia from "../../../../hooks/useMedia";
 
 import * as S from "./styles";
 
 export function ModalDealDone() {
+  const isMobile = useMedia("(max-width:600px)");
+
   return (
     <>
       <S.Description>
@@ -14,7 +17,7 @@ export function ModalDealDone() {
         Clique no botão abaixo para continuar e Mãos à obra!
       </S.Description>
       <S.ButtonContainer>
-        <ButtonKnewave variant="PRIMARY" size="lg">
+        <ButtonKnewave variant="PRIMARY" size={isMobile ? "sm" : "lg"}>
           Continuar
         </ButtonKnewave>
       </S.ButtonContainer>

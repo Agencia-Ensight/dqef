@@ -53,7 +53,12 @@ export const NerdImage = styled.div`
     margin-top: 20px;
     margin-bottom: 80px;;
 
-
+    img{
+        @media (max-width: 600px){
+        width: 200px;
+        height: 170px;
+    }
+    }
 
 `
 

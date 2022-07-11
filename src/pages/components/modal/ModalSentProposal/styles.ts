@@ -4,12 +4,15 @@ export const Description = styled.p`
     font-size: 1.2rem;
     color: #4E4E4E;
     text-align: center;
+   
 `
 
 export const List = styled.p`
     font-size: 1.2rem;
     color: #4E4E4E;
     margin-top: 1rem;
+
+    
 `
 
 export const Button = styled.button`
@@ -37,6 +40,7 @@ export const ButtonBang = styled.div`
     font-weight: 700;
     color: black;
 
+    
 
     }
 
@@ -50,6 +54,12 @@ export const NerdImage = styled.div`
     margin-top: 10px;
 
 
+    img{
+        @media (max-width: 600px){
+        width: 200px;
+        height: 170px;
+    }
+    }
 
 `
 
