@@ -7,9 +7,18 @@ import { MultiStepForm } from "../../components/MultiStepForm";
 import InputMask from "react-input-mask";
 
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function signinredatorstep1() {
   const router = useRouter();
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  function handleSubmit() {
+    if (password === confirmPassword) {
+      Router.push("/signinredatorstep2");
+    } else console.log("23232");
+  }
 
   return (
     <S.Wrapper>
@@ -26,9 +35,7 @@ export default function signinredatorstep1() {
         <MultiStepForm
           firstStep={true}
           stateName="signupData"
-          onSubmit={(_) => {
-            Router.push("/signinredatorstep2");
-          }}
+          onSubmit={() => handleSubmit()}
           onFail={() => {
             Router.push("/signinredatorstep1");
           }}
@@ -51,6 +58,8 @@ export default function signinredatorstep1() {
               label="Crie sua senha"
               name="password"
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Insira sua senha "
               required
             />
@@ -59,6 +68,8 @@ export default function signinredatorstep1() {
               label="Confirme sua senha "
               placeholder="Repita ela"
               required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
             {/* <Input
               label="Telefone para contato"

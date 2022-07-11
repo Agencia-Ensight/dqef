@@ -12,6 +12,12 @@ export default function signinstudentstep1() {
   const [password, setPassword] = useState("");
   const [passwordConfimation, setPasswordConfimation] = useState("");
 
+  function handleSubmit() {
+    if (password === passwordConfimation) {
+      Router.push("/signinstudentstep2");
+    } else console.log("123banana");
+  }
+
   return (
     <S.Wrapper>
       <S.ContainerImage>
@@ -27,9 +33,7 @@ export default function signinstudentstep1() {
         <MultiStepForm
           firstStep={true}
           stateName="signupStudentData"
-          onSubmit={(_) => {
-            Router.push("/signinstudentstep2");
-          }}
+          onSubmit={() => handleSubmit()}
           onFail={() => {
             Router.push("/signinstudentstep1");
           }}
@@ -51,7 +55,7 @@ export default function signinstudentstep1() {
             <Input
               label="Crie sua senha"
               name="password"
-              placeholder="Insira sua senha "
+              placeholder="Insira sua senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -75,12 +79,7 @@ export default function signinstudentstep1() {
               required
             />
           </S.InputContainer>
-          <ButtonKnewave
-            variant="PRIMARY"
-            size="sm"
-            type="submit"
-            onClick={() => handlePassword()}
-          >
+          <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
             Próximo
           </ButtonKnewave>
         </MultiStepForm>
