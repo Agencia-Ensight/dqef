@@ -18,6 +18,11 @@ import { axiosClient } from "../../../../services/api";
 import { AuthContext } from "../../../../contexts/AuthContext";
 import { uploadJobAttachment } from "../../../../services/common";
 import { AiOutlineDownload } from "react-icons/ai";
+import { useEffect } from "react";
+import {
+  getJobFileFormat,
+  IJobFileFormat,
+} from "../../../../services/jobFileFormat";
 
 export interface Ref {
   uploadFiles: (jobId: string) => Promise<any>;
@@ -35,6 +40,7 @@ const JobStep3 = forwardRef(
   ) => {
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
     const { hasuraToken } = useContext(AuthContext)!;
+    const [fileFormats, setFileFormats] = useState<IJobFileFormat[]>([]);
 
     const [inputValue, setInputValue] = useState("");
 
@@ -52,6 +58,17 @@ const JobStep3 = forwardRef(
         {file.name} - {file.size} bytes
       </li>
     ));
+
+    useEffect(() => {
+      async function loadFileFormats() {
+        const res = await getJobFileFormat();
+        setFileFormats(res);
+      }
+
+      loadFileFormats();
+    }, []);
+
+    console.log(fileFormats);
 
     return (
       <S.InputFields>
@@ -75,13 +92,13 @@ const JobStep3 = forwardRef(
               name="job_format_id"
               defaultValue={job?.job_format.id}
             >
-              {jobFormats?.map((jobFormat) => (
+              {fileFormats.map((file) => (
                 <option
-                  key={jobFormat.id}
-                  value={jobFormat.id}
-                  selected={jobFormat.id === job?.job_format.id}
+                  key={file.id}
+                  value={file.id}
+                  selected={file.id === job?.job_format.id}
                 >
-                  {jobFormat.name}
+                  {file.name}
                 </option>
               ))}
             </Select>
@@ -119,9 +136,7 @@ const JobStep3 = forwardRef(
           defaultValue={job?.obs}
           placeholder="ex: Espaço para adicionar algum comentário, dica ou pedido ao redator."
         ></textarea>
-<label>
-          Anexar arquivos
-        </label>
+        <label>Anexar arquivos</label>
         <section className="container">
           <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} name="attachments" />
@@ -130,7 +145,6 @@ const JobStep3 = forwardRef(
             </S.IconContainer>
           </div>
           <aside>
-            
             <ul>{files}</ul>
           </aside>
         </section>
