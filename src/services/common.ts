@@ -47,7 +47,14 @@ export interface IKnowledge {
 
 export const getKnowledges = async (): Promise<IKnowledge[]> => {
   const result = await apolloClient.query({
-    query: gql``,
+    query: gql`
+    query {
+      knowledges {
+        id
+        name
+      }
+    }
+    `,
   });
   return result.data.knowledges;
 };

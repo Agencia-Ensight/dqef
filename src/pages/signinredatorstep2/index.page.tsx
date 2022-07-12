@@ -26,6 +26,8 @@ import {
   IFormation,
   IKnowledge,
 } from "../../services/common";
+import { getColleges, ICollege } from "../../services/college";
+import { useState } from "react";
 
 export default function signinredatorstep2() {
   const { handleSubmit } = getSignupStep3(2, "/signinredatorstep4");
@@ -33,6 +35,7 @@ export default function signinredatorstep2() {
   const [courses, setCourses] = React.useState<ICourse[]>([]);
   const [formations, setFormations] = React.useState<IFormation[]>([]);
   const [knowledges, setKnowledges] = React.useState<IKnowledge[]>([]);
+  const [colleges, setColleges] = useState<ICollege[]>([]);
 
   const router = useRouter();
 
@@ -52,9 +55,15 @@ export default function signinredatorstep2() {
       setKnowledges(res);
     }
 
+    async function loadColleges() {
+      const res = await getColleges();
+      setColleges(res);
+    }
+
     loadCourses();
     loadFormations();
     loadKnowledges();
+    loadColleges();
   }, []);
 
   return (
@@ -101,6 +110,14 @@ export default function signinredatorstep2() {
               {formations.map((formation: IFormation) => (
                 <option key={formation.id} value={formation.id}>
                   {formation.name}
+                </option>
+              ))}
+            </SelectReact>
+            <h3>Faculdade</h3>
+            <SelectReact name="college" placeholder="Selecione">
+              {colleges.map((college: ICollege) => (
+                <option key={college.id} value={college.id}>
+                  {college.name} - {college.sigla}
                 </option>
               ))}
             </SelectReact>
