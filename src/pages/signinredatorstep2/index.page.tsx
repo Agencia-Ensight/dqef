@@ -6,16 +6,6 @@ import Router from "next/router";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-
-// import {
-//   getCourses,
-//   getFormations,
-//   getKnowledges,
-//   ICourse,
-//   IFormation,
-//   IKnowledge,
-// } from "../../services/auth";
-
 import InputMask from "react-input-mask";
 import { MultiSelect } from "../../components/MultiSelect";
 import { getSignupStep3 } from "../../shared/signup";
@@ -29,6 +19,16 @@ import {
 import { getColleges, ICollege } from "../../services/college";
 import { useState } from "react";
 
+const options = [
+  { name: "Swedish", value: "sv" },
+  { name: "English", value: "en" },
+  {
+    type: "group",
+    name: "Group name",
+    items: [{ name: "Spanish", value: "es" }],
+  },
+];
+
 export default function signinredatorstep2() {
   const { handleSubmit } = getSignupStep3(2, "/signinredatorstep4");
 
@@ -36,6 +36,7 @@ export default function signinredatorstep2() {
   const [formations, setFormations] = React.useState<IFormation[]>([]);
   const [knowledges, setKnowledges] = React.useState<IKnowledge[]>([]);
   const [colleges, setColleges] = useState<ICollege[]>([]);
+  const [cpf, setCpf] = useState("");
 
   const router = useRouter();
 
@@ -65,6 +66,39 @@ export default function signinredatorstep2() {
     loadKnowledges();
     loadColleges();
   }, []);
+
+  function validCPF(strCPF: string) {
+    var Soma;
+    var Resto;
+    Soma = 0;
+    if (strCPF == "00000000000") return false;
+
+    for (let i = 1; i <= 9; i++)
+      Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+
+    if (Resto == 10 || Resto == 11) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+    Soma = 0;
+    for (let i = 1; i <= 10; i++)
+      Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if (Resto == 10 || Resto == 11) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+    return true;
+  }
+
+  var strCPF = "08146817947";
+
+  function banana() {
+    if (validCPF(strCPF) === true) {
+      return console.log("banana");
+    } else console.log("arroz");
+  }
+
+  banana();
 
   return (
     <S.Wrapper>
@@ -129,6 +163,8 @@ export default function signinredatorstep2() {
               mask="999.999.999-99"
               className="cpf-input"
               name="cpf"
+              value={cpf}
+              onChange={(e) => setCpf(e.target.value)}
             />
             <Input
               label="Forma de Pagamento"

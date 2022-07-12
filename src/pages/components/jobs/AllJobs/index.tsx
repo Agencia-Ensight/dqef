@@ -32,7 +32,7 @@ export const AllJobs = (): JSX.Element => {
             theme={theme}
             title={title}
             typeOfWork={job_type_name}
-            urgent={false} // TODO: Como pegar do banco de dados
+            urgent={false} // TODO:Como pegar do banco
             status="EMPLOYEE-SEE" // TODO: Sincronizar com o banco de dados?
           />
         )

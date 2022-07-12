@@ -1,4 +1,5 @@
 import { Select } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { Input } from "../../../../components/Input";
 import {
   HigherCourse,
@@ -10,6 +11,7 @@ import {
   KnowledgesData,
 } from "../../../../queries/jobs";
 import * as S from "./styles1";
+import { getJobFormat, IJobFormat } from "../../../../services/jobFormat";
 
 const JobStep1 = ({
   job,
@@ -22,6 +24,16 @@ const JobStep1 = ({
   higherCourses: HigherCourse[];
   knowledges: Knowledges[];
 }) => {
+  const [formats, setFormats] = useState<IJobFormat[]>([]);
+  useEffect(() => {
+    async function loadFormats() {
+      const res = await getJobFormat();
+      setFormats(res);
+    }
+
+    loadFormats();
+  }, []);
+
   return (
     <S.InputFields>
       <S.FirstInputContainer>
@@ -43,13 +55,13 @@ const JobStep1 = ({
             name="job_type_id"
             defaultValue={job?.job_type?.id}
           >
-            {jobTypes?.map((jobType) => (
+            {formats.map((format) => (
               <option
-                key={jobType.id}
-                value={jobType.id}
-                selected={jobType.id === job?.job_type?.id}
+                key={format.id}
+                value={format.id}
+                selected={format.id === job?.job_format?.id}
               >
-                {jobType.name}
+                {format.name}
               </option>
             ))}
           </Select>
