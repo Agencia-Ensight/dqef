@@ -3,17 +3,12 @@ import * as S from "./styles";
 
 import { Select } from '@chakra-ui/react';
 import { Input } from "../../components/Input";
-import { getProfile, IProfile, IProfileSimple, updateProfile } from "../../services/common";
+import {getFormations, getKnowledges, IFormation, IKnowledge } from "../../services/common";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import {
-  getCourses,
-  getFormations,
-  getKnowledges,
-  ICourse,
-  IFormation,
-  IKnowledge,
-} from "../../services/auth";
+
+import { getProfile, IProfile, IProfileSimple, updateProfile } from "../../services/profile";
+import { getCourses, ICourse } from "../../services/course";
 export default function redatoreditprofile() {
   const [userProfile, setUserProfile] = useState<IProfile>({} as IProfile);
   const [courses, setCourses] = useState<ICourse[]>([]);
