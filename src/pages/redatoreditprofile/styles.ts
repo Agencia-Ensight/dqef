@@ -7,6 +7,11 @@ export const Wrapper = styled.div`
   max-width: 100%;
   position: relative;
   margin: 0 auto;
+  overflow: hidden;
+
+  form{
+    overflow-y: scroll;
+  }
 
 
   span {
@@ -14,11 +19,40 @@ export const Wrapper = styled.div`
     font-weight: 400;
     font-size: 16px;
   }
+
+  .select-colleges{
+    border: 2px solid #42a4ef;
+    border-radius: 99px;
+    width: 100%;
+    height: 51px;
+    font-size: 18px;
+    padding: 10px 29px;
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+
+    &::placeholder {
+      color: #848484;
+    }
+
+    
+  }
+
+  .select-colleges select {
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+
+  }
+
+
+  
 `;
 
 export const ContainerImage = styled.div`
-  height: 100%;
-  width: 30%;
+  width: 40%;
+  height: auto;
 
   @media (max-width: 600px) {
     display: none;
@@ -82,8 +116,9 @@ export const ContainerInformationDosBang = styled.div`
 `;
 
 export const ContainerInformation = styled.div`
-padding: 47px 10px 26px 69px;
+  padding: 47px 10px 26px 69px;
   width: 70%;
+
   @media (max-width: 600px) {
     width: 100%;
   }
@@ -105,6 +140,7 @@ padding: 47px 10px 26px 69px;
     font-weight: 400;
     font-size: 18px;
     margin-bottom: 30px;
+  }
 
 
   @media (max-width: 600px) {

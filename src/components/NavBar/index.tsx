@@ -5,7 +5,6 @@ import { ButtonKnewave } from "../../components/ButtonKnewave";
 import { Menu } from "./components/Menu";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useMemo } from "react";
-import { Button } from "../Button";
 
 export function NavBar() {
   const { isAuthenticated, setToken } = useContext(AuthContext)!;
