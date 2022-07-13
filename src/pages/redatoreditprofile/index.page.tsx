@@ -152,7 +152,7 @@ export default function redatoreditprofile() {
             <S.SpecialOne>
               {/* TODO: Add multiselect here */}
               <Input
-                label="Áreas de Conhecimento"
+                label="Áreas de conhecimento"
                 placeholder="Tags aqui"
                 type="text"
                 required
@@ -160,6 +160,20 @@ export default function redatoreditprofile() {
             </S.SpecialOne>
 
 
+
+          </S.ContainerLine>
+
+          <S.ContainerLine>
+
+          <S.SpecialOne>
+              {/* TODO: Add multiselect here */}
+              <Input
+                label="Faculdade"
+                placeholder="Tags aqui"
+                type="text"
+                required
+              />
+            </S.SpecialOne>
 
           </S.ContainerLine>
 

@@ -82,6 +82,7 @@ export const ContainerInformationDosBang = styled.div`
 `;
 
 export const ContainerInformation = styled.div`
+padding: 47px 10px 26px 69px;
   width: 70%;
   @media (max-width: 600px) {
     width: 100%;
@@ -110,5 +111,5 @@ export const ContainerInformation = styled.div`
     padding: 10% 5%;
   }
 
-  padding: 47px 120px 26px 69px;
+  
 `;
