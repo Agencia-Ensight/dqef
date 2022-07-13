@@ -1,29 +1,25 @@
-import React from "react";
+import Link from "next/link";
+import Router from "next/router";
 import {
   AiFillStar,
   AiOutlineEdit,
   AiOutlineCheckSquare,
 } from "react-icons/ai";
-import { FaPuzzlePiece } from "react-icons/fa";
 import { HiOutlinePuzzle } from "react-icons/hi";
-
-import Link from "next/link";
-import { useRouter } from "next/router";
 
 import * as S from "./styles";
 import { Props } from "./typings";
 
-export function ProfileCard({ img, profileName, course, variant }: Props) {
-  const router = useRouter();
-  const isActivePublished = router.asPath === "/profilestudentpublishedjobs";
-  const isActiveRunning = router.asPath === "/profilestudentrunningjobs";
-  const isActiveDone = router.asPath === "/profilestudentfinishedjobs";
+function ProfileCard({ img, profileName, course, variant }: Props) {
+  const isActivePublished = Router.asPath === "/profilestudentpublishedjobs";
+  const isActiveRunning = Router.asPath === "/profilestudentrunningjobs";
+  const isActiveDone = Router.asPath === "/profilestudentfinishedjobs";
 
-  const isActiveProposal = router.asPath === "/profileredatorsentproposal";
+  const isActiveProposal = Router.asPath === "/profileredatorsentproposal";
   const isActiveRunningEmployee =
-    router.asPath === "/profileredatorrunningjobs";
+    Router.asPath === "/profileredatorrunningjobs";
 
-  const isActiveDoneEmpleyee = router.asPath === "/profileredatorfinishedjobs";
+  const isActiveDoneEmpleyee = Router.asPath === "/profileredatorfinishedjobs";
 
   return (
     <S.MainWrapper>
@@ -161,3 +157,5 @@ export function ProfileCard({ img, profileName, course, variant }: Props) {
     </S.MainWrapper>
   );
 }
+
+export { ProfileCard };

@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   box-shadow: 0px 0px 20px rgba(198, 198, 198, 0.25);
   border-radius: 15px;
   padding: 50px 40px 10px 40px;
+
   @media (max-width: 600px) {
     width: 330px;
     min-width: 330px;

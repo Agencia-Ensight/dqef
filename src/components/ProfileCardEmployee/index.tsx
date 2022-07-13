@@ -1,9 +1,11 @@
 import { AiFillStar } from "react-icons/ai";
+
 import { TagKnowledge } from "./components/TagKnowledge";
+
 import * as S from "./styles";
 import { Props } from "./typings";
 
-export function ProfileCardEmployee({
+function ProfileCardEmployee({
   img,
   price,
   course,
@@ -54,3 +56,5 @@ export function ProfileCardEmployee({
     </>
   );
 }
+
+export { ProfileCardEmployee };

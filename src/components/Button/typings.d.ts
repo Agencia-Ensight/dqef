@@ -1,18 +1,15 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes } from "react";
 
 type ButtonVariant =
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'quaternary'
-  | 'quinternary'
-
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "quaternary"
+  | "quinternary";
 
 export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
-    /**
-     * @default primary
-     */
-    variant?: ButtonVariant;
-  };
-  
-
+  /**
+   * @default primary
+   */
+  variant?: ButtonVariant;
+};

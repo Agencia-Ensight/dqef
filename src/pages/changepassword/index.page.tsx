@@ -6,7 +6,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { Input } from "../../components/Input";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import Router, { useRouter } from "next/router";
-import { forgotPasswordCode } from "../../services/auth";
+import { forgotPasswordCode } from "../../../WILL_BE_REMOVED/auth";
 
 export default function changepassword() {
   const handleSubmit = (data: any) => {

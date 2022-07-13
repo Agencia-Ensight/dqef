@@ -1,12 +1,12 @@
+import { useState } from "react";
 import { MdSegment, MdClose } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useState } from "react";
 import * as S from "./styles";
-import { ButtonKnewave } from "../../../ButtonKnewave";
+import { ButtonKnewave } from "@/components/ButtonKnewave";
 
-export function Menu() {
+function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleOpen() {
@@ -77,3 +77,5 @@ export function Menu() {
     </>
   );
 }
+
+export { Menu };

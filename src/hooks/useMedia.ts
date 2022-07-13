@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-const isBrowser = typeof window !== 'undefined';
+const isBrowser = typeof window !== "undefined";
 
 const useMedia = (query: string, defaultState = false) => {
   const [state, setState] = useState(
-    isBrowser ? () => window.matchMedia(query).matches : defaultState,
+    isBrowser ? () => window.matchMedia(query).matches : defaultState
   );
 
   useEffect(() => {
@@ -17,16 +17,16 @@ const useMedia = (query: string, defaultState = false) => {
       setState(!!mql.matches);
     };
 
-    mql.addEventListener('change', onChange);
+    mql.addEventListener("change", onChange);
     setState(mql.matches);
 
     return () => {
       mounted = false;
-      mql.removeEventListener('change', onChange);
+      mql.removeEventListener("change", onChange);
     };
   }, [query]);
 
   return state;
 };
 
-export default useMedia;
+export { useMedia };

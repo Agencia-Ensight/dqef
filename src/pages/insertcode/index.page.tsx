@@ -7,7 +7,7 @@ import { AiOutlineReload } from "react-icons/ai";
 import { Input } from "../../components/Input";
 import { MultiStepForm } from "../../components/MultiStepForm";
 import Router from "next/router";
-import { forgotPassword } from "../../services/auth";
+import { forgotPassword } from "../../../WILL_BE_REMOVED/auth";
 
 export default function forgotpassword() {
   const getSignupData = () => {
@@ -70,7 +70,6 @@ export default function forgotpassword() {
             <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
               Alterar senha
             </ButtonKnewave>
-            
           </div>
         </S.ContainerInformation>
       </MultiStepForm>

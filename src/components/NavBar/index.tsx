@@ -1,22 +1,13 @@
+import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 import * as S from "./styles";
-import { ButtonKnewave } from "../../components/ButtonKnewave";
-import { Menu } from "./components/Menu";
-import { AuthContext } from "../../contexts/AuthContext";
-import { useContext, useMemo } from "react";
-import { Button } from "../Button";
+import { ButtonKnewave, Menu } from "@/components";
 
-export function NavBar() {
-  const { isAuthenticated, setToken } = useContext(AuthContext)!;
-
+function NavBar() {
   const getLoginOrLogout = useMemo(() => {
-    const logout = () => {
-      setToken(null);
-      window.location.href = "/";
-    };
-
-    if (!isAuthenticated) {
+    if (false) {
       return (
         <Link href="/login" passHref>
           <S.MenuItem>
@@ -28,14 +19,14 @@ export function NavBar() {
       return (
         <Link href="#" passHref>
           <S.MenuItem>
-            <ButtonKnewave onClick={logout} size="sm" variant="SECONDARY">
+            <ButtonKnewave size="sm" variant="SECONDARY">
               Sair
             </ButtonKnewave>
           </S.MenuItem>
         </Link>
       );
     }
-  }, [isAuthenticated, setToken]);
+  }, []);
 
   return (
     <S.MainWrapper>
@@ -111,6 +102,9 @@ export function NavBar() {
           </button>
         </S.Wrapper>
       </S.Container>
+      <Menu />
     </S.MainWrapper>
   );
 }
+
+export { NavBar };

@@ -1,25 +1,24 @@
-import { ModalFeedback } from "../../pages/components/modal/ModalFeedback";
+import { ModalFeedback } from "../../../WILL_BE_REMOVED/components/modal/ModalFeedback";
 import { Button } from "../Button";
 import * as S from "./styles";
 
 import { Props } from "./typings";
 import { useModal } from "../../hooks/useModal";
 import { Modal } from "../Modal";
-import { ModalInsertWork } from "../../pages/components/modal/ModalInsertWork";
-import { ModalSendWork } from "../../pages/components/modal/ModalSendWork";
-import { ModalDone } from "../../pages/components/modal/ModalDone";
-import { ModalChanges } from "../../pages/components/modal/ModalChanges";
-import { ModalRules } from "../../pages/components/modal/ModalRules";
-import { ModalCounterProposal } from "../../pages/components/modal/ModalCounterProposal";
-import { ModalDealDone } from "../../pages/components/modal/ModalDealDone";
-import { ModalRating } from "../../pages/components/modal/ModalRating";
-import { ModalOpenWork } from "../../pages/components/modal/ModalOpenWork";
-import { ModalOpenWorkStep2 } from "../../pages/components/modal/ModalOpenWorkStep2";
-import { ModalRequestChanges } from "../../pages/components/modal/ModalRequestChanges";
-import { ModalCalmaLa } from "../../pages/components/modal/ModalCalmaLa";
-import { ModalPayment } from "../../pages/components/modal/ModalPayment";
+import { ModalInsertWork } from "../../../WILL_BE_REMOVED/components/modal/ModalInsertWork";
+import { ModalDone } from "../../../WILL_BE_REMOVED/components/modal/ModalDone";
+import { ModalChanges } from "../../../WILL_BE_REMOVED/components/modal/ModalChanges";
+import { ModalRules } from "../../../WILL_BE_REMOVED/components/modal/ModalRules";
+import { ModalCounterProposal } from "../../../WILL_BE_REMOVED/components/modal/ModalCounterProposal";
+import { ModalDealDone } from "../../../WILL_BE_REMOVED/components/modal/ModalDealDone";
+import { ModalRating } from "../../../WILL_BE_REMOVED/components/modal/ModalRating";
+import { ModalOpenWork } from "../../../WILL_BE_REMOVED/components/modal/ModalOpenWork";
+import { ModalOpenWorkStep2 } from "../../../WILL_BE_REMOVED/components/modal/ModalOpenWorkStep2";
+import { ModalRequestChanges } from "../../../WILL_BE_REMOVED/components/modal/ModalRequestChanges";
+import { ModalCalmaLa } from "../../../WILL_BE_REMOVED/components/modal/ModalCalmaLa";
+import { ModalPayment } from "../../../WILL_BE_REMOVED/components/modal/ModalPayment";
 
-export function UrgentWorkCard({
+function UrgentWorkCard({
   jobId,
   course,
   title,
@@ -284,3 +283,5 @@ export function UrgentWorkCard({
     </S.Wrapper>
   );
 }
+
+export { UrgentWorkCard };

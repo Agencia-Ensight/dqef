@@ -1,14 +1,10 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from "react";
 
+type ButtonVariant = "PRIMARY" | "SECONDARY" | "TERITIARY";
 
-type ButtonVariant = 
-    | 'PRIMARY' 
-    | 'SECONDARY' 
-    | 'TERITIARY';
-
-type ButtonSize = 'lg' | 'md' | 'sm' ;
+type ButtonSize = "lg" | "md" | "sm";
 
 export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
-    size: ButtonSize;
-    variant: ButtonVariant;
-}
+  size: ButtonSize;
+  variant: ButtonVariant;
+};

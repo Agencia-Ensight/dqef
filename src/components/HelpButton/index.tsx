@@ -11,4 +11,4 @@ function HelpButton() {
   );
 }
 
-export default HelpButton;
+export { HelpButton };

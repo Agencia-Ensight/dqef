@@ -1,12 +1,20 @@
+import { useMemo, useState } from "react";
+
 import Select, { createFilter } from "react-select";
+
 import * as S from "./styles";
-import { Props } from "./typings"
+import { Props } from "./typings";
 
-import { colourOptions } from "./data";
-import React, { useMemo } from "react";
+import { colorOptions, ColorOption } from "./data";
 
-export function MultiSelect({ options, id, name, labelField = 'name', valueField = 'id'}: Props) {
-  const [selectedOption, setSelectedOption] = React.useState<any>([]);
+function MultiSelect({
+  options,
+  id,
+  name,
+  labelField = "name",
+  valueField = "id",
+}: Props) {
+  const [selectedOption, setSelectedOption] = useState<any>([]);
 
   const handleChange = (selectedOption: any) => {
     setSelectedOption(selectedOption);
@@ -33,3 +41,5 @@ export function MultiSelect({ options, id, name, labelField = 'name', valueField
     </S.Wrapper>
   );
 }
+
+export { MultiSelect };

@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+
 import { ButtonKnewave } from "../../../components/ButtonKnewave";
 import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
-import { getUrgentJobs, IJob } from "../../../services/job";
+
 import * as S from "./styles";
 
-export function UrgentWorks() {
-  const [urgentJobs, setUrgentJobs] = useState<IJob[]>([]);
+import { GET_URGENT_JOBS } from "../../../services/graphql/jobs";
+import { Job } from "../../../queries/jobs";
 
-  useEffect(() => {
-    (async () => {
-      const currentUrgentJobs = await getUrgentJobs();
-      setUrgentJobs(currentUrgentJobs);
-    })();
-  }, []);
+export function UrgentWorks() {
+  const urgentJobs = useQuery<{ jobs: Job[] }>(GET_URGENT_JOBS);
 
   return (
     <S.Wrapper>
@@ -25,13 +22,13 @@ export function UrgentWorks() {
         </S.Description>
       </S.HeaderContainer>
       <S.MainContainer>
-        {urgentJobs.map((urgentJob, index) => (
+        {urgentJobs.data?.jobs.map((urgentJob, index) => (
           <UrgentWorkCard
             key={index}
             jobId={urgentJob.id}
             course="ECONOMIA"
             date={urgentJob.delivery}
-            // discipline={urgentJob.job_has_knowledges[0].knowledge.name}
+            discipline={urgentJob.job_has_knowledges[0].knowledge.name}
             price={urgentJob.value_pay}
             theme={urgentJob.theme}
             title={urgentJob.title}

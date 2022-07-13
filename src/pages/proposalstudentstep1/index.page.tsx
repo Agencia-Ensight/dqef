@@ -5,9 +5,17 @@ import Router, { useRouter } from "next/router";
 
 import * as S from "./styles";
 import { MultiStepForm } from "../../components/MultiStepForm";
-import { HigherCoursesData, HIGHER_COURSES, Job, JobTypesData, JOB_TYPES, KNOWLEDGES, KnowledgesData } from "../../queries/jobs";
+import {
+  HigherCoursesData,
+  HIGHER_COURSES,
+  Job,
+  JobTypesData,
+  JOB_TYPES,
+  KNOWLEDGES,
+  KnowledgesData,
+} from "../../queries/jobs";
 import { useEffect } from "react";
-import JobStep1 from "../components/jobs/JobSteps/step1";
+import JobStep1 from "../../../WILL_BE_REMOVED/components/jobs/JobSteps/step1";
 
 export default function proposalstudentstep1() {
   const router = useRouter();
@@ -40,10 +48,14 @@ export default function proposalstudentstep1() {
           </S.HeaderContainer>
 
           <p>Para publicar seu trabalho, insira as seguintes informações.</p>
-          <h6>Atenção! É expressamente proibido o compartilhamento de informações pessoais entre os usuários. Tal prática está sujeita ao banimento imediato de ambos os usuários por tempo indeterminado da plataforma.</h6>
+          <h6>
+            Atenção! É expressamente proibido o compartilhamento de informações
+            pessoais entre os usuários. Tal prática está sujeita ao banimento
+            imediato de ambos os usuários por tempo indeterminado da plataforma.
+          </h6>
           <JobStep1
-            jobTypes={jobTypes?.job_types ?? [] }
-            higherCourses={higherCourses?.higher_courses ??  [] }
+            jobTypes={jobTypes?.job_types ?? []}
+            higherCourses={higherCourses?.higher_courses ?? []}
             knowledges={knowledges?.knowledges ?? []}
           />
           <ButtonKnewave variant="PRIMARY" type="submit" size="sm">

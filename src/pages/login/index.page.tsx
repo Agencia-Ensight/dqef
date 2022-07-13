@@ -5,7 +5,7 @@ import * as S from "./styles";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Input } from "../../components/Input";
 import { useContext, useState } from "react";
-import { signIn } from "../../services/auth";
+import { signIn } from "../../../WILL_BE_REMOVED/auth";
 import Router from "next/router";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Checkbox } from "@chakra-ui/react";

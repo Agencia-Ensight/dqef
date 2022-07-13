@@ -1,8 +1,7 @@
 import * as S from "./styles";
-
 import { Props } from "./typings";
 
-export function Input({ label, mandatory, ...props }: Props) {
+function Input({ label, mandatory, ...props }: Props) {
   return (
     <S.Wrapper className="input-root">
       <label>
@@ -13,3 +12,5 @@ export function Input({ label, mandatory, ...props }: Props) {
     </S.Wrapper>
   );
 }
+
+export { Input };

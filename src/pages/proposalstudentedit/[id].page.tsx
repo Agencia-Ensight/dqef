@@ -20,9 +20,9 @@ import {
 } from "../../queries/jobs";
 import { useEffect, useState } from "react";
 import { apolloClient } from "../../services/api";
-import JobStep1 from "../components/jobs/JobSteps/step1";
-import JobStep2 from "../components/jobs/JobSteps/step2";
-import JobStep3 from "../components/jobs/JobSteps/step3";
+import JobStep1 from "../../../WILL_BE_REMOVED/components/jobs/JobSteps/step1";
+import JobStep2 from "../../../WILL_BE_REMOVED/components/jobs/JobSteps/step2";
+import JobStep3 from "../../../WILL_BE_REMOVED/components/jobs/JobSteps/step3";
 
 export default function proposalstudentedit() {
   const [job, setJob] = useState<Job | undefined>(undefined);

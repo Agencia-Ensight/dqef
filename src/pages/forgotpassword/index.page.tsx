@@ -6,7 +6,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { Input } from "../../components/Input";
 import { useState } from "react";
 import Router from "next/router";
-import { forgotPassword } from "../../services/auth";
+import { forgotPassword } from "../../../WILL_BE_REMOVED/auth";
 import { MultiStepForm } from "../../components/MultiStepForm";
 
 export default function forgotpassword() {

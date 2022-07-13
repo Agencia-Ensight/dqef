@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
-export default createGlobalStyle`
-    *{
+export const GlobalStyle = createGlobalStyle`
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -53,13 +53,10 @@ export default createGlobalStyle`
         height: 100vh;
         display: flex;
         flex-direction: column;
-
     }
 
-    body{
+    body {
         background: #fafafa !important;
         font-family: 'Lato', sans-serif;
     }
-
-
 `;

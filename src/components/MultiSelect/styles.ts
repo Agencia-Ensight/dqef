@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   div {
     margin-bottom: 0rem;
   }
+
   .css-1s2u09g-control {
     border: 2px solid #42a4ef;
     border-radius: 99px;

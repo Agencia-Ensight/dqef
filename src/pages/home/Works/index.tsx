@@ -1,5 +1,5 @@
 import { ButtonKnewave } from "../../../components/ButtonKnewave";
-import { AllJobs } from "../../components/jobs/AllJobs";
+import { AllJobs } from "../../../../WILL_BE_REMOVED/components/jobs/AllJobs";
 
 import * as S from "./styles";
 

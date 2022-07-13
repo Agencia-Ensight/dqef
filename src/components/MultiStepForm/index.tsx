@@ -1,6 +1,4 @@
-import Router from "next/router";
-import React from "react";
-import { Props } from './typings';
+import { Props } from "./typings";
 
 export const getSessionStorageData = (key: string) => {
   const existingData = sessionStorage.getItem(key);
@@ -10,7 +8,13 @@ export const getSessionStorageData = (key: string) => {
   return null;
 };
 
-export function MultiStepForm({ firstStep, onSubmit, onFail, stateName, children }: Props) {
+export function MultiStepForm({
+  firstStep,
+  onSubmit,
+  onFail,
+  stateName,
+  children,
+}: Props) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -18,7 +22,6 @@ export function MultiStepForm({ firstStep, onSubmit, onFail, stateName, children
     const form = e.currentTarget;
     const data = new FormData(form);
     let formData = Object.fromEntries(data);
-    console.log(formData);
 
     // Get existing data
     if (!firstStep) {
@@ -34,12 +37,7 @@ export function MultiStepForm({ firstStep, onSubmit, onFail, stateName, children
     sessionStorage.setItem(stateName, JSON.stringify(formData));
 
     onSubmit(formData);
-    
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      {children}
-    </form>
-  );
+  return <form onSubmit={handleSubmit}>{children}</form>;
 }

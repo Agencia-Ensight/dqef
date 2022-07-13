@@ -1,9 +1,9 @@
 import * as S from "./styles";
 
-export function Footer() {
+function Footer() {
   return (
     <S.Wrapper>
-      <p>Copyright © 2022 DQEF. Direitos Reservados.</p>
+      <p>Copyright © {new Date().getFullYear()} DQEF. Direitos Reservados.</p>
       <S.Container>
         <p>Termos e Políticas de Privacidade</p>
         <S.Anchor href="#">Ver</S.Anchor>
@@ -11,3 +11,5 @@ export function Footer() {
     </S.Wrapper>
   );
 }
+
+export { Footer };

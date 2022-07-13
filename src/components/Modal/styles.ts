@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -26,13 +26,13 @@ export const StyledModal = styled.div`
   position: relative;
   margin: auto;
   box-shadow: 0px 0px 50px rgba(198, 198, 198, 0.35);
-border-radius: 35px;
-border: 3px solid #42A4EF;
+  border-radius: 35px;
+  border: 3px solid #42a4ef;
   width: 70vw;
   height: 85vh;
-  padding: 71px 58px 6px 58px; 
+  padding: 71px 58px 6px 58px;
 
-  @media (max-width: 500px){
+  @media (max-width: 500px) {
     padding: 10% 5%;
     width: 90vw;
     height: 550px;
@@ -60,19 +60,18 @@ export const CloseButton = styled.button`
   display: flex;
   align-items: center;
   color: white;
-  font-family: 'Knewave', sans-serif;
- font-size: 1.5rem;
- border-radius: 50%;
- padding: 8px 21px 8px 21px;
- position: absolute;
- top: 12%;
- right: 5%;
+  font-family: "Knewave", sans-serif;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  padding: 8px 21px 8px 21px;
+  position: absolute;
+  top: 12%;
+  right: 5%;
 
- @media (max-width: 500px){
+  @media (max-width: 500px) {
     top: 24px;
     font-size: 15px;
- padding: 4px 13px 4px 13px;
-
+    padding: 4px 13px 4px 13px;
   }
 `;
 
