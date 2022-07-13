@@ -12,6 +12,8 @@ import {
 } from "../../../../queries/jobs";
 import * as S from "./styles1";
 import { getJobFormat, IJobFormat } from "../../../../services/jobFormat";
+import { getCourses, ICourse } from "../../../../services/course";
+import { getKnowledges, IKnowledge } from "../../../../services/common";
 
 const JobStep1 = ({
   job,
@@ -25,13 +27,28 @@ const JobStep1 = ({
   knowledges: Knowledges[];
 }) => {
   const [formats, setFormats] = useState<IJobFormat[]>([]);
+  const [courses, setCourses] = useState<ICourse[]>([]);
+  const [subjects, setSubjects] = useState<IKnowledge[]>([]);
+
   useEffect(() => {
     async function loadFormats() {
       const res = await getJobFormat();
       setFormats(res);
     }
 
+    async function loadCourses() {
+      const res = await getCourses();
+      setCourses(res);
+    }
+
+    async function loadKnowledges() {
+      const res = await getKnowledges();
+      setSubjects(res);
+    }
+
+    loadCourses();
     loadFormats();
+    loadKnowledges();
   }, []);
 
   return (
@@ -87,6 +104,16 @@ const JobStep1 = ({
                 {higherCourse.name}
               </option>
             ))}
+
+            {courses.map((course) => (
+              <option
+                key={course.id}
+                value={course.id}
+                selected={course.id === job?.higher_course.id}
+              >
+                {course.name}
+              </option>
+            ))}
           </Select>
         </S.SelectContainer>
         <S.SelectContainer>
@@ -109,6 +136,19 @@ const JobStep1 = ({
                 }
               >
                 {knowledge.name}
+              </option>
+            ))}
+            {subjects.map((subject) => (
+              <option
+                value={subject.id}
+                key={subject.id}
+                selected={
+                  !!job?.job_has_knowledges?.find(
+                    (jobKnowledge) => jobKnowledge.knowledge.id === subject.id
+                  )
+                }
+              >
+                {subject.name}
               </option>
             ))}
           </Select>
