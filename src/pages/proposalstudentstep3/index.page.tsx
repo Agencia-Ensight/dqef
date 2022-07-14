@@ -82,10 +82,11 @@ export default function proposalstudentstep3(job?: Job) {
 
   return (
     <S.Wrapper>
+
       <S.ContainerImage>
         <S.Image src="/images/proposalstudent.png" />
       </S.ContainerImage>
-      <S.ContainerInformation>
+      <S.ContainerInformation onSubmit={handleSubmit}>
         <S.HeaderContainer>
           <h1>Últimos Ajustes</h1>
           <S.Steps>3 de 3</S.Steps>
@@ -96,6 +97,7 @@ export default function proposalstudentstep3(job?: Job) {
           Publicar
         </ButtonKnewave>
       </S.ContainerInformation>
+
     </S.Wrapper>
   );
 }

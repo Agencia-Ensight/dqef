@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Image = styled.img``;
 export const Wrapper = styled.div`
   display: flex;
+  overflow: hidden;
 
   .dropzone {
     border: 2px solid #42a4ef;
@@ -69,7 +70,8 @@ export const ContainerImage = styled.div`
     display: none;
   }
 `;
-export const ContainerInformation = styled.div`
+export const ContainerInformation = styled.form`
+  overflow-y: scroll;
   width: 60%;
 
   padding: 5% 5%;

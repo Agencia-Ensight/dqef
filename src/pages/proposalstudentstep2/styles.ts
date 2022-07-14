@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Image = styled.img``;
 export const Wrapper = styled.div`
+overflow: hidden;
   display: flex;
 `;
 export const ContainerImage = styled.div`
@@ -11,6 +12,7 @@ export const ContainerImage = styled.div`
 `;
 
 export const ContainerInformation = styled.div`
+overflow-y: scroll;
   width: 60%;
 
   @media (max-width: 600px) {

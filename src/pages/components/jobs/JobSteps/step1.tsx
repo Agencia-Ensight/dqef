@@ -177,6 +177,7 @@ const JobStep1 = ({
         <Input
           label="Número de páginas"
           placeholder="Quantidade"
+          type="number"
           name="pages"
           defaultValue={job?.pages}
         />
@@ -184,6 +185,7 @@ const JobStep1 = ({
           label="Número de palavras"
           placeholder="Quantidade"
           name="words"
+          type="number"
           defaultValue={job?.words}
         />
       </S.LastInputs>

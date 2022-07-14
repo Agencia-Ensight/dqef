@@ -60,10 +60,6 @@ export const Wrapper = styled.div`
   }
 `;
 export const ContainerImage = styled.div`
-  width: 40%;
-  height: 93vh;
-
-
   @media (max-width: 600px) {
     display: none;
   }
@@ -71,7 +67,6 @@ export const ContainerImage = styled.div`
 export const ContainerInformation = styled.div`
   padding: 4% 5%;
   width: 60%;
-  height: 100%;
   overflow-y: scroll;
 
 
