@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Router from "next/router";
-import { Checkbox } from "@chakra-ui/react";
 import { RiLockPasswordFill } from "react-icons/ri";
 
 import { ButtonKnewave, Input } from "@/components";
@@ -14,8 +13,12 @@ function SignIn() {
   const { signIn } = useUser();
 
   async function handleSubmit() {
-    await signIn({ email, password });
-    Router.push("/");
+    try {
+      await signIn({ email, password });
+      Router.push("/");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -29,38 +32,33 @@ function SignIn() {
           <span>Fazer Login</span>
         </p>
         <h1>Bem-vindo de Volta</h1>
-        <form onSubmit={handleSubmit}>
-          <S.InputContainer>
-            <Input
-              label="E-mail"
-              placeholder="email@provedor.com"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              label="Senha"
-              placeholder="Senha"
-              required
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </S.InputContainer>
-          <Checkbox>
-            <h5>Manter-me conectado</h5>
-          </Checkbox>
+        <S.InputContainer>
+          <Input
+            label="E-mail"
+            placeholder="email@provedor.com"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            label="Senha"
+            placeholder="Senha"
+            required
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </S.InputContainer>
 
-          <S.IconContainer>
-            <RiLockPasswordFill size={20} color="var(--blue)" />
-            <a href="/forgot-password">
-              Esqueci minha <span>senha</span>
-            </a>
-          </S.IconContainer>
-          <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
-            Entrar
-          </ButtonKnewave>
-        </form>
+        <S.IconContainer>
+          <RiLockPasswordFill size={20} color="var(--blue)" />
+          <a href="/forgot-password">
+            Esqueci minha <span>senha</span>
+          </a>
+        </S.IconContainer>
+        <ButtonKnewave variant="PRIMARY" size="sm" onClick={handleSubmit}>
+          Entrar
+        </ButtonKnewave>
 
         <hr />
         <h2>

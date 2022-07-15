@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 
 import * as S from "./styles";
 
-import { UrgentWorkCard } from "@/components";
+import { JobCard } from "@/components";
 import { GET_URGENT_JOBS, Job } from "@/services/graphql/jobs";
 
 function UrgentWorks() {
@@ -22,7 +22,7 @@ function UrgentWorks() {
       </S.HeaderContainer>
       <S.MainContainer>
         {urgentJobs.data?.jobs.map((urgentJob, index) => (
-          <UrgentWorkCard
+          <JobCard
             key={index}
             jobId={urgentJob.id}
             course="ECONOMIA"

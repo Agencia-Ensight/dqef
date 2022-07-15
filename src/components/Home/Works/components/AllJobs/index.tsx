@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 
-import { UrgentWorkCard } from "@/components";
+import { JobCard } from "@/components";
 import { GET_TOP_10_JOBS, Job } from "@/services/graphql/jobs";
 
 export const AllJobs = (): JSX.Element => {
@@ -12,7 +12,7 @@ export const AllJobs = (): JSX.Element => {
   return (
     <>
       {data!.jobs.map((job) => (
-        <UrgentWorkCard
+        <JobCard
           jobId={job.id}
           course="ECONOMIA" // higher_course_name TODO: Sincronizar com o banco de dados?
           date={job.delivery}

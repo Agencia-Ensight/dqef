@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 
-import { ButtonKnewave, UrgentWorkCard } from "@/components";
+import { ButtonKnewave, JobCard } from "@/components";
 import { GET_TOP_10_URGENT_JOBS, Job } from "@/services/graphql/jobs";
 
 import * as S from "./styles";
@@ -20,7 +20,7 @@ function UrgentWorks() {
       </S.HeaderContainer>
       <S.MainContainer>
         {urgentJobs.data?.jobs.map((urgentJob, index) => (
-          <UrgentWorkCard
+          <JobCard
             key={index}
             jobId={urgentJob.id}
             course="ECONOMIA"

@@ -27,6 +27,7 @@ export const Wrapper = styled.div`
     }
   }
 `;
+
 export const Container = styled.div`
   width: 100%;
 `;
@@ -37,6 +38,7 @@ export const FilesContainer = styled.div`
   flex-wrap: wrap;
   margin-top: 1.5rem;
   gap: 37px;
+
   @media (max-width: 600px) {
     justify-content: center;
     flex-wrap: nowrap;

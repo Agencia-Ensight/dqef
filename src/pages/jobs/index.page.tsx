@@ -1,7 +1,7 @@
 import Router from "next/router";
 import { useQuery } from "@apollo/client";
 
-import { UrgentWorkCard } from "@/components";
+import { JobCard } from "@/components";
 import { GET_JOBS, Job } from "@/services/graphql/jobs";
 import * as S from "./styles";
 
@@ -20,7 +20,7 @@ function AllWorks() {
       </S.HeaderContainer>
       <S.MainContainer>
         {jobs.data?.jobs.map((job) => (
-          <UrgentWorkCard
+          <JobCard
             jobId={job.id}
             course="ECONOMIA" // higher_course_name TODO: Sincronizar com o banco de dados?
             date={job.delivery}

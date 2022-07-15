@@ -20,7 +20,7 @@ import { api } from "@/services/api";
 const UserContext = createContext<UserProviderProps>({} as UserProviderProps);
 
 function UserProvider({ children }: UserContextProvider) {
-  const [user, setUser] = useState<UserProps>();
+  const [user, setUser] = useState<UserProps>({} as UserProps);
 
   const signIn = useCallback(
     async ({ email, password }: SignInUserProps): Promise<void> => {
@@ -40,7 +40,7 @@ function UserProvider({ children }: UserContextProvider) {
 
   const signOut = useCallback(async (): Promise<void> => {
     destroyCookie(null, `@dqef/user`);
-    setUser(undefined);
+    setUser({} as UserProps);
     api.defaults.headers.common.Authorization = ``;
   }, []);
 

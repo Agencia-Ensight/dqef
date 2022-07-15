@@ -4,7 +4,7 @@ import * as S from "./styles";
 
 import { RiLockPasswordFill } from "react-icons/ri";
 
-import { UrgentWorkCard } from "../../src/components/UrgentWorkCard";
+import { UrgentWorkCard } from "../../src/components/JobCard";
 
 import { ProfileCard } from "../../src/components/ProfileCard";
 

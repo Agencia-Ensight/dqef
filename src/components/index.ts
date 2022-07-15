@@ -10,4 +10,4 @@ export * from "./NavBar";
 export * from "./NavBar/components/Menu";
 export * from "./ProfileCard";
 export * from "./ProfileCardEmployee";
-export * from "./UrgentWorkCard";
+export * from "./JobCard";

@@ -7,11 +7,10 @@ import DatePicker from "react-datepicker";
 import pt from "date-fns/locale/pt";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import { Job } from "../../queries/jobs";
 import { AiOutlineDownload } from "react-icons/ai";
 import { useDropzone } from "react-dropzone";
 
-export default function editpage({ job }: { job?: Job }) {
+export default function editpage({ job }: { job?: any }) {
   const [startDate, setStartDate] = useState(
     job?.date_limit ? new Date(job.date_limit) : new Date()
   );

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 type UserProps = {
+  id: string;
   name: string;
   email: string;
 };
@@ -17,7 +18,7 @@ type SignInUserProps = {
 };
 
 type UserProviderProps = {
-  user?: UserProps;
+  user: UserProps;
   signIn(data: SignInUserProps): Promise<void>;
   signUp(user: CreateUserProps): Promise<void>;
   signOut(): Promise<void>;

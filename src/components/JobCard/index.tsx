@@ -18,72 +18,65 @@ import { ModalRequestChanges } from "../../../WILL_BE_REMOVED/components/modal/M
 import { ModalCalmaLa } from "../../../WILL_BE_REMOVED/components/modal/ModalCalmaLa";
 import { ModalPayment } from "../../../WILL_BE_REMOVED/components/modal/ModalPayment";
 
-function UrgentWorkCard({
-  jobId,
-  course,
-  title,
-  discipline,
-  theme,
-  typeOfWork,
-  price,
-  date,
-  urgent,
-  status,
-}: Props) {
+function JobCard(job: Props) {
   const { isShown, toggle } = useModal();
+
   const { isShown: isShown2, toggle: toggle2 } = useModal();
+
   return (
     <S.Wrapper>
       <S.Container>
-        {urgent === true ? <S.RocketImage src="/images/rocket.png" /> : ""}
-        <S.CourseContainer course={course}>
-          <S.Course>{course}</S.Course>
+        {job.urgent && <S.RocketImage src="/images/rocket.png" />}
+        <S.CourseContainer course={job.course}>
+          <S.Course>{job.course}</S.Course>
         </S.CourseContainer>
         <S.MainContainer>
-          <S.Title>{title}</S.Title>
+          <S.Title>{job.title}</S.Title>
           <S.InformationContainer>
             <S.Subtitle>Disciplina</S.Subtitle>
-            <S.Description>{discipline}</S.Description>
+            <S.Description>{job.discipline}</S.Description>
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Tema</S.Subtitle>
-            <S.Description>{theme}</S.Description>
+            <S.Description>{job.theme}</S.Description>
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Tipo do Trabalho</S.Subtitle>
-            <S.Description>{typeOfWork}</S.Description>
+            <S.Description>{job.typeOfWork}</S.Description>
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Preço Total</S.Subtitle>
-            <S.Price>R${price}</S.Price>
+            <S.Price>R${job.price}</S.Price>
           </S.InformationContainer>
           <S.InformationContainer>
-            <S.Subtitle>
-              Data de Entrega {urgent === true && "Urgente"}
-            </S.Subtitle>
-
-            <S.Date urgent={urgent}>{date}</S.Date>
+            <S.Subtitle>Data de Entrega {job.urgent && "Urgente"}</S.Subtitle>
+            <S.Date urgent={job.urgent}>{job.date}</S.Date>
 
             {/* Employee */}
-            {status === "EMPLOYEE-SEND" && (
+            {job.status === "EMPLOYEE-SEND" && (
               <S.WaitStudent>Aguardando Estudante ...</S.WaitStudent>
             )}
-            {status === "EMPLOYEE-START" && (
+
+            {job.status === "EMPLOYEE-START" && (
               <S.NextBill>
                 Próxima Cobrança: <span>05/08 às 17h</span>
               </S.NextBill>
             )}
-            {status === "EMPLOYEE-CHANGE" && (
+
+            {job.status === "EMPLOYEE-CHANGE" && (
               <S.NextBill>
                 Próxima Cobrança: <span>05/08 às 17h</span>
               </S.NextBill>
             )}
-            {status === "EMPLOYEE-BILL" && <S.Bill>Responda a Cobrança</S.Bill>}
+
+            {job.status === "EMPLOYEE-BILL" && (
+              <S.Bill>Responda a Cobrança</S.Bill>
+            )}
           </S.InformationContainer>
         </S.MainContainer>
       </S.Container>
       {/* Employee */}
-      {status === "EMPLOYEE-PAID" && (
+      {job.status === "EMPLOYEE-PAID" && (
         <S.FooterContainer>
           <Button variant="secondary">Ver mais</Button>
           <Button onClick={toggle} variant="primary">
@@ -97,7 +90,7 @@ function UrgentWorkCard({
           />
         </S.FooterContainer>
       )}
-      {status === "EMPLOYEE-START" && (
+      {job.status === "EMPLOYEE-START" && (
         <S.FooterContainer>
           <Button onClick={toggle} variant="primary">
             Entregar
@@ -108,7 +101,7 @@ function UrgentWorkCard({
             headerText="Deseja enviar o trabalho?"
             modalContent={<ModalInsertWork />}
           />
-          <a href={`/inside-job/${jobId}`}>
+          <a href={`/jobs/${job.jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <a target="_blank" href="https://wa.me/5541999959588">
@@ -116,7 +109,7 @@ function UrgentWorkCard({
           </a>
         </S.FooterContainer>
       )}
-      {status === "EMPLOYEE-BILL" && (
+      {job.status === "EMPLOYEE-BILL" && (
         <S.FooterContainer>
           <Button onClick={toggle} variant="primary">
             Entregar
@@ -127,7 +120,7 @@ function UrgentWorkCard({
             headerText="Deseja enviar o trabalho?"
             modalContent={<ModalInsertWork />}
           />{" "}
-          <a href={`/inside-job/${jobId}`}>
+          <a href={`/jobs/${job.jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle} variant="tertiary">
@@ -136,12 +129,12 @@ function UrgentWorkCard({
           <Modal
             isShown={isShown}
             hide={toggle}
-            headerText="Olá, Enrico!"
+            headerText="Olá!"
             modalContent={<ModalDone />}
           />
         </S.FooterContainer>
       )}
-      {status === "EMPLOYEE-CHANGE" && (
+      {job.status === "EMPLOYEE-CHANGE" && (
         <S.FooterContainer>
           <Button onClick={toggle2} variant="primary">
             Entregar
@@ -152,7 +145,7 @@ function UrgentWorkCard({
             headerText="Deseja enviar o trabalho?"
             modalContent={<ModalInsertWork />}
           />
-          <a href={`/inside-job/${jobId}`}>
+          <a href={`/jobs/${job.jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle} variant="quinternary">
@@ -161,12 +154,12 @@ function UrgentWorkCard({
           <Modal
             isShown={isShown}
             hide={toggle}
-            headerText="Olá, Bruno. Essas são as alterações solicitadas"
+            headerText="Olá. Essas são as alterações solicitadas"
             modalContent={<ModalChanges />}
           />
         </S.FooterContainer>
       )}
-      {status === "EMPLOYEE-DONE" && (
+      {job.status === "EMPLOYEE-DONE" && (
         <S.FooterContainer>
           <Button onClick={toggle} variant="primary">
             Ver FeedBack
@@ -182,14 +175,14 @@ function UrgentWorkCard({
           />
         </S.FooterContainer>
       )}
-      {status === "EMPLOYEE-SEE" && (
+      {job.status === "EMPLOYEE-SEE" && (
         <S.FooterContainer>
-          <a href={`/inside-job/${jobId}`}>
+          <a href={`/jobs/${job.jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
         </S.FooterContainer>
       )}
-      {status === "EMPLOYEE-WANT" && (
+      {job.status === "EMPLOYEE-WANT" && (
         <S.FooterContainer>
           <Button onClick={toggle} variant="primary">
             Aceitar Proposta
@@ -212,7 +205,7 @@ function UrgentWorkCard({
         </S.FooterContainer>
       )}
       {/* Student */}
-      {status === "STUDENT-CREATE" && (
+      {job.status === "STUDENT-CREATE" && (
         <S.FooterContainer>
           <a href="/studentviewproposals">
             <Button variant="primary">Ver Propostas</Button>
@@ -222,7 +215,7 @@ function UrgentWorkCard({
           </a>
         </S.FooterContainer>
       )}
-      {status === "STUDENT-GET" && (
+      {job.status === "STUDENT-GET" && (
         <S.FooterContainer>
           <Button onClick={toggle} variant="primary">
             Entrega
@@ -233,7 +226,7 @@ function UrgentWorkCard({
             headerText="Olá, Enrico."
             modalContent={<ModalOpenWorkStep2 />}
           />
-          <a href={`/inside-job/${jobId}`}>
+          <a href={`/jobs/${job.jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle2} variant="tertiary">
@@ -247,7 +240,7 @@ function UrgentWorkCard({
           />
         </S.FooterContainer>
       )}
-      {status === "STUDENT-DONE" && (
+      {job.status === "STUDENT-DONE" && (
         <S.FooterContainer>
           <Button onClick={toggle} variant="primary">
             Entrega
@@ -258,7 +251,7 @@ function UrgentWorkCard({
             headerText="Olá, Enrico."
             modalContent={<ModalOpenWork />}
           />
-          <a href={`/inside-job/${jobId}`}>
+          <a href={`/jobs/${job.jobId}`}>
             <Button variant="secondary">Ver Mais</Button>
           </a>
           <Button onClick={toggle2} variant="quaternary">
@@ -272,10 +265,10 @@ function UrgentWorkCard({
           />
         </S.FooterContainer>
       )}
-      {status === "STUDENT" && ""}
-      {status === "STUDENT-EDIT" && (
+      {job.status === "STUDENT" && ""}
+      {job.status === "STUDENT-EDIT" && (
         <S.FooterContainer>
-          <a href={`/proposalstudentedit/${jobId}`}>
+          <a href={`/proposalstudentedit/${job.jobId}`}>
             <Button variant="primary">Editar Trabalho</Button>
           </a>
         </S.FooterContainer>
@@ -284,4 +277,4 @@ function UrgentWorkCard({
   );
 }
 
-export { UrgentWorkCard };
+export { JobCard };

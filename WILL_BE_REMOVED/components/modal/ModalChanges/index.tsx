@@ -32,7 +32,7 @@ export function ModalChanges() {
         <h3>
           Problema com a solicitação? <br />
           Converse com o{" "}
-          <a href="/inside-job">
+          <a href="/jobs">
             <span>estudante</span>
           </a>{" "}
           ou com a nossa{" "}
