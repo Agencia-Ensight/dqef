@@ -1,9 +1,9 @@
-import { ButtonKnewave } from "@/components/ButtonKnewave";
+import { ButtonKnewave } from "@/components";
 import { NotificationCardMobile } from "./components/NotificationCardMobile";
 
 import * as S from "./styles";
 
-function ForgotPassword() {
+function Notifications() {
   return (
     <S.Wrapper>
       <div className="headerContainer">
@@ -99,4 +99,4 @@ function ForgotPassword() {
   );
 }
 
-export { ForgotPassword };
+export default Notifications;

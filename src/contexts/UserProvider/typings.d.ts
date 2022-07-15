@@ -3,13 +3,11 @@ import { ReactNode } from "react";
 type UserProps = {
   name: string;
   email: string;
-  roles: string[];
 };
 
 type CreateUserProps = {
   name: string;
   email: string;
-  birthDate: string;
   password: string;
 };
 

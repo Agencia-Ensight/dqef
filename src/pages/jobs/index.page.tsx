@@ -19,7 +19,7 @@ function AllWorks() {
         </S.Description>
       </S.HeaderContainer>
       <S.MainContainer>
-        {jobs.data!.jobs.map((job) => (
+        {jobs.data?.jobs.map((job) => (
           <UrgentWorkCard
             jobId={job.id}
             course="ECONOMIA" // higher_course_name TODO: Sincronizar com o banco de dados?

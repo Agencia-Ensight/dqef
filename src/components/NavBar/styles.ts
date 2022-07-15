@@ -67,6 +67,6 @@ export const Line = styled.div`
   margin-right: 1.5rem;
 `;
 
-export const ImagePadrao = styled.div`
+export const ImageDefault = styled.button`
   margin-left: 30px;
 `;

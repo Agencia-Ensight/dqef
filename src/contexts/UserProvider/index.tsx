@@ -24,7 +24,11 @@ function UserProvider({ children }: UserContextProvider) {
 
   const signIn = useCallback(
     async ({ email, password }: SignInUserProps): Promise<void> => {
-      const { data } = await api.post(`/users/auth`, { email, password });
+      const { data } = await api.post(`/auth/sign-in`, { email, password });
+
+      console.log(data);
+
+      return;
 
       setUser(data.user);
       setCookie(null, `@dqef/user`, JSON.stringify(data.user));

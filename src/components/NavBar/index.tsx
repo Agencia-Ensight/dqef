@@ -4,28 +4,29 @@ import Link from "next/link";
 
 import * as S from "./styles";
 import { ButtonKnewave, Menu } from "@/components";
+import { useUser } from "@/contexts";
 
 function NavBar() {
+  const { user, signOut } = useUser();
+
   const getLoginOrLogout = useMemo(() => {
-    if (false) {
+    if (!user) {
       return (
-        <Link href="/login" passHref>
+        <Link href="/sign-in" passHref>
           <S.MenuItem>
             <S.ButtonLogin className="login-button">Entrar</S.ButtonLogin>
           </S.MenuItem>
         </Link>
       );
-    } else {
-      return (
-        <Link href="#" passHref>
-          <S.MenuItem>
-            <ButtonKnewave size="sm" variant="SECONDARY">
-              Sair
-            </ButtonKnewave>
-          </S.MenuItem>
-        </Link>
-      );
     }
+
+    return (
+      <S.MenuItem>
+        <ButtonKnewave size="sm" variant="SECONDARY" onClick={signOut}>
+          Sair
+        </ButtonKnewave>
+      </S.MenuItem>
+    );
   }, []);
 
   return (
@@ -42,10 +43,10 @@ function NavBar() {
           </S.LogoWrapper>
         </Link>
         <S.Wrapper>
-          <Link href="/urgent-works" passHref>
+          <Link href="/jobs/urgents" passHref>
             <S.MenuItem>Urgentes</S.MenuItem>
           </Link>
-          <Link href="/all-works">
+          <Link href="/jobs">
             <S.MenuItem>Trabalhos</S.MenuItem>
           </Link>
           <Link href="/#about">
@@ -60,46 +61,47 @@ function NavBar() {
             </a>
           </Link>
           <S.MenuItem>
-            <Link href="/proposalstudentstep1" passHref>
+            <Link href="/proposal" passHref>
               <ButtonKnewave size="sm" variant="PRIMARY">
                 Publicar Trabalho
               </ButtonKnewave>
             </Link>
           </S.MenuItem>
+
           {getLoginOrLogout}
 
-          <S.Line></S.Line>
-          <button>
-            <S.ImagePadrao>
+          <S.Line />
+          <Link href="/config">
+            <S.ImageDefault>
               <img
                 height={25}
                 width={25}
                 src="/images/homeconfiguraciones.png"
                 alt="my image"
               />
-            </S.ImagePadrao>
-          </button>
-          <button>
-            <S.ImagePadrao>
+            </S.ImageDefault>
+          </Link>
+          <Link href="/notifications">
+            <S.ImageDefault>
               <img
                 height={25}
                 width={25}
                 src="/images/homebell.png"
                 alt="my image"
               />
-            </S.ImagePadrao>
-          </button>
+            </S.ImageDefault>
+          </Link>
 
-          <button>
-            <S.ImagePadrao>
+          <Link href="/profile">
+            <S.ImageDefault>
               <img
                 height={44}
                 width={44}
                 src="/images/imghomepadrao.png"
                 alt="my image"
               />
-            </S.ImagePadrao>
-          </button>
+            </S.ImageDefault>
+          </Link>
         </S.Wrapper>
       </S.Container>
       <Menu />
