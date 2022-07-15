@@ -1,13 +1,16 @@
-import { AllJobs } from "../../../WILL_BE_REMOVED/components/jobs/AllJobs";
-import * as S from "./styles";
-import { useRouter } from "next/router";
-import Link from "next/link";
+import Router from "next/router";
+import { useQuery } from "@apollo/client";
 
-function allWorks() {
-  const router = useRouter();
+import { UrgentWorkCard } from "@/components";
+import { GET_JOBS, Job } from "@/services/graphql/jobs";
+import * as S from "./styles";
+
+function AllWorks() {
+  const jobs = useQuery<{ jobs: Job[] }>(GET_JOBS);
+
   return (
     <S.Wrapper>
-      <S.SubTitle onClick={() => router.back()}>Voltar</S.SubTitle>
+      <S.SubTitle onClick={() => Router.back()}>Voltar</S.SubTitle>
       <S.Title>Lista de Trabalhos</S.Title>
       <S.HeaderContainer>
         <S.Description>
@@ -16,10 +19,25 @@ function allWorks() {
         </S.Description>
       </S.HeaderContainer>
       <S.MainContainer>
-        <AllJobs />
+        {jobs.data!.jobs.map((job) => (
+          <UrgentWorkCard
+            jobId={job.id}
+            course="ECONOMIA" // higher_course_name TODO: Sincronizar com o banco de dados?
+            date={job.delivery}
+            discipline={job.job_has_knowledges
+              .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
+              .join(", ")}
+            price={job.value_pay}
+            theme={job.theme}
+            title={job.title}
+            typeOfWork={job.job_type.name}
+            urgent={false} // TODO:Como pegar do banco
+            status="EMPLOYEE-SEE" // TODO: Sincronizar com o banco de dados?
+          />
+        ))}
       </S.MainContainer>
     </S.Wrapper>
   );
 }
 
-export default allWorks;
+export default AllWorks;

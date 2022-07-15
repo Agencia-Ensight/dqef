@@ -6,7 +6,7 @@ import {
   HowItWorks,
   UrgentWorks,
   Works,
-} from "./home";
+} from "../components/Home";
 
 function Home() {
   return (

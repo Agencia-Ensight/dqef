@@ -1,25 +1,11 @@
-import { ButtonKnewave } from "../../components/ButtonKnewave";
+import Router from "next/router";
 
 import * as S from "./styles";
-
-import { RiLockPasswordFill } from "react-icons/ri";
-import { Input } from "../../components/Input";
-import { useState } from "react";
-import Router from "next/router";
-import { forgotPassword } from "../../../WILL_BE_REMOVED/auth";
-import { MultiStepForm } from "../../components/MultiStepForm";
+import { ButtonKnewave, Input, MultiStepForm } from "@/components";
 
 export default function forgotpassword() {
-  const handleSubmit = (data: any) => {
-    const { email } = data;
-    forgotPassword(email)
-      .then(() => {
-        Router.push("/insertcode");
-      })
-      .catch(() => {
-        alert("Erro ao enviar o código de recuperação");
-      });
-  };
+  function handleSubmit() {}
+
   return (
     <S.Wrapper>
       <S.ContainerImage>
@@ -29,12 +15,10 @@ export default function forgotpassword() {
         firstStep={true}
         stateName="forgotPasswordData"
         onSubmit={handleSubmit}
-        onFail={() => {
-          Router.push("/forgotpassword");
-        }}
+        onFail={() => Router.push("/forgot-password")}
       >
         <S.ContainerInformation>
-          <a href="#">
+          <a>
             <span>Voltar</span>
           </a>
           <h1>Insira o seu e-mail</h1>
@@ -43,7 +27,7 @@ export default function forgotpassword() {
             identidade.
           </p>
           <Input
-            placeholder="teste@gmail.com"
+            placeholder="email@provedor.com"
             label="Esqueci minha senha"
             name="email"
             required

@@ -1,7 +1,7 @@
 import { ReviewCard } from "./components/ReviewCard";
 import * as S from "./styles";
 
-export function Feedbacks() {
+function Feedbacks() {
   return (
     <S.Wrapper>
       <S.Container>
@@ -38,3 +38,5 @@ export function Feedbacks() {
     </S.Wrapper>
   );
 }
+
+export { Feedbacks };

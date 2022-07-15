@@ -2,19 +2,19 @@ import { ReactNode } from "react";
 
 type UserProps = {
   name: string;
-  phoneNumber: string;
+  email: string;
   roles: string[];
 };
 
 type CreateUserProps = {
   name: string;
-  phoneNumber: string;
+  email: string;
   birthDate: string;
   password: string;
 };
 
 type SignInUserProps = {
-  phoneNumber: string;
+  email: string;
   password: string;
 };
 

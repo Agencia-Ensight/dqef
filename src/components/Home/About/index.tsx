@@ -1,6 +1,6 @@
 import * as S from "./styles";
 
-export function About() {
+function About() {
   return (
     <S.Wrapper>
       <S.Container id="about">
@@ -30,3 +30,5 @@ export function About() {
     </S.Wrapper>
   );
 }
+
+export { About };

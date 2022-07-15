@@ -1,12 +1,9 @@
-import { ButtonKnewave } from "../../components/ButtonKnewave";
+import { ButtonKnewave } from "@/components/ButtonKnewave";
+import { NotificationCardMobile } from "./components/NotificationCardMobile";
 
 import * as S from "./styles";
 
-import { RiLockPasswordFill } from "react-icons/ri";
-import { AiOutlineReload } from "react-icons/ai";
-import { NotificationCardMobile } from "./components/NotificationCardMobile";
-
-export default function forgotpassword() {
+function ForgotPassword() {
   return (
     <S.Wrapper>
       <div className="headerContainer">
@@ -14,7 +11,11 @@ export default function forgotpassword() {
           <h1>Notificações</h1>
           <h2>Seu painel com todas as notificações.</h2>
         </S.ContainerInformation>
-        <ButtonKnewave  className="botaopadraosolido" size="sm" variant="PRIMARY">
+        <ButtonKnewave
+          className="botaopadraosolido"
+          size="sm"
+          variant="PRIMARY"
+        >
           Limpar
         </ButtonKnewave>
       </div>
@@ -32,7 +33,11 @@ export default function forgotpassword() {
             <td>Maria Anders</td>
             <td>Matheus publicou o trabalho e está esperando o seu review</td>
             <td>
-              <ButtonKnewave className="botaopadraosolido" size="sm" variant="PRIMARY">
+              <ButtonKnewave
+                className="botaopadraosolido"
+                size="sm"
+                variant="PRIMARY"
+              >
                 Ir até lá
               </ButtonKnewave>{" "}
             </td>
@@ -43,7 +48,11 @@ export default function forgotpassword() {
             <td>Francisco Chang</td>
             <td>Matheus publicou o trabalho e está esperando o seu review</td>
             <td>
-              <ButtonKnewave className="botaopadraosolido" size="sm" variant="PRIMARY">
+              <ButtonKnewave
+                className="botaopadraosolido"
+                size="sm"
+                variant="PRIMARY"
+              >
                 Ir até lá
               </ButtonKnewave>{" "}
             </td>
@@ -53,7 +62,11 @@ export default function forgotpassword() {
             <td>Francisco Chang</td>
             <td>Matheus publicou o trabalho e está esperando o seu review</td>
             <td>
-              <ButtonKnewave className="botaopadraosolido" size="sm" variant="PRIMARY">
+              <ButtonKnewave
+                className="botaopadraosolido"
+                size="sm"
+                variant="PRIMARY"
+              >
                 Ir até lá
               </ButtonKnewave>
             </td>
@@ -85,3 +98,5 @@ export default function forgotpassword() {
     </S.Wrapper>
   );
 }
+
+export { ForgotPassword };

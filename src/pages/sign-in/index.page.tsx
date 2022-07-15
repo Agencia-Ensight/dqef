@@ -1,35 +1,23 @@
-import { ButtonKnewave } from "../../components/ButtonKnewave";
+import { useState } from "react";
+import Router from "next/router";
+import { Checkbox } from "@chakra-ui/react";
+import { RiLockPasswordFill } from "react-icons/ri";
+
+import { ButtonKnewave, Input } from "@/components";
+import { useUser } from "@/contexts";
 
 import * as S from "./styles";
 
-import { RiLockPasswordFill } from "react-icons/ri";
-import { Input } from "../../components/Input";
-import { useContext, useState } from "react";
-import { signIn } from "../../../WILL_BE_REMOVED/auth";
-import Router from "next/router";
-import { AuthContext } from "../../contexts/AuthContext";
-import { Checkbox } from "@chakra-ui/react";
-
-export default function login() {
+function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setToken, setHasuraToken } = useContext(AuthContext)!;
+  const { signIn } = useUser();
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  async function handleSubmit() {
+    await signIn({ email, password });
+    Router.push("/");
+  }
 
-    console.log(email, password);
-
-    signIn(email, password)
-      .then((response) => {
-        setToken(response.data.hasura);
-        setHasuraToken(response.data.token.token);
-        window.location.href = "/";
-      })
-      .catch(() => {
-        alert("Erro ao logar");
-      });
-  };
   return (
     <S.Wrapper>
       <S.ContainerImage>
@@ -38,14 +26,14 @@ export default function login() {
 
       <S.ContainerInformation>
         <p>
-          <span> Fazer Login</span>
+          <span>Fazer Login</span>
         </p>
         <h1>Bem-vindo de Volta</h1>
         <form onSubmit={handleSubmit}>
           <S.InputContainer>
             <Input
               label="E-mail"
-              placeholder="teste@gmail.com"
+              placeholder="email@provedor.com"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -65,7 +53,7 @@ export default function login() {
 
           <S.IconContainer>
             <RiLockPasswordFill size={20} color="var(--blue)" />
-            <a href="/forgotpassword">
+            <a href="/forgot-password">
               Esqueci minha <span>senha</span>
             </a>
           </S.IconContainer>
@@ -77,11 +65,13 @@ export default function login() {
         <hr />
         <h2>
           Não tenho Conta,
-          <a href="/chooseprofile">
-            <span>criar a conta</span>
+          <a href="/sign-up">
+            <span>Criar a conta</span>
           </a>
         </h2>
       </S.ContainerInformation>
     </S.Wrapper>
   );
 }
+
+export default SignIn;

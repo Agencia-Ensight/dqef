@@ -1,8 +1,13 @@
+import { useQuery } from "@apollo/client";
+
 import * as S from "./styles";
 
-import { UrgentWorkCard } from "../../components/UrgentWorkCard";
+import { UrgentWorkCard } from "@/components";
+import { GET_URGENT_JOBS, Job } from "@/services/graphql/jobs";
 
-function urgentWorks() {
+function UrgentWorks() {
+  const urgentJobs = useQuery<{ jobs: Job[] }>(GET_URGENT_JOBS);
+
   return (
     <S.Wrapper>
       <S.SubTitle>IMPORTANTE</S.SubTitle>
@@ -16,84 +21,24 @@ function urgentWorks() {
         </div>
       </S.HeaderContainer>
       <S.MainContainer>
-        <UrgentWorkCard
-          jobId="1"
-          course="ARQUITETURA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
-        <UrgentWorkCard
-          jobId="1"
-          course="ECONOMIA"
-          date="23/04"
-          discipline="arroz"
-          price={20}
-          theme="banana"
-          title="Arroz"
-          typeOfWork="Banana"
-          urgent={true}
-          status="EMPLOYEE-SEE"
-        />
+        {urgentJobs.data?.jobs.map((urgentJob, index) => (
+          <UrgentWorkCard
+            key={index}
+            jobId={urgentJob.id}
+            course="ECONOMIA"
+            date={urgentJob.delivery}
+            discipline={urgentJob.job_has_knowledges[0]?.knowledge.name}
+            price={urgentJob.value_pay}
+            theme={urgentJob.theme}
+            title={urgentJob.title}
+            typeOfWork={urgentJob.job_format.name}
+            urgent={true}
+            status="EMPLOYEE-SEE"
+          />
+        ))}
       </S.MainContainer>
     </S.Wrapper>
   );
 }
 
-export default urgentWorks;
-function useState(arg0: string[]): [any, any] {
-  throw new Error("Function not implemented.");
-}
+export default UrgentWorks;

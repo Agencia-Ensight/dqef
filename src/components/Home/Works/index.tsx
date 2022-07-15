@@ -1,9 +1,9 @@
-import { ButtonKnewave } from "../../../components/ButtonKnewave";
-import { AllJobs } from "../../../../WILL_BE_REMOVED/components/jobs/AllJobs";
+import { ButtonKnewave } from "@/components";
+import { AllJobs } from "./components/AllJobs";
 
 import * as S from "./styles";
 
-export function Works() {
+function Works() {
   return (
     <S.Wrapper>
       <S.SubTitle>PADRÃO</S.SubTitle>
@@ -25,3 +25,5 @@ export function Works() {
     </S.Wrapper>
   );
 }
+
+export { Works };

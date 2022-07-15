@@ -1,6 +1,6 @@
-import * as S from "./styles";
-
 import SimpleImageSlider from "react-simple-image-slider";
+
+import * as S from "./styles";
 import { MobileBanner } from "./components/MobileBanner";
 
 const images = [
@@ -10,7 +10,7 @@ const images = [
   { url: "images/slider-4.png" },
 ];
 
-export function Banner() {
+function Banner() {
   return (
     <>
       <S.Banner>
@@ -26,3 +26,5 @@ export function Banner() {
     </>
   );
 }
+
+export { Banner };

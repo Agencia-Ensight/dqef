@@ -1,7 +1,7 @@
-import { ButtonKnewave } from "../../components/ButtonKnewave";
+import { ButtonKnewave } from "../../src/components/ButtonKnewave";
 import * as S from "./styles";
 import { Select } from "@chakra-ui/react";
-import { Input } from "../../components/Input";
+import { Input } from "../../src/components/Input";
 
 import DatePicker from "react-datepicker";
 import pt from "date-fns/locale/pt";
@@ -87,9 +87,7 @@ export default function editpage({ job }: { job?: Job }) {
           </S.ContainerLine>
         </S.ContainerInformationDosBang>
 
-        <S.ContainerLine>
-          
-        </S.ContainerLine>
+        <S.ContainerLine></S.ContainerLine>
         <S.ContainerMini>
           <h3>Instruções*</h3>
           <textarea
@@ -116,7 +114,7 @@ export default function editpage({ job }: { job?: Job }) {
         </S.ContainerLine>
 
         <h1>Informações de Entrega</h1>
-        
+
         <S.InputsContainer>
           <div>
             <label>
@@ -147,14 +145,18 @@ export default function editpage({ job }: { job?: Job }) {
               disabled
             />
           </div>
-          
         </S.InputsContainer>
-        <p>Conforme previsão acima, a entrega do seu trabalho é efetuada com grande antecedência. Isso porque, o estudante tem direito de solicitar as alterações que desejar, após a entrega. A previsão é calculada com base no dia do pagamento do trabalho, logo após o interesse do redator, portanto, pode variar.</p>
+        <p>
+          Conforme previsão acima, a entrega do seu trabalho é efetuada com
+          grande antecedência. Isso porque, o estudante tem direito de solicitar
+          as alterações que desejar, após a entrega. A previsão é calculada com
+          base no dia do pagamento do trabalho, logo após o interesse do
+          redator, portanto, pode variar.
+        </p>
         <h1>Informações Extras</h1>
-        
+
         <S.InputsContainer>
           <div>
-            
             <Input
               label="Máximo de Plágio Aceitável"
               placeholder="Insira o Valor"
@@ -163,24 +165,19 @@ export default function editpage({ job }: { job?: Job }) {
             />
           </div>
           <S.ContainerMini>
-              <h3>Formato de Trabalho</h3>
-              <Select placeholder="Selecione">
-                <option value="option1">Cursando</option>
-                <option value="option2">Graduado</option>
-                <option value="option3">Pós-graduado</option>
-                <option value="option3">Mestrado</option>
-                <option value="option3">Doutorado</option>
-              </Select>
-            </S.ContainerMini>
-          <div>
-
-            
-          </div>
-          
+            <h3>Formato de Trabalho</h3>
+            <Select placeholder="Selecione">
+              <option value="option1">Cursando</option>
+              <option value="option2">Graduado</option>
+              <option value="option3">Pós-graduado</option>
+              <option value="option3">Mestrado</option>
+              <option value="option3">Doutorado</option>
+            </Select>
+          </S.ContainerMini>
+          <div></div>
         </S.InputsContainer>
         <S.InputsContainer>
           <div>
-            
             <Input
               label="Disposto a Pagar"
               placeholder="Insira o Valor"
@@ -189,22 +186,17 @@ export default function editpage({ job }: { job?: Job }) {
             />
           </div>
           <S.ContainerMini>
-          <div>
-            
-            <Input
-              label="Valor pago ao Redator"
-              placeholder="R$"
-              type="text"
-              required
-              disabled
-            />
-          </div>
-            </S.ContainerMini>
-          <div>
-
-            
-          </div>
-          
+            <div>
+              <Input
+                label="Valor pago ao Redator"
+                placeholder="R$"
+                type="text"
+                required
+                disabled
+              />
+            </div>
+          </S.ContainerMini>
+          <div></div>
         </S.InputsContainer>
 
         <S.ContainerMini>
@@ -219,19 +211,17 @@ export default function editpage({ job }: { job?: Job }) {
         <S.ContainerMini>
           <h3>Anexar Arquivos</h3>
           <section className="container">
-          <div {...getRootProps({ className: "dropzone" })}>
-            <input {...getInputProps()} name="attachments" />
-            <S.IconContainer>
-              <AiOutlineDownload size={35} color="#000" />
-            </S.IconContainer>
-          </div>
-          <aside>
-
-            <ul>{files}</ul>
-          </aside>
-        </section>
+            <div {...getRootProps({ className: "dropzone" })}>
+              <input {...getInputProps()} name="attachments" />
+              <S.IconContainer>
+                <AiOutlineDownload size={35} color="#000" />
+              </S.IconContainer>
+            </div>
+            <aside>
+              <ul>{files}</ul>
+            </aside>
+          </section>
         </S.ContainerMini>
-          
 
         <ButtonKnewave variant="PRIMARY" size="sm">
           Próximo
@@ -240,4 +230,3 @@ export default function editpage({ job }: { job?: Job }) {
     </S.Wrapper>
   );
 }
-

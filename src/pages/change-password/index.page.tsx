@@ -1,27 +1,13 @@
-import { ButtonKnewave } from "../../components/ButtonKnewave";
+import Router from "next/router";
+
+import { ButtonKnewave, Input, MultiStepForm } from "@/components";
 
 import * as S from "./styles";
 
-import { RiLockPasswordFill } from "react-icons/ri";
-import { Input } from "../../components/Input";
-import { MultiStepForm } from "../../components/MultiStepForm";
-import Router, { useRouter } from "next/router";
-import { forgotPasswordCode } from "../../../WILL_BE_REMOVED/auth";
-
-export default function changepassword() {
-  const handleSubmit = (data: any) => {
-    const { password, email, code } = data;
-    forgotPasswordCode(email, code, password)
-      .then(() => {
-        console.log("Senha alterada com sucesso");
-        Router.push("/");
-      })
-      .catch(() => {
-        alert("Erro ao enviar o código de recuperação");
-      });
-  };
-
-  const router = useRouter();
+function ChangePassword() {
+  function handleSubmit() {
+    Router.push("/sign-in");
+  }
 
   return (
     <S.Wrapper>
@@ -31,12 +17,10 @@ export default function changepassword() {
       <MultiStepForm
         stateName="forgotPasswordData"
         onSubmit={handleSubmit}
-        onFail={() => {
-          Router.push("/forgotpassword");
-        }}
+        onFail={() => Router.push("/forgot-password")}
       >
         <S.ContainerInformation>
-          <a onClick={() => router.back()}>
+          <a onClick={() => Router.back()}>
             <span>Voltar</span>
           </a>
           <h1>Alterar Senha</h1>
@@ -62,3 +46,5 @@ export default function changepassword() {
     </S.Wrapper>
   );
 }
+
+export default ChangePassword;

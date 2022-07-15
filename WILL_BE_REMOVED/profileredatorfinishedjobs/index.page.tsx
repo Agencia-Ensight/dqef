@@ -1,12 +1,12 @@
-import { ButtonKnewave } from "../../components/ButtonKnewave";
+import { ButtonKnewave } from "../../src/components/ButtonKnewave";
 
 import * as S from "./styles";
 
 import { RiLockPasswordFill } from "react-icons/ri";
 
-import { UrgentWorkCard } from "../../components/UrgentWorkCard";
+import { UrgentWorkCard } from "../../src/components/UrgentWorkCard";
 
-import { ProfileCard } from "../../components/ProfileCard";
+import { ProfileCard } from "../../src/components/ProfileCard";
 
 export default function profileredatorfinishedjobs() {
   return (

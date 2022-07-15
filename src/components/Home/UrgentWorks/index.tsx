@@ -1,15 +1,12 @@
 import { useQuery } from "@apollo/client";
 
-import { ButtonKnewave } from "../../../components/ButtonKnewave";
-import { UrgentWorkCard } from "../../../components/UrgentWorkCard";
+import { ButtonKnewave, UrgentWorkCard } from "@/components";
+import { GET_TOP_10_URGENT_JOBS, Job } from "@/services/graphql/jobs";
 
 import * as S from "./styles";
 
-import { GET_URGENT_JOBS } from "../../../services/graphql/jobs";
-import { Job } from "../../../queries/jobs";
-
-export function UrgentWorks() {
-  const urgentJobs = useQuery<{ jobs: Job[] }>(GET_URGENT_JOBS);
+function UrgentWorks() {
+  const urgentJobs = useQuery<{ jobs: Job[] }>(GET_TOP_10_URGENT_JOBS);
 
   return (
     <S.Wrapper>
@@ -28,7 +25,7 @@ export function UrgentWorks() {
             jobId={urgentJob.id}
             course="ECONOMIA"
             date={urgentJob.delivery}
-            discipline={urgentJob.job_has_knowledges[0].knowledge.name}
+            discipline={urgentJob.job_has_knowledges[0]?.knowledge.name}
             price={urgentJob.value_pay}
             theme={urgentJob.theme}
             title={urgentJob.title}
@@ -46,3 +43,5 @@ export function UrgentWorks() {
     </S.Wrapper>
   );
 }
+
+export { UrgentWorks };

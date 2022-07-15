@@ -12,6 +12,7 @@ export const Image = styled.img`
     width: 60%;
   }
 `;
+
 export const Wrapper = styled.div`
   width: 1500px;
   display: flex;
@@ -29,19 +30,24 @@ export const Wrapper = styled.div`
 `;
 
 export const Line = styled.div``;
+
 export const ContainerImage = styled.div`
   width: 70%;
   height: 100%;
+
   @media (max-width: 600px) {
     display: none;
   }
 `;
+
 export const ContainerInformation = styled.div`
   width: 100%;
   height: 100%;
+
   a {
     text-decoration: none;
   }
+
   h1 {
     margin-top: 10px;
     font-weight: 500;
@@ -54,7 +60,6 @@ export const ContainerInformation = styled.div`
     color: #4e4e4e;
     font-weight: 400;
     font-size: 18px;
-
     margin-bottom: 2rem;
   }
 

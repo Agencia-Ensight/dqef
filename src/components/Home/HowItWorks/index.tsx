@@ -1,9 +1,10 @@
 import { useState } from "react";
+
 import { InfoCard } from "./components/InfoCard";
 import * as S from "./styles";
-import { IMenu, Props } from "./typings";
+import { IMenu } from "./typings";
 
-export function HowItWorks() {
+function HowItWorks() {
   const [menuItem, setMenuItem] = useState<IMenu>("STUDENT");
   return (
     <S.Wrapper>
@@ -130,3 +131,5 @@ export function HowItWorks() {
     </S.Wrapper>
   );
 }
+
+export { HowItWorks };

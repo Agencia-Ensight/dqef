@@ -4,12 +4,12 @@ export const Image = styled.img`
   width: 100%;
   height: 100%;
 `;
+
 export const Wrapper = styled.div`
   display: flex;
   width: 1500px;
   max-width: 100%;
   position: relative;
-  /* margin: 0 auto; */
   align-items: center;
   height: 91vh;
   gap: 69px;
@@ -22,6 +22,7 @@ export const Wrapper = styled.div`
     @media (max-width: 600px) {
       width: 100%;
     }
+
     div {
       margin-bottom: 0.5rem;
       margin-top: 2rem;
@@ -30,17 +31,21 @@ export const Wrapper = styled.div`
 `;
 
 export const Line = styled.div``;
+
 export const ContainerImage = styled.div`
   width: 60%;
   height: 100%;
+
   @media (max-width: 600px) {
     display: none;
   }
 `;
+
 export const ContainerInformation = styled.div`
   a {
     text-decoration: none;
   }
+
   h1 {
     margin-top: 10px;
     font-weight: 500;

@@ -1,4 +1,4 @@
-import { ButtonKnewave } from "../../components/ButtonKnewave";
+import { ButtonKnewave } from "../../src/components/ButtonKnewave";
 import * as S from "./styles";
 import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import Link from "next/link";

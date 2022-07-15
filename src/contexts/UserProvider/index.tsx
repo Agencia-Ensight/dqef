@@ -23,8 +23,8 @@ function UserProvider({ children }: UserContextProvider) {
   const [user, setUser] = useState<UserProps>();
 
   const signIn = useCallback(
-    async ({ phoneNumber, password }: SignInUserProps): Promise<void> => {
-      const { data } = await api.post(`/users/auth`, { phoneNumber, password });
+    async ({ email, password }: SignInUserProps): Promise<void> => {
+      const { data } = await api.post(`/users/auth`, { email, password });
 
       setUser(data.user);
       setCookie(null, `@dqef/user`, JSON.stringify(data.user));
@@ -50,7 +50,7 @@ function UserProvider({ children }: UserContextProvider) {
     async (newUser: CreateUserProps): Promise<void> => {
       await api.post(`/users`, newUser);
       await signIn({
-        phoneNumber: newUser.phoneNumber,
+        email: newUser.email,
         password: newUser.password,
       });
     },
