@@ -62,7 +62,7 @@ export const GET_TOP_10_JOBS = gql`
 
 export const GET_URGENT_JOBS = gql`
   query {
-    jobs() {
+    jobs {
       id
       title
       theme
@@ -82,7 +82,7 @@ export const GET_URGENT_JOBS = gql`
 
 export const GET_JOBS = gql`
   query {
-    jobs() {
+    jobs {
       id
       title
       theme
