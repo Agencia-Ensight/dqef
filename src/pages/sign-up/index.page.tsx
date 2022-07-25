@@ -37,7 +37,7 @@ function SignUp() {
             extra, crie sua conta de redator!
           </p>
           <div>
-            <Link href="/sign-up/employee">
+            <Link href="/sign-up/editor">
               <ButtonKnewave variant="PRIMARY" size="sm">
                 Vamos lá
               </ButtonKnewave>
