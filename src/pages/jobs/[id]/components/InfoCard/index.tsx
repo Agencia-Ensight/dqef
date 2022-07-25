@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { text } from "stream/consumers";
 import * as S from "./styles";
 import { Props } from "./typings";
 

@@ -34,7 +34,6 @@ export const MainContainer = styled.div`
   gap: 60px 50px;
   padding-top: 3rem;
   overflow-y: scroll;
-  padding-left: 2rem;
   padding-bottom: 4rem;
 
   ::-webkit-scrollbar {

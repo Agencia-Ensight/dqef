@@ -268,7 +268,7 @@ function JobCard(job: Props) {
       {job.status === "STUDENT" && ""}
       {job.status === "STUDENT-EDIT" && (
         <S.FooterContainer>
-          <a href={`/proposalstudentedit/${job.jobId}`}>
+          <a href={`/jobs/${job.jobId}/update`}>
             <Button variant="primary">Editar Trabalho</Button>
           </a>
         </S.FooterContainer>

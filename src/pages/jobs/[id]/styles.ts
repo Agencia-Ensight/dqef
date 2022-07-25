@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   gap: 30px;
   margin-top: 2.5rem;
+  overflow-x: hidden;
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -13,9 +14,9 @@ export const Wrapper = styled.div`
   .files-container {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     margin-top: 1.5rem;
-    gap: 37px;
+    gap: 30px;
+
     @media (max-width: 600px) {
       justify-content: center;
       flex-wrap: nowrap;

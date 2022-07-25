@@ -9,7 +9,7 @@ export const api = axios.create({
 });
 
 export const graphql = new ApolloClient({
-  uri: "https://api.xn--deixaqueeufao-tgb.com/v1/graphql",
+  uri: "https://api.deixaqueeufaco.io/v1/graphql",
   cache: new InMemoryCache(),
   headers: {
     "Content-Type": "application/json",

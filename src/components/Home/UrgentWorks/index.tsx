@@ -19,6 +19,8 @@ function UrgentWorks() {
         </S.Description>
       </S.HeaderContainer>
       <S.MainContainer>
+        {urgentJobs.loading && <p>Carregando...</p>}
+        {urgentJobs.error && <p>Não conseguimos carregar esse módulo</p>}
         {urgentJobs.data?.jobs.map((urgentJob, index) => (
           <JobCard
             key={index}

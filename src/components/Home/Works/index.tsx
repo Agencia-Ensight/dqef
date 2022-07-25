@@ -1,9 +1,12 @@
-import { ButtonKnewave } from "@/components";
-import { AllJobs } from "./components/AllJobs";
+import { useQuery } from "@apollo/client";
 
+import { ButtonKnewave, JobCard } from "@/components";
+import { GET_TOP_10_JOBS, Job } from "@/services/graphql/jobs";
 import * as S from "./styles";
 
 function Works() {
+  const jobs = useQuery<{ jobs: Job[] }>(GET_TOP_10_JOBS);
+
   return (
     <S.Wrapper>
       <S.SubTitle>PADRÃO</S.SubTitle>
@@ -15,7 +18,24 @@ function Works() {
         </S.Description>
       </S.HeaderContainer>
       <S.MainContainer>
-        <AllJobs />
+        {jobs.loading && <p>Carregando...</p>}
+        {jobs.error && <p>Não conseguimos carregar esse módulo</p>}
+        {jobs.data?.jobs.map((job) => (
+          <JobCard
+            jobId={job.id}
+            course="ECONOMIA" // higher_course_name TODO: Sincronizar com o banco de dados?
+            date={job.delivery}
+            discipline={job.job_has_knowledges
+              .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
+              .join(", ")}
+            price={job.value_pay}
+            theme={job.theme}
+            title={job.title}
+            typeOfWork={job.job_type.name}
+            urgent={false} // TODO:Como pegar do banco
+            status="EMPLOYEE-SEE" // TODO: Sincronizar com o banco de dados?
+          />
+        ))}
       </S.MainContainer>
       <S.ButtonContainer>
         <ButtonKnewave size="lg" variant="PRIMARY">

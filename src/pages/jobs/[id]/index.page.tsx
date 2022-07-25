@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { GetServerSidePropsContext } from "next";
 import { useQuery } from "@apollo/client";
 import ScrollContainer from "react-indiana-drag-scroll";
@@ -7,7 +8,8 @@ import { IInsideJob } from "./typings";
 import { JobCard } from "@/components";
 
 import { GET_JOB, Job } from "@/services/graphql/jobs";
-import { useMemo } from "react";
+import { InfoCard } from "./components/InfoCard";
+import { FileCard } from "./components/FileCard";
 
 function InsideJob({ id }: IInsideJob) {
   const jobQuery = useQuery<{ jobs_by_pk: Job }>(GET_JOB, {
@@ -35,29 +37,24 @@ function InsideJob({ id }: IInsideJob) {
         theme={job!.theme}
         title={job!.title}
         typeOfWork={job!.job_type.name}
-        urgent={false} // TODO: Como pegar do banco de dados
+        urgent={false}
         status="STUDENT-EDIT" // TODO: Sincronizar com o banco de dados?
       />
       <S.Container>
-        {/* <InfoCard
-          title={job!.title}
-          pages={job!.pages}
-          plagiarism={job!.maximum_plagiarism}
-          format={job!.job_format.name}
-          description={job!.instructions}
-          observations={job!.obs}
-        /> */}
-        <ScrollContainer
-          horizontal={true}
-          hideScrollbars={true}
-          className="files-container"
-        >
+        <InfoCard
+          title={job.title}
+          pages={job.pages}
+          plagiarism={job.maximum_plagiarism}
+          format={job.job_format.name}
+          description={job.instructions}
+          observations={job.obs}
+        />
+        <ScrollContainer horizontal hideScrollbars className="files-container">
           {job.job_has_medias.map(
             ({
               media: { id: media_id, title: media_name, link: media_url },
             }) => (
-              <></>
-              // <FileCard key={media_id} title={media_name} />
+              <FileCard key={media_id} title={media_name} />
             )
           )}
         </ScrollContainer>
