@@ -35,7 +35,7 @@ function ComboboxComp({ onSelectedChange, list, label }: ComboboxProps) {
     onSelectedChange(data);
   }
   return (
-    <S.Wrapper>
+    <S.Wrapper className="combobox-root">
       <label>{label}</label>
       <Combobox value={selected} onChange={handleChange}>
         <S.ComboboxWrapper>
