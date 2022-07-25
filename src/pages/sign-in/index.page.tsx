@@ -33,10 +33,11 @@ function SignIn() {
           <span>Fazer Login</span>
         </p>
         <h1>Bem-vindo de Volta</h1>
-        <S.InputContainer>
+        <S.InputContainer onSubmit={handleSubmit}>
           <Input
             label="E-mail"
             placeholder="email@provedor.com"
+            type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -57,10 +58,9 @@ function SignIn() {
             Esqueci minha <span>senha</span>
           </a>
         </S.IconContainer>
-        <ButtonKnewave variant="PRIMARY" size="sm" onClick={handleSubmit}>
+        <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
           Entrar
         </ButtonKnewave>
-
         <hr />
         <h2>
           Não tenho Conta,

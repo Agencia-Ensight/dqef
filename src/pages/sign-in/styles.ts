@@ -28,7 +28,7 @@ export const ContainerImage = styled.div`
     height: 50vh;
   }
 `;
-export const ContainerInformation = styled.div`
+export const ContainerInformation = styled.form`
   width: 60%;
 
   height: 100%;
