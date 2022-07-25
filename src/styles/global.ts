@@ -59,4 +59,14 @@ export const GlobalStyle = createGlobalStyle`
 			background: #fafafa !important;
 			font-family: 'Lato', sans-serif;
     }
+
+	button, input[type="submit"], input[type="reset"] {
+		background: none;
+		color: inherit;
+		border: none;
+		padding: 0;
+		font: inherit;
+		cursor: pointer;
+		outline: inherit;
+	}
 `;

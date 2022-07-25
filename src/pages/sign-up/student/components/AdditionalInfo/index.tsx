@@ -1,55 +1,105 @@
-import { useRouter } from "next/router";
-import { Checkbox, Select } from "@chakra-ui/react";
+import { useState } from "react";
 
 import { ButtonKnewave, ComboboxComp, InputCheckbox } from "@/components";
-
+import { useStudent } from "../../StudentContext";
 import * as S from "./styles";
+import { useToast, useUser } from "@/contexts";
 
-const fruits = [
-  { id: 1, name: "banana" },
-  { id: 2, name: "maca" },
+const courses = [
+  { id: 1, name: "Ciência da Computação" },
+  { id: 2, name: "Educação física" },
+];
+
+const colleges = [
+  { id: 3, name: "Pontifícia Universidade Católica" },
+  { id: 4, name: "Faculdade Federal do Paraná" },
 ];
 
 function AdditionalInfo() {
-  const router = useRouter();
+  const [course, setCourse] = useState(courses[0].id);
+  const [college, setCollege] = useState(colleges[0].id);
+  const [termsOfUse, setTermsOfUse] = useState(false);
+  const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const { data, updateData, updateStep } = useStudent();
+  const { signUp } = useUser();
+  const { addToast } = useToast();
+
+  async function onSubmit() {
+    if (!termsOfUse || !privacyPolicy) {
+      addToast({
+        type: "error",
+        msg: "Você deve aceitar os termos de uso e política de privacidade",
+      });
+      return;
+    }
+
+    try {
+      updateData({ course, college, termsOfUse, privacyPolicy });
+      updateStep("code");
+      await signUp({
+        type: "STUDENT",
+        email: data.email,
+        name: data.name,
+        password: data.password,
+        collegeId: college,
+        courseId: course,
+        cpf: data.cpf,
+        phone: data.phone,
+      });
+      addToast({ type: "success", msg: "Cadastro realizado com sucesso!" });
+    } catch (err) {
+      addToast({
+        type: "error",
+        msg: "Algum problema com seu cadastro, tente novamente mais tarde",
+      });
+    }
+  }
 
   return (
     <>
-      <a onClick={() => router.back()}>Voltar</a>
+      <a onClick={() => updateStep("info")}>Voltar</a>
       <h1>Informações Extras</h1>
       <p>Insira alguns dados para completar o seu cadastro.</p>
-      <form>
-        <S.InputContainer>
-          <ComboboxComp
-            label="Cursos"
-            list={fruits}
-            onSelectedChange={(item) => alert(`Alert ${item.name}`)}
+      <S.InputContainer>
+        <ComboboxComp
+          label="Cursos"
+          items={courses}
+          onSelectedChange={(item) => setCourse(item.id)}
+          name="course"
+        />
+        <ComboboxComp
+          label="Faculdade"
+          items={colleges}
+          onSelectedChange={(item) => setCollege(item.id)}
+          name="college"
+        />
+      </S.InputContainer>
+      <S.CheckboxContainer>
+        <S.InputCheckboxContainer>
+          <InputCheckbox
+            id="termsOfUse"
+            name="termsOfUse"
+            onChange={(e) => setTermsOfUse(e.target.checked)}
           />
-          <ComboboxComp
-            label="Faculdade"
-            list={fruits}
-            onSelectedChange={(item) => alert(`Alert ${item.name}`)}
+          <label htmlFor="termsOfUse">
+            Aceitar <a href="#">Termos de Uso</a>
+          </label>
+        </S.InputCheckboxContainer>
+        <S.InputCheckboxContainer>
+          <InputCheckbox
+            id="termsOfPrivacy"
+            name="privacyPolicy"
+            onChange={(e) => setPrivacyPolicy(e.target.checked)}
           />
-        </S.InputContainer>
-        <S.CheckboxContainer>
-          <S.InputCheckboxContainer>
-            <InputCheckbox name="termsOfUse" id="termsOfUse" required />
-            <label htmlFor="termsOfUse">
-              Aceitar <a href="#">Termos de Uso</a>
-            </label>
-          </S.InputCheckboxContainer>
-          <S.InputCheckboxContainer>
-            <InputCheckbox name="termsOfPrivacy" id="termsOfPrivacy" required />
-            <label htmlFor="termsOfPrivacy">
-              Aceitar <a href="#">Termos de Privacidade</a>
-            </label>
-          </S.InputCheckboxContainer>
-        </S.CheckboxContainer>
+          <label htmlFor="termsOfPrivacy">
+            Aceitar <a href="#">Termos de Privacidade</a>
+          </label>
+        </S.InputCheckboxContainer>
+      </S.CheckboxContainer>
 
-        <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
-          Confirmar E-mail
-        </ButtonKnewave>
-      </form>
+      <ButtonKnewave variant="PRIMARY" size="sm" onClick={onSubmit}>
+        Confirmar E-mail
+      </ButtonKnewave>
     </>
   );
 }

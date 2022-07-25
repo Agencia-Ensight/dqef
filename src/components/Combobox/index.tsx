@@ -1,7 +1,7 @@
-import { useState } from "react";
-
+import { InputHTMLAttributes, useState } from "react";
 import { Combobox } from "@headlessui/react";
 import { BiChevronDown } from "react-icons/bi";
+import { UseFormRegister } from "react-hook-form";
 
 import * as S from "./styles";
 
@@ -10,20 +10,28 @@ type ComboboxData = {
   name: string;
 };
 
-interface ComboboxProps {
-  list: ComboboxData[];
+type ComboboxProps = {
+  items: ComboboxData[];
   onSelectedChange: (data: ComboboxData) => void;
   label: string;
-}
+  name: string;
+  register?: UseFormRegister<any>;
+} & InputHTMLAttributes<HTMLInputElement>;
 
-function ComboboxComp({ onSelectedChange, list, label }: ComboboxProps) {
-  const [selected, setSelected] = useState<ComboboxData>(list[0]);
+function ComboboxComp({
+  onSelectedChange,
+  items,
+  label,
+  register,
+  ...rest
+}: ComboboxProps) {
+  const [selected, setSelected] = useState<ComboboxData>(items[0]);
   const [query, setQuery] = useState("");
 
   const filtered =
     query === ""
-      ? list
-      : list.filter((item) =>
+      ? items
+      : items.filter((item) =>
           item.name
             .toLowerCase()
             .replace(/\s+/g, "")
@@ -34,6 +42,7 @@ function ComboboxComp({ onSelectedChange, list, label }: ComboboxProps) {
     setSelected(data);
     onSelectedChange(data);
   }
+
   return (
     <S.Wrapper>
       <label>{label}</label>
@@ -41,9 +50,12 @@ function ComboboxComp({ onSelectedChange, list, label }: ComboboxProps) {
         <S.ComboboxWrapper>
           <S.ComboboxContainer>
             <Combobox.Input
+              {...rest}
               className="combobox-input"
               displayValue={(item: ComboboxData) => item.name}
-              onChange={(event) => setQuery(event.target.value)}
+              {...((register && register(rest.name)) ?? {
+                onChange: (event) => setQuery(event.target.value),
+              })}
             />
             <Combobox.Button className="combobox-button">
               <BiChevronDown size={20} aria-hidden="true" />

@@ -78,13 +78,22 @@ function UserProvider({ children }: UserContextProvider) {
 
   const signUp = useCallback(
     async (newUser: CreateUserProps): Promise<void> => {
-      await api.post(`/auth/sign-up`, newUser);
-      await signIn({
-        email: newUser.email,
-        password: newUser.password,
-      });
+      if (newUser.type === "STUDENT") {
+        await api.post(`/auth/sign-up`, {
+          email: newUser.email,
+          password: newUser.password,
+          name: newUser.name,
+          phone: newUser.phone,
+          cpf: newUser.cpf,
+          type: 1,
+          formation: 1,
+          course: newUser.courseId,
+          college: newUser.collegeId,
+          knowledges: [],
+        });
+      }
     },
-    [signIn]
+    []
   );
 
   const signUpConfirm = useCallback(

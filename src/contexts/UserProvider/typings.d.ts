@@ -14,12 +14,16 @@ type CreateEditorUserProps = {
 
 type CreateSdutentUserProps = {
   type: "STUDENT";
+  courseId: number;
+  collegeId: number;
 };
 
 type CreateUserProps = {
   name: string;
   email: string;
   password: string;
+  phone: string;
+  cpf: string;
 } & (CreateEditorUserProps | CreateSdutentUserProps);
 
 export type SignInUserProps = {

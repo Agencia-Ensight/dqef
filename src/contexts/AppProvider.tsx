@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
 import { ApolloProvider } from "@apollo/client";
 
 import { graphql } from "@/services/api";
@@ -11,11 +10,9 @@ type AppProviderProps = { children: ReactNode };
 function AppProvider({ children }: AppProviderProps) {
   return (
     <ApolloProvider client={graphql}>
-      <ChakraProvider>
-        <UserProvider>
-          <ToastProvider>{children}</ToastProvider>
-        </UserProvider>
-      </ChakraProvider>
+      <UserProvider>
+        <ToastProvider>{children}</ToastProvider>
+      </UserProvider>
     </ApolloProvider>
   );
 }
