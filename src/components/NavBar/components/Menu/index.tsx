@@ -27,7 +27,7 @@ function Menu() {
         Sair
       </ButtonKnewave>
     );
-  }, []);
+  }, [user]);
 
   function handleOpen() {
     setIsOpen((oldIsOpen) => !oldIsOpen);

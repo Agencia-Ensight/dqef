@@ -27,7 +27,7 @@ function NavBar() {
         </ButtonKnewave>
       </S.MenuItem>
     );
-  }, []);
+  }, [user]);
 
   return (
     <S.MainWrapper>
