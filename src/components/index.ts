@@ -11,3 +11,5 @@ export * from "./NavBar/components/Menu";
 export * from "./ProfileCard";
 export * from "./ProfileCardEmployee";
 export * from "./JobCard";
+export * from "./Combobox";
+export * from "./InputCheckbox";
