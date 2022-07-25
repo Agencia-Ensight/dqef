@@ -1,17 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
+  compiler: {
     styledComponents: true,
   },
   pageExtensions: [
-    'page.tsx',
-    'page.ts',
-    'page.jsx',
-    'page.js',
-    'api.ts',
-    'mdx',
+    "page.tsx",
+    "page.ts",
+    "page.jsx",
+    "page.js",
+    "api.ts",
+    "mdx",
   ],
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -27,7 +27,7 @@ function NavBar() {
         </ButtonKnewave>
       </S.MenuItem>
     );
-  }, []);
+  }, [user]);
 
   return (
     <S.MainWrapper>
@@ -61,7 +61,7 @@ function NavBar() {
             </a>
           </Link>
           <S.MenuItem>
-            <Link href="/proposal" passHref>
+            <Link href="/jobs/create" passHref>
               <ButtonKnewave size="sm" variant="PRIMARY">
                 Publicar Trabalho
               </ButtonKnewave>

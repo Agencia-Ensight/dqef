@@ -13,6 +13,9 @@ import {
   UserContextProvider,
   CreateUserProps,
   SignInUserProps,
+  ResetPasswordProps,
+  SignUpConfirmProps,
+  UpdateUserProps,
 } from "./typings";
 
 import { api } from "@/services/api";
@@ -20,45 +23,91 @@ import { api } from "@/services/api";
 const UserContext = createContext<UserProviderProps>({} as UserProviderProps);
 
 function UserProvider({ children }: UserContextProvider) {
-  const [user, setUser] = useState<UserProps>({} as UserProps);
+  const [user, setUser] = useState<UserProps>();
 
   const signIn = useCallback(
     async ({ email, password }: SignInUserProps): Promise<void> => {
       const { data } = await api.post(`/auth/sign-in`, { email, password });
 
-      console.log(data);
+      const accessToken = data.data.token.token;
+      const userFromAPI = data.data.user;
 
-      return;
+      const parsedUser: UserProps = {
+        id: userFromAPI.id,
+        name: userFromAPI.name,
+        email: userFromAPI.email,
+        avatar: userFromAPI.avatar,
+        type: userFromAPI.type === 1 ? "STUDENT" : "EDITOR",
+      };
 
-      setUser(data.user);
-      setCookie(null, `@dqef/user`, JSON.stringify(data.user));
-      setCookie(null, `@dqef/access-token`, data.accessToken);
-      api.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
+      setUser(parsedUser);
+      setCookie(null, `@dqef/user`, JSON.stringify(parsedUser));
+      setCookie(null, `@dqef/access-token`, accessToken);
+      api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     },
     []
   );
 
   const signOut = useCallback(async (): Promise<void> => {
     destroyCookie(null, `@dqef/user`);
-    setUser({} as UserProps);
+    destroyCookie(null, `@dqef/access-token`);
+    setUser(undefined);
     api.defaults.headers.common.Authorization = ``;
   }, []);
 
-  const updateUser = useCallback(async (newUser: UserProps): Promise<void> => {
-    await api.put(`/users`, newUser);
-    setUser(newUser);
-    setCookie(null, `@dqef/user`, JSON.stringify(newUser));
-  }, []);
+  const updateUser = useCallback(
+    async (newUser: UpdateUserProps): Promise<void> => {
+      await api.put(`/profile`, newUser);
+
+      setUser((data) => {
+        const userConverted = data && {
+          ...data,
+          name: newUser.name || data.name,
+        };
+
+        if (userConverted) {
+          setCookie(null, `@dqef/user`, JSON.stringify(userConverted));
+          return userConverted;
+        }
+
+        return data;
+      });
+    },
+    []
+  );
 
   const signUp = useCallback(
     async (newUser: CreateUserProps): Promise<void> => {
-      await api.post(`/users`, newUser);
+      await api.post(`/auth/sign-up`, newUser);
       await signIn({
         email: newUser.email,
         password: newUser.password,
       });
     },
     [signIn]
+  );
+
+  const signUpConfirm = useCallback(
+    async (data: SignUpConfirmProps) => {
+      await api.post("/auth/sign-up/code", data);
+      await signIn({ email: data.email, password: data.password });
+    },
+    [signIn]
+  );
+
+  const forgotPassword = useCallback(async (email: string) => {
+    await api.post("/auth/forget-password", { email });
+  }, []);
+
+  const resetPassword = useCallback(
+    async ({ code, email, newPassword }: ResetPasswordProps) => {
+      await api.post("/auth/forgot-password/code", {
+        email,
+        code,
+        password: newPassword,
+      });
+    },
+    []
   );
 
   useEffect(() => {
@@ -73,7 +122,18 @@ function UserProvider({ children }: UserContextProvider) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, signIn, signUp, signOut, updateUser }}>
+    <UserContext.Provider
+      value={{
+        user,
+        signIn,
+        signUp,
+        signUpConfirm,
+        signOut,
+        updateUser,
+        forgotPassword,
+        resetPassword,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

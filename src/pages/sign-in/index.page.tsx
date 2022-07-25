@@ -3,7 +3,7 @@ import Router from "next/router";
 import { RiLockPasswordFill } from "react-icons/ri";
 
 import { ButtonKnewave, Input } from "@/components";
-import { useUser } from "@/contexts";
+import { useUser, useToast } from "@/contexts";
 
 import * as S from "./styles";
 
@@ -11,13 +11,14 @@ function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signIn } = useUser();
+  const { addToast } = useToast();
 
   async function handleSubmit() {
     try {
       await signIn({ email, password });
       Router.push("/");
     } catch (err) {
-      console.log(err);
+      addToast({ type: "error", msg: "Usuário ou senha inválidos" });
     }
   }
 
