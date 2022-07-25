@@ -40,50 +40,46 @@ function ChangePassword() {
         <S.Image src="/images/forgotpassword.png" />
       </S.ContainerImage>
 
-      <S.ContainerInformation>
+      <S.ContainerInformation onSubmit={handleSubmit}>
         <a onClick={() => Router.back()}>
           <span>Voltar</span>
         </a>
         <h1>Alterar Senha</h1>
-        <form onSubmit={handleSubmit}>
-          <p>Insira seu e-mail</p>
-          <Input
-            label="Insira seu email"
-            name="email"
-            placeholder="Insira aqui..."
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <p>Insira a código de recuperação</p>
-          <Input
-            label="Insira o código de recuperação"
-            name="code"
-            placeholder="Insira aqui..."
-            type="number"
-            onChange={(e) => setCode(e.target.value)}
-            required
-          />
-          <p>Insira a nova senha</p>
-          <Input
-            label="Nova Senha"
-            placeholder="Insira ela"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-          />
-          <Input
-            label="Confirme a nova senha"
-            name="password"
-            placeholder="Insira ela"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            type="password"
-            required
-          />
-          <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
-            Confirmar
-          </ButtonKnewave>
-        </form>
+        <Input
+          label="Insira seu email"
+          name="email"
+          placeholder="Insira aqui..."
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <Input
+          label="Insira o código de recuperação"
+          name="code"
+          placeholder="Insira aqui..."
+          type="number"
+          onChange={(e) => setCode(e.target.value)}
+          required
+        />
+        <Input
+          label="Nova Senha"
+          placeholder="Insira ela"
+          required
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+        />
+        <Input
+          label="Confirme a nova senha"
+          name="password"
+          placeholder="Insira ela"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          type="password"
+          required
+        />
+        <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
+          Confirmar
+        </ButtonKnewave>
       </S.ContainerInformation>
     </S.Wrapper>
   );

@@ -41,7 +41,11 @@ export const ContainerImage = styled.div`
   }
 `;
 
-export const ContainerInformation = styled.div`
+export const ContainerInformation = styled.form`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
   a {
     text-decoration: none;
   }

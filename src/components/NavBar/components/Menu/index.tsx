@@ -64,7 +64,7 @@ function Menu() {
         </Link>
 
         <S.Title>Conta</S.Title>
-        <Link href="/proposal" passHref>
+        <Link href="/jobs/create" passHref>
           <ButtonKnewave variant="PRIMARY" size="sm" onClick={handleOpen}>
             Publicar Trabalho
           </ButtonKnewave>
