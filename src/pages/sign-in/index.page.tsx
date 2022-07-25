@@ -33,7 +33,7 @@ function SignIn() {
           <span>Fazer Login</span>
         </p>
         <h1>Bem-vindo de Volta</h1>
-        <S.InputContainer onSubmit={handleSubmit}>
+        <S.InputContainer>
           <Input
             label="E-mail"
             placeholder="email@provedor.com"
@@ -58,7 +58,7 @@ function SignIn() {
             Esqueci minha <span>senha</span>
           </a>
         </S.IconContainer>
-        <ButtonKnewave variant="PRIMARY" size="sm" type="submit">
+        <ButtonKnewave variant="PRIMARY" size="sm" onClick={handleSubmit}>
           Entrar
         </ButtonKnewave>
         <hr />

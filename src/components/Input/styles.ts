@@ -34,3 +34,7 @@ export const Wrapper = styled.div<LabelProps>`
     }
   }
 `;
+
+export const Error = styled.span`
+  color: #e62f5b !important;
+`;

@@ -19,9 +19,11 @@ function SuccessCreated() {
           </ButtonKnewave>
         </Link>
 
-        <ButtonKnewave variant="PRIMARY" size="sm">
-          Publicar Trabalho
-        </ButtonKnewave>
+        <Link href="/jobs/create" passHref>
+          <ButtonKnewave variant="PRIMARY" size="sm">
+            Publicar Trabalho
+          </ButtonKnewave>
+        </Link>
       </S.ButtonContainer>
     </S.Wrapper>
   );

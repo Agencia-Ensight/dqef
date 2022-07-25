@@ -5,7 +5,6 @@ export * from "./HelpButton";
 export * from "./Input";
 export * from "./Modal";
 export * from "./MultiSelect";
-export * from "./MultiStepForm";
 export * from "./NavBar";
 export * from "./NavBar/components/Menu";
 export * from "./ProfileCard";
