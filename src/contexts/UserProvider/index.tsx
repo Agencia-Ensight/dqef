@@ -15,6 +15,7 @@ import {
   SignInUserProps,
   ResetPasswordProps,
   SignUpConfirmProps,
+  UpdateUserProps,
 } from "./typings";
 
 import { api } from "@/services/api";
@@ -54,11 +55,26 @@ function UserProvider({ children }: UserContextProvider) {
     api.defaults.headers.common.Authorization = ``;
   }, []);
 
-  const updateUser = useCallback(async (newUser: UserProps): Promise<void> => {
-    await api.put(`/profile`, newUser);
-    setUser(newUser);
-    setCookie(null, `@dqef/user`, JSON.stringify(newUser));
-  }, []);
+  const updateUser = useCallback(
+    async (newUser: UpdateUserProps): Promise<void> => {
+      await api.put(`/profile`, newUser);
+
+      setUser((data) => {
+        const userConverted = data && {
+          ...data,
+          name: newUser.name || data.name,
+        };
+
+        if (userConverted) {
+          setCookie(null, `@dqef/user`, JSON.stringify(userConverted));
+          return userConverted;
+        }
+
+        return data;
+      });
+    },
+    []
+  );
 
   const signUp = useCallback(
     async (newUser: CreateUserProps): Promise<void> => {

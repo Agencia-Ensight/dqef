@@ -13,7 +13,7 @@ export default function forgotpassword() {
   async function handleSubmit() {
     try {
       await forgotPassword(email);
-      Router.replace("/change-password");
+      Router.replace("/reset-password");
       addToast({
         type: "success",
         msg: "Verifique seu e-mail para redefinir sua senha, não esqueça de verificar o spam",

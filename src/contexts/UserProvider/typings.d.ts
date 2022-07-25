@@ -39,11 +39,22 @@ export type SignUpConfirmProps = {
   password: string;
 };
 
+export type UpdateUserProps = {
+  name?: string;
+  phone?: string;
+  cpf?: string;
+  formation?: string;
+  course?: string;
+  college?: string;
+  password?: string;
+};
+
 type UserProviderProps = {
   user?: UserProps;
   signIn(data: SignInUserProps): Promise<void>;
   signUp(user: CreateUserProps): Promise<void>;
   signUpConfirm(data: SignUpConfirmProps): Promise<void>;
+  updateUser(data: UpdateUserProps): Promise<void>;
   signOut(): Promise<void>;
   forgotPassword(email: string): Promise<void>;
   resetPassword(data: ResetPasswordProps): Promise<void>;
