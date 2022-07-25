@@ -33,10 +33,17 @@ export type ResetPasswordProps = {
   newPassword: string;
 };
 
+export type SignUpConfirmProps = {
+  email: string;
+  code: string;
+  password: string;
+};
+
 type UserProviderProps = {
   user?: UserProps;
   signIn(data: SignInUserProps): Promise<void>;
   signUp(user: CreateUserProps): Promise<void>;
+  signUpConfirm(data: SignUpConfirmProps): Promise<void>;
   signOut(): Promise<void>;
   forgotPassword(email: string): Promise<void>;
   resetPassword(data: ResetPasswordProps): Promise<void>;

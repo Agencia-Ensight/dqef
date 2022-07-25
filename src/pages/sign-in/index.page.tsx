@@ -18,7 +18,6 @@ function SignIn() {
       await signIn({ email, password });
       Router.push("/");
     } catch (err) {
-      console.log(err);
       addToast({ type: "error", msg: "Usuário ou senha inválidos" });
     }
   }

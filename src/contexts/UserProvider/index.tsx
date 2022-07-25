@@ -14,6 +14,7 @@ import {
   CreateUserProps,
   SignInUserProps,
   ResetPasswordProps,
+  SignUpConfirmProps,
 } from "./typings";
 
 import { api } from "@/services/api";
@@ -70,6 +71,14 @@ function UserProvider({ children }: UserContextProvider) {
     [signIn]
   );
 
+  const signUpConfirm = useCallback(
+    async (data: SignUpConfirmProps) => {
+      await api.post("/auth/sign-up/code", data);
+      await signIn({ email: data.email, password: data.password });
+    },
+    [signIn]
+  );
+
   const forgotPassword = useCallback(async (email: string) => {
     await api.post("/auth/forget-password", { email });
   }, []);
@@ -102,6 +111,7 @@ function UserProvider({ children }: UserContextProvider) {
         user,
         signIn,
         signUp,
+        signUpConfirm,
         signOut,
         updateUser,
         forgotPassword,
