@@ -52,6 +52,15 @@ export type CreateJobProps = {
   maximum_plagiarism: string;
 };
 
+export type JobFormatProps = {
+  id: number;
+  name: string;
+};
+
+export type JobFormatsData = {
+  job_formats: JobFormatProps[];
+};
+
 export const JOB_FRAGMENT = gql`
   fragment JobFragment on jobs {
     id
@@ -195,6 +204,15 @@ export const GET_JOBS = gql`
       job_format {
         name
       }
+    }
+  }
+`;
+
+export const GET_JOB_FORMATS = gql`
+  query JobFormats {
+    job_formats {
+      id
+      name
     }
   }
 `;

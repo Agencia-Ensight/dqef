@@ -1,11 +1,16 @@
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 
 import { schema } from "./schema";
-import { CreateJobProps, INSERT_JOB } from "@/services/graphql/jobs";
+import {
+  CreateJobProps,
+  GET_JOB_FORMATS,
+  INSERT_JOB,
+} from "@/services/graphql/jobs";
 import { useUser } from "@/contexts";
+import { JobFormatsData } from "WILL_BE_REMOVED/jobs";
 
 function CreateJob() {
   const { user } = useUser();
@@ -17,6 +22,8 @@ function CreateJob() {
     resolver: yupResolver(schema),
   });
   const [insertJob, { loading, error }] = useMutation(INSERT_JOB);
+
+  const jobFormats = useQuery<JobFormatsData>(GET_JOB_FORMATS);
 
   const onSubmit = useCallback(
     async (data: CreateJobProps) => {
