@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { AiOutlineReload } from "react-icons/ai";
 
 import { ButtonKnewave, Input } from "@/components";
 import * as S from "./styles";
@@ -38,10 +37,10 @@ function InsertCode() {
         label="Insira o código que você recebeu no e-mail"
         onChange={(e) => setCode(e.target.value)}
       />
-      <S.ResendCodeContainer>
+      {/* <S.ResendCodeContainer>
         <AiOutlineReload color="var(--blue)" />
         <h2>Enviar Código Novamente</h2>
-      </S.ResendCodeContainer>
+      </S.ResendCodeContainer> */}
       <div>
         <ButtonKnewave
           variant="PRIMARY"

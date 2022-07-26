@@ -1,7 +1,11 @@
+type OptionProps = {
+  label: string;
+  id: number;
+};
+
 export type Props = {
-  options: any[];
+  options: OptionProps[];
   id: string;
   name: string;
-  labelField?: string;
-  valueField?: string;
+  onChange: (options: OptionProps) => void;
 };

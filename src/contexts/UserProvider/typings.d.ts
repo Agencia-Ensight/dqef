@@ -10,6 +10,9 @@ type UserProps = {
 
 type CreateEditorUserProps = {
   type: "EDITOR";
+  formationId: number;
+  collegeId: number;
+  knowledgeIds: number[];
 };
 
 type CreateSdutentUserProps = {

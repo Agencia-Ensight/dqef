@@ -1,7 +1,6 @@
 import { InputHTMLAttributes, useState } from "react";
 import { Combobox } from "@headlessui/react";
 import { BiChevronDown } from "react-icons/bi";
-import { UseFormRegister } from "react-hook-form";
 
 import * as S from "./styles";
 
@@ -14,15 +13,12 @@ type ComboboxProps = {
   items: ComboboxData[];
   onSelectedChange: (data: ComboboxData) => void;
   label: string;
-  name: string;
-  register?: UseFormRegister<any>;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 function ComboboxComp({
   onSelectedChange,
   items,
   label,
-  register,
   ...rest
 }: ComboboxProps) {
   const [selected, setSelected] = useState<ComboboxData>(items[0]);
@@ -53,9 +49,7 @@ function ComboboxComp({
               {...rest}
               className="combobox-input"
               displayValue={(item: ComboboxData) => item.name}
-              {...((register && register(rest.name)) ?? {
-                onChange: (event) => setQuery(event.target.value),
-              })}
+              onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button className="combobox-button">
               <BiChevronDown size={20} aria-hidden="true" />

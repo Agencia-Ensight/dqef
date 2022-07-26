@@ -35,7 +35,6 @@ function AdditionalInfo() {
 
     try {
       updateData({ course, college, termsOfUse, privacyPolicy });
-      updateStep("code");
       await signUp({
         type: "STUDENT",
         email: data.email,
@@ -46,6 +45,7 @@ function AdditionalInfo() {
         cpf: data.cpf,
         phone: data.phone,
       });
+      updateStep("code");
       addToast({ type: "success", msg: "Cadastro realizado com sucesso!" });
     } catch (err) {
       addToast({

@@ -5,19 +5,30 @@ import { InsertCode } from "./components/InsertCode";
 import { SuccessCreated } from "./components/SuccessCreated";
 
 import * as S from "./styles";
+import { EditorProvider, useEditor } from "./EditorContext";
 
 function SignUpEditor() {
+  const { step } = useEditor();
+
   return (
     <S.Wrapper>
       <Banner />
       <S.Container>
-        <Info />
-        {/* <AdditionalInfo /> */}
-        {/* <InsertCode /> */}
-        {/* <SuccessCreated /> */}
+        {step === "info" && <Info />}
+        {step === "aditional-info" && <AdditionalInfo />}
+        {step === "code" && <InsertCode />}
+        {step === "success" && <SuccessCreated />}
       </S.Container>
     </S.Wrapper>
   );
 }
 
-export default SignUpEditor;
+function SignUpEditorWrapper() {
+  return (
+    <EditorProvider>
+      <SignUpEditor />
+    </EditorProvider>
+  );
+}
+
+export default SignUpEditorWrapper;

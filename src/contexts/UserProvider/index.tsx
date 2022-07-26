@@ -91,6 +91,18 @@ function UserProvider({ children }: UserContextProvider) {
           college: newUser.collegeId,
           knowledges: [],
         });
+      } else if (newUser.type === "EDITOR") {
+        await api.post(`/auth/sign-up`, {
+          email: newUser.email,
+          password: newUser.password,
+          name: newUser.name,
+          phone: newUser.phone,
+          cpf: newUser.cpf,
+          type: 2,
+          formation: newUser.formationId,
+          college: newUser.collegeId,
+          knowledges: newUser.knowledgeIds,
+        });
       }
     },
     []

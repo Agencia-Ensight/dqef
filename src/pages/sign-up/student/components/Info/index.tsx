@@ -9,13 +9,14 @@ import { schema } from "./schema";
 import * as S from "./styles";
 
 function Info() {
-  const { updateData, updateStep } = useStudent();
+  const { data, updateData, updateStep } = useStudent();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateUserStudentProps>({
+    defaultValues: data,
     resolver: yupResolver(schema),
   });
 
