@@ -12,7 +12,7 @@ function ChangePassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { addToast } = useToast();
-  const { resetPassword } = useUser();
+  const { resetPassword, signIn } = useUser();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -24,6 +24,7 @@ function ChangePassword() {
 
     try {
       await resetPassword({ code, email, newPassword: password });
+      await signIn({ email, password });
       Router.replace("/");
       addToast({ type: "success", msg: "Senha redefinida com sucesso" });
     } catch (err) {

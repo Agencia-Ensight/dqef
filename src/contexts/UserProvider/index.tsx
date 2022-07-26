@@ -122,7 +122,7 @@ function UserProvider({ children }: UserContextProvider) {
 
   const resetPassword = useCallback(
     async ({ code, email, newPassword }: ResetPasswordProps) => {
-      await api.post("/auth/forgot-password/code", {
+      await api.post("/auth/forget-password/code", {
         email,
         code,
         password: newPassword,
