@@ -4,6 +4,11 @@ import { useForm } from "react-hook-form";
 import { schema } from "./schema";
 import { UpdateConfigsProps } from "./typings";
 import { useToast, useUser } from "@/contexts";
+import { Banner } from "./Banner";
+import { EditorEditProfile } from "./Editor";
+import { StudentEditProfile } from "./Student";
+
+import * as S from "./styles";
 
 function Profile() {
   const { updateUser } = useUser();
@@ -28,31 +33,41 @@ function Profile() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" {...register("name")} />
-      <p>{errors.name?.message}</p>
+    <>
+      <S.Wrapper>
+        <Banner />
+        <S.ContainerInformation>
+          {/* <EditorEditProfile /> */}
+          <StudentEditProfile />
+        </S.ContainerInformation>
+      </S.Wrapper>
 
-      <input type="phone" {...register("phone")} />
-      <p>{errors.phone?.message}</p>
+      {/* <form onSubmit={handleSubmit(onSubmit)}>
+        <input type="text" {...register("name")} />
+        <p>{errors.name?.message}</p>
 
-      <input type="number" {...register("cpf")} />
-      <p>{errors.cpf?.message}</p>
+        <input type="phone" {...register("phone")} />
+        <p>{errors.phone?.message}</p>
 
-      <input type="text" {...register("formation")} />
-      <p>{errors.formation?.message}</p>
+        <input type="number" {...register("cpf")} />
+        <p>{errors.cpf?.message}</p>
 
-      <input type="text" {...register("course")} />
-      <p>{errors.course?.message}</p>
+        <input type="text" {...register("formation")} />
+        <p>{errors.formation?.message}</p>
 
-      <input type="text" {...register("college")} />
-      <p>{errors.college?.message}</p>
+        <input type="text" {...register("course")} />
+        <p>{errors.course?.message}</p>
 
-      <input type="text" {...register("password")} />
-      <p>{errors.password?.message}</p>
+        <input type="text" {...register("college")} />
+        <p>{errors.college?.message}</p>
 
-      <input type="text" {...register("passwordConfirmation")} />
-      <p>{errors.passwordConfirmation?.message}</p>
-    </form>
+        <input type="text" {...register("password")} />
+        <p>{errors.password?.message}</p>
+
+        <input type="text" {...register("passwordConfirmation")} />
+        <p>{errors.passwordConfirmation?.message}</p>
+      </form> */}
+    </>
   );
 }
 
