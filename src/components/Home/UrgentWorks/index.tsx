@@ -25,7 +25,7 @@ function UrgentWorks() {
           <JobCard
             key={index}
             jobId={urgentJob.id}
-            course="ECONOMIA"
+            course={urgentJob.higher_course.name} // higher_course_name TODO: Sincronizar com o banco de dados?
             date={urgentJob.delivery}
             discipline={urgentJob.job_has_knowledges[0]?.knowledge.name}
             price={urgentJob.value_pay}

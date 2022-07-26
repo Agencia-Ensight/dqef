@@ -60,48 +60,54 @@ function NavBar() {
               <S.MenuItem>FAQ</S.MenuItem>
             </a>
           </Link>
-          <S.MenuItem>
-            <Link href="/jobs/create" passHref>
-              <ButtonKnewave size="sm" variant="PRIMARY">
-                Publicar Trabalho
-              </ButtonKnewave>
-            </Link>
-          </S.MenuItem>
+          {user && user.type == "STUDENT" && (
+            <S.MenuItem>
+              <Link href="/jobs/create" passHref>
+                <ButtonKnewave size="sm" variant="PRIMARY">
+                  Publicar Trabalho
+                </ButtonKnewave>
+              </Link>
+            </S.MenuItem>
+          )}
 
           {getLoginOrLogout}
 
-          <S.Line />
-          <Link href="/config">
-            <S.ImageDefault>
-              <img
-                height={25}
-                width={25}
-                src="/images/homeconfiguraciones.png"
-                alt="my image"
-              />
-            </S.ImageDefault>
-          </Link>
-          <Link href="/notifications">
-            <S.ImageDefault>
-              <img
-                height={25}
-                width={25}
-                src="/images/homebell.png"
-                alt="my image"
-              />
-            </S.ImageDefault>
-          </Link>
+          {user && (
+            <>
+              <S.Line />
+              <Link href="/config">
+                <S.ImageDefault>
+                  <img
+                    height={25}
+                    width={25}
+                    src="/images/homeconfiguraciones.png"
+                    alt="my image"
+                  />
+                </S.ImageDefault>
+              </Link>
+              <Link href="/notifications">
+                <S.ImageDefault>
+                  <img
+                    height={25}
+                    width={25}
+                    src="/images/homebell.png"
+                    alt="my image"
+                  />
+                </S.ImageDefault>
+              </Link>
 
-          <Link href="/profile">
-            <S.ImageDefault>
-              <img
-                height={44}
-                width={44}
-                src="/images/imghomepadrao.png"
-                alt="my image"
-              />
-            </S.ImageDefault>
-          </Link>
+              <Link href="/profile">
+                <S.ImageDefault>
+                  <img
+                    height={44}
+                    width={44}
+                    src="/images/imghomepadrao.png"
+                    alt="my image"
+                  />
+                </S.ImageDefault>
+              </Link>
+            </>
+          )}
         </S.Wrapper>
       </S.Container>
       <Menu />
