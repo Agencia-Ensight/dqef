@@ -38,19 +38,19 @@ function MainInfo() {
           <ComboboxComp
             label="Tipo do Trabalho"
             onSelectedChange={() => {}}
-            list={fruits}
+            items={fruits}
           />
         </S.FirstInputContainer>
         <S.TextInputContainer>
           <ComboboxComp
             label="Curso do Trabalho"
             onSelectedChange={() => {}}
-            list={fruits}
+            items={fruits}
           />
           <ComboboxComp
             label="Disciplina do Trabalho"
             onSelectedChange={() => {}}
-            list={fruits}
+            items={fruits}
           />
 
           <Input

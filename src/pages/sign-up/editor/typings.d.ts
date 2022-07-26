@@ -9,6 +9,8 @@ type CreateUserEditorProps = {
   college: number;
   formation: number;
   knowledges: number[];
+  termsOfUse: boolean;
+  privacyPolicy: boolean;
 };
 
 export { CreateUserEditorProps };

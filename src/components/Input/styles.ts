@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import { LabelProps } from "./typings";
 
-export const Wrapper = styled.div<LabelProps>`
+
+export const Wrapper = styled.div`
   input,
   label {
     display: block;

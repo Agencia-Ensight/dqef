@@ -31,7 +31,7 @@ export function FAQCard({ jobId }: Props) {
       variables: {
         job_id: jobId,
         question: (e.currentTarget.elements as any).question.value,
-        user_id: user.id,
+        user_id: user?.id,
       },
     });
 

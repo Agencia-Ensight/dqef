@@ -1,4 +1,4 @@
-import { axiosClient } from "../src/services/api";
+import {} from "../src/services/api";
 
 export interface IDefaultResponse {
   status: number;

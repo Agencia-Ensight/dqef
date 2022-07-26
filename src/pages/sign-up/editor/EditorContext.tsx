@@ -6,15 +6,15 @@ import {
   useCallback,
 } from "react";
 
-import { CreateUserEditProps } from "./typings";
+import { CreateUserEditorProps } from "./typings";
 
 type FormStep = "info" | "aditional-info" | "code" | "success";
 
 type EditorProviderProps = {
-  data: CreateUserEditProps;
+  data: CreateUserEditorProps;
   step: FormStep;
   updateStep(step: FormStep): void;
-  updateData(data: Partial<CreateUserEditProps>): void;
+  updateData(data: Partial<CreateUserEditorProps>): void;
 };
 
 type EditorContextProvider = {
@@ -27,11 +27,11 @@ const EditorContext = createContext<EditorProviderProps>(
 
 function EditorProvider({ children }: EditorContextProvider) {
   const [step, setStep] = useState<FormStep>("info");
-  const [data, setData] = useState<CreateUserEditProps>(
-    {} as CreateUserEditProps
+  const [data, setData] = useState<CreateUserEditorProps>(
+    {} as CreateUserEditorProps
   );
 
-  const updateData = useCallback((newData: Partial<CreateUserEditProps>) => {
+  const updateData = useCallback((newData: Partial<CreateUserEditorProps>) => {
     setData((oldData) => ({ ...oldData, ...newData }));
   }, []);
 

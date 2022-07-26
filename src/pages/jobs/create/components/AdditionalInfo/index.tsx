@@ -30,7 +30,7 @@ function AdditionalInfo() {
           />
           <ComboboxComp
             label="Formato do Trabalho"
-            list={fruits}
+            items={fruits}
             onSelectedChange={() => {}}
           />
         </S.FirstInputContainer>
