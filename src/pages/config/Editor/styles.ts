@@ -14,6 +14,14 @@ export const SpecialOne = styled.div`
   div {
     width: 100%;
   }
+h3{
+  color: #53647e;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+  
 `;
 
 export const ContainerMini = styled.div`

@@ -37,8 +37,8 @@ function Profile() {
       <S.Wrapper>
         <Banner />
         <S.ContainerInformation>
-          {/* <EditorEditProfile /> */}
-          <StudentEditProfile />
+          <EditorEditProfile />
+          {/* <StudentEditProfile /> */}
         </S.ContainerInformation>
       </S.Wrapper>
 

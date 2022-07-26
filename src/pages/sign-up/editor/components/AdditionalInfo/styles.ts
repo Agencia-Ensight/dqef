@@ -18,11 +18,6 @@ export const InputContainer = styled.div`
     align-items: center;
   }
   
-  select:focus {
-      display: none;
-  }
-
- 
  
 `
 

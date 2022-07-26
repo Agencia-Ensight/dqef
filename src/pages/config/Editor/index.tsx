@@ -1,12 +1,17 @@
 import { useRouter } from "next/router";
 
-import { ButtonKnewave, Input, ComboboxComp } from "@/components";
+import { ButtonKnewave, Input, ComboboxComp, MultiSelect } from "@/components";
 
 import * as S from "./styles";
 
 const fruits = [
   { id: 1, name: "banana" },
   { id: 2, name: "maca" },
+];
+
+const players = [
+  { id: 1, label: "Lobo" },
+  { id: 2, label: "Henrique" },
 ];
 
 function EditorEditProfile() {
@@ -69,11 +74,12 @@ function EditorEditProfile() {
 
       <S.ContainerLine>
         <S.SpecialOne>
-          <Input
-            label="Áreas de Conhecimento"
-            placeholder="Tags aqui"
-            type="text"
-            required
+          <h3>Áreas de conhecimento</h3>
+          <MultiSelect
+            options={players}
+            id="knowledges"
+            name="knowledges"
+            onChange={() => {}}
           />
         </S.SpecialOne>
       </S.ContainerLine>

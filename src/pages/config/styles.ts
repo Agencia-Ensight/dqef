@@ -17,6 +17,7 @@ export const ContainerInformation = styled.div`
   a {
     text-decoration: none;
     color: var(--blue);
+    cursor: pointer;
   }
   h1 {
     margin-top: 10px;
