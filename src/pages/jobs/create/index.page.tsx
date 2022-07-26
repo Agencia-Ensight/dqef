@@ -11,6 +11,13 @@ import {
 } from "@/services/graphql/jobs";
 import { useUser } from "@/contexts";
 import { JobFormatsData } from "WILL_BE_REMOVED/jobs";
+import { Banner } from "./components/Banner";
+import { MainInfo } from "./components/MainInfo";
+import { SelectDate } from "./components/SelectDate";
+import { AdditionalInfo } from "./components/AdditionalInfo";
+import { Success } from "./components/Success";
+
+import * as S from "./styles";
 
 function CreateJob() {
   const { user } = useUser();
@@ -53,61 +60,74 @@ function CreateJob() {
   );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("higher_course_id")} />
-      <p>{errors.higher_course_id?.message}</p>
+    <S.Wrapper>
+      <Banner />
+      <S.ContainerInformation>
+        {/* <MainInfo /> */}
+        {/* <SelectDate /> */}
+        {/* <AdditionalInfo /> */}
+        <Success />
+        {/* <form onSubmit={handleSubmit(onSubmit)}>
+          <input {...register("higher_course_id")} />
+          <p>{errors.higher_course_id?.message}</p>
 
-      <input {...register("job_status_id")} />
-      <p>{errors.job_status_id?.message}</p>
+          <input {...register("job_status_id")} />
+          <p>{errors.job_status_id?.message}</p>
 
-      <input {...register("job_type_id")} />
-      <p>{errors.job_type_id?.message}</p>
+          <input {...register("job_type_id")} />
+          <p>{errors.job_type_id?.message}</p>
 
-      <input {...register("title")} />
-      <p>{errors.title?.message}</p>
+          <input {...register("title")} />
+          <p>{errors.title?.message}</p>
 
-      <input {...register("value")} />
-      <p>{errors.value?.message}</p>
+          <input {...register("value")} />
+          <p>{errors.value?.message}</p>
 
-      <input {...register("value_pay")} />
-      <p>{errors.value_pay?.message}</p>
+          <input {...register("value_pay")} />
+          <p>{errors.value_pay?.message}</p>
 
-      <input {...register("date_limit")} />
-      <p>{errors.date_limit?.message}</p>
+          <input {...register("date_limit")} />
+          <p>{errors.date_limit?.message}</p>
 
-      <input {...register("delivery")} />
-      <p>{errors.delivery?.message}</p>
+          <input {...register("delivery")} />
+          <p>{errors.delivery?.message}</p>
 
-      <input {...register("theme")} />
-      <p>{errors.theme?.message}</p>
+          <input {...register("theme")} />
+          <p>{errors.theme?.message}</p>
 
-      <input {...register("knowledge_id")} />
-      <p>{errors.knowledge_id?.message}</p>
+          <input {...register("knowledge_id")} />
+          <p>{errors.knowledge_id?.message}</p>
 
-      <input {...register("user_id")} />
-      <p>{errors.user_id?.message}</p>
+          <input {...register("user_id")} />
+          <p>{errors.user_id?.message}</p>
 
-      <input {...register("pages")} />
-      <p>{errors.pages?.message}</p>
+          <input {...register("pages")} />
+          <p>{errors.pages?.message}</p>
 
-      <input {...register("words")} />
-      <p>{errors.words?.message}</p>
+          <input {...register("words")} />
+          <p>{errors.words?.message}</p>
 
-      <input {...register("instructions")} />
-      <p>{errors.instructions?.message}</p>
+          <input {...register("instructions")} />
+          <p>{errors.instructions?.message}</p>
 
-      <input {...register("job_format_id")} />
-      <p>{errors.job_format_id?.message}</p>
+          <input {...register("job_format_id")} />
+          <p>{errors.job_format_id?.message}</p>
 
-      <input {...register("obs")} />
-      <p>{errors.obs?.message}</p>
+          <input {...register("obs")} />
+          <p>{errors.obs?.message}</p>
 
-      <input {...register("maximum_plagiarism")} />
-      <p>{errors.maximum_plagiarism?.message}</p>
+          <input {...register("maximum_plagiarism")} />
+          <p>{errors.maximum_plagiarism?.message}</p>
 
-      {loading ? <p>Carregando...</p> : <button type="submit">Enviar</button>}
-      {error && error.message}
-    </form>
+          {loading ? (
+            <p>Carregando...</p>
+          ) : (
+            <button type="submit">Enviar</button>
+          )}
+          {error && error.message}
+        </form> */}
+      </S.ContainerInformation>
+    </S.Wrapper>
   );
 }
 
