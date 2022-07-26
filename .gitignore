@@ -1,13 +1,13 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+/WILL_BE_REMOVED
 /node_modules
 /.pnp
 .pnp.js
 
 # testing
 /coverage
-/WILL_BE_REMOVED
 
 # next.js
 /.next/
