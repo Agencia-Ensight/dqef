@@ -39,7 +39,7 @@ function Works() {
       </S.MainContainer>
       <S.ButtonContainer>
         <ButtonKnewave size="lg" variant="PRIMARY">
-          <a href="/all-works">Ver Todos</a>
+          <a href="/jobs">Ver Todos</a>
         </ButtonKnewave>
       </S.ButtonContainer>
     </S.Wrapper>

@@ -59,7 +59,7 @@ function ChangePassword() {
           label="Insira o código de recuperação"
           name="code"
           placeholder="Insira aqui..."
-          type="number"
+          type="string"
           onChange={(e) => setCode(e.target.value)}
           required
         />

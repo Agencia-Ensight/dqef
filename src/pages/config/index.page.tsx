@@ -1,74 +1,32 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-
-import { schema } from "./schema";
-import { UpdateConfigsProps } from "./typings";
-import { useToast, useUser } from "@/contexts";
+import { useUser } from "@/contexts";
+import { getInfos } from "@/services/queries";
 import { Banner } from "./Banner";
 import { EditorEditProfile } from "./Editor";
 import { StudentEditProfile } from "./Student";
 
 import * as S from "./styles";
+import { ProfileProps } from "./typings";
 
-function Profile() {
-  const { updateUser } = useUser();
-  const { addToast } = useToast();
-
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<UpdateConfigsProps>({ resolver: yupResolver(schema) });
-
-  async function onSubmit(data: UpdateConfigsProps) {
-    try {
-      await updateUser(data);
-      addToast({ type: "success", msg: "Perfil atualizado com sucesso" });
-    } catch (err) {
-      addToast({
-        type: "error",
-        msg: "Erro ao atualizar perfil, tente novamente mais tarde",
-      });
-    }
-  }
+function Profile(data: ProfileProps) {
+  const { user } = useUser();
 
   return (
-    <>
-      <S.Wrapper>
-        <Banner />
-        <S.ContainerInformation>
-          <EditorEditProfile />
-          {/* <StudentEditProfile /> */}
-        </S.ContainerInformation>
-      </S.Wrapper>
-
-      {/* <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" {...register("name")} />
-        <p>{errors.name?.message}</p>
-
-        <input type="phone" {...register("phone")} />
-        <p>{errors.phone?.message}</p>
-
-        <input type="number" {...register("cpf")} />
-        <p>{errors.cpf?.message}</p>
-
-        <input type="text" {...register("formation")} />
-        <p>{errors.formation?.message}</p>
-
-        <input type="text" {...register("course")} />
-        <p>{errors.course?.message}</p>
-
-        <input type="text" {...register("college")} />
-        <p>{errors.college?.message}</p>
-
-        <input type="text" {...register("password")} />
-        <p>{errors.password?.message}</p>
-
-        <input type="text" {...register("passwordConfirmation")} />
-        <p>{errors.passwordConfirmation?.message}</p>
-      </form> */}
-    </>
+    <S.Wrapper>
+      <Banner />
+      <S.ContainerInformation>
+        {user && user.type === "EDITOR" && <EditorEditProfile {...data} />}
+        {user && user.type === "STUDENT" && <StudentEditProfile {...data} />}
+      </S.ContainerInformation>
+    </S.Wrapper>
   );
+}
+
+export async function getServerSideProps() {
+  const props = await getInfos();
+
+  return {
+    props,
+  };
 }
 
 export default Profile;

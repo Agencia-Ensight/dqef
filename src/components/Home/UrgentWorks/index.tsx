@@ -39,7 +39,7 @@ function UrgentWorks() {
       </S.MainContainer>
       <S.ButtonContainer>
         <ButtonKnewave variant="PRIMARY" size="lg">
-          <a href="/urgent-works">Ver Todos</a>
+          <a href="/jobs/urgents">Ver Todos</a>
         </ButtonKnewave>
       </S.ButtonContainer>
     </S.Wrapper>

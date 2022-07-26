@@ -47,7 +47,15 @@ function AdditionalInfo() {
       });
       updateStep("code");
       addToast({ type: "success", msg: "Cadastro realizado com sucesso!" });
-    } catch (err) {
+    } catch (err: any) {
+      if (err.response.data === "email already exists") {
+        addToast({
+          type: "error",
+          msg: "Este e-mail já está cadastrado",
+        });
+        return;
+      }
+
       addToast({
         type: "error",
         msg: "Algum problema com seu cadastro, tente novamente mais tarde",

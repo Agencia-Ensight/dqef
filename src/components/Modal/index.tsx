@@ -12,23 +12,23 @@ import {
   Backdrop,
 } from "./styles";
 
-function Modal({ isShown, hide, modalContent, headerText }: ModalProps) {
+function Modal({ children, close, show, title }: ModalProps) {
   const modal = (
     <>
       <Backdrop />
       <Wrapper>
         <StyledModal>
           <Header>
-            <HeaderText>{headerText}</HeaderText>
-            <CloseButton onClick={hide}>X</CloseButton>
+            <HeaderText>{title}</HeaderText>
+            <CloseButton onClick={close}>X</CloseButton>
           </Header>
-          <Content>{modalContent}</Content>
+          <Content>{children}</Content>
         </StyledModal>
       </Wrapper>
     </>
   );
 
-  return isShown ? ReactDOM.createPortal(modal, document.body) : null;
+  return show ? ReactDOM.createPortal(modal, document.body) : null;
 }
 
 export { Modal };
