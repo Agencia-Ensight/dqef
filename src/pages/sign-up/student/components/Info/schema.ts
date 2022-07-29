@@ -1,5 +1,7 @@
 import * as yup from "yup";
 
+const digitsOnly = (value?: string) => /^\d+$/.test(value ?? "");
+
 const schema = yup
   .object({
     name: yup.string().required("Nome é obrigatório"),
@@ -10,13 +12,28 @@ const schema = yup
     password: yup.string().required("Senha é obrigatória"),
     cpf: yup
       .string()
+      .test(
+        "Somente numeros",
+        "O campo deve conter somente números",
+        digitsOnly
+      )
       .min(11, "Insira um CPF válido")
       .max(11, "Insira um CPF válido")
       .required(),
     confirmPassword: yup
       .string()
+      .oneOf([yup.ref("password"), null], "Senhas não conferem")
       .required("Confirmação de senha é obrigatória"),
-    phone: yup.string().required("Telefone é obrigatório"),
+    phone: yup
+      .string()
+      .test(
+        "Somente numeros",
+        "O campo deve conter somente números",
+        digitsOnly
+      )
+      .required("Telefone é obrigatório com DDD")
+      .min(11, "Telefone inválido (use o DDD)")
+      .max(11, "Telefone inválido (use o DDD)"),
   })
   .required();
 

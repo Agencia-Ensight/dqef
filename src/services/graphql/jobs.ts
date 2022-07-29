@@ -124,6 +124,9 @@ export const GET_TOP_10_URGENT_JOBS = gql`
       theme
       value_pay
       delivery
+      higher_course {
+        name
+      }
       job_has_knowledges {
         knowledge {
           name
@@ -170,6 +173,9 @@ export const GET_URGENT_JOBS = gql`
       theme
       value_pay
       delivery
+      higher_course {
+        name
+      }
       job_has_knowledges {
         knowledge {
           name

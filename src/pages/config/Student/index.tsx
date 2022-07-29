@@ -1,19 +1,50 @@
-import { useRouter } from "next/router";
+import Router from "next/router";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { ButtonKnewave, Input, ComboboxComp } from "@/components";
 
+import { schema } from "./schema";
 import * as S from "./styles";
+import { ProfileProps } from "../typings";
+import { useToast, useUser } from "@/contexts";
+import { CreateUserEditorProps } from "@/pages/sign-up/editor/typings";
 
-const fruits = [
-  { id: 1, name: "banana" },
-  { id: 2, name: "maca" },
-];
+function StudentEditProfile({
+  colleges,
+  higher_courses,
+  formations,
+}: ProfileProps) {
+  const { updateUser, user } = useUser();
+  const { addToast } = useToast();
 
-function StudentEditProfile() {
-  const router = useRouter();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<Partial<CreateUserEditorProps>>({
+    resolver: yupResolver(schema),
+    defaultValues: user,
+  });
+
+  async function onSubmit(data: Partial<CreateUserEditorProps>) {
+    try {
+      await updateUser({
+        type: "STUDENT",
+        ...data,
+      });
+      addToast({ type: "success", msg: "Perfil atualizado com sucesso" });
+    } catch (err) {
+      addToast({
+        type: "error",
+        msg: "Erro ao atualizar perfil, tente novamente mais tarde",
+      });
+    }
+  }
+
   return (
-    <form>
-      <a onClick={() => router.back()}>Voltar</a>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <a onClick={Router.back}>Voltar</a>
       <h1>Preencha os Campos</h1>
       <p>Edite o os campos desejados e salve no final da página</p>
 
@@ -22,10 +53,11 @@ function StudentEditProfile() {
           <S.ContainerMini>
             <Input
               label="Nome Completo"
-              placeholder="Bruno Vencato"
+              placeholder="Seu nome..."
               name="name"
               type="text"
-              required
+              error={errors.name?.message}
+              register={register}
             />
           </S.ContainerMini>
           <S.ContainerMini>
@@ -34,7 +66,8 @@ function StudentEditProfile() {
               placeholder="teste@gmail.com"
               name="email"
               type="text"
-              required
+              error={errors.email?.message}
+              register={register}
             />
           </S.ContainerMini>
         </S.ContainerLine>
@@ -47,19 +80,20 @@ function StudentEditProfile() {
               placeholder="129.189.287-98"
               name="cpf"
               type="text"
-              required
+              error={errors.cpf?.message}
+              register={register}
             />
           </S.ContainerMini>
           <S.ContainerMini>
             <ComboboxComp
-              items={fruits}
+              items={higher_courses}
               label="Curso"
               onSelectedChange={() => {}}
             />
           </S.ContainerMini>
           <S.ContainerMini>
             <ComboboxComp
-              items={fruits}
+              items={formations}
               label="Período"
               onSelectedChange={() => {}}
             />
@@ -70,7 +104,7 @@ function StudentEditProfile() {
       <S.ContainerLine>
         <S.SpecialOne>
           <ComboboxComp
-            items={fruits}
+            items={colleges}
             label="Faculdade"
             onSelectedChange={() => {}}
           />
@@ -85,7 +119,8 @@ function StudentEditProfile() {
               name="phone"
               placeholder="+55 41 995556667"
               type="text"
-              required
+              error={errors.phone?.message}
+              register={register}
             />
           </S.ContainerMini>
         </S.ContainerLine>

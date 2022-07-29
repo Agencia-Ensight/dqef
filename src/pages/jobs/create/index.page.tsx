@@ -8,9 +8,10 @@ import {
   CreateJobProps,
   GET_JOB_FORMATS,
   INSERT_JOB,
+  JobFormatsData,
 } from "@/services/graphql/jobs";
 import { useUser } from "@/contexts";
-import { JobFormatsData } from "WILL_BE_REMOVED/jobs";
+// import { JobFormatsData } from "WILL_BE_REMOVED/jobs";
 import { Banner } from "./components/Banner";
 import { MainInfo } from "./components/MainInfo";
 import { SelectDate } from "./components/SelectDate";

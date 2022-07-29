@@ -3,11 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 
 import * as S from "./styles";
+import { ModalHoldOn } from "./components/ModalHoldOn";
 import { ButtonKnewave, Menu } from "@/components";
-import { useUser } from "@/contexts";
+import { useUser, useModal } from "@/contexts";
 
 function NavBar() {
   const { user, signOut } = useUser();
+  const { open } = useModal();
+
+  function handlePublishJob() {
+    open("Calma lá!", { content: () => <ModalHoldOn /> });
+  }
 
   const getLoginOrLogout = useMemo(() => {
     if (!user) {
@@ -60,48 +66,63 @@ function NavBar() {
               <S.MenuItem>FAQ</S.MenuItem>
             </a>
           </Link>
-          <S.MenuItem>
-            <Link href="/jobs/create" passHref>
+
+          {user && user.type == "STUDENT" && (
+            <S.MenuItem>
+              <Link href="/jobs/create" passHref>
+                <ButtonKnewave size="sm" variant="PRIMARY">
+                  Publicar Trabalho
+                </ButtonKnewave>
+              </Link>
+            </S.MenuItem>
+          )}
+
+          {!user && (
+            <S.MenuItem onClick={handlePublishJob}>
               <ButtonKnewave size="sm" variant="PRIMARY">
                 Publicar Trabalho
               </ButtonKnewave>
-            </Link>
-          </S.MenuItem>
+            </S.MenuItem>
+          )}
 
           {getLoginOrLogout}
 
-          <S.Line />
-          <Link href="/config">
-            <S.ImageDefault>
-              <img
-                height={25}
-                width={25}
-                src="/images/homeconfiguraciones.png"
-                alt="my image"
-              />
-            </S.ImageDefault>
-          </Link>
-          <Link href="/notifications">
-            <S.ImageDefault>
-              <img
-                height={25}
-                width={25}
-                src="/images/homebell.png"
-                alt="my image"
-              />
-            </S.ImageDefault>
-          </Link>
+          {user && (
+            <>
+              <S.Line />
+              <Link href="/config">
+                <S.ImageDefault>
+                  <img
+                    height={25}
+                    width={25}
+                    src="/images/homeconfiguraciones.png"
+                    alt="my image"
+                  />
+                </S.ImageDefault>
+              </Link>
+              <Link href="/notifications">
+                <S.ImageDefault>
+                  <img
+                    height={25}
+                    width={25}
+                    src="/images/homebell.png"
+                    alt="my image"
+                  />
+                </S.ImageDefault>
+              </Link>
 
-          <Link href="/profile">
-            <S.ImageDefault>
-              <img
-                height={44}
-                width={44}
-                src="/images/imghomepadrao.png"
-                alt="my image"
-              />
-            </S.ImageDefault>
-          </Link>
+              <Link href="/profile">
+                <S.ImageDefault>
+                  <img
+                    height={44}
+                    width={44}
+                    src="/images/imghomepadrao.png"
+                    alt="my image"
+                  />
+                </S.ImageDefault>
+              </Link>
+            </>
+          )}
         </S.Wrapper>
       </S.Container>
       <Menu />

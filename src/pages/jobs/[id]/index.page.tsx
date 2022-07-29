@@ -28,7 +28,7 @@ function InsideJob({ id }: IInsideJob) {
     <S.Wrapper>
       <JobCard
         jobId={job.id}
-        course="ECONOMIA" // higher_course_name TODO: Sincronizar com o banco de dados?
+        course={job.higher_course.name}
         date={job.delivery}
         discipline={job!.job_has_knowledges
           .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)

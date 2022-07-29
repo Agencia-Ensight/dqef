@@ -46,15 +46,7 @@ export type SignUpConfirmProps = {
   password: string;
 };
 
-export type UpdateUserProps = {
-  name?: string;
-  phone?: string;
-  cpf?: string;
-  formation?: string;
-  course?: string;
-  college?: string;
-  password?: string;
-};
+export type UpdateUserProps = Partial<CreateUserProps>;
 
 type UserProviderProps = {
   user?: UserProps;

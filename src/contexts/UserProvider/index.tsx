@@ -56,13 +56,13 @@ function UserProvider({ children }: UserContextProvider) {
   }, []);
 
   const updateUser = useCallback(
-    async (newUser: UpdateUserProps): Promise<void> => {
+    async ({ type, ...newUser }: UpdateUserProps): Promise<void> => {
       await api.put(`/profile`, newUser);
 
       setUser((data) => {
         const userConverted = data && {
           ...data,
-          name: newUser.name || data.name,
+          ...newUser,
         };
 
         if (userConverted) {

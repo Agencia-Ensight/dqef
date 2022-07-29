@@ -23,7 +23,7 @@ function Works() {
         {jobs.data?.jobs.map((job) => (
           <JobCard
             jobId={job.id}
-            course="ECONOMIA" // higher_course_name TODO: Sincronizar com o banco de dados?
+            course={job.higher_course.name} // higher_course_name TODO: Sincronizar com o banco de dados?
             date={job.delivery}
             discipline={job.job_has_knowledges
               .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
@@ -39,7 +39,7 @@ function Works() {
       </S.MainContainer>
       <S.ButtonContainer>
         <ButtonKnewave size="lg" variant="PRIMARY">
-          <a href="/all-works">Ver Todos</a>
+          <a href="/jobs">Ver Todos</a>
         </ButtonKnewave>
       </S.ButtonContainer>
     </S.Wrapper>
