@@ -23,10 +23,16 @@ export const Description = styled.p`
     font-size: 1rem;   
     color: var(--content-text);
 `
+
+
+
 export const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 `
+
+export const InfoDiv = styled.div``
 
 export const MainContainer = styled.div`
     display: flex;
@@ -49,5 +55,37 @@ export const ButtonContainer = styled.div`
     a{
         text-decoration: none;
     }
+
+`
+
+export const InputContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border: 2px solid #42a4ef;
+    border-radius: 999px;
+
+    @media (max-width: 768px){
+        display: none;
+    }
+`
+
+
+
+export const SearchInput = styled.input`
+    width: 100%;
+    font-size: 18px;
+    border: none;
+    background: transparent;
+    height: 100%;
+
+    &:focus{
+        outline: 0;
+    }
+`
+
+export const SearchDiv = styled.div`
+
 
 `

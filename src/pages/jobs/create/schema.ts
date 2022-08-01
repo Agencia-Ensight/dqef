@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 const schema = yup
   .object({
-    higher_course_id: yup.number().required(),
+    higher_course_id: yup.number().required("banana"),
     job_status_id: yup.number().required(),
     job_type_id: yup.number().required(),
     title: yup.string().required(),

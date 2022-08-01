@@ -29,9 +29,13 @@ export const Steps = styled.h5`
   }
 `;
 
-export const InputFields = styled.div`
+export const InputFields = styled.form`
   margin-bottom: 1.5rem;
   margin-top: 2.8rem;
+
+  button {
+    margin-top: 2rem;
+  }
 
   textarea {
     width: 100%;

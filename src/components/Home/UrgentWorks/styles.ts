@@ -36,6 +36,8 @@ export const MainContainer = styled.div`
   overflow-y: scroll;
   padding-bottom: 4rem;
 
+  padding-left: 1.5rem;
+
   ::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
   }

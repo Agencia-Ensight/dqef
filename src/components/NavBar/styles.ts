@@ -7,6 +7,11 @@ export const MainWrapper = styled.div`
   top: 0;
   z-index: 9999;
   background: white;
+
+  a{
+    text-decoration: none;
+
+  }
 `;
 
 export const ButtonLogin = styled.button`
@@ -55,6 +60,7 @@ export const MenuItem = styled.a`
   color: var(--black-text);
   margin-right: 1.5rem;
   cursor: pointer;
+  text-decoration: none;
 
   @media (max-width: 800px) {
     display: none;

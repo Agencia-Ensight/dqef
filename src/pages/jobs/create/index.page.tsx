@@ -19,9 +19,11 @@ import { AdditionalInfo } from "./components/AdditionalInfo";
 import { Success } from "./components/Success";
 
 import * as S from "./styles";
+import { useCreateJob, JobProvider } from "./CreateJobContext";
 
 function CreateJob() {
   const { user } = useUser();
+  const { step } = useCreateJob();
   const {
     register,
     handleSubmit,
@@ -64,10 +66,10 @@ function CreateJob() {
     <S.Wrapper>
       <Banner />
       <S.ContainerInformation>
-        {/* <MainInfo /> */}
-        {/* <SelectDate /> */}
-        {/* <AdditionalInfo /> */}
-        <Success />
+        {step === "main-info" && <MainInfo />}
+        {step === "select-date" && <SelectDate />}
+        {step === "additional-info" && <AdditionalInfo />}
+        {step === "success" && <Success />}
         {/* <form onSubmit={handleSubmit(onSubmit)}>
           <input {...register("higher_course_id")} />
           <p>{errors.higher_course_id?.message}</p>
@@ -132,4 +134,12 @@ function CreateJob() {
   );
 }
 
-export default CreateJob;
+function ContextWrapper() {
+  return (
+    <JobProvider>
+      <CreateJob />
+    </JobProvider>
+  );
+}
+
+export default ContextWrapper;

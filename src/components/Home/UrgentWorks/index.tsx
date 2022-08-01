@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { useQuery } from "@apollo/client";
 
 import { ButtonKnewave, JobCard } from "@/components";
@@ -38,9 +40,11 @@ function UrgentWorks() {
         ))}
       </S.MainContainer>
       <S.ButtonContainer>
-        <ButtonKnewave variant="PRIMARY" size="lg">
-          <a href="/jobs/urgents">Ver Todos</a>
-        </ButtonKnewave>
+        <Link href="/jobs/urgents" passHref>
+          <ButtonKnewave variant="PRIMARY" size="lg">
+            Ver Todos
+          </ButtonKnewave>
+        </Link>
       </S.ButtonContainer>
     </S.Wrapper>
   );
