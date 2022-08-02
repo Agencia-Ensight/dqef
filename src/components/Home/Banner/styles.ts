@@ -14,13 +14,7 @@ export const Banner = styled.div`
   }
   .rsis-image {
     background-size: 100% 100% !important;
+    background-position: center center !important ;
     
   }
 `;
-
-export const SimpleImageSlider = styled.div`
-
-background-position: center center ;
-
-`;
-
