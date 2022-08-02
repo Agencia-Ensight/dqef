@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const Banner = styled.div`
   display: none;
+  
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     display: block;
   }
 
@@ -20,5 +21,6 @@ export const Banner = styled.div`
     background-repeat: no-repeat; */
     width: 100% !important;
     height: auto !important;
+    
   }
 `;

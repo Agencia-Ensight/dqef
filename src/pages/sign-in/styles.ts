@@ -42,6 +42,11 @@ export const ContainerInformation = styled.form`
     margin-left: 5px;
   
   }
+
+  h6 { 
+    color: var(--blue);
+    font-size: 16px ;
+  }
   h1 {
     margin-top: 10px;
     font-weight: 500;

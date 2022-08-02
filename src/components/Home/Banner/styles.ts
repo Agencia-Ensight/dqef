@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const Banner = styled.div`
   width: 100%;
 
-  @media (max-width: 800px) {
+
+
+  @media (max-width: 900px) {
     display: none;
   }
 
@@ -12,5 +14,7 @@ export const Banner = styled.div`
   }
   .rsis-image {
     background-size: 100% 100% !important;
+    
   }
 `;
+
