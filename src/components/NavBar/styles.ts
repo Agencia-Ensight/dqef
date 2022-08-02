@@ -60,13 +60,16 @@ export const Wrapper = styled.div`
 `;
 
 export const MenuItem = styled.a`
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-family: "Lato", sans-serif;
   font-weight: 400;
   color: var(--black-text);
   margin-right: 1.5rem;
   cursor: pointer;
   text-decoration: none;
+  :hover { 
+    opacity: 0.6 ;
+  }
 
 
   @media (max-width: 1150px) {
