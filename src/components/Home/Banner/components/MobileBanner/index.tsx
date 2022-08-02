@@ -14,7 +14,7 @@ export function MobileBanner() {
     <S.Banner>
       <SimpleImageSlider
         width={100}
-        height={100}
+        height={300}
         images={images}
         showBullets={true}
         showNavs={false}

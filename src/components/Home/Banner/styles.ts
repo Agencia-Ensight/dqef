@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Banner = styled.div`
   width: 100%;
-
+  
 
 
   @media (max-width: 900px) {
@@ -16,5 +16,11 @@ export const Banner = styled.div`
     background-size: 100% 100% !important;
     
   }
+`;
+
+export const SimpleImageSlider = styled.div`
+
+background-position: center center ;
+
 `;
 
