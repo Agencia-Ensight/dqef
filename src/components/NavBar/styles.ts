@@ -17,13 +17,14 @@ export const MainWrapper = styled.div`
 export const ButtonLogin = styled.button`
   border: 3px solid #42a4ef;
   background: transparent;
-  padding: 4px 20px;
+  padding: 8px 25px;
   font-size: 16px;
   color: var(--text-title);
   font-weight: 700;
 
   border-radius: 99px;
 `;
+
 
 export const Container = styled.div`
   display: flex;
@@ -40,6 +41,11 @@ export const LogoWrapper = styled.div`
   img {
     cursor: pointer;
   }
+
+  @media (max-width: 1000px) { 
+    display: none ;
+  }
+  
 `;
 
 export const Wrapper = styled.div`
@@ -62,6 +68,12 @@ export const MenuItem = styled.a`
   cursor: pointer;
   text-decoration: none;
 
+
+  @media (max-width: 1150px) {
+    
+    font-size: 1rem;
+  }
+
   @media (max-width: 800px) {
     display: none;
   }
@@ -76,3 +88,16 @@ export const Line = styled.div`
 export const ImageDefault = styled.button`
   margin-left: 30px;
 `;
+
+export const LogoImage = styled.img`
+
+width: 60px ;
+  height: 60px ;
+@media (min-width: 1000px) { 
+  display: none;
+  
+}
+`;
+
+
+

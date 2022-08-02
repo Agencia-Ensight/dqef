@@ -14,6 +14,7 @@ function JobCard(job: Props) {
     <S.Wrapper>
       <S.Container>
         {job.urgent && <S.RocketImage src="/images/rocket.png" />}
+        
         <S.CourseContainer course={job.course}>
           <S.Course>{job.course}</S.Course>
         </S.CourseContainer>
@@ -37,7 +38,9 @@ function JobCard(job: Props) {
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Data de Entrega {job.urgent && "Urgente"}</S.Subtitle>
-            <S.Date urgent={job.urgent}>{job.date}</S.Date>
+            <S.Date urgent={job.urgent}>{job.date} às</S.Date>
+           
+            
 
             {/* Employee */}
             {job.status === "EMPLOYEE-SEND" && (

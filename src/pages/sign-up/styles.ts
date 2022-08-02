@@ -29,7 +29,7 @@ export const ContainerBang = styled.div`
   color: #42a4ef;
   text-align: center;
   margin-top: 50px;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 `;
 
 export const ContainerButtons = styled.div`

@@ -81,17 +81,17 @@ export const CourseContainer = styled.div<CourseContainerProps>`
 `;
 
 export const Course = styled.h1`
-  font-size: 2.5rem;
+  font-size: 1.3rem;
   font-family: "Knewave", sans-serif;
   color: var(--white-text);
 
   @media (max-width: 425px) {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
 `;
 
 export const Title = styled.h2`
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
