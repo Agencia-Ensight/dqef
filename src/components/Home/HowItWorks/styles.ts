@@ -17,6 +17,7 @@ export const Container = styled.div``;
 export const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
+  
 `;
 
 export const Title = styled.h1`
@@ -27,6 +28,7 @@ export const Title = styled.h1`
   font-size: 2.4rem;
   width: fit-content;
   padding: 0.1rem 1rem;
+
 
   @media (max-width: 600px) {
     font-size: 1.5rem;
@@ -40,6 +42,7 @@ export const SubTitle = styled.h2`
   font-size: 1.2rem;
   margin-bottom: 1.3rem;
   text-align: center;
+  
 `;
 
 export const Description = styled.p`
@@ -55,11 +58,17 @@ export const Highlight = styled.span`
 export const Button = styled.button<ISelected>`
   color: #969696;
   margin: 0 0.5rem;
+  :hover{ 
+    opacity:0.6;
+  }
 
   ${({ selected }) =>
     selected === true &&
     css`
       color: var(--blue);
+      :hover{ 
+    opacity:0.8;
+  }
     `}
 `;
 export const InfoContainer = styled.div`

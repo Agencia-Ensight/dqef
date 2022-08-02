@@ -30,7 +30,7 @@ function SignIn() {
 
       <S.ContainerInformation>
         <p>
-          <span>Fazer Login</span>
+          <h6>Fazer Login</h6>
         </p>
         <h1>Bem-vindo de Volta</h1>
         <S.InputContainer>

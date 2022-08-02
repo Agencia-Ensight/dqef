@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const Banner = styled.div`
   display: none;
+  
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     display: block;
   }
 
@@ -15,10 +16,12 @@ export const Banner = styled.div`
     width: auto !important;
   }
   .rsis-image {
-    /* background-size: 100% 100% !important; */
-    /* background-size: auto !important;
-    background-repeat: no-repeat; */
-    width: 100% !important;
-    height: auto !important;
+    background-size: 100% fill !important; 
+   
+    background-repeat: no-repeat;
+    /* width: 100% !important;
+    height: 100% !important;
+    background-position: center center ; */
+    
   }
 `;

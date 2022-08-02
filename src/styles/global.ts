@@ -69,4 +69,9 @@ export const GlobalStyle = createGlobalStyle`
 		cursor: pointer;
 		outline: inherit;
 	}
+	a { 
+		color: var(---blue);
+		text-decoration:none;
+	}
+	
 `;
