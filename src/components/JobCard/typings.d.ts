@@ -7,39 +7,21 @@ export type CourseVariant =
   | "ARQUITETURA"
   | "ECONOMIA"
   | "ADM"
-  | "PSICOLOGIA"
-  | string;
+  | "PSICOLOGIA";
 
-export type IStatus =
-  | "EMPLOYEE-SEND"
-  | "EMPLOYEE-PAID"
-  | "EMPLOYEE-START"
-  | "EMPLOYEE-BILL"
-  | "EMPLOYEE-CHANGE"
-  | "EMPLOYEE-DONE"
-  | "EMPLOYEE-WANT"
-  | "EMPLOYEE-SEE"
-  | "STUDENT-CREATE"
-  | "STUDENT-GET"
-  | "STUDENT-DONE"
-  | "STUDENT"
-  | "STUDENT-EDIT";
-
-export type Props = CardProps &
-  CourseContainerProps & {
-    jobId?: string;
-    title: string;
-    discipline: string;
-    theme: string;
-    typeOfWork: string;
-    price: number;
-    date: Date;
-    status: IStatus;
-  };
-
-type CourseContainerProps = {
-  course: CourseVariant;
+export type EditorCardType = {
+  type: "editor";
+  status: "published" | "finished" | "on-going" | "want-to-do";
+  state: "paid" | "waiting-payment";
 };
+
+export type StudentCardType = {
+  type: "student";
+  status: "finished" | "on-going" | "published";
+  state: "request-changes" | "show-proposals" | "editor-rate";
+};
+
+type CardType = EditorCardType | StudentCardType;
 
 export type CardProps = {
   /**
@@ -52,3 +34,14 @@ export type CardProps = {
    */
   urgent?: boolean;
 };
+
+export type Props = CardProps &
+  CardType & {
+    jobId?: string;
+    title: string;
+    discipline: string;
+    theme: string;
+    typeOfWork: string;
+    price: number;
+    date: string;
+  };

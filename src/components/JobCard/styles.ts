@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 
-import { CourseContainerProps, CardProps } from "./typings";
+import { CardProps, CourseVariant } from "./typings";
+
+type CourseContainerProps = {
+  course?: CourseVariant;
+};
 
 export const Wrapper = styled.div``;
 
@@ -81,17 +85,17 @@ export const CourseContainer = styled.div<CourseContainerProps>`
 `;
 
 export const Course = styled.h1`
-  font-size: 1.3rem;
+  font-size: 2.5rem;
   font-family: "Knewave", sans-serif;
   color: var(--white-text);
 
   @media (max-width: 425px) {
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
 `;
 
 export const Title = styled.h2`
-  font-size: 1.0rem;
+  font-size: 1.2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
