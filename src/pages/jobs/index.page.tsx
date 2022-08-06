@@ -27,6 +27,8 @@ function AllWorks() {
     }
   );
 
+  console.log(jobs.data?.jobs);
+
   return (
     <S.Wrapper>
       <S.HeaderContainer>

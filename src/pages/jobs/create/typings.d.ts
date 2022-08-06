@@ -15,7 +15,7 @@ type CreateJobProps = {
     instructions: string;
     job_format_id: number;
     obs:string;
-    maximum_plagiarism: number;
+    maximum_plagiarism: string;
 }
 
 export {CreateJobProps}

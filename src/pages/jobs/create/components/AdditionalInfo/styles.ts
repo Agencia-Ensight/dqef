@@ -33,6 +33,7 @@ export const InputFields = styled.div`
     border-radius: 15px;
     font-size: 18px;
     padding: 10px 29px;
+    resize: none;
     &::placeholder {
       color: #848484;
     }

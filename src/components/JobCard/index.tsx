@@ -1,6 +1,9 @@
 import { Button } from "../Button";
 import * as S from "./styles";
 
+import { format } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
+
 import { Props } from "./typings";
 import { useModal } from "../../hooks/useModal";
 import { Modal } from "../Modal";
@@ -9,6 +12,14 @@ function JobCard(job: Props) {
   const { isShown, toggle } = useModal();
 
   const { isShown: isShown2, toggle: toggle2 } = useModal();
+
+  const publishedDateFormat = format(
+    new Date(job.date),
+    "dd/MM/yyyy 'às' HH:mm",
+    {
+      locale: ptBR,
+    }
+  );
 
   return (
     <S.Wrapper>
@@ -37,8 +48,7 @@ function JobCard(job: Props) {
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Data de Entrega {job.urgent && "Urgente"}</S.Subtitle>
-            <S.Date urgent={job.urgent}>{job.date}</S.Date>
-
+            <S.Date urgent={job.urgent}>{publishedDateFormat}</S.Date>
             {/* Employee */}
             {job.status === "EMPLOYEE-SEND" && (
               <S.WaitStudent>Aguardando Estudante ...</S.WaitStudent>

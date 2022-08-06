@@ -8,6 +8,14 @@ import { useForm } from "react-hook-form";
 import { CreateJobProps } from "../../typings";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./schema";
+import { FormEvent, useState } from "react";
+import { useQuery } from "@apollo/client";
+import {
+  GET_COURSES,
+  GET_FORMATS,
+  GET_KNOWLEDGES,
+  GET_KNOWLEDGES_BY_COURSE_ID,
+} from "@/services/queries";
 
 const fruits = [
   { id: 1, name: "banana" },
@@ -17,21 +25,45 @@ const fruits = [
 function MainInfo() {
   const router = useRouter();
   const { data, updateData, updateStep } = useCreateJob();
+  const [higher_course_id, setHigher_course_id] = useState(1);
+  const courses = useQuery<{ higher_courses: any }>(GET_COURSES);
+  const knowledges = useQuery<{ knowledges: any }>(
+    GET_KNOWLEDGES_BY_COURSE_ID,
+    {
+      variables: {
+        higher_course_id,
+      },
+    }
+  );
+  const formats = useQuery<{ job_formats: any }>(GET_FORMATS);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<CreateJobProps>({
-    defaultValues: data,
-    resolver: yupResolver(schema),
-  });
+  const [title, setTitle] = useState("");
+  const [pages, setPages] = useState(0);
+  const [words, setWords] = useState(0);
+  const [job_type_id, setJob_type_id] = useState(1);
+  const [theme, setTheme] = useState("");
+  const [instructions, setInstructions] = useState("");
 
-  function onSubmit(values: CreateJobProps) {
-    updateData(values);
+  const [knowledge_id, setKnowledge_id] = useState(1);
+
+  console.log(knowledges.data?.knowledges);
+
+  function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    updateData({
+      title,
+      pages,
+      words,
+      job_type_id,
+      theme,
+      instructions,
+      higher_course_id,
+      knowledge_id,
+    });
     updateStep("select-date");
   }
 
+  console.log(higher_course_id);
   return (
     <>
       <S.BackButton onClick={() => router.back()}>Voltar</S.BackButton>
@@ -46,43 +78,48 @@ function MainInfo() {
         pessoais entre os usuários. Tal prática está sujeita ao banimento
         imediato de ambos os usuários por tempo indeterminado da plataforma.
       </S.DangerText>
-      <S.InputFields onSubmit={handleSubmit(onSubmit, (e) => console.log(e))}>
+      <S.InputFields onSubmit={onSubmit}>
         <S.FirstInputContainer>
           <Input
             label="Título do trabalho"
             name="title"
-            error={errors.title?.message}
             placeholder="Insira o título"
             mandatory={true}
-            register={register}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
           />
 
           <ComboboxComp
             label="Tipo do Trabalho"
-            onSelectedChange={() => {}}
-            items={fruits}
+            items={formats.data?.job_formats || []}
+            onSelectedChange={(fruit) => setJob_type_id(fruit.id)}
           />
         </S.FirstInputContainer>
         <S.TextInputContainer>
           <ComboboxComp
             label="Curso do Trabalho"
-            onSelectedChange={() => {}}
-            items={fruits}
+            items={courses.data?.higher_courses || []}
+            onSelectedChange={(item) => {
+              setHigher_course_id(item.id);
+            }}
           />
+
           <ComboboxComp
             label="Disciplina do Trabalho"
-            onSelectedChange={() => {}}
-            items={fruits}
+            items={knowledges.data?.knowledges || []}
+            onSelectedChange={(item) => setKnowledge_id(item.id)}
           />
 
           <Input
             className="type-of-work"
             placeholder="Tema do Trabalho"
-            error={errors.theme?.message}
             label="Tema do Trabalho"
             mandatory={true}
             name="theme"
-            register={register}
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            required
           />
         </S.TextInputContainer>
         <label>
@@ -91,25 +128,29 @@ function MainInfo() {
         <textarea
           id="instructions"
           rows={5}
+          value={instructions}
+          required
+          onChange={(e) => setInstructions(e.target.value)}
           placeholder="ex: Descrição do que deve ser feito no trabalho. Explique de forma objetiva e clara, tudo que o redator deverá realizar para você. Coloque as informações importantes para o melhor entendimento do trabalho."
-          {...register("instructions")}
         ></textarea>
         <S.LastInputs>
           <Input
             label="Número de páginas"
             placeholder="Quantidade"
-            error={errors.pages?.message}
             type="number"
             name="pages"
-            register={register}
+            value={pages}
+            onChange={(e) => setPages(Number(e.target.value))}
+            required
           />
           <Input
             label="Número de palavras"
             placeholder="Quantidade"
-            error={errors.words?.message}
             name="words"
             type="number"
-            register={register}
+            value={words}
+            onChange={(e) => setWords(Number(e.target.value))}
+            required
           />
         </S.LastInputs>
         <ButtonKnewave variant="PRIMARY" size="sm" type="submit">

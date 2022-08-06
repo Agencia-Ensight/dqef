@@ -26,6 +26,8 @@ function Works() {
     }
   );
 
+  console.log(jobs.data?.jobs);
+
   return (
     <S.Wrapper>
       <S.HeaderContainer>
@@ -51,22 +53,27 @@ function Works() {
       <S.MainContainer>
         {jobs.loading && <p>Carregando...</p>}
         {jobs.error && <p>Não conseguimos carregar esse módulo</p>}
-        {filteredData?.map((job) => (
-          <JobCard
-            jobId={job.id}
-            course={job.higher_course.name} // higher_course_name TODO: Sincronizar com o banco de dados?
-            date={job.delivery}
-            discipline={job.job_has_knowledges
-              .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
-              .join(", ")}
-            price={job.value_pay}
-            theme={job.theme}
-            title={job.title}
-            typeOfWork={job.job_type.name}
-            urgent={false} // TODO:Como pegar do banco
-            status="EMPLOYEE-SEE" // TODO: Sincronizar com o banco de dados?
-          />
-        ))}
+        {filteredData?.map((job) => {
+          return (
+            <JobCard
+              jobId={job.id}
+              course={job.higher_course.name} // higher_course_name TODO: Sincronizar com o banco de dados?
+              date={job.delivery}
+              discipline={job.job_has_knowledges
+                .map(
+                  ({ knowledge: { name: knowledge_name } }) => knowledge_name
+                )
+                .join(", ")}
+              price={job.value_pay}
+              theme={job.thema}
+              title={job.title}
+              typeOfWork={job.job_type.name}
+              urgent={false} // TODO:Como pegar do banco
+              status="EMPLOYEE-SEE" // TODO: Sincronizar com o banco de dados?
+              key={job.id}
+            />
+          );
+        })}
       </S.MainContainer>
       <S.ButtonContainer>
         <Link href="/jobs" passHref>

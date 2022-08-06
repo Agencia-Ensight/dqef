@@ -21,7 +21,10 @@ function ComboboxComp({
   label,
   ...rest
 }: ComboboxProps) {
-  const [selected, setSelected] = useState<ComboboxData>(items[0]);
+  const [selected, setSelected] = useState<ComboboxData | undefined>(() => {
+    if (items.length > 0) return items[0];
+    return undefined;
+  });
   const [query, setQuery] = useState("");
 
   const filtered =
@@ -48,7 +51,7 @@ function ComboboxComp({
             <Combobox.Input
               {...rest}
               className="combobox-input"
-              displayValue={(item: ComboboxData) => item.name}
+              displayValue={(item: ComboboxData) => item?.name}
               onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button className="combobox-button">

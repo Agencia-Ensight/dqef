@@ -7,6 +7,10 @@ const schema = yup
     pages: yup.number().required(),
     words: yup.number().required(),
     instructions: yup.string().required(),
+    // job_format_id: yup.number().required(),
+    higher_course_id: yup.number().required(),
+    // job_knowledge_id: yup.number().required(),
+
   })
   .required();
 

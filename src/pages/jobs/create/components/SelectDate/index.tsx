@@ -7,11 +7,21 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ButtonKnewave } from "@/components";
 
 import * as S from "./styles";
+import { useCreateJob } from "../../CreateJobContext";
 
 export function SelectDate() {
-  const [startDate, setStartDate] = useState(new Date());
+  const { updateData, data, updateStep } = useCreateJob();
+  const [delivery, setDelivery] = useState(new Date());
 
   const tommorrow = new Date();
+
+  function onSubmit() {
+    updateData({ delivery });
+
+    updateStep("additional-info");
+  }
+
+  console.log(data);
 
   const router = useRouter();
   return (
@@ -30,8 +40,8 @@ export function SelectDate() {
           </label>
           <DatePicker
             name="date_limit"
-            selected={startDate}
-            onChange={(date: Date) => setStartDate(date)}
+            selected={delivery}
+            onChange={(date: Date) => setDelivery(date)}
             locale={pt}
             placeholderText="Selecione a Data"
             minDate={tommorrow}
@@ -41,8 +51,8 @@ export function SelectDate() {
         <div>
           <label>Nossa previsão de entrega</label>
           <DatePicker
-            selected={startDate}
-            onChange={(date: Date) => setStartDate(date)}
+            selected={delivery}
+            onChange={(date: Date) => setDelivery(date)}
             locale={pt}
             placeholderText="Selecione a Data"
             minDate={new Date()}
@@ -58,7 +68,12 @@ export function SelectDate() {
         no do dia do pagamento do trabalho, logo após o interesse do redator,
         portanto, pode variar.
       </S.Description>
-      <ButtonKnewave variant="PRIMARY" type="submit" size="sm">
+      <ButtonKnewave
+        variant="PRIMARY"
+        type="submit"
+        size="sm"
+        onClick={onSubmit}
+      >
         Próximo
       </ButtonKnewave>
     </form>
