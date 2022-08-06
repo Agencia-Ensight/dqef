@@ -40,6 +40,12 @@ export const ContainerInformation = styled.form`
   a {
     text-decoration: none;
     margin-left: 5px;
+  
+  }
+
+  h6 { 
+    color: var(--blue);
+    font-size: 16px ;
   }
   h1 {
     margin-top: 10px;
@@ -57,6 +63,9 @@ export const ContainerInformation = styled.form`
 
   span {
     color: var(--blue);
+    :hover{ 
+    opacity:0.6;
+  }
   }
 
   button {
@@ -66,6 +75,7 @@ export const ContainerInformation = styled.form`
   h2 {
     margin-top: 20px;
     margin-bottom: 20px;
+    font-size:20px;
   }
 
   h5 {

@@ -25,6 +25,7 @@ function JobCard(job: Props) {
     <S.Wrapper>
       <S.Container>
         {job.urgent && <S.RocketImage src="/images/rocket.png" />}
+
         <S.CourseContainer course={job.course}>
           <S.Course>{job.course}</S.Course>
         </S.CourseContainer>

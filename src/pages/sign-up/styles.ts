@@ -29,7 +29,10 @@ export const ContainerBang = styled.div`
   color: #42a4ef;
   text-align: center;
   margin-top: 50px;
-  text-decoration: underline;
+  :hover{ 
+    opacity:0.6;
+  }
+  /* text-decoration: underline; */
 `;
 
 export const ContainerButtons = styled.div`
@@ -43,7 +46,7 @@ export const ContainerButtons = styled.div`
     font-size: 48px;
     color: black;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 25px;
     margin-bottom: 15px;
 
     @media (max-width: 600px) {
@@ -52,7 +55,7 @@ export const ContainerButtons = styled.div`
   }
 
   h2 {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 400;
     text-align: center;
     margin-bottom: 50px;
@@ -67,6 +70,7 @@ export const ContainerButtons = styled.div`
     font-weight: 600;
     font-size: 18px;
     margin-top: 15px;
+  
   }
   span {
     font-size: 24px;
@@ -122,4 +126,9 @@ export const Containerstudent = styled.div`
     margin-top: 30px;
     margin-bottom: 23.07px;
   }
+  p { 
+    margin-top: 10px;
+    color: #1a1a1a ;
+  }
+  
 `;

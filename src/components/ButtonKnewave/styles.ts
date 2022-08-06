@@ -16,7 +16,11 @@ export const Wrapper = styled.button<Props>`
       background: var(--blue-linear);
       color: white;
       border: none;
+      :hover { 
+     opacity : 0.8 ;
+    }
     `}
+    
 
   ${({ variant }) =>
     variant === "SECONDARY" &&
@@ -24,6 +28,9 @@ export const Wrapper = styled.button<Props>`
       background: transparent;
       color: black;
       border: 2px solid #42a4ef;
+      :hover { 
+     opacity : 0.8 ;
+    }
     `}
 
     ${({ variant }) =>
@@ -31,6 +38,9 @@ export const Wrapper = styled.button<Props>`
     css`
       background: black;
       color: white;
+      :hover { 
+     opacity : 0.8 ;
+    }
     `}
 
     ${({ size }) =>

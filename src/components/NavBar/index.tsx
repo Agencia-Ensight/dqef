@@ -39,15 +39,27 @@ function NavBar() {
     <S.MainWrapper>
       <S.Container>
         <Link href="/" passHref>
-          <S.LogoWrapper>
+          <S.LogoWrapper >
             <Image
               src="/images/logo-text.png"
               width={300}
               height={60}
               quality={100}
             />
+            
           </S.LogoWrapper>
+          
         </Link>
+
+        
+            <S.LogoImage
+            
+              src="/images/logo-mobile.png"
+             
+            />
+            
+          
+      
         <S.Wrapper>
           <Link href="/jobs/urgents" passHref>
             <S.MenuItem>Urgentes</S.MenuItem>
