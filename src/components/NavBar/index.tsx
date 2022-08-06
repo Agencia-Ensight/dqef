@@ -61,6 +61,7 @@ function NavBar() {
           
       
         <S.Wrapper>
+          
           <Link href="/jobs/urgents" passHref>
             <S.MenuItem>Urgentes</S.MenuItem>
           </Link>
@@ -69,6 +70,9 @@ function NavBar() {
           </Link>
           <Link href="/#about">
             <S.MenuItem>Sobre Nós</S.MenuItem>
+          </Link>
+          <Link href="#" passHref>
+            <S.MenuItem>TCC</S.MenuItem>
           </Link>
           <Link
             href="https://deixaqueeufaco.notion.site/Como-podemos-ajudar-1105738216d84a37aa57233b1d495c8d"
