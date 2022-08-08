@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Button as GlobalButton } from "../Button";
 
 import { CardProps, CourseVariant } from "./typings";
 
@@ -21,6 +22,18 @@ export const Container = styled.div`
   @media (max-width: 425px) {
     /* min-width: 100%; */
     min-width: 240px;
+  }
+`;
+
+export const Button = styled(GlobalButton)`
+  &.changes {
+    background: #ed3561;
+    color: #ffffff;
+  }
+
+  &.rate {
+    background: linear-gradient(190.27deg, #ede635 6.53%, #e6de22 91.31%);
+    color: #ffffff;
   }
 `;
 

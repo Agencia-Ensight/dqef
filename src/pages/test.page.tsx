@@ -1,33 +1,22 @@
-import { INSERT_JOB } from "@/services/graphql/jobs";
-import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { JobCard } from "@/components";
 
 function Test() {
-  const [data, setData] = useState("");
-  const [createJob, jobData] = useMutation(INSERT_JOB);
-
-  async function handleSubmit() {
-    try {
-      await createJob({
-        variables: {
-          date_limit: data,
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }
   return (
-    <>
-      <input
-        type="data"
-        value={data}
-        onChange={(e) => setData(e.target.value)}
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <JobCard
+        date="2022-03-20"
+        discipline="História"
+        price={20}
+        type="student"
+        status="finished"
+        state="editor-rate"
+        theme="História"
+        title="História"
+        typeOfWork="Trabalho de Conclusão de Curso"
+        urgent={false}
+        course="ADM"
       />
-      <button onClick={handleSubmit}>
-        {jobData.loading ? "banana" : "arroz"}
-      </button>
-    </>
+    </div>
   );
 }
 

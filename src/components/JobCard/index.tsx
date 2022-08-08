@@ -1,6 +1,6 @@
-import { Button } from "../Button";
-import * as S from "./styles";
+import Link from "next/link";
 
+import * as S from "./styles";
 import { Props } from "./typings";
 
 function JobCard(job: Props) {
@@ -32,52 +32,72 @@ function JobCard(job: Props) {
           <S.InformationContainer>
             <S.Subtitle>Data de Entrega {job.urgent && "Urgente"}</S.Subtitle>
             <S.Date urgent={job.urgent}>{job.date}</S.Date>
-
-            {/* Editor */}
-            {job.type === "editor" && <></>}
-
-            {/* Student */}
-            {job.type === "student" && (
-              <>
-                {job.status === "on-going" &&
-                  job.state === "request-changes" && (
-                    <S.WaitStudent>Solicitar Alterações</S.WaitStudent>
-                  )}
-
-                {job.status === "published" &&
-                  job.state === "show-proposals" && (
-                    <S.WaitStudent>Ver propostas</S.WaitStudent>
-                  )}
-
-                {job.status === "finished" && job.state === "editor-rate" && (
-                  <S.WaitStudent>Avaliar Redator</S.WaitStudent>
-                )}
-              </>
-            )}
-
-            {/* {job.status === "EMPLOYEE-SEND" && (
-              <S.WaitStudent>Aguardando Estudante ...</S.WaitStudent>
-            )}
-
-            {job.status === "EMPLOYEE-START" && (
-              <S.NextBill>
-                Próxima Cobrança: <span>05/08 às 17h</span>
-              </S.NextBill>
-            )}
-
-            {job.status === "EMPLOYEE-CHANGE" && (
-              <S.NextBill>
-                Próxima Cobrança: <span>05/08 às 17h</span>
-              </S.NextBill>
-            )}
-
-            {job.status === "EMPLOYEE-BILL" && (
-              <S.Bill>Responda a Cobrança</S.Bill>
-            )} */}
           </S.InformationContainer>
+          {job.type === "editor" &&
+            job.status === "published" &&
+            job.state === "waiting-payment" && (
+              <S.WaitStudent>Aguardando Estudante...</S.WaitStudent>
+            )}
+
+          {job.type === "editor" &&
+            job.status === "on-going" &&
+            job.state === "changes" && (
+              <S.WaitStudent>Responda a cobrança!</S.WaitStudent>
+            )}
         </S.MainContainer>
       </S.Container>
-      {/* Employee */}
+      <S.FooterContainer>
+        <Link href={`/jobs/${job.id}`}>
+          <S.Button variant="secondary">Ver mais</S.Button>
+        </Link>
+
+        {/* Show Feedback button to editor */}
+        {job.type === "editor" &&
+          job.status === "finished" &&
+          job.state === "show-feedback" && <S.Button>Ver Feedback</S.Button>}
+
+        {/* Show problem button to editor */}
+        {job.type === "editor" &&
+          job.status === "on-going" &&
+          job.state === "report-problem" && (
+            <S.Button className="changes">Problema</S.Button>
+          )}
+
+        {/* Editor Proposals */}
+        {job.type === "editor" && job.status === "want-to-do" && (
+          <>
+            <S.Button>Aceitar Valor</S.Button>
+            <S.Button>Contraproposta</S.Button>
+          </>
+        )}
+
+        {/* Editor Start Job */}
+        {job.type === "editor" &&
+          job.status === "want-to-do" &&
+          job.state === "start-job" && <S.Button>Iniciar trabalho</S.Button>}
+
+        {/* Show change button to editor */}
+        {(job.type === "editor" &&
+          job.status === "on-going" &&
+          (job.state === "changes" || job.state === "requested-changes")) ||
+          (job.type === "student" &&
+            job.status === "on-going" &&
+            job.state === "request-changes" && (
+              <S.Button variant="tertiary">Alterações</S.Button>
+            ))}
+
+        {/* Show rate button to student */}
+        {job.type === "student" &&
+          job.status === "finished" &&
+          job.state === "editor-rate" && (
+            <S.Button className="rate">Avaliar</S.Button>
+          )}
+
+        {/* Show proposals button to student */}
+        {job.type === "student" &&
+          job.status === "published" &&
+          job.state === "show-proposals" && <S.Button>Ver propostas</S.Button>}
+      </S.FooterContainer>
     </S.Wrapper>
   );
 }

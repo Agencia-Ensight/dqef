@@ -12,13 +12,21 @@ export type CourseVariant =
 export type EditorCardType = {
   type: "editor";
   status: "published" | "finished" | "on-going" | "want-to-do";
-  state: "paid" | "waiting-payment";
+  state:
+    | "paid"
+    | "waiting-payment"
+    | "show-feedback"
+    | "report-problem"
+    | "answer-demand"
+    | "changes"
+    | "requested-changes"
+    | "start-job";
 };
 
 export type StudentCardType = {
   type: "student";
-  status: "finished" | "on-going" | "published";
-  state: "request-changes" | "show-proposals" | "editor-rate";
+  status?: "finished" | "on-going" | "published";
+  state?: "request-changes" | "show-proposals" | "editor-rate";
 };
 
 type CardType = EditorCardType | StudentCardType;
@@ -37,7 +45,7 @@ export type CardProps = {
 
 export type Props = CardProps &
   CardType & {
-    jobId?: string;
+    id: string;
     title: string;
     discipline: string;
     theme: string;
