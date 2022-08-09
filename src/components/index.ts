@@ -12,3 +12,4 @@ export * from "./ProfileCardEmployee";
 export * from "./JobCard";
 export * from "./Combobox";
 export * from "./InputCheckbox";
+export * from "./Stepper";

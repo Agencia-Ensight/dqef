@@ -41,7 +41,7 @@ export type CreateJobProps = {
   value_pay: number;
   date_limit: Date;
   delivery: Date;
-  theme: string;
+  thema: string;
   knowledge_id: number;
   user_id: string;
   pages: number;
@@ -121,7 +121,7 @@ export const GET_TOP_10_URGENT_JOBS = gql`
     jobs(limit: 10) {
       id
       title
-      theme
+      thema
       value_pay
       delivery
       higher_course {
@@ -223,52 +223,6 @@ export const GET_JOB_FORMATS = gql`
   }
 `;
 
-// export const INSERT_JOB = gql`
-//   mutation InsertJob(
-//     $higher_course_id: Int!
-//     $job_status_id: Int!
-//     $job_type_id: Int!
-//     $title: String!
-//     $value: Float!
-//     $value_pay: Float!
-//     $date_limit: date!
-//     $delivery: date!
-//     $theme: String!
-//     $knowledge_id: Int!
-//     $user_id: uuid!
-//     $pages: Int!
-//     $words: Int!
-//     $instructions: String!
-//     $job_format_id: Int!
-//     $obs: String!
-//     $maximum_plagiarism: String!
-//   ) {
-//     insert_jobs_one(
-//       object: {
-//         higher_course_id: $higher_course_id 
-//         job_type_id: $job_type_id  
-//         words: $words 
-//         pages: $pages 
-//         user_id: $user_id 
-//         theme: $theme 
-//         title: $title 
-//         obs: $obs 
-//         maximum_plagiarism: $maximum_plagiarism 
-//         job_has_knowledges: { data: { knowledge_id: $knowledge_id } } 
-//         job_status_id: $job_status_id
-//         job_format_id: $job_format_id 
-//         value: $value 
-//         value_pay: $value_pay 
-//         date_limit: $date_limit 
-//         delivery: $delivery 
-//         instructions: $instructions 
-//       }
-//     ) {
-//       id
-//     }
-//   }
-// `;
-
 export const UPDATE_JOB = gql`
   mutation UpdateJobByPk(
     $id: uuid!
@@ -289,39 +243,48 @@ export const UPDATE_JOB = gql`
   }
 `;
 
-
-
 export const INSERT_JOB = gql`
-  mutation InsertJob($higher_course_id: Int!, $job_status_id: Int!, $job_type_id: Int!, $title: String!, $value: Float!, $value_pay: Int!, $date_limit: date!, $delivery: date!, $thema: String!, $knowledge_id: Int!, $user_id: uuid!, $pages: Int!, $words: Int!, $instructions: String!, $job_format_id: Int!, $obs: String!, $maximum_plagiarism: String!) {
-  insert_jobs_one(object: {
-    higher_course_id: $higher_course_id,
-    job_type_id: $job_type_id,
-    words: $words,
-    pages: $pages,
-    user_id: $user_id,
-    thema: $thema,
-    title: $title,
-    obs: $obs,
-    maximum_plagiarism: $maximum_plagiarism,
-    job_has_knowledges: {
-      data: {
-        knowledge_id: $knowledge_id
-      }
-    },
-    job_status_id: $job_status_id,
-    job_format_id: $job_format_id,
-    value: $value,
-    value_pay: $value_pay,
-    date_limit: $date_limit,
-    delivery: $delivery,
-    instructions: $instructions,
-  }
+  mutation InsertJob(
+    $higher_course_id: Int!
+    $job_status_id: Int!
+    $job_type_id: Int!
+    $title: String!
+    $value: Float!
+    $value_pay: Float!
+    $date_limit: date!
+    $delivery: date!
+    $thema: String!
+    $knowledge_id: Int!
+    $user_id: uuid!
+    $pages: Int!
+    $words: Int!
+    $instructions: String!
+    $job_format_id: Int!
+    $obs: String!
+    $maximum_plagiarism: String!
   ) {
-    id
+    insert_jobs_one(
+      object: {
+        higher_course_id: $higher_course_id
+        job_type_id: $job_type_id
+        words: $words
+        pages: $pages
+        user_id: $user_id
+        thema: $thema
+        title: $title
+        obs: $obs
+        maximum_plagiarism: $maximum_plagiarism
+        job_has_knowledges: { data: { knowledge_id: $knowledge_id } }
+        job_status_id: $job_status_id
+        job_format_id: $job_format_id
+        value: $value
+        value_pay: $value_pay
+        date_limit: $date_limit
+        delivery: $delivery
+        instructions: $instructions
+      }
+    ) {
+      id
+    }
   }
-}
 `;
-
-
-
-

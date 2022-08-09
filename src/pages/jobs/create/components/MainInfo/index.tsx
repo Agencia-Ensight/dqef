@@ -1,31 +1,24 @@
-import { useRouter } from "next/router";
-
-import { Input, ComboboxComp, ButtonKnewave } from "@/components";
-
-import * as S from "./styles";
-import { useCreateJob } from "../../CreateJobContext";
-import { useForm } from "react-hook-form";
-import { CreateJobProps } from "../../typings";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "./schema";
 import { FormEvent, useState } from "react";
 import { useQuery } from "@apollo/client";
+import Router from "next/router";
+
+import { Input, ComboboxComp, ButtonKnewave, IRenderProps } from "@/components";
+import * as S from "./styles";
 import {
   GET_COURSES,
   GET_FORMATS,
-  GET_KNOWLEDGES,
   GET_KNOWLEDGES_BY_COURSE_ID,
 } from "@/services/queries";
 
-const fruits = [
-  { id: 1, name: "banana" },
-  { id: 2, name: "maca" },
-];
-
-function MainInfo() {
-  const router = useRouter();
-  const { data, updateData, updateStep } = useCreateJob();
+function MainInfo({ onComplete }: IRenderProps) {
   const [higher_course_id, setHigher_course_id] = useState(1);
+  const [title, setTitle] = useState("");
+  const [pages, setPages] = useState(0);
+  const [words, setWords] = useState(0);
+  const [job_type_id, setJob_type_id] = useState(1);
+  const [thema, setThema] = useState("");
+  const [instructions, setInstructions] = useState("");
+  const [knowledge_id, setKnowledge_id] = useState(1);
   const courses = useQuery<{ higher_courses: any }>(GET_COURSES);
   const knowledges = useQuery<{ knowledges: any }>(
     GET_KNOWLEDGES_BY_COURSE_ID,
@@ -37,36 +30,24 @@ function MainInfo() {
   );
   const formats = useQuery<{ job_formats: any }>(GET_FORMATS);
 
-  const [title, setTitle] = useState("");
-  const [pages, setPages] = useState(0);
-  const [words, setWords] = useState(0);
-  const [job_type_id, setJob_type_id] = useState(1);
-  const [theme, setTheme] = useState("");
-  const [instructions, setInstructions] = useState("");
-
-  const [knowledge_id, setKnowledge_id] = useState(1);
-
-  console.log(knowledges.data?.knowledges);
-
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    updateData({
+
+    onComplete({
+      higher_course_id,
       title,
       pages,
       words,
       job_type_id,
-      theme,
+      thema,
       instructions,
-      higher_course_id,
       knowledge_id,
     });
-    updateStep("select-date");
   }
 
-  console.log(higher_course_id);
   return (
     <>
-      <S.BackButton onClick={() => router.back()}>Voltar</S.BackButton>
+      <S.BackButton onClick={Router.back}>Voltar</S.BackButton>
       <S.HeaderContainer>
         <S.Title>Preencha os Campos</S.Title>
         <S.Steps>1 de 3</S.Steps>
@@ -84,7 +65,7 @@ function MainInfo() {
             label="Título do trabalho"
             name="title"
             placeholder="Insira o título"
-            mandatory={true}
+            mandatory
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
@@ -93,7 +74,7 @@ function MainInfo() {
           <ComboboxComp
             label="Tipo do Trabalho"
             items={formats.data?.job_formats || []}
-            onSelectedChange={(fruit) => setJob_type_id(fruit.id)}
+            onSelectedChange={(item) => setJob_type_id(item.id)}
           />
         </S.FirstInputContainer>
         <S.TextInputContainer>
@@ -115,10 +96,10 @@ function MainInfo() {
             className="type-of-work"
             placeholder="Tema do Trabalho"
             label="Tema do Trabalho"
-            mandatory={true}
-            name="theme"
-            value={theme}
-            onChange={(e) => setTheme(e.target.value)}
+            mandatory
+            name="thema"
+            value={thema}
+            onChange={(e) => setThema(e.target.value)}
             required
           />
         </S.TextInputContainer>
@@ -132,7 +113,7 @@ function MainInfo() {
           required
           onChange={(e) => setInstructions(e.target.value)}
           placeholder="ex: Descrição do que deve ser feito no trabalho. Explique de forma objetiva e clara, tudo que o redator deverá realizar para você. Coloque as informações importantes para o melhor entendimento do trabalho."
-        ></textarea>
+        />
         <S.LastInputs>
           <Input
             label="Número de páginas"

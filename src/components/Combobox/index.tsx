@@ -69,11 +69,7 @@ function ComboboxComp({
                   value={item}
                   className="combobox-option"
                 >
-                  {({ selected, active }) => (
-                    <>
-                      <span>{item.name}</span>
-                    </>
-                  )}
+                  {({ selected, active }) => <span>{item.name}</span>}
                 </Combobox.Option>
               ))
             )}

@@ -1,8 +1,7 @@
-import { ButtonKnewave } from "@/components";
 import Link from "next/link";
-import React from "react";
 
 import * as S from "./styles";
+import { ButtonKnewave } from "@/components";
 
 function Success() {
   return (

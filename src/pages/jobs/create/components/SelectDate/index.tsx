@@ -1,32 +1,27 @@
+import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import Router from "next/router";
 import DatePicker from "react-datepicker";
 import pt from "date-fns/locale/pt";
-import "react-datepicker/dist/react-datepicker.css";
 
-import { ButtonKnewave } from "@/components";
-
+import { ButtonKnewave, IRenderProps } from "@/components";
 import * as S from "./styles";
-import { useCreateJob } from "../../CreateJobContext";
 
-export function SelectDate() {
-  const { updateData, data, updateStep } = useCreateJob();
+export function SelectDate({ onComplete, prevRes }: IRenderProps) {
   const [delivery, setDelivery] = useState(new Date());
-
   const tommorrow = new Date();
 
   function onSubmit() {
-    updateData({ delivery });
-
-    updateStep("additional-info");
+    onComplete({
+      ...prevRes,
+      delivery,
+      date_limit: delivery,
+    });
   }
 
-  console.log(data);
-
-  const router = useRouter();
   return (
     <form>
-      <S.BackButton onClick={() => router.back()}>Voltar</S.BackButton>
+      <S.BackButton onClick={Router.back}>Voltar</S.BackButton>
       <S.HeaderContainer>
         <S.Title>Selecione uma data</S.Title>
 

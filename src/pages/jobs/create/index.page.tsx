@@ -1,39 +1,22 @@
 import { useCallback } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation, useQuery } from "@apollo/client";
-
-import { schema } from "./schema";
-import {
-  CreateJobProps,
-  GET_JOB_FORMATS,
-  INSERT_JOB,
-  JobFormatsData,
-} from "@/services/graphql/jobs";
-import { useUser } from "@/contexts";
-// import { JobFormatsData } from "WILL_BE_REMOVED/jobs";
-import { Banner } from "./components/Banner";
-import { MainInfo } from "./components/MainInfo";
-import { SelectDate } from "./components/SelectDate";
-import { AdditionalInfo } from "./components/AdditionalInfo";
-import { Success } from "./components/Success";
+import { useMutation } from "@apollo/client";
 
 import * as S from "./styles";
-import { useCreateJob, JobProvider } from "./CreateJobContext";
+import { useUser } from "@/contexts";
+import { Stepper } from "@/components";
+import {
+  Banner,
+  MainInfo,
+  SelectDate,
+  AdditionalInfo,
+  Success,
+} from "./components";
+import { CreateJobProps, INSERT_JOB } from "@/services/graphql/jobs";
 
 function CreateJob() {
   const { user } = useUser();
-  const { step } = useCreateJob();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<CreateJobProps>({
-    resolver: yupResolver(schema),
-  });
-  const [insertJob, { loading, error }] = useMutation(INSERT_JOB);
 
-  const jobFormats = useQuery<JobFormatsData>(GET_JOB_FORMATS);
+  const [insertJob, { loading, error, data }] = useMutation(INSERT_JOB);
 
   const onSubmit = useCallback(
     async (data: CreateJobProps) => {
@@ -46,10 +29,10 @@ function CreateJob() {
           instructions: data.instructions,
           title: data.title,
           value: data.value,
-          value_pay: data.value,
+          value_pay: data.value_pay,
           date_limit: data.date_limit,
           delivery: data.delivery,
-          theme: data.theme,
+          thema: data.thema,
           knowledge_id: data.knowledge_id,
           user_id: user!.id,
           pages: data.pages,
@@ -66,80 +49,36 @@ function CreateJob() {
     <S.Wrapper>
       <Banner />
       <S.ContainerInformation>
-        {step === "main-info" && <MainInfo />}
-        {step === "select-date" && <SelectDate />}
-        {step === "additional-info" && <AdditionalInfo />}
-        {step === "success" && <Success />}
-        {/* <form onSubmit={handleSubmit(onSubmit)}>
-          <input {...register("higher_course_id")} />
-          <p>{errors.higher_course_id?.message}</p>
-
-          <input {...register("job_status_id")} />
-          <p>{errors.job_status_id?.message}</p>
-
-          <input {...register("job_type_id")} />
-          <p>{errors.job_type_id?.message}</p>
-
-          <input {...register("title")} />
-          <p>{errors.title?.message}</p>
-
-          <input {...register("value")} />
-          <p>{errors.value?.message}</p>
-
-          <input {...register("value_pay")} />
-          <p>{errors.value_pay?.message}</p>
-
-          <input {...register("date_limit")} />
-          <p>{errors.date_limit?.message}</p>
-
-          <input {...register("delivery")} />
-          <p>{errors.delivery?.message}</p>
-
-          <input {...register("theme")} />
-          <p>{errors.theme?.message}</p>
-
-          <input {...register("knowledge_id")} />
-          <p>{errors.knowledge_id?.message}</p>
-
-          <input {...register("user_id")} />
-          <p>{errors.user_id?.message}</p>
-
-          <input {...register("pages")} />
-          <p>{errors.pages?.message}</p>
-
-          <input {...register("words")} />
-          <p>{errors.words?.message}</p>
-
-          <input {...register("instructions")} />
-          <p>{errors.instructions?.message}</p>
-
-          <input {...register("job_format_id")} />
-          <p>{errors.job_format_id?.message}</p>
-
-          <input {...register("obs")} />
-          <p>{errors.obs?.message}</p>
-
-          <input {...register("maximum_plagiarism")} />
-          <p>{errors.maximum_plagiarism?.message}</p>
-
-          {loading ? (
-            <p>Carregando...</p>
-          ) : (
-            <button type="submit">Enviar</button>
-          )}
-          {error && error.message}
-        </form> */}
+        {!data ? (
+          <Stepper<CreateJobProps>
+            onComplete={(data) => onSubmit(data)}
+            steps={[
+              {
+                label: "MainInfo",
+                render: (onComplete, prevRes) => (
+                  <MainInfo onComplete={onComplete} prevRes={prevRes} />
+                ),
+              },
+              {
+                label: "SelectDate",
+                render: (onComplete, prevRes) => (
+                  <SelectDate onComplete={onComplete} prevRes={prevRes} />
+                ),
+              },
+              {
+                label: "AdditionalInfo",
+                render: (onComplete, prevRes) => (
+                  <AdditionalInfo onComplete={onComplete} prevRes={prevRes} />
+                ),
+              },
+            ]}
+          />
+        ) : (
+          <Success />
+        )}
       </S.ContainerInformation>
     </S.Wrapper>
   );
 }
 
-function ContextWrapper() {
-  return (
-    <JobProvider>
-      <CreateJob />
-    </JobProvider>
-  );
-}
-
-export default ContextWrapper;
+export default CreateJob;

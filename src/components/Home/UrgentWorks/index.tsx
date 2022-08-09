@@ -27,15 +27,14 @@ function UrgentWorks() {
           <JobCard
             key={index}
             jobId={urgentJob.id}
-            course={urgentJob.higher_course.name} // higher_course_name TODO: Sincronizar com o banco de dados?
+            course={urgentJob.higher_course.name}
             date={urgentJob.delivery}
             discipline={urgentJob.job_has_knowledges[0]?.knowledge.name}
             price={urgentJob.value_pay}
             theme={urgentJob.theme}
             title={urgentJob.title}
             typeOfWork={urgentJob.job_format.name}
-            urgent={true}
-            status="EMPLOYEE-SEE"
+            urgent
           />
         ))}
       </S.MainContainer>
