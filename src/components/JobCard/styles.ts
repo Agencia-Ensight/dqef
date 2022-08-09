@@ -98,12 +98,12 @@ export const CourseContainer = styled.div<CourseContainerProps>`
 `;
 
 export const Course = styled.h1`
-  font-size: 2.5rem;
+  font-size: 1.2rem;
   font-family: "Knewave", sans-serif;
   color: var(--white-text);
 
   @media (max-width: 425px) {
-    font-size: 2rem;
+    font-size: 1rem;
   }
 `;
 
