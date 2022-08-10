@@ -33,9 +33,7 @@ export const InputFields = styled.form`
   margin-bottom: 1.5rem;
   margin-top: 2.8rem;
 
-  button {
-    margin-top: 2rem;
-  }
+ 
 
   textarea {
     width: 100%;
@@ -72,6 +70,18 @@ export const TextInputContainer = styled.div`
   gap: 30px;
   margin-bottom: 30px;
   flex-wrap: wrap;
+  select {
+    border: 2px solid #42a4ef;
+    border-radius: 99px;
+    width: 100%;
+    height: 51px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  
+
   .type-of-work {
     width: 259px;
     @media (max-width: 600px) {
@@ -100,6 +110,7 @@ export const LastInputs = styled.div`
   flex-wrap: wrap;
   gap: 20px;
   margin-top: 30px;
+  margin-bottom: 2rem;
 `;
 
 

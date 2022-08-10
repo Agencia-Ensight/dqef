@@ -4,6 +4,8 @@ import { ButtonKnewave, ComboboxComp, InputCheckbox } from "@/components";
 import { useStudent } from "../../StudentContext";
 import * as S from "./styles";
 import { useToast, useUser } from "@/contexts";
+import { GET_COURSES, GET_COLLEGES } from "@/services/queries";
+import { useQuery } from "@apollo/client";
 
 const courses = [
   { id: 1, name: "Ciência da Computação" },
@@ -16,12 +18,15 @@ const colleges = [
 ];
 
 function AdditionalInfo() {
-  const [course, setCourse] = useState(courses[0].id);
-  const [college, setCollege] = useState(colleges[0].id);
+  const courses = useQuery<{ higher_courses: any }>(GET_COURSES);
+
+  const [course, setCourse] = useState(courses.data?.higher_courses[1].id);
+  const [college, setCollege] = useState(colleges[1].id);
   const [termsOfUse, setTermsOfUse] = useState(false);
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const { data, updateData, updateStep } = useStudent();
   const { signUp } = useUser();
+
   const { addToast } = useToast();
 
   async function onSubmit() {
@@ -71,7 +76,7 @@ function AdditionalInfo() {
       <S.InputContainer>
         <ComboboxComp
           label="Cursos"
-          items={courses}
+          items={courses.data?.higher_courses || []}
           onSelectedChange={(item) => setCourse(item.id)}
           name="course"
         />
