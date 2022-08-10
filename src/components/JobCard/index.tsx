@@ -12,6 +12,7 @@ function JobCard(job: Props) {
           <S.Course>{job.course}</S.Course>
         </S.CourseContainer>
         <S.MainContainer>
+          <S.Id>#{job.id}</S.Id>
           <S.Title>{job.title}</S.Title>
           <S.InformationContainer>
             <S.Subtitle>Disciplina</S.Subtitle>

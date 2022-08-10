@@ -25,6 +25,12 @@ export const Container = styled.div`
   }
 `;
 
+export const Id = styled.h3`
+  font-size: 0.675rem;
+  color: #969696;
+  font-weight: 400;
+`;
+
 export const Button = styled(GlobalButton)`
   &.changes {
     background: #ed3561;
