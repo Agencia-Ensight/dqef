@@ -9,6 +9,9 @@ export const Wrapper = styled.button<Props>`
   align-items: center;
   border-radius: 99px;
   cursor: pointer;
+  transition: 0.3s;
+
+  
 
   ${({ variant }) =>
     variant === "PRIMARY" &&

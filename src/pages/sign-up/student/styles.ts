@@ -60,7 +60,9 @@ export const Container = styled.div`
     font-size: 18px;
   }
 
-  padding: 47px 120px 26px 69px;
+  /* padding: 47px 120px 26px 69px; */
+
+  padding: 3rem;
 
   @media (max-width: 600px) {
     padding: 10% 5%;

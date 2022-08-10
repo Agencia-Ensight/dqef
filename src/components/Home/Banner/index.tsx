@@ -18,7 +18,7 @@ function Banner() {
         <SimpleImageSlider
           width={100}
           height={300}
-          style={{backgroundPosition: "center !Important"}}
+          style={{ backgroundPosition: "center !Important" }}
           images={images}
           showBullets={true}
           showNavs={true}

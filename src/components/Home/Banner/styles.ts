@@ -17,4 +17,5 @@ export const Banner = styled.div`
     background-position: center center !important ;
     
   }
+
 `;

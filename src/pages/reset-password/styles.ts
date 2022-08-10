@@ -11,8 +11,8 @@ export const Wrapper = styled.div`
   max-width: 100%;
   position: relative;
   align-items: center;
-  height: 91vh;
-  gap: 69px;
+  height: 93vh;
+  gap: 3rem;
 
   @media (max-width: 1300px) {
     margin: auto 0px;
@@ -42,9 +42,9 @@ export const ContainerImage = styled.div`
 `;
 
 export const ContainerInformation = styled.form`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  width: 40%;
+  padding:3rem ;
+
 
   a {
     text-decoration: none;
