@@ -26,7 +26,7 @@ function UrgentWorks() {
         {urgentJobs.data?.jobs.map((urgentJob, index) => (
           <JobCard
             key={index}
-            jobId={urgentJob.id}
+            id={urgentJob.id}
             course={urgentJob.higher_course.name}
             date={urgentJob.delivery}
             discipline={urgentJob.job_has_knowledges[0]?.knowledge.name}

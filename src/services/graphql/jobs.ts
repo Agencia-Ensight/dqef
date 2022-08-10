@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 export type Job = {
   id: string;
   title: string;
-  theme: string;
+  thema: string;
   value_pay: number;
   delivery: string;
   job_type: { name: string };
@@ -66,7 +66,7 @@ export const JOB_FRAGMENT = gql`
     id
     date_limit
     delivery
-    theme
+    thema
     title
     value_pay
     value
@@ -108,7 +108,7 @@ export const JOB_FRAGMENT = gql`
 `;
 
 export const GET_JOB = gql`
-  query JobQuery($id: uuid!) {
+  query JobQuery($id: Int!) {
     jobs_by_pk(id: $id) {
       ...JobFragment
     }

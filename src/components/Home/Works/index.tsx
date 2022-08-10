@@ -26,8 +26,6 @@ function Works() {
     }
   );
 
-  console.log(jobs.data?.jobs);
-
   return (
     <S.Wrapper>
       <S.HeaderContainer>
@@ -56,8 +54,9 @@ function Works() {
         {filteredData?.map((job) => {
           return (
             <JobCard
-              jobId={job.id}
-              course={job.higher_course.name} // higher_course_name TODO: Sincronizar com o banco de dados?
+              id={job.id}
+              key={job.id}
+              course={job.higher_course.name}
               date={job.delivery}
               discipline={job.job_has_knowledges
                 .map(
@@ -68,9 +67,7 @@ function Works() {
               theme={job.thema}
               title={job.title}
               typeOfWork={job.job_type.name}
-              urgent={false} // TODO:Como pegar do banco
-              status="EMPLOYEE-SEE" // TODO: Sincronizar com o banco de dados?
-              key={job.id}
+              urgent={false}
             />
           );
         })}

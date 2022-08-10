@@ -1,7 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import Router from "next/router";
 import { useQuery } from "@apollo/client";
-
 import { BsSearch } from "react-icons/bs";
 
 import { JobCard } from "@/components";
@@ -52,17 +51,16 @@ function AllWorks() {
         {filteredData?.map((job) => (
           <JobCard
             jobId={job.id}
-            course={job.higher_course.name} // higher_course_name TODO: Sincronizar com o banco de dados?
+            course={job.higher_course.name}
             date={job.delivery}
             discipline={job.job_has_knowledges
               .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
               .join(", ")}
             price={job.value_pay}
-            theme={job.theme}
+            theme={job.thema}
             title={job.title}
             typeOfWork={job.job_type.name}
-            urgent={false} // TODO:Como pegar do banco
-            status="EMPLOYEE-SEE" // TODO: Sincronizar com o banco de dados?
+            urgent={false}
           />
         ))}
       </S.MainContainer>
