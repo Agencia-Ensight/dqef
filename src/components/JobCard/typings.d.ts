@@ -52,5 +52,5 @@ export type Props = CardProps &
     theme: string;
     typeOfWork: string;
     price: number;
-    date: string;
+    date: Date;
   };

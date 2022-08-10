@@ -1,9 +1,13 @@
 import Link from "next/link";
 
+import { format } from "date-fns";
+
 import * as S from "./styles";
 import { Props } from "./typings";
 
 function JobCard(job: Props) {
+  const formattedDate = format(new Date(job.date), "dd/MM/yyyy 'às' HH:mm");
+
   return (
     <S.Wrapper>
       <S.Container>
@@ -32,7 +36,7 @@ function JobCard(job: Props) {
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Data de Entrega {job.urgent && "Urgente"}</S.Subtitle>
-            <S.Date urgent={job.urgent}>{job.date}</S.Date>
+            <S.Date urgent={job.urgent}>{formattedDate}</S.Date>
           </S.InformationContainer>
           {job.type === "editor" &&
             job.status === "published" &&
