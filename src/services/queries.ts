@@ -35,7 +35,7 @@ export const GET_FORMATS = gql`
       id
     }
   }
-`
+`;
 
 export const GET_COURSES = gql`
   query HigherCourses {
@@ -66,18 +66,32 @@ export const GET_KNOWLEDGES = gql`
 `;
 
 export const GET_KNOWLEDGES_BY_COURSE_ID = gql`
-query MyQuery($higher_course_id: Int!) {
-  knowledges(where: {higher_course_has_subjects: {higher_course_id: {_eq: $higher_course_id}}}) {
-    id
-    name
+  query MyQuery($higher_course_id: Int!) {
+    knowledges(
+      where: {
+        higher_course_has_subjects: {
+          higher_course_id: { _eq: $higher_course_id }
+        }
+      }
+    ) {
+      id
+      name
+    }
   }
-}
-
-`
+`;
 
 export const GET_FORMATIONS = gql`
   query Formations {
     formations {
+      id
+      name
+    }
+  }
+`;
+
+export const GET_MEDIA_TYPES = gql`
+  query Media_Types {
+    media_types {
       id
       name
     }

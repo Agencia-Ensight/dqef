@@ -26,9 +26,11 @@ export function InfoCard({
       </S.SubTitleContainer>
       <S.Description>
         {isReadMore ? description.slice(0, 500) : description}
-        <S.Span onClick={toggleReadMore}>
-          {isReadMore ? "... Ler mais" : " Mostrar menos"}
-        </S.Span>
+        {description.length >= 500 && (
+          <S.Span onClick={toggleReadMore}>
+            {isReadMore ? "... Ler mais" : " Mostrar menos"}
+          </S.Span>
+        )}
       </S.Description>
       <S.SecondDescription>
         <S.Span>Observações: </S.Span>

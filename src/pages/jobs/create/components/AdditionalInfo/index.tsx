@@ -1,10 +1,11 @@
 import { FormEvent, useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 
 import { ButtonKnewave, Input, ComboboxComp, IRenderProps } from "@/components";
 import { INSERT_JOB } from "@/services/graphql/jobs";
 import { useUser } from "@/contexts";
 import * as S from "./styles";
+import { GET_FORMATS, GET_MEDIA_TYPES } from "@/services/queries";
 
 const fruits = [
   { id: 1, name: "banana" },
@@ -12,8 +13,11 @@ const fruits = [
 ];
 
 function AdditionalInfo({ onComplete, prevRes }: IRenderProps) {
+  const mediaTypes = useQuery<{ media_types: any }>(GET_MEDIA_TYPES);
   const [maximum_plagiarism, setMaximum_plagiarism] = useState("");
-  const [job_format_id, setJob_format_id] = useState(1);
+  const [job_format_id, setJob_format_id] = useState(
+    mediaTypes.data?.media_types[1].id
+  );
   const [obs, setObs] = useState("");
   const [value, setValue] = useState(0);
 
@@ -65,7 +69,7 @@ function AdditionalInfo({ onComplete, prevRes }: IRenderProps) {
           />
           <ComboboxComp
             label="Formato do Trabalho"
-            items={fruits}
+            items={mediaTypes.data?.media_types || []}
             onSelectedChange={(item) => setJob_format_id(item.id)}
           />
         </S.FirstInputContainer>
