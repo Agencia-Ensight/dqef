@@ -27,14 +27,14 @@ function InsideJob({ id }: IInsideJob) {
   return (
     <S.Wrapper>
       <JobCard
-        jobId={job.id}
+        id={job.id}
         course={job.higher_course.name}
         date={job.delivery}
         discipline={job!.job_has_knowledges
           .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
           .join(", ")}
         price={job!.value_pay}
-        theme={job!.theme}
+        theme={job!.thema}
         title={job!.title}
         typeOfWork={job!.job_type.name}
         urgent={false}

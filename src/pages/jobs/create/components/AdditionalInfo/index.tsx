@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 
 import { ButtonKnewave, Input, ComboboxComp, IRenderProps } from "@/components";
 import { INSERT_JOB } from "@/services/graphql/jobs";
+import { useUser } from "@/contexts";
 import * as S from "./styles";
 
 const fruits = [
@@ -10,27 +11,37 @@ const fruits = [
   { id: 2, name: "maca" },
 ];
 
-const formatBrl = new Intl.NumberFormat("pt-BR");
-
 function AdditionalInfo({ onComplete, prevRes }: IRenderProps) {
   const [maximum_plagiarism, setMaximum_plagiarism] = useState("");
   const [job_format_id, setJob_format_id] = useState(1);
   const [obs, setObs] = useState("");
   const [value, setValue] = useState(0);
 
-  const [createJob, jobData] = useMutation(INSERT_JOB);
   const value_pay = value - value * 0.3;
+
+  const { user } = useUser();
+
+  const [insertJob, { loading }] = useMutation(INSERT_JOB);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    onComplete({
-      ...prevRes,
-      job_format_id,
-      maximum_plagiarism,
-      obs,
-      value,
-      value_pay,
-    });
+
+    try {
+      await insertJob({
+        variables: {
+          ...prevRes,
+          user_id: user?.id,
+          job_status_id: "1",
+          job_format_id,
+          maximum_plagiarism,
+          obs,
+          value,
+          value_pay,
+        },
+      });
+
+      onComplete({});
+    } catch {}
   }
 
   return (
@@ -100,8 +111,13 @@ function AdditionalInfo({ onComplete, prevRes }: IRenderProps) {
           </aside>
         </section> */}
       </S.InputFields>
-      <ButtonKnewave variant="PRIMARY" type="submit" size="sm">
-        Publicar
+      <ButtonKnewave
+        variant="PRIMARY"
+        type="submit"
+        size="sm"
+        disabled={loading}
+      >
+        {loading ? "Carregando..." : "Publicar"}
       </ButtonKnewave>
     </form>
   );
