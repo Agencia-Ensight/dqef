@@ -7,7 +7,7 @@ function JobsDone() {
       <S.Title>Trabalhos Finalizados</S.Title>
       <S.Wrapper>
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -16,10 +16,12 @@ function JobsDone() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-DONE" //Status de quando o trabalho esta finalizado
+          status="finished"
+          state="start-job"
+          type="editor" //Status de quando o trabalho esta finalizado
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -28,10 +30,12 @@ function JobsDone() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-DONE" //Status de quando o trabalho esta finalizado
+          status="finished"
+          state="start-job"
+          type="editor" //Status de quando o trabalho esta finalizado
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -40,10 +44,12 @@ function JobsDone() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-DONE" //Status de quando o trabalho esta finalizado
+          status="finished"
+          state="start-job"
+          type="editor" //Status de quando o trabalho esta finalizado
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -52,10 +58,12 @@ function JobsDone() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-DONE" //Status de quando o trabalho esta finalizado
+          status="finished"
+          state="start-job"
+          type="editor" //Status de quando o trabalho esta finalizado
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -64,7 +72,9 @@ function JobsDone() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-SEND" //Status de quando o trabalho esta finalizado
+          status="finished"
+          state="start-job"
+          type="editor" //Status de quando o trabalho esta finalizado
         />
       </S.Wrapper>
     </>

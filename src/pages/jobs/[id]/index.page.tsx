@@ -38,7 +38,8 @@ function InsideJob({ id }: IInsideJob) {
         title={job!.title}
         typeOfWork={job!.job_type.name}
         urgent={false}
-        status="STUDENT-EDIT" // TODO: Sincronizar com o banco de dados?
+        status="published"
+        type="student" // TODO: Sincronizar com o banco de dados?
       />
       <S.Container>
         <InfoCard

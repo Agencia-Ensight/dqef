@@ -50,7 +50,7 @@ function AllWorks() {
       <S.MainContainer>
         {filteredData?.map((job) => (
           <JobCard
-            jobId={job.id}
+            id={job.id}
             course={job.higher_course.name}
             date={job.delivery}
             discipline={job.job_has_knowledges
@@ -61,6 +61,7 @@ function AllWorks() {
             title={job.title}
             typeOfWork={job.job_type.name}
             urgent={false}
+            type="student"
           />
         ))}
       </S.MainContainer>

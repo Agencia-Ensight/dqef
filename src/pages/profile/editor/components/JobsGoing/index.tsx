@@ -7,7 +7,8 @@ function JobsGoing() {
       <S.Title>Trabalhos em Andamento</S.Title>
       <S.Wrapper>
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
+          type="editor"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -16,10 +17,11 @@ function JobsGoing() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-START" //Status de quando o trabalho esta em andamento
+          state="start-job"
+          status="on-going" //Status de quando o trabalho esta em andamento
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -28,10 +30,12 @@ function JobsGoing() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-START" //Status de quando o trabalho esta em andamento
+          state="start-job"
+          status="on-going"
+          type="editor" //Status de quando o trabalho esta em andamento
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -40,10 +44,12 @@ function JobsGoing() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-START" //Status de quando o trabalho esta em andamento
+          state="start-job"
+          status="on-going"
+          type="editor" //Status de quando o trabalho esta em andamento
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -52,10 +58,12 @@ function JobsGoing() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-START" //Status de quando o trabalho esta em andamento
+          state="start-job"
+          status="on-going"
+          type="editor" //Status de quando o trabalho esta em andamento
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -64,7 +72,9 @@ function JobsGoing() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-SEND" //Status de quando o trabalho esta em andamento
+          state="start-job"
+          status="on-going"
+          type="editor" //Status de quando o trabalho esta em andamento
         />
       </S.Wrapper>
     </>

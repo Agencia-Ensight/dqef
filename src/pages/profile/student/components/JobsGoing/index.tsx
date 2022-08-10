@@ -7,7 +7,7 @@ function JobsGoing() {
       <S.Title>Trabalhos em Andamento</S.Title>
       <S.Wrapper>
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -16,10 +16,12 @@ function JobsGoing() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-GET" //Status de quando o trabalho esta em andamento
+          status="on-going"
+          state="show-proposals"
+          type="student" //Status de quando o trabalho esta em andamento
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -28,10 +30,12 @@ function JobsGoing() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-GET" //Status de quando o trabalho esta em andamento
+          status="on-going"
+          state="show-proposals"
+          type="student" //Status de quando o trabalho esta em andamento
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -40,31 +44,9 @@ function JobsGoing() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-GET" //Status de quando o trabalho esta em andamento
-        />
-        <JobCard
-          jobId="dsadsa"
-          course="ECONOMIA"
-          date="23/08"
-          discipline="123"
-          price={500}
-          theme="Banana"
-          title="Banana"
-          typeOfWork="123"
-          urgent={false}
-          status="STUDENT-GET" //Status de quando o trabalho esta em andamento
-        />
-        <JobCard
-          jobId="dsadsa"
-          course="ECONOMIA"
-          date="23/08"
-          discipline="123"
-          price={500}
-          theme="Banana"
-          title="Banana"
-          typeOfWork="123"
-          urgent={false}
-          status="EMPLOYEE-SEND" //Status de quando o trabalho esta em andamento
+          status="on-going"
+          state="show-proposals"
+          type="student" //Status de quando o trabalho esta em andamento
         />
       </S.Wrapper>
     </>

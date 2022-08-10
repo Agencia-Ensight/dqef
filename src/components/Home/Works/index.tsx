@@ -55,6 +55,8 @@ function Works() {
           return (
             <JobCard
               id={job.id}
+              type="student"
+              state="show-proposals"
               key={job.id}
               course={job.higher_course.name}
               date={job.delivery}

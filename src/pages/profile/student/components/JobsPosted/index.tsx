@@ -7,7 +7,7 @@ function JobsPosted() {
       <S.Title>Trabalhos Publicados</S.Title>
       <S.Wrapper>
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -16,10 +16,12 @@ function JobsPosted() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-CREATE" //Status de quando o estudante cria um job
+          status="published"
+          state="editor-rate"
+          type="student" //Status de quando o estudante cria um job
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -28,10 +30,12 @@ function JobsPosted() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-CREATE" //Status de quando o estudante cria um job
+          status="published"
+          state="editor-rate"
+          type="student" //Status de quando o estudante cria um job
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -40,10 +44,12 @@ function JobsPosted() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-CREATE" //Status de quando o estudante cria um job
+          status="published"
+          state="editor-rate"
+          type="student" //Status de quando o estudante cria um job
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -52,10 +58,12 @@ function JobsPosted() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-CREATE" //Status de quando o estudante cria um job
+          status="published"
+          state="editor-rate"
+          type="student" //Status de quando o estudante cria um job
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -64,7 +72,9 @@ function JobsPosted() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="STUDENT-CREATE" //Status de quando o estudante cria um job
+          status="published"
+          state="editor-rate"
+          type="student" //Status de quando o estudante cria um job
         />
       </S.Wrapper>
     </>

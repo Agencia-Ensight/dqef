@@ -24,16 +24,16 @@ function UrgentWorks() {
         {urgentJobs.data?.jobs.map((urgentJob, index) => (
           <JobCard
             key={index}
-            jobId={urgentJob.id}
+            id={urgentJob.id}
             course={urgentJob.higher_course.name}
             date={urgentJob.delivery}
             discipline={urgentJob.job_has_knowledges[0]?.knowledge.name}
             price={urgentJob.value_pay}
-            theme={urgentJob.theme}
+            theme={urgentJob.thema}
             title={urgentJob.title}
             typeOfWork={urgentJob.job_format.name}
             urgent={true}
-            status="EMPLOYEE-SEE"
+            type="student"
           />
         ))}
       </S.MainContainer>

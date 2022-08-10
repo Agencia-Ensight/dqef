@@ -7,7 +7,8 @@ export type CourseVariant =
   | "ARQUITETURA"
   | "ECONOMIA"
   | "ADM"
-  | "PSICOLOGIA";
+  | "PSICOLOGIA"
+  | string;
 
 export type EditorCardType = {
   type: "editor";

@@ -7,8 +7,9 @@ function Proposals() {
       <S.Title>Propostas Enviadas</S.Title>
       <S.Wrapper>
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
+          type="editor"
           date="23/08"
           discipline="123"
           price={500}
@@ -16,10 +17,12 @@ function Proposals() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-SEND" //Status de quando a prosposta esta enviada
+          status="want-to-do"
+          state="start-job"
+          //Status de quando a prosposta esta enviada
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -28,10 +31,12 @@ function Proposals() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-SEND" //Status de quando a prosposta esta enviada
+          status="want-to-do"
+          state="start-job"
+          type="editor" //Status de quando a prosposta esta enviada
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -40,10 +45,12 @@ function Proposals() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-SEND" //Status de quando a prosposta esta enviada
+          status="want-to-do"
+          state="start-job"
+          type="editor" //Status de quando a prosposta esta enviada
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -52,10 +59,12 @@ function Proposals() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-SEND" //Status de quando a prosposta esta enviada
+          status="want-to-do"
+          state="start-job"
+          type="editor" //Status de quando a prosposta esta enviada
         />
         <JobCard
-          jobId="dsadsa"
+          id="dsadsa"
           course="ECONOMIA"
           date="23/08"
           discipline="123"
@@ -64,7 +73,9 @@ function Proposals() {
           title="Banana"
           typeOfWork="123"
           urgent={false}
-          status="EMPLOYEE-SEND" //Status de quando a prosposta esta enviada
+          status="want-to-do"
+          state="start-job"
+          type="editor" //Status de quando a prosposta esta enviada
         />
       </S.Wrapper>
     </>
