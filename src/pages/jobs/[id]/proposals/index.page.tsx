@@ -1,9 +1,8 @@
-import { ProfileCard, ProfileCardEmployee } from "@/components";
+import { ProfileCardEmployee } from "@/components";
 import { useRouter } from "next/router";
 import * as S from "./styles";
-import { IInsideJob } from "./typings";
 
-function Proposals({ id }: IInsideJob) {
+function Proposals() {
   const router = useRouter();
 
   return (

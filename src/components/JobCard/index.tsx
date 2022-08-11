@@ -104,7 +104,7 @@ function JobCard(job: Props) {
         {job.type === "student" &&
           job.status === "published" &&
           job.state === "show-proposals" && (
-            <Link href="profile/student/proposals/1">
+            <Link href="jobs/1/proposals">
               <S.Button>Ver propostas</S.Button>
             </Link>
           )}
