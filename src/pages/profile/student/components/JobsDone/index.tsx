@@ -9,7 +9,6 @@ function JobsDone() {
         <JobCard
           id="dsadsa"
           course="ECONOMIA"
-          date="23/08"
           discipline="123"
           price={500}
           theme="Banana"
@@ -23,7 +22,6 @@ function JobsDone() {
         <JobCard
           id="dsadsa"
           course="ECONOMIA"
-          date="23/08"
           discipline="123"
           price={500}
           theme="Banana"
@@ -37,7 +35,6 @@ function JobsDone() {
         <JobCard
           id="dsadsa"
           course="ECONOMIA"
-          date="23/08"
           discipline="123"
           price={500}
           theme="Banana"
@@ -51,7 +48,6 @@ function JobsDone() {
         <JobCard
           id="dsadsa"
           course="ECONOMIA"
-          date="23/08"
           discipline="123"
           price={500}
           theme="Banana"
@@ -65,7 +61,6 @@ function JobsDone() {
         <JobCard
           id="dsadsa"
           course="ECONOMIA"
-          date="23/08"
           discipline="123"
           price={500}
           theme="Banana"

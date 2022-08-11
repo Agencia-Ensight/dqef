@@ -6,7 +6,9 @@ import * as S from "./styles";
 import { Props } from "./typings";
 
 function JobCard(job: Props) {
-  const formattedDate = format(new Date(job.date), "dd/MM/yyyy 'às' HH:mm");
+  // const formattedDate = format(new Date(job.date), "dd/MM 'às' HH:mm");
+
+  // console.log(formattedDate);
 
   return (
     <S.Wrapper>
@@ -36,7 +38,7 @@ function JobCard(job: Props) {
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Data de Entrega {job.urgent && "Urgente"}</S.Subtitle>
-            <S.Date urgent={job.urgent}>{formattedDate}</S.Date>
+            <S.Date urgent={job.urgent}>{job.date}</S.Date>
           </S.InformationContainer>
           {job.type === "editor" &&
             job.status === "published" &&
@@ -101,7 +103,11 @@ function JobCard(job: Props) {
         {/* Show proposals button to student */}
         {job.type === "student" &&
           job.status === "published" &&
-          job.state === "show-proposals" && <S.Button>Ver propostas</S.Button>}
+          job.state === "show-proposals" && (
+            <Link href="profile/student/proposals/1">
+              <S.Button>Ver propostas</S.Button>
+            </Link>
+          )}
       </S.FooterContainer>
     </S.Wrapper>
   );
