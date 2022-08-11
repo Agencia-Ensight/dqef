@@ -41,6 +41,12 @@ export const GlobalStyle = createGlobalStyle`
 			--gray-stroke: #D1D1D1;
     }
 
+	html {
+		@media (max-width: 768px){
+			font-size: 85%;
+		}
+	}
+
     html, body, #__next {
 			min-height: 100%;
 			height: 100vh;
