@@ -8,7 +8,7 @@ import {
   GET_COURSES,
   GET_FORMATS,
   GET_KNOWLEDGES_BY_COURSE_ID,
-} from "@/services/queries";
+} from "@/services/graphql/queries";
 
 function MainInfo({ onComplete }: IRenderProps) {
   const [higher_course_id, setHigher_course_id] = useState(1);

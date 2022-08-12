@@ -5,7 +5,7 @@ import { ButtonKnewave, Input, ComboboxComp, IRenderProps } from "@/components";
 import { INSERT_JOB } from "@/services/graphql/jobs";
 import { useUser } from "@/contexts";
 import * as S from "./styles";
-import { GET_FORMATS, GET_MEDIA_TYPES } from "@/services/queries";
+import { GET_FORMATS, GET_MEDIA_TYPES } from "@/services/graphql/queries";
 
 const fruits = [
   { id: 1, name: "banana" },

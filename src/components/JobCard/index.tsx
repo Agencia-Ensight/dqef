@@ -6,7 +6,10 @@ import * as S from "./styles";
 import { ICardProps } from "./typings";
 
 function JobCard(job: ICardProps) {
-  const formattedDate = format(new Date(job.date), "dd/MM/yyyy 'às' HH:mm");
+  const formattedDate = format(
+    new Date(job.deliveryAt),
+    "dd/MM/yyyy 'às' HH:mm"
+  );
 
   return (
     <S.Wrapper>
@@ -36,7 +39,7 @@ function JobCard(job: ICardProps) {
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Data de Entrega {job.urgent && "Urgente"}</S.Subtitle>
-            <S.Date urgent={job.urgent}>{job.date}</S.Date>
+            <S.Date urgent={job.urgent}>{formattedDate}</S.Date>
           </S.InformationContainer>
           {job.type === "editor" &&
             job.status === "published" &&

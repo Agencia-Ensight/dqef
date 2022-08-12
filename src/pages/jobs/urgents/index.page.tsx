@@ -1,12 +1,10 @@
-import { useQuery } from "@apollo/client";
-
 import * as S from "./styles";
 
 import { JobCard } from "@/components";
-import { GET_URGENT_JOBS, Job } from "@/services/graphql/jobs";
+import { useUrgentJobs } from "@/hooks";
 
 function UrgentWorks() {
-  const urgentJobs = useQuery<{ jobs: Job[] }>(GET_URGENT_JOBS);
+  const urgentJobs = useUrgentJobs();
 
   return (
     <S.Wrapper>
@@ -21,19 +19,14 @@ function UrgentWorks() {
         </div>
       </S.HeaderContainer>
       <S.MainContainer>
-        {urgentJobs.data?.jobs.map((urgentJob, index) => (
+        {urgentJobs.data?.map((job) => (
           <JobCard
-            key={index}
-            id={urgentJob.id}
-            course={urgentJob.higher_course.name}
-            date={urgentJob.delivery}
-            discipline={urgentJob.job_has_knowledges[0]?.knowledge.name}
-            price={urgentJob.value_pay}
-            theme={urgentJob.thema}
-            title={urgentJob.title}
-            typeOfWork={urgentJob.job_format.name}
-            urgent={true}
-            type="student"
+            key={job.id}
+            {...job}
+            type="student" // TODO: check how to do this
+            status="finished" // TODO: check how to do this
+            discipline={job.discipline.name}
+            typeOfWork={job.typeOfWork.name}
           />
         ))}
       </S.MainContainer>

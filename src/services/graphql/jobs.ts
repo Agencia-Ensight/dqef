@@ -6,8 +6,8 @@ export type Job = {
   thema: string;
   value_pay: number;
   delivery: string;
-  job_type: { name: string };
-  higher_course: { name: string };
+  job_type: { id: string; name: string };
+  higher_course: { id: string; name: string };
   job_has_knowledges: { knowledge: { name: string } }[];
   job_format: {
     name: string;
@@ -170,7 +170,7 @@ export const GET_URGENT_JOBS = gql`
     jobs {
       id
       title
-      theme
+      thema
       value_pay
       delivery
       higher_course {
@@ -193,7 +193,7 @@ export const GET_JOBS = gql`
     jobs {
       id
       title
-      theme
+      thema
       value_pay
       delivery
       job_type {
@@ -296,4 +296,20 @@ export const GET_JOBS_BY_USER = gql`
     }
   }
   ${JOB_FRAGMENT}
+`;
+
+export const GET_PROPOSALS_BY_JOB = gql`
+  query GetProposalsByJob($jobId: Int!) {
+    proposals(where: { job_id: { _eq: $jobId } }) {
+      id
+      job {
+        id
+      }
+      user {
+        avatar
+        id
+        name
+      }
+    }
+  }
 `;

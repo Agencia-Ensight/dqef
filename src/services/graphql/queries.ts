@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { graphql } from "./api";
+import { graphql } from "../api";
 
 export type CourseProps = {
   id: number;

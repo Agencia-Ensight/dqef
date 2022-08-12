@@ -52,5 +52,5 @@ export type ICardProps = CardProps &
     theme: string;
     typeOfWork: string;
     price: number;
-    date: Date;
+    deliveryAt: Date;
   };

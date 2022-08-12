@@ -4,7 +4,7 @@ import {
   FormationProps,
   CollegeProps,
   CourseProps,
-} from "@/services/queries";
+} from "@/services/graphql/queries";
 
 export type ProfileProps = {
   knowledges: KnowledgeProps[];

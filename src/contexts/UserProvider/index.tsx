@@ -84,7 +84,6 @@ function UserProvider({ children }: UserContextProvider) {
           password: newUser.password,
           name: newUser.name,
           phone: newUser.phone,
-          cpf: newUser.cpf,
           type: 1,
           formation: 1,
           course: newUser.courseId,

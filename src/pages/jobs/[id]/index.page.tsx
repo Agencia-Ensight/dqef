@@ -1,67 +1,47 @@
-import { useMemo } from "react";
 import { GetServerSidePropsContext } from "next";
-import { useQuery } from "@apollo/client";
 import ScrollContainer from "react-indiana-drag-scroll";
 
 import * as S from "./styles";
 import { IInsideJob } from "./typings";
 import { JobCard } from "@/components";
-
-import { GET_JOB, Job } from "@/services/graphql/jobs";
 import { InfoCard } from "./components/InfoCard";
 import { FileCard } from "./components/FileCard";
+import { useJob } from "@/hooks";
 
 function InsideJob({ id }: IInsideJob) {
-  const jobQuery = useQuery<{ jobs_by_pk: Job }>(GET_JOB, {
-    variables: { id },
-  });
+  const job = useJob(id);
 
-  const job = useMemo(() => jobQuery.data?.jobs_by_pk, [jobQuery.data]);
+  if (job.isLoading) return <h1>Carregando...</h1>;
 
-  if (jobQuery.loading) return <h1>Carregando...</h1>;
+  if (job.error) return <h1>Erro!</h1>;
 
-  if (jobQuery.error) return <h1>Erro!</h1>;
-
-  if (!job) return <h1>Não encontrado!</h1>;
+  if (!job.data) return <h1>Não encontrado!</h1>;
 
   return (
     <S.Wrapper>
       <S.JobContainer>
         <JobCard
-          id={job.id}
-          course={job.higher_course.name}
-          date={job.delivery}
-          discipline={job!.job_has_knowledges
-            .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
-            .join(", ")}
-          price={job!.value_pay}
-          theme={job!.thema}
-          title={job!.title}
-          typeOfWork={job!.job_type.name}
-          urgent={false}
-          status="on-going"
-          state="start-job"
-          type="student" // TODO: Sincronizar com o banco de dados?
+          key={job.data.id}
+          {...job.data}
+          type="student" // TODO: check how to do this
+          status="finished" // TODO: check how to do this
+          discipline={job.data.discipline.name}
+          typeOfWork={job.data.typeOfWork.name}
         />
       </S.JobContainer>
-
       <S.Container>
         <InfoCard
-          title={job.title}
-          pages={job.pages}
-          plagiarism={job.maximum_plagiarism}
-          format={job.job_format.name}
-          description={job.instructions}
-          observations={job.obs}
+          title={job.data.title}
+          pages={job.data.pages}
+          plagiarism={job.data.maximumPlagiarism}
+          format={job.data.format.name}
+          description={job.data.instructions}
+          observations={job.data.obs}
         />
         <ScrollContainer horizontal hideScrollbars className="files-container">
-          {job.job_has_medias.map(
-            ({
-              media: { id: media_id, title: media_name, link: media_url },
-            }) => (
-              <FileCard key={media_id} title={media_name} />
-            )
-          )}
+          {job.data.medias.map((media) => (
+            <FileCard key={media.id} title={media.title} />
+          ))}
         </ScrollContainer>
         {/* <FAQCard jobId={job.id} /> */}
       </S.Container>

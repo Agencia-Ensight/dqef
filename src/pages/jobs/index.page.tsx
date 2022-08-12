@@ -1,29 +1,31 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import Router from "next/router";
-import { useQuery } from "@apollo/client";
 import { BsSearch } from "react-icons/bs";
 
 import { JobCard } from "@/components";
-import { GET_JOBS, Job } from "@/services/graphql/jobs";
 import * as S from "./styles";
+import { useJobs } from "@/hooks";
 
-function AllWorks() {
-  const jobs = useQuery<{ jobs: Job[] }>(GET_JOBS);
-
+function AllJobs() {
   const [searchJobs, setSearchJobs] = useState("");
+  const jobs = useJobs();
 
-  function handleOnChangeSearchJobs(event: ChangeEvent<HTMLInputElement>) {
-    setSearchJobs(event.target.value.toLocaleLowerCase());
-  }
+  const handleSearchJobs = useCallback((value: string) => {
+    setSearchJobs(value.toLowerCase());
+  }, []);
 
-  const filteredData: Job[] | undefined = jobs.data?.jobs.filter(
-    (filterJobs) => {
-      if (searchJobs === "") {
-        return filterJobs;
-      } else {
-        return filterJobs.higher_course.name.toLowerCase().includes(searchJobs);
-      }
-    }
+  const filteredData = useMemo(
+    () =>
+      jobs.data?.filter((filterJobs) => {
+        if (searchJobs === "") {
+          return filterJobs;
+        } else {
+          return filterJobs.higherCourse.name
+            .toLowerCase()
+            .includes(searchJobs);
+        }
+      }),
+    [jobs.data]
   );
 
   return (
@@ -32,7 +34,6 @@ function AllWorks() {
         <S.InfoDiv>
           <S.SubTitle onClick={() => Router.back()}>Voltar</S.SubTitle>
           <S.Title>Lista de Trabalhos</S.Title>
-
           <S.Description>
             Se liga nas ofertas incríveis que estão disponíveis para você
             realizar e tirar uma grana extra!
@@ -42,7 +43,7 @@ function AllWorks() {
           <S.SearchInput
             placeholder="Pesquisar"
             value={searchJobs}
-            onChange={handleOnChangeSearchJobs}
+            onChange={(e) => handleSearchJobs(e.target.value)}
           />
           <BsSearch size={20} color="#42A4EF" />
         </S.InputContainer>
@@ -50,18 +51,12 @@ function AllWorks() {
       <S.MainContainer>
         {filteredData?.map((job) => (
           <JobCard
-            id={job.id}
-            course={job.higher_course.name}
-            date={job.delivery}
-            discipline={job.job_has_knowledges
-              .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
-              .join(", ")}
-            price={job.value_pay}
-            theme={job.thema}
-            title={job.title}
-            typeOfWork={job.job_type.name}
-            urgent={false}
-            type="student"
+            key={job.id}
+            {...job}
+            type="student" // TODO: check how to do this
+            status="finished" // TODO: check how to do this
+            discipline={job.discipline.name}
+            typeOfWork={job.typeOfWork.name}
           />
         ))}
       </S.MainContainer>
@@ -69,4 +64,4 @@ function AllWorks() {
   );
 }
 
-export default AllWorks;
+export default AllJobs;

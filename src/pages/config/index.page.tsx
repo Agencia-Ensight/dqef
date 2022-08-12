@@ -1,5 +1,5 @@
 import { useUser } from "@/contexts";
-import { getInfos } from "@/services/queries";
+import { getInfos } from "@/services/graphql/queries";
 import { Banner } from "./Banner";
 import { EditorEditProfile } from "./Editor";
 import { StudentEditProfile } from "./Student";

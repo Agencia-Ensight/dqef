@@ -17,7 +17,7 @@ import {
   GET_FORMATIONS,
   GET_KNOWLEDGES,
   KnowledgeProps,
-} from "@/services/queries";
+} from "@/services/graphql/queries";
 
 type IAdditionalInfo = {
   type: "EDITOR" | "STUDENT";
