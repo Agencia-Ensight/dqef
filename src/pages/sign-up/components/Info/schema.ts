@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const digitsOnly = (value?: string) => /^\d+$/.test(value ?? "");
+const digitsOnly = (value?: string) => (!value ? true : /^\d+$/.test(value));
 
 const schema = yup
   .object({
@@ -19,7 +19,7 @@ const schema = yup
       )
       .min(11, "Insira um CPF válido")
       .max(11, "Insira um CPF válido")
-      .required(),
+      .optional(),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password"), null], "Senhas não conferem")

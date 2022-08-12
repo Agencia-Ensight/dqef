@@ -18,21 +18,15 @@ function CreateJob() {
           steps={[
             {
               label: "MainInfo",
-              render: (onComplete, prevRes) => (
-                <MainInfo onComplete={onComplete} prevRes={prevRes} />
-              ),
+              render: (data) => <MainInfo {...data} />,
             },
             {
               label: "SelectDate",
-              render: (onComplete, prevRes) => (
-                <SelectDate onComplete={onComplete} prevRes={prevRes} />
-              ),
+              render: (data) => <SelectDate {...data} />,
             },
             {
               label: "AdditionalInfo",
-              render: (onComplete, prevRes) => (
-                <AdditionalInfo onComplete={onComplete} prevRes={prevRes} />
-              ),
+              render: (data) => <AdditionalInfo {...data} />,
             },
             {
               label: "Success",

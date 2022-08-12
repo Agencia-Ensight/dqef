@@ -11,6 +11,7 @@ type UserProps = {
 type CreateEditorUserProps = {
   type: "EDITOR";
   formationId: number;
+  cpf: string;
   collegeId: number;
   knowledgeIds: number[];
 };
@@ -26,7 +27,6 @@ type CreateUserProps = {
   email: string;
   password: string;
   phone: string;
-  cpf: string;
 } & (CreateEditorUserProps | CreateSdutentUserProps);
 
 export type SignInUserProps = {

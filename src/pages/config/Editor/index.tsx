@@ -8,7 +8,7 @@ import { schema } from "./schema";
 import * as S from "./styles";
 import { useToast, useUser } from "@/contexts";
 import { ProfileProps } from "../typings";
-import { CreateUserEditorProps } from "@/pages/sign-up/editor/typings";
+import { CreateUserEditorProps } from "@/pages/sign-up/[type]/typings";
 
 function EditorEditProfile({
   higher_courses,

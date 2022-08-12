@@ -1,43 +1,51 @@
+import { useMemo, useState } from "react";
+
 import {
   ButtonKnewave,
   MultiSelect,
   InputCheckbox,
   ComboboxComp,
+  IRenderProps,
 } from "@/components";
 import { useToast, useUser } from "@/contexts";
-import { useState } from "react";
-import { useEditor } from "../../EditorContext";
-
 import * as S from "./styles";
+import { useQuery } from "@apollo/client";
+import {
+  CollegeProps,
+  FormationProps,
+  GET_COLLEGES,
+  GET_FORMATIONS,
+  GET_KNOWLEDGES,
+  KnowledgeProps,
+} from "@/services/queries";
 
-const formations = [
-  { id: 3, name: "Pessego" },
-  { id: 4, name: "Limao" },
-];
+type IAdditionalInfo = {
+  type: "EDITOR" | "STUDENT";
+} & IRenderProps;
 
-const knowledgesData = [
-  { id: 3, label: "HTML" },
-  { id: 4, label: "CSS" },
-  { id: 5, label: "JavaScript" },
-  { id: 6, label: "TypeScript" },
-  { id: 7, label: "React" },
-  { id: 8, label: "NodeJS" },
-];
-
-const colleges = [
-  { id: 3, name: "Pontifícia Universidade Católica" },
-  { id: 4, name: "Faculdade Federal do Paraná" },
-];
-
-const knowledgesNumber = knowledgesData.map((knowledge) => knowledge.id);
-
-export function AdditionalInfo() {
-  const [formation, setFormation] = useState(formations[0].id);
-  const [college, setCollege] = useState(colleges[0].id);
-  const [knowledges, setKnowledges] = useState(knowledgesNumber);
+export function AdditionalInfo({
+  onComplete,
+  prevRes,
+  type,
+  onPrevStep,
+}: IAdditionalInfo) {
+  const [formation, setFormation] = useState(1);
+  const [college, setCollege] = useState(1);
+  const [knowledges, setKnowledges] = useState<number[]>([]);
   const [termsOfUse, setTermsOfUse] = useState(false);
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
-  const { updateStep, data, updateData } = useEditor();
+  const colleges = useQuery<{ colleges: CollegeProps[] }>(GET_COLLEGES);
+  const allKnowledges =
+    useQuery<{ knowledges: KnowledgeProps[] }>(GET_KNOWLEDGES);
+  const formations = useQuery<{ formations: FormationProps[] }>(GET_FORMATIONS);
+  const knowledgesToOptions = useMemo(
+    () =>
+      allKnowledges?.data?.knowledges?.map((knowledge) => ({
+        id: knowledge.id,
+        label: knowledge.name,
+      })) || [],
+    [allKnowledges?.data?.knowledges]
+  );
   const { signUp } = useUser();
   const { addToast } = useToast();
 
@@ -51,19 +59,31 @@ export function AdditionalInfo() {
     }
 
     try {
-      updateData({ college, formation, knowledges, termsOfUse, privacyPolicy });
-      await signUp({
-        type: "EDITOR",
-        email: data.email,
-        name: data.name,
-        password: data.password,
-        formationId: formation,
-        collegeId: college,
-        knowledgeIds: knowledges,
-        cpf: data.cpf,
-        phone: data.phone,
-      });
-      updateStep("code");
+      if (type === "EDITOR") {
+        await signUp({
+          type,
+          email: prevRes.email,
+          name: prevRes.name,
+          password: prevRes.password,
+          formationId: formation,
+          collegeId: college,
+          knowledgeIds: knowledges,
+          cpf: prevRes.cpf,
+          phone: prevRes.phone,
+        });
+      } else {
+        await signUp({
+          type,
+          email: prevRes.email,
+          name: prevRes.name,
+          password: prevRes.password,
+          collegeId: college,
+          courseId: prevRes.courseId,
+          phone: prevRes.phone,
+        });
+      }
+
+      onComplete({ ...prevRes, formation, college, knowledges });
       addToast({ type: "success", msg: "Cadastro realizado com sucesso!" });
     } catch (err: any) {
       if (err.response.data === "email already exists") {
@@ -83,28 +103,28 @@ export function AdditionalInfo() {
 
   return (
     <form>
-      <a onClick={() => updateStep("info")}>Voltar</a>
+      <a onClick={onPrevStep}>Voltar</a>
       <h1>Informações Extras</h1>
       <p>Insira alguns dados para completar o seu cadastro.</p>
 
       <S.InputContainer>
         <ComboboxComp
           label="Faculdade"
-          items={colleges}
+          items={colleges?.data?.colleges || []}
           onSelectedChange={(item) => setCollege(item.id)}
           name="college"
         />
 
         <S.Label>Áreas de conhecimento</S.Label>
         <MultiSelect
-          options={knowledgesData}
+          options={knowledgesToOptions}
           id="knowledges"
           name="knowledges"
-          onChange={(e) => setKnowledges((data) => [...data, e.id])}
+          onChange={(e) => setKnowledges((knowledges) => [...knowledges, e.id])}
         />
 
         <ComboboxComp
-          items={formations}
+          items={formations?.data?.formations || []}
           onSelectedChange={(e) => setFormation(e.id)}
           label="Formação"
         />

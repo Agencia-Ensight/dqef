@@ -3,12 +3,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { ButtonKnewave, Input, ComboboxComp } from "@/components";
-
 import { schema } from "./schema";
 import * as S from "./styles";
 import { ProfileProps } from "../typings";
 import { useToast, useUser } from "@/contexts";
-import { CreateUserEditorProps } from "@/pages/sign-up/editor/typings";
+import { CreateUserEditorProps } from "@/pages/sign-up/[type]/typings";
 
 function StudentEditProfile({
   colleges,

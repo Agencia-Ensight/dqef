@@ -13,4 +13,8 @@ type CreateUserEditorProps = {
   privacyPolicy: boolean;
 };
 
-export { CreateUserEditorProps };
+type ICompleteSignUp = {
+  type: "EDITOR" | "STUDENT";
+};
+
+export { CreateUserEditorProps, ICompleteSignUp };

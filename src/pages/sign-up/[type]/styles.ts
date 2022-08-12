@@ -34,7 +34,7 @@ export const Container = styled.div`
     font-size: 18px;
     margin-bottom: 10px;
   }
-  
+
   a {
     text-decoration: none;
     color: var(--blue);

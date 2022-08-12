@@ -3,9 +3,9 @@ import Link from "next/link";
 import { format } from "date-fns";
 
 import * as S from "./styles";
-import { Props } from "./typings";
+import { ICardProps } from "./typings";
 
-function JobCard(job: Props) {
+function JobCard(job: ICardProps) {
   const formattedDate = format(new Date(job.date), "dd/MM/yyyy 'às' HH:mm");
 
   return (

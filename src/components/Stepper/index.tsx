@@ -2,12 +2,19 @@ import { ReactNode, useReducer } from "react";
 
 export type IRenderProps<T = any> = {
   onComplete: (res?: T) => void;
+  onPrevStep: (res?: T) => void;
   prevRes?: T;
+};
+
+export type IRenderStop<T> = {
+  onPrevStep: (res: T) => void;
+  onComplete: (res: T) => void;
+  prevRes: T;
 };
 
 interface IStep<T> {
   label: string;
-  render: (onComplete: (res: T) => void, prevRes: T) => ReactNode;
+  render: (data: IRenderStop<T>) => ReactNode;
 }
 
 type IStepper<T> = {
@@ -25,11 +32,12 @@ type IStepNextAction<T> = {
   response: T;
 };
 
-type IStepPrevAction = {
+type IStepPrevAction<T> = {
   type: "prev";
+  response: T;
 };
 
-type IStepAction<T> = IStepNextAction<T> | IStepPrevAction;
+type IStepAction<T> = IStepNextAction<T> | IStepPrevAction<T>;
 
 const initialState = {
   currentStep: 0,
@@ -48,7 +56,10 @@ function Stepper<T>({ onComplete, steps }: IStepper<T>) {
             responses: [...state.responses, action.response],
           };
         case "prev":
-          return { ...state, currentStep: Math.max(state.currentStep - 1, 0) };
+          return {
+            responses: [...state.responses, action.response],
+            currentStep: Math.max(state.currentStep - 1, 0),
+          };
       }
     },
     initialState
@@ -59,12 +70,17 @@ function Stepper<T>({ onComplete, steps }: IStepper<T>) {
     if (state.currentStep === steps.length - 1) onComplete(response);
   }
 
+  function onPrevStep(response: T) {
+    dispatch({ type: "prev", response });
+  }
+
   return (
     <>
-      {steps[state.currentStep].render(
-        onStepComplete,
-        state.responses[state.currentStep - 1]
-      )}
+      {steps[state.currentStep].render({
+        prevRes: state.responses[state.currentStep - 1],
+        onComplete: onStepComplete,
+        onPrevStep,
+      })}
     </>
   );
 }

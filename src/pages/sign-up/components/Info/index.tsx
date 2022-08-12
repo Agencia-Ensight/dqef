@@ -2,31 +2,31 @@ import Router from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { ButtonKnewave, Input } from "@/components";
-import { CreateUserEditorProps } from "../../typings";
+import { ButtonKnewave, Input, IRenderProps } from "@/components";
+import { CreateUserEditorProps } from "../../[type]/typings";
 import { schema } from "./schema";
-import { useEditor } from "../../EditorContext";
 import * as S from "./styles";
 
-function Info() {
-  const { data, updateData, updateStep } = useEditor();
+type IInfo = {
+  type: "STUDENT" | "EDITOR";
+} & IRenderProps;
 
+function Info({ onComplete, type }: IInfo) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateUserEditorProps>({
-    defaultValues: data,
+    defaultValues: { cpf: undefined },
     resolver: yupResolver(schema),
   });
 
   function onSubmit(values: CreateUserEditorProps) {
-    updateData(values);
-    updateStep("aditional-info");
+    onComplete(values);
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit, (err) => console.log(err))}>
       <a onClick={Router.back}>Voltar</a>
       <h1>Preencha os Campos</h1>
       <p>Vamos enviar um e-mail para você, para confirmar a sua identidade.</p>
@@ -46,13 +46,15 @@ function Info() {
           register={register}
           error={errors.email?.message}
         />
-        <Input
-          label="CPF"
-          name="cpf"
-          placeholder="teste@gmail.com"
-          register={register}
-          error={errors.cpf?.message}
-        />
+        {type === "EDITOR" && (
+          <Input
+            label="CPF"
+            name="cpf"
+            placeholder="teste@gmail.com"
+            register={register}
+            error={errors.cpf?.message}
+          />
+        )}
         <Input
           label="Crie sua senha"
           name="password"

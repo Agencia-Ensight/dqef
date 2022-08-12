@@ -1,13 +1,11 @@
 import { useState } from "react";
 
-import { ButtonKnewave, Input } from "@/components";
-import * as S from "./styles";
-import { useStudent } from "../../StudentContext";
+import { ButtonKnewave, Input, IRenderProps } from "@/components";
 import { useToast, useUser } from "@/contexts";
+import * as S from "./styles";
 
-function InsertCode() {
+function InsertCode({ prevRes, onComplete }: IRenderProps) {
   const [code, setCode] = useState("");
-  const { data, updateStep } = useStudent();
   const { signUpConfirm } = useUser();
   const { addToast } = useToast();
 
@@ -15,10 +13,10 @@ function InsertCode() {
     try {
       await signUpConfirm({
         code,
-        email: data.email,
-        password: data.password,
+        email: prevRes.email,
+        password: prevRes.password,
       });
-      updateStep("success");
+      onComplete({ ...prevRes, code });
       addToast({ type: "success", msg: "E-mail confirmado com sucesso" });
     } catch (error) {
       addToast({
@@ -30,7 +28,7 @@ function InsertCode() {
 
   return (
     <S.Wrapper>
-      <a onClick={() => updateStep("aditional-info")}>Voltar</a>
+      <a onClick={() => {}}>Voltar</a>
       <h1>Inserir Código</h1>
       <Input
         placeholder="Insira seu código"
@@ -42,12 +40,7 @@ function InsertCode() {
         <h2>Enviar Código Novamente</h2>
       </S.ResendCodeContainer> */}
       <div>
-        <ButtonKnewave
-          variant="PRIMARY"
-          type="submit"
-          size="sm"
-          onClick={handleSubmit}
-        >
+        <ButtonKnewave variant="PRIMARY" size="sm" onClick={handleSubmit}>
           Criar Conta
         </ButtonKnewave>
       </div>

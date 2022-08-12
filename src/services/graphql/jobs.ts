@@ -288,3 +288,12 @@ export const INSERT_JOB = gql`
     }
   }
 `;
+
+export const GET_JOBS_BY_USER = gql`
+  query GetJobsByUser($userId: uuid!) {
+    jobs(where: { user_id: { _eq: $userId } }) {
+      ...JobFragment
+    }
+  }
+  ${JOB_FRAGMENT}
+`;

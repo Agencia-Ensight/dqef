@@ -1,6 +1,3 @@
-import Link from "next/link";
-import Router from "next/router";
-import { useState } from "react";
 import {
   AiFillStar,
   AiOutlineEdit,
@@ -34,8 +31,8 @@ function ProfileCard({
             <AiFillStar size={20} color="#ffb200" />
             <AiFillStar size={20} color="#ffb200" />
             <AiFillStar size={20} color="#ffb200" />
-            <AiFillStar size={20} />
-            <S.RatingNumber>4.0</S.RatingNumber>
+            <AiFillStar size={20} color="#ffb200" />
+            <S.RatingNumber>5.0</S.RatingNumber>
           </S.RatingContainer>
         )}
         <S.MainInfo>
@@ -55,34 +52,16 @@ function ProfileCard({
           <S.Line />
           <S.InfoContainer>
             <AiOutlineEdit size={20} color="#42A4EF" />
-            {variant === "STUDENT" && (
-              <S.InfoTitle
-                onClick={() => handleMenuEditorChange("jobsOnGoing")}
-              >
-                Trabalhos em Andamento
-              </S.InfoTitle>
-            )}
-            {variant === "EMPLOYEE" && (
-              <S.InfoTitle
-                onClick={() => handleMenuEditorChange("jobsOnGoing")}
-              >
-                Trabalhos em Andamento
-              </S.InfoTitle>
-            )}
+            <S.InfoTitle onClick={() => handleMenuEditorChange("jobsOnGoing")}>
+              Trabalhos em Andamento
+            </S.InfoTitle>
           </S.InfoContainer>
           <S.Line />
           <S.InfoContainer>
             <AiOutlineCheckSquare size={20} color="#42A4EF" />
-            {variant === "STUDENT" && (
-              <S.InfoTitle onClick={() => handleMenuEditorChange("jobsDone")}>
-                Trabalhos Finalizados
-              </S.InfoTitle>
-            )}
-            {variant === "EMPLOYEE" && (
-              <S.InfoTitle onClick={() => handleMenuEditorChange("jobsDone")}>
-                Trabalhos Finalizados
-              </S.InfoTitle>
-            )}
+            <S.InfoTitle onClick={() => handleMenuEditorChange("jobsDone")}>
+              Trabalhos Finalizados
+            </S.InfoTitle>
           </S.InfoContainer>
         </S.MainInfo>
       </S.Wrapper>
@@ -103,30 +82,16 @@ function ProfileCard({
         <S.Line />
         <S.InfoContainer>
           <AiOutlineEdit size={20} color="#42A4EF" />
-          {variant === "STUDENT" && (
-            <S.InfoTitle onClick={() => handleMenuEditorChange("jobsOnGoing")}>
-              Trabalhos em Andamento
-            </S.InfoTitle>
-          )}
-          {variant === "EMPLOYEE" && (
-            <S.InfoTitle onClick={() => handleMenuEditorChange("jobsOnGoing")}>
-              Trabalhos em Andamento
-            </S.InfoTitle>
-          )}
+          <S.InfoTitle onClick={() => handleMenuEditorChange("jobsOnGoing")}>
+            Trabalhos em Andamento
+          </S.InfoTitle>
         </S.InfoContainer>
         <S.Line />
         <S.InfoContainer>
           <AiOutlineCheckSquare size={20} color="#42A4EF" />
-          {variant === "STUDENT" && (
-            <S.InfoTitle onClick={() => handleMenuEditorChange("jobsDone")}>
-              Trabalhos Finalizados
-            </S.InfoTitle>
-          )}
-          {variant === "EMPLOYEE" && (
-            <S.InfoTitle onClick={() => handleMenuEditorChange("jobsDone")}>
-              Trabalhos Finalizados
-            </S.InfoTitle>
-          )}
+          <S.InfoTitle onClick={() => handleMenuEditorChange("jobsDone")}>
+            Trabalhos Finalizados
+          </S.InfoTitle>
         </S.InfoContainer>
       </S.MobileContainer>
     </S.MainWrapper>

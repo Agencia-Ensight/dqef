@@ -44,7 +44,7 @@ export type CardProps = {
   urgent?: boolean;
 };
 
-export type Props = CardProps &
+export type ICardProps = CardProps &
   CardType & {
     id: string;
     title: string;
