@@ -26,21 +26,25 @@ function InsideJob({ id }: IInsideJob) {
 
   return (
     <S.Wrapper>
-      <JobCard
-        id={job.id}
-        course={job.higher_course.name}
-        date={job.delivery}
-        discipline={job!.job_has_knowledges
-          .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
-          .join(", ")}
-        price={job!.value_pay}
-        theme={job!.thema}
-        title={job!.title}
-        typeOfWork={job!.job_type.name}
-        urgent={false}
-        status="published"
-        type="student" // TODO: Sincronizar com o banco de dados?
-      />
+      <S.JobContainer>
+        <JobCard
+          id={job.id}
+          course={job.higher_course.name}
+          date={job.delivery}
+          discipline={job!.job_has_knowledges
+            .map(({ knowledge: { name: knowledge_name } }) => knowledge_name)
+            .join(", ")}
+          price={job!.value_pay}
+          theme={job!.thema}
+          title={job!.title}
+          typeOfWork={job!.job_type.name}
+          urgent={false}
+          status="on-going"
+          state="start-job"
+          type="student" // TODO: Sincronizar com o banco de dados?
+        />
+      </S.JobContainer>
+
       <S.Container>
         <InfoCard
           title={job.title}

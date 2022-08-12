@@ -29,6 +29,12 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const JobContainer = styled.div`
+  @media (max-width: 600px) {
+    margin: 0 auto;
+  }
+`;
+
 export const Container = styled.div`
   width: 100%;
 `;

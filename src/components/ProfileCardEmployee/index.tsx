@@ -1,4 +1,6 @@
+import { useModal } from "@/contexts";
 import { AiFillStar } from "react-icons/ai";
+import { ModalPayment } from "./components/ModalPayment";
 
 import { TagKnowledge } from "./components/TagKnowledge";
 
@@ -13,12 +15,21 @@ function ProfileCardEmployee({
   jobs,
   studying,
 }: Props) {
+  const { open } = useModal();
+  const formatPrice = price.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  function handleStartJob() {
+    open("Calma lá!", { content: () => <ModalPayment price={formatPrice} /> });
+  }
   return (
-    <>
+    <div>
       <S.Wrapper>
         <S.ImageWrapper>
           <S.ProfileImage src={img} />
-          <S.Price>R$ {price}</S.Price>
+          <S.Price>{formatPrice}</S.Price>
         </S.ImageWrapper>
         <S.Course>{course}</S.Course>
         <S.ProfileName>{profileName}</S.ProfileName>
@@ -51,9 +62,9 @@ function ProfileCardEmployee({
       </S.Wrapper>
       <S.Footer>
         <S.ButtonSee>Ver Mais</S.ButtonSee>
-        <S.ButtonStart>Iniciar</S.ButtonStart>
+        <S.ButtonStart onClick={handleStartJob}>Iniciar</S.ButtonStart>
       </S.Footer>
-    </>
+    </div>
   );
 }
 
