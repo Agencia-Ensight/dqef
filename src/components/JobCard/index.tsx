@@ -1,15 +1,11 @@
 import Link from "next/link";
-
 import { format } from "date-fns";
 
 import * as S from "./styles";
 import { ICardProps } from "./typings";
 
 function JobCard(job: ICardProps) {
-  const formattedDate = format(
-    new Date(job.deliveryAt),
-    "dd/MM/yyyy 'às' HH:mm"
-  );
+  const formattedDate = format(job.deliveryAt, "dd/MM/yyyy 'às' HH:mm");
 
   return (
     <S.Wrapper>
@@ -41,74 +37,92 @@ function JobCard(job: ICardProps) {
             <S.Subtitle>Data de Entrega {job.urgent && "Urgente"}</S.Subtitle>
             <S.Date urgent={job.urgent}>{formattedDate}</S.Date>
           </S.InformationContainer>
-          {job.type === "editor" &&
-            job.status === "published" &&
-            job.state === "waiting-payment" && (
-              <S.WaitStudent>Aguardando Estudante...</S.WaitStudent>
-            )}
-
-          {job.type === "editor" &&
-            job.status === "on-going" &&
-            job.state === "changes" && (
-              <S.WaitStudent>Responda a cobrança!</S.WaitStudent>
-            )}
+          {job.type === "EDITOR" && (
+            <>
+              {job.status === "waiting-proposals" && job.totalProposals > 0 && (
+                <S.WaitStudent>Aguardando estudante...</S.WaitStudent>
+              )}
+              {job.status === "partial-delivery" && job.totalChanges == 0 && (
+                <S.WaitStudent>Aguardando estudante...</S.WaitStudent>
+              )}
+            </>
+          )}
+          {job.type === "STUDENT" && (
+            <>
+              {(job.status === "ready-to-start" ||
+                (job.status === "partial-delivery" &&
+                  job.totalChanges > 0)) && (
+                <S.WaitStudent>Aguardando editor...</S.WaitStudent>
+              )}
+              {job.status === "in-progress" && (
+                <S.WaitStudent>Em andamento com o editor</S.WaitStudent>
+              )}
+            </>
+          )}
         </S.MainContainer>
       </S.Container>
       <S.FooterContainer>
-        <Link href={`/jobs/${job.id}`}>
-          <S.Button variant="secondary">Ver mais</S.Button>
-        </Link>
-
-        {/* Show Feedback button to editor */}
-        {job.type === "editor" &&
-          job.status === "finished" &&
-          job.state === "show-feedback" && <S.Button>Ver Feedback</S.Button>}
-
-        {/* Show problem button to editor */}
-        {job.type === "editor" &&
-          job.status === "on-going" &&
-          job.state === "report-problem" && (
-            <S.Button className="changes">Problema</S.Button>
-          )}
-
-        {/* Editor Proposals */}
-        {job.type === "editor" && job.status === "want-to-do" && (
+        {job.type === "STUDENT" && (
           <>
-            <S.Button>Aceitar Valor</S.Button>
-            <S.Button>Contraproposta</S.Button>
+            {job.status === "waiting-proposals" && (
+              <>
+                <S.Button>Ver mais</S.Button>
+                {job.totalProposals ? (
+                  <S.Button>Propostas</S.Button>
+                ) : (
+                  <S.Button>Editar</S.Button>
+                )}
+              </>
+            )}
+            {job.status === "partial-delivery" && job.totalChanges === 0 && (
+              <>
+                <S.Button>Entrega</S.Button>
+                <S.Button>Ver mais</S.Button>
+                <S.Button>Alterações</S.Button>
+              </>
+            )}
+            {job.status === "final-delivery" &&
+              (!job.wasEvaluated ? (
+                <S.Button>Avaliar</S.Button>
+              ) : (
+                <>
+                  <S.Button>Entrega</S.Button>
+                  <S.Button>Ver mais</S.Button>
+                </>
+              ))}
           </>
         )}
-
-        {/* Editor Start Job */}
-        {job.type === "editor" &&
-          job.status === "want-to-do" &&
-          job.state === "start-job" && <S.Button>Iniciar trabalho</S.Button>}
-
-        {/* Show change button to editor */}
-        {(job.type === "editor" &&
-          job.status === "on-going" &&
-          (job.state === "changes" || job.state === "requested-changes")) ||
-          (job.type === "student" &&
-            job.status === "on-going" &&
-            job.state === "request-changes" && (
-              <S.Button variant="tertiary">Alterações</S.Button>
-            ))}
-
-        {/* Show rate button to student */}
-        {job.type === "student" &&
-          job.status === "finished" &&
-          job.state === "editor-rate" && (
-            <S.Button className="rate">Avaliar</S.Button>
-          )}
-
-        {/* Show proposals button to student */}
-        {job.type === "student" &&
-          job.status === "published" &&
-          job.state === "show-proposals" && (
-            <Link href="jobs/1/proposals">
-              <S.Button>Ver propostas</S.Button>
-            </Link>
-          )}
+        {job.type === "EDITOR" && (
+          <>
+            {job.status === "waiting-proposals" && job.totalProposals === 0 && (
+              <>
+                <S.Button>Aceitar</S.Button>
+                <S.Button>Contraproposta</S.Button>
+              </>
+            )}
+            {job.status === "ready-to-start" && <S.Button>Iniciar</S.Button>}
+            {job.status === "in-progress" && (
+              <>
+                <S.Button>Entregar</S.Button>
+                <S.Button>Ver mais</S.Button>
+                <S.Button>Problema</S.Button>
+              </>
+            )}
+            {job.status === "partial-delivery" && job.totalChanges > 0 && (
+              <>
+                <S.Button>Entregar</S.Button>
+                <S.Button>Ver mais</S.Button>
+                <S.Button>Alterações</S.Button>
+              </>
+            )}
+            {job.status === "final-delivery" &&
+              (!job.wasEvaluated ? (
+                <S.Button>Ver mais</S.Button>
+              ) : (
+                <S.Button>Ver avaliação</S.Button>
+              ))}
+          </>
+        )}
       </S.FooterContainer>
     </S.Wrapper>
   );

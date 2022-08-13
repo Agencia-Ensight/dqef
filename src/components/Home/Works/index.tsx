@@ -59,7 +59,7 @@ function Works() {
               state="show-proposals"
               key={job.id}
               course={job.higher_course.name}
-              date={job.delivery}
+              deliveryAt={new Date(job.delivery)}
               discipline={job.job_has_knowledges
                 .map(
                   ({ knowledge: { name: knowledge_name } }) => knowledge_name

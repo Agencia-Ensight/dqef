@@ -32,7 +32,7 @@ function Menu({ title }: IMenu) {
             status="published"
             id={job.id}
             course={job.higher_course.name}
-            date={new Date(job.delivery)}
+            deliveryAt={new Date(job.delivery)}
             discipline={job.job_has_knowledges[0]?.knowledge.name}
             price={job.value_pay}
             theme={job.thema}

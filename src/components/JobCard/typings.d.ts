@@ -10,27 +10,14 @@ export type CourseVariant =
   | "PSICOLOGIA"
   | string;
 
-export type EditorCardType = {
-  type: "editor";
-  status: "published" | "finished" | "on-going" | "want-to-do";
-  state:
-    | "paid"
-    | "waiting-payment"
-    | "show-feedback"
-    | "report-problem"
-    | "answer-demand"
-    | "changes"
-    | "requested-changes"
-    | "start-job";
-};
+type CardStatus =
+  | "waiting-proposals"
+  | "ready-to-start"
+  | "in-progress"
+  | "partial-delivery"
+  | "final-delivery";
 
-export type StudentCardType = {
-  type: "student";
-  status?: "finished" | "on-going" | "published";
-  state?: "request-changes" | "show-proposals" | "editor-rate";
-};
-
-type CardType = EditorCardType | StudentCardType;
+type CardType = "STUDENT" | "EDITOR";
 
 export type CardProps = {
   /**
@@ -44,13 +31,17 @@ export type CardProps = {
   urgent?: boolean;
 };
 
-export type ICardProps = CardProps &
-  CardType & {
-    id: string;
-    title: string;
-    discipline: string;
-    theme: string;
-    typeOfWork: string;
-    price: number;
-    deliveryAt: Date;
-  };
+export type ICardProps = CardProps & {
+  id: string;
+  title: string;
+  discipline: string;
+  theme: string;
+  typeOfWork: string;
+  price: number;
+  deliveryAt: Date;
+  status: CardStatus;
+  type: CardType;
+  totalProposals: number;
+  totalChanges: number;
+  wasEvaluated: boolean;
+};

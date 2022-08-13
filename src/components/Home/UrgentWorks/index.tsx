@@ -31,7 +31,7 @@ function UrgentWorks() {
             status="published"
             id={urgentJob.id}
             course={urgentJob.higher_course.name}
-            date={urgentJob.delivery}
+            deliveryAt={new Date(urgentJob.delivery)}
             discipline={urgentJob.job_has_knowledges[0]?.knowledge.name}
             price={urgentJob.value_pay}
             theme={urgentJob.thema}
