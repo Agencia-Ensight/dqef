@@ -243,6 +243,15 @@ export const UPDATE_JOB = gql`
   }
 `;
 
+export const UPDATE_JOB_STATUS = gql`
+  mutation UupdateJobStatuses($id: uuid!, $status: Int!) {
+    update_job_statuses(
+      _set: { id: $id }
+      where: { jobs: { id: { _eq: $status } } }
+    )
+  }
+`;
+
 export const INSERT_JOB = gql`
   mutation InsertJob(
     $higher_course_id: Int!

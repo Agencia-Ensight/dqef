@@ -10,7 +10,7 @@ export type CourseVariant =
   | "PSICOLOGIA"
   | string;
 
-type CardStatus =
+export type CardStatus =
   | "waiting-proposals"
   | "ready-to-start"
   | "in-progress"
