@@ -6,7 +6,8 @@ import { format } from "date-fns";
 import * as S from "./styles";
 import { ICardProps } from "./typings";
 import { useUpdateJobStatus } from "@/hooks";
-import { useToast } from "@/contexts";
+import { useToast, useModal, useUser } from "@/contexts";
+import { ModalRating } from "./components/ModalRating";
 
 function handleProblem(jobId: string) {
   const msg = `Olá, estou com um problema com o trabalho ${jobId}`;
@@ -18,6 +19,8 @@ function handleProblem(jobId: string) {
 
 function JobCard(job: ICardProps) {
   const { updateJobStatus } = useUpdateJobStatus();
+  const { open } = useModal();
+  const { user } = useUser();
   const { addToast } = useToast();
   const formattedDate = format(job.deliveryAt, "dd/MM/yyyy 'às' HH:mm");
 
@@ -46,6 +49,10 @@ function JobCard(job: ICardProps) {
   }, [addToast, updateJobStatus, job.id]);
 
   const handleSendAvaliation = useCallback(() => {}, []);
+
+  function handleSendReview() {
+    open(`Olá, ${user?.name}`, { content: () => <ModalRating /> });
+  }
 
   const handleSeeAvaliation = useCallback(() => {}, []);
 
@@ -153,7 +160,10 @@ function JobCard(job: ICardProps) {
             )}
             {job.status === "final-delivery" &&
               (!job.wasEvaluated ? (
-                <S.Button onClick={() => handleSendAvaliation()}>
+                <S.Button
+                  onClick={() => handleSendReview()}
+                  // onClick={() => handleSendAvaliation()}
+                >
                   Avaliar
                 </S.Button>
               ) : (
