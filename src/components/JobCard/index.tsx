@@ -8,6 +8,15 @@ import { ICardProps } from "./typings";
 import { useUpdateJobStatus } from "@/hooks";
 import { useToast, useModal, useUser } from "@/contexts";
 import { ModalRating } from "./components/ModalRating";
+import { ModalOpenWork } from "./components/ModalOpenWork";
+import { ModalStartJob } from "./components/ModalStartJob";
+import { ModalCharge } from "./components/ModalCharge";
+import { ModalProposalInfo } from "./components/ModalProposalInfo";
+import { ModalCounterProposal } from "./components/ModalCounterProposal";
+import { ModalSendJob } from "./components/ModalSendJob";
+import { ModalSeeChanges } from "./components/ModalSeeChanges";
+import { ModalSeeRating } from "./components/ModalSeeRating";
+import { ModalSeeJob } from "./components/ModalSeeJob";
 
 function handleProblem(jobId: string) {
   const msg = `Olá, estou com um problema com o trabalho ${jobId}`;
@@ -24,29 +33,29 @@ function JobCard(job: ICardProps) {
   const { addToast } = useToast();
   const formattedDate = format(job.deliveryAt, "dd/MM/yyyy 'às' HH:mm");
 
-  const handlePartialDelivery = useCallback(async () => {
-    try {
-      await updateJobStatus(job.id, "partial-delivery");
-      addToast({ type: "success", msg: "Entrega realizada!" });
-    } catch (error) {
-      addToast({
-        type: "error",
-        msg: "Não conseguimos entregar o trabalho, tente novamente mais tarde",
-      });
-    }
-  }, [addToast, updateJobStatus, job.id]);
+  // const handlePartialDelivery = useCallback(async () => {
+  //   try {
+  //     await updateJobStatus(job.id, "partial-delivery");
+  //     addToast({ type: "success", msg: "Entrega realizada!" });
+  //   } catch (error) {
+  //     addToast({
+  //       type: "error",
+  //       msg: "Não conseguimos entregar o trabalho, tente novamente mais tarde",
+  //     });
+  //   }
+  // }, [addToast, updateJobStatus, job.id]);
 
-  const handleStartJob = useCallback(async () => {
-    try {
-      await updateJobStatus(job.id, "in-progress");
-      addToast({ type: "success", msg: "Trabalho iniciado!" });
-    } catch (error) {
-      addToast({
-        type: "error",
-        msg: "Não conseguimos iniciar o trabalho, tente novamente mais tarde",
-      });
-    }
-  }, [addToast, updateJobStatus, job.id]);
+  // const handleStartJob = useCallback(async () => {
+  //   try {
+  //     await updateJobStatus(job.id, "in-progress");
+  //     addToast({ type: "success", msg: "Trabalho iniciado!" });
+  //   } catch (error) {
+  //     addToast({
+  //       type: "error",
+  //       msg: "Não conseguimos iniciar o trabalho, tente novamente mais tarde",
+  //     });
+  //   }
+  // }, [addToast, updateJobStatus, job.id]);
 
   const handleSendAvaliation = useCallback(() => {}, []);
 
@@ -54,25 +63,106 @@ function JobCard(job: ICardProps) {
     open(`Olá, ${user?.name}`, { content: () => <ModalRating /> });
   }
 
+  function handleJobDelivery() {
+    open("Deseja enviar o trabalho?", {
+      content: () => (
+        <ModalSendJob
+          acceptPlagiarism={20} //TODO
+          plagiarismOfJob={20} //TODO
+          dateLimitOfRequestChanges={new Date()} //TODO
+        />
+      ),
+    });
+  }
+
+  function handleSendCounterProposal() {
+    open("Alterar Valor", { content: () => <ModalCounterProposal /> });
+  }
+
+  function handleAcceptJob() {
+    open(
+      "Olá, redator! Ficamos felizes pelo seu interesse em um dos trabalhos publicados ",
+      { content: () => <ModalProposalInfo /> }
+    );
+  }
+
+  function handleSeeChanges() {
+    open(`Olá, ${user?.name}. Essas são as alterações solicitadas`, {
+      content: () => (
+        <ModalSeeChanges
+          dateOfTheFinalAdjust={new Date()} //TODO
+          obs="teste 1" //TODO
+        />
+      ),
+    });
+  }
+
+  function handleCharge() {
+    open(`Olá, ${user?.name}`, {
+      content: () => (
+        <ModalCharge
+          dateOfDelivery={new Date()} //TODO
+        />
+      ),
+    });
+  }
+
+  function handleSeeJob() {
+    open(`Olá, ${user?.name}`, {
+      content: () => (
+        <ModalSeeJob
+          isFirstDelivery={true} //TODO
+          dateOfChanges={new Date()} //TODO
+        />
+      ),
+    });
+  }
+
+  function handleStartJob() {
+    open(`Negócio Fechado!`, {
+      content: () => (
+        <ModalStartJob
+          dateOfDelivery={
+            new Date() // TODO
+          }
+          dateFirstCharge={new Date()} //TODO
+          dateSecondCharge={new Date()} //TODO
+          dateThirdCharge={new Date()} //TODO
+        />
+      ),
+    });
+  }
+
+  function handleSeeRating() {
+    open("Feedback do Estudante", {
+      content: () => (
+        <ModalSeeRating
+          obs="banana" //TODO
+          rating={20} //TODO
+        />
+      ),
+    });
+  }
+
   const handleSeeAvaliation = useCallback(() => {}, []);
 
-  const handleSeeChanges = useCallback(() => {}, []);
+  // const handleSeeChanges = useCallback(() => {}, []);
 
   const handleSendChanges = useCallback(() => {}, []);
 
-  const handleAcceptJob = useCallback(async () => {
-    try {
-      await updateJobStatus(job.id, "ready-to-start");
-      addToast({ type: "success", msg: "Trabalho aceito!" });
-    } catch (error) {
-      addToast({
-        type: "error",
-        msg: "Erro ao aceitar o trabalho, tente novamente mais tarde",
-      });
-    }
-  }, [addToast, updateJobStatus, job.id]);
+  // const handleAcceptJob = useCallback(async () => {
+  //   try {
+  //     await updateJobStatus(job.id, "ready-to-start");
+  //     addToast({ type: "success", msg: "Trabalho aceito!" });
+  //   } catch (error) {
+  //     addToast({
+  //       type: "error",
+  //       msg: "Erro ao aceitar o trabalho, tente novamente mais tarde",
+  //     });
+  //   }
+  // }, [addToast, updateJobStatus, job.id]);
 
-  const handleSendCounterProposal = useCallback(() => {}, []);
+  // const handleSendCounterProposal = useCallback(() => {}, []);
 
   const handleSeeDelivery = useCallback(() => {}, []);
 
@@ -151,7 +241,7 @@ function JobCard(job: ICardProps) {
             )}
             {job.status === "partial-delivery" && job.totalChanges === 0 && (
               <>
-                <S.Button onClick={handlePartialDelivery}>Entrega</S.Button>
+                <S.Button onClick={handleJobDelivery}>Entrega</S.Button>
                 <Link href={`/jobs/${job.id}`} passHref>
                   <S.Button>Ver mais</S.Button>
                 </Link>
@@ -168,7 +258,12 @@ function JobCard(job: ICardProps) {
                 </S.Button>
               ) : (
                 <>
-                  <S.Button onClick={() => handleSeeDelivery()}>
+                  <S.Button
+                    onClick={() =>
+                      // handleSeeDelivery()
+                      handleSeeJob()
+                    }
+                  >
                     Entrega
                   </S.Button>
                   <Link href={`/jobs/${job.id}`} passHref>
@@ -190,11 +285,23 @@ function JobCard(job: ICardProps) {
               </>
             )}
             {job.status === "ready-to-start" && (
-              <S.Button onClick={() => handleStartJob()}>Iniciar</S.Button>
+              <S.Button
+                onClick={() =>
+                  // handleStartJob()
+                  handleStartJob()
+                }
+              >
+                Iniciar
+              </S.Button>
             )}
             {job.status === "in-progress" && (
               <>
-                <S.Button onClick={() => handlePartialDelivery()}>
+                <S.Button
+                  onClick={() =>
+                    // handlePartialDelivery()
+                    handleJobDelivery()
+                  }
+                >
                   Entregar
                 </S.Button>
                 <Link href={`/jobs/${job.id}`} passHref>
@@ -203,11 +310,19 @@ function JobCard(job: ICardProps) {
                 <S.Button onClick={() => handleProblem(job.id)}>
                   Problema
                 </S.Button>
+                {/* TODO */}
+                <S.Button onClick={() => handleCharge()}>Cobrança</S.Button>
               </>
             )}
             {job.status === "partial-delivery" && job.totalChanges > 0 && (
               <>
-                <S.Button onClick={() => handlePartialDelivery()}>
+                <S.Button
+                  onClick={() =>
+                    // handlePartialDelivery()
+
+                    handleJobDelivery()
+                  }
+                >
                   Entregar
                 </S.Button>
                 <Link href={`/jobs/${job.id}`} passHref>
@@ -224,7 +339,7 @@ function JobCard(job: ICardProps) {
                   <S.Button>Ver mais</S.Button>
                 </Link>
               ) : (
-                <S.Button onClick={() => handleSeeAvaliation()}>
+                <S.Button onClick={() => handleSeeRating()}>
                   Ver avaliação
                 </S.Button>
               ))}

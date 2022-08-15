@@ -28,8 +28,7 @@ function Menu({ title }: IMenu) {
           <JobCard
             key={job.id}
             type={user!.type.toLocaleLowerCase() as any}
-            state="start-job"
-            status="published"
+            status="final-delivery"
             id={job.id}
             course={job.higher_course.name}
             deliveryAt={new Date(job.delivery)}
