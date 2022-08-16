@@ -21,23 +21,6 @@ export const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-export const ButtonBang = styled.div`
-  padding: 8px;
-  border: solid #42a4ef;
-  border-radius: 99px;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  h2 {
-    font-size: 16px;
-    font-weight: 700;
-    color: black;
-  }
-`;
 export const NerdImage = styled.div`
   display: flex;
   justify-content: center;
@@ -70,4 +53,26 @@ export const InputText = styled.div`
   height: 175px;
   border-radius: 15px;
   margin-top: 30px;
+`;
+
+export const FileDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 1.5rem;
+
+  .label-inputfile {
+    width: 100%;
+    border: 2px solid #42a4ef;
+    border-radius: 15px;
+    font-size: 18px;
+    padding: 10px 29px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
 `;

@@ -89,10 +89,18 @@ export function ModalSendJob({
         <img src="/images/insertwork.png" alt="" />
       </S.NerdImage>
 
-      <S.ButtonBang>
-        <AiOutlineDownload color="#42A4EF" />
-        <p>Selecione o Arquivo ou arraste</p>
-      </S.ButtonBang>
+      <S.FileDiv>
+        <label htmlFor="file" className="label-inputfile">
+          Anexar Arquivos
+          <AiOutlineDownload />
+        </label>
+        <input
+          type="file"
+          multiple={true}
+          className="inputfile-root"
+          id="file"
+        />
+      </S.FileDiv>
 
       <S.ButtonInputSolid>
         <Input placeholder="Observações" className="inputsolido"></Input>
