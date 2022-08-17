@@ -25,7 +25,7 @@ export type JobUserProposal = {
 export type JobProposal = {
   id: string;
   user: JobUserProposal;
-  status: JobGenericProps;
+  status: { id: number; name: string };
 };
 
 export type JobRating = {

@@ -1,4 +1,4 @@
-import { JobRating } from "@/types/Job";
+import { JobMediaProps, JobProposal, JobRating } from "@/types/Job";
 
 export type CourseVariant =
   | "DIREITO"
@@ -42,8 +42,10 @@ export type ICardProps = CardProps & {
   creatorId: string;
   rating?: JobRating;
   totalProposals: number;
+  proposals: JobProposal[];
   editorId?: string;
   totalChanges: number;
   wasEvaluated: boolean;
   knowledges: string[];
+  medias: JobMediaProps[];
 };

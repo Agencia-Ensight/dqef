@@ -9,7 +9,6 @@ import { FileCard } from "./components/FileCard";
 import { useJob } from "@/hooks";
 import { ensureAuth } from "@/hocs";
 import { useUser } from "@/contexts";
-import { CardStatus } from "@/components/JobCard/typings";
 
 function InsideJob({ id }: IInsideJob) {
   const job = useJob(id);
@@ -44,11 +43,18 @@ function InsideJob({ id }: IInsideJob) {
           description={job.data.instructions}
           observations={job.data.obs}
         />
-        <ScrollContainer horizontal hideScrollbars className="files-container">
-          {job.data.medias.map((media) => (
-            <FileCard key={media.id} title={media.title} />
+        {job.data.creatorId === user?.id ||
+          (job.data.editorId === user?.id && (
+            <ScrollContainer
+              horizontal
+              hideScrollbars
+              className="files-container"
+            >
+              {job.data.medias.map((media) => (
+                <FileCard key={media.id} title={media.title} />
+              ))}
+            </ScrollContainer>
           ))}
-        </ScrollContainer>
         {/* <FAQCard jobId={job.id} /> */}
       </S.Container>
     </S.Wrapper>

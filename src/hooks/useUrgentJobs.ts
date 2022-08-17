@@ -8,7 +8,9 @@ export function useUrgentJobs() {
     data: rawData,
     loading,
     error,
-  } = useQuery<{ jobs: Job[] }>(GET_URGENT_JOBS);
+  } = useQuery<{ jobs: Job[] }>(GET_URGENT_JOBS, {
+    displayName: "urgent-jobs",
+  });
 
   const data = rawData?.jobs.map((job) => toJob(job));
 

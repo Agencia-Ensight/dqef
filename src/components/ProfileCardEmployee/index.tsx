@@ -8,6 +8,7 @@ import * as S from "./styles";
 import { Props } from "./typings";
 
 function ProfileCardEmployee({
+  id,
   img,
   price,
   course,
@@ -23,7 +24,9 @@ function ProfileCardEmployee({
   });
 
   function handleStartJob() {
-    open("Calma lá!", { content: () => <ModalPayment price={formatPrice} /> });
+    open("Calma lá!", {
+      content: () => <ModalPayment price={formatPrice} proposalId={id} />,
+    });
   }
 
   return (

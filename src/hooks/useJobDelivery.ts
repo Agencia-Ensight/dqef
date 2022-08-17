@@ -12,7 +12,9 @@ export const statusOnDb = {
 };
 
 export function useJobDelivery() {
-  const [insert, { data, loading, error }] = useMutation(INSERT_DELIVERY);
+  const [insert, { data, loading, error }] = useMutation(INSERT_DELIVERY, {
+    refetchQueries: ["jobs", "urgent-jobs"],
+  });
 
   async function delivery(
     jobId: string,

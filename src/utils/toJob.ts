@@ -44,7 +44,10 @@ export function toJob(dbJob: Record<string, any>): JobProps {
   function toJobProposals(dbProposal: Record<string, any>): JobProposal[] {
     return dbProposal.map((prop: Record<string, any>) => ({
       user: prop.user,
-      status: toJobGeneric(prop.proposal_status),
+      status: {
+        id: prop.proposal_status.id as Number,
+        name: prop.proposal_status.name as string,
+      },
     }));
   }
 
@@ -63,7 +66,7 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     creatorId: dbJob.user_id,
     maximumPlagiarism: dbJob.maximum_plagiarism,
     instructions: dbJob.instructions,
-    medias: toJobMedias(dbJob.medias || []),
+    medias: toJobMedias(dbJob.job_has_medias || []),
     price: dbJob.value_pay,
     deliveryAt: new Date(dbJob.delivery),
     jobType: toJobGeneric(dbJob.job_type),
@@ -74,6 +77,6 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     status: toJobStatus(dbJob.job_status.id),
     proposals: toJobProposals(dbJob.proposals),
     editorId,
-    rating: dbJob?.user_ratings,
+    rating: dbJob?.user_ratings[0],
   };
 }

@@ -1,21 +1,24 @@
-import { AiOutlineDownload } from "react-icons/ai";
 import { format } from "date-fns";
 
-import { useMedia } from "@/hooks";
+import { useJobDelivery, useMedia } from "@/hooks";
 import { ButtonKnewave } from "@/components";
 
 import * as S from "./styles";
 import { IModalOpenWork } from "./typings";
-import { useModal } from "@/contexts";
+import { useModal, useToast } from "@/contexts";
 import { ModalRequestChanges } from "../ModalRequestChanges";
+import { PROD_API_URL } from "@/services/api";
 
 export function ModalSeeJob({
   jobId,
   dateOfChanges,
   isFirstDelivery,
+  medias,
 }: IModalOpenWork) {
   const isMobile = useMedia("(max-width:600px)");
-  const { open } = useModal();
+  const { open, close } = useModal();
+  const { delivery } = useJobDelivery();
+  const { addToast } = useToast();
 
   const formattedDate = dateOfChanges
     ? format(dateOfChanges, "dd/MM 'às' HH")
@@ -25,6 +28,16 @@ export function ModalSeeJob({
     open("Solicitar Alteração", {
       content: () => <ModalRequestChanges jobId={jobId} />,
     });
+  }
+
+  async function handleConfirmDelivery() {
+    try {
+      await delivery(jobId, "final-delivery");
+      close();
+      addToast({ msg: "Trabalho entregue com sucesso", type: "success" });
+    } catch (error) {
+      addToast({ msg: "Erro ao confirmar entrega", type: "error" });
+    }
   }
 
   return (
@@ -39,19 +52,39 @@ export function ModalSeeJob({
         )}
       </S.TextInformation>
 
-      <S.ButtonBang>
+      <ul>
+        {medias.map((media) => (
+          <li key={media.id}>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`${PROD_API_URL}${media.link}`}
+            >
+              {media.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {/* <S.ButtonBang>
         <AiOutlineDownload color="#42A4EF" />
         <h2>Baixar Trabalho</h2>
-      </S.ButtonBang>
-      <S.ButtonBang>
+      </S.ButtonBang> */}
+      {/* <S.ButtonBang>
         <AiOutlineDownload color="#42A4EF" />
         <h2>Baixar Arquivo de Plágio</h2>
-      </S.ButtonBang>
+      </S.ButtonBang> */}
 
       <S.ButtonFinaleira>
-        <ButtonKnewave size={isMobile ? "sm" : "lg"} variant="PRIMARY">
-          Confirmar Entrega
-        </ButtonKnewave>
+        {isFirstDelivery && (
+          <ButtonKnewave
+            size={isMobile ? "sm" : "lg"}
+            variant="PRIMARY"
+            onClick={() => handleConfirmDelivery()}
+          >
+            Confirmar Entrega
+          </ButtonKnewave>
+        )}
         {isFirstDelivery && (
           <ButtonKnewave
             size={isMobile ? "sm" : "lg"}
@@ -61,7 +94,7 @@ export function ModalSeeJob({
             Alteração
           </ButtonKnewave>
         )}
-        <a href="https://wa.me/message/V5ETOHOBOW2HD1">
+        <a target="_blank" href="https://wa.me/message/V5ETOHOBOW2HD1">
           <ButtonKnewave size={isMobile ? "sm" : "lg"} variant="SECONDARY">
             Relatar Problema
           </ButtonKnewave>

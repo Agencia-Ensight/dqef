@@ -92,6 +92,7 @@ function JobCard(job: ICardProps) {
       content: () => (
         <ModalSeeJob
           jobId={job.id}
+          medias={job.medias}
           isFirstDelivery={job.status === "partial-delivery"}
           dateOfChanges={new Date()} //TODO
         />
@@ -125,6 +126,7 @@ function JobCard(job: ICardProps) {
   }, [modal, job.rating]);
 
   const handleSendChanges = useCallback(() => {
+    // TODO: Ver com o fernando
     modal.open("Solicitar alteração", {
       content: () => <ModalRequestChanges jobId={job.id} />,
     });
@@ -173,11 +175,17 @@ function JobCard(job: ICardProps) {
           {user?.type === "EDITOR" && (
             <>
               {((job.status === "waiting-proposals" &&
-                job.totalProposals > 0) ||
+                job.totalProposals > 0 &&
+                job.proposals.find(
+                  (proposal) =>
+                    proposal.user.id === user?.id && proposal.status.id === 1
+                )) ||
                 (job.status === "partial-delivery" &&
-                  job.totalChanges == 0)) && (
-                <S.WaitStudent>Aguardando estudante...</S.WaitStudent>
-              )}
+                  job.totalChanges == 0 &&
+                  job.proposals.find(
+                    (proposal) =>
+                      proposal.user.id === user?.id && proposal.status.id === 2
+                  ))) && <S.WaitStudent>Aguardando estudante...</S.WaitStudent>}
             </>
           )}
           {user?.type === "STUDENT" && job.creatorId === user?.id && (
@@ -240,42 +248,50 @@ function JobCard(job: ICardProps) {
                 </S.Button>
               </>
             )}
-            {job.status === "ready-to-start" && (
-              <S.Button onClick={() => handleStartJob()}>Iniciar</S.Button>
-            )}
-            {job.status === "in-progress" && (
+
+            {job.proposals.find(
+              (proposal) =>
+                proposal.user.id === user?.id && proposal.status.id === 2
+            ) && (
               <>
-                <S.Button onClick={() => handleJobDelivery()}>
-                  Entregar
-                </S.Button>
+                {job.status === "ready-to-start" && (
+                  <S.Button onClick={() => handleStartJob()}>Iniciar</S.Button>
+                )}
+                {job.status === "in-progress" && (
+                  <>
+                    <S.Button onClick={() => handleJobDelivery()}>
+                      Entregar
+                    </S.Button>
 
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={handleProblem(job.id)}
-                >
-                  <S.Button>Problema</S.Button>
-                </a>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={handleProblem(job.id)}
+                    >
+                      <S.Button>Problema</S.Button>
+                    </a>
 
-                {/* <S.Button disabled onClick={() => handleCharge()}>
+                    {/* <S.Button disabled onClick={() => handleCharge()}>
                   Cobrança
                 </S.Button> */}
+                  </>
+                )}
+                {job.status === "partial-delivery" && job.totalChanges > 0 && (
+                  <>
+                    <S.Button onClick={() => handleJobDelivery()}>
+                      Entregar
+                    </S.Button>
+                    <S.Button onClick={() => handleSeeChanges()}>
+                      Alterações
+                    </S.Button>
+                  </>
+                )}
+                {job.status === "final-delivery" && job.wasEvaluated && (
+                  <S.Button onClick={() => handleSeeRating()}>
+                    Ver avaliação
+                  </S.Button>
+                )}
               </>
-            )}
-            {job.status === "partial-delivery" && job.totalChanges > 0 && (
-              <>
-                <S.Button onClick={() => handleJobDelivery()}>
-                  Entregar
-                </S.Button>
-                <S.Button onClick={() => handleSeeChanges()}>
-                  Alterações
-                </S.Button>
-              </>
-            )}
-            {job.status === "final-delivery" && job.wasEvaluated && (
-              <S.Button onClick={() => handleSeeRating()}>
-                Ver avaliação
-              </S.Button>
             )}
           </>
         )}

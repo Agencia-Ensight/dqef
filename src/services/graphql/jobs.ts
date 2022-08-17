@@ -333,6 +333,15 @@ export const GET_JOBS_BY_USER = gql`
   ${JOB_FRAGMENT}
 `;
 
+export const UPDATE_PROPOSAL = gql`
+  mutation UpdateProposal($proposalId: String!, $statusId: Int!) {
+    update_proposals_by_pk(
+      pk_columns: { id: $proposalId }
+      _set: { proposal_status_id: $statusId }
+    )
+  }
+`;
+
 export const GET_JOBS_BY_EDITOR = gql`
   query GetJobsByEditor($editorId: uuid!, $statusId: Int!) {
     jobs(

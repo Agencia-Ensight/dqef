@@ -1,8 +1,10 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import axios from "axios";
 
+export const PROD_API_URL = "https://dev9.deixaqueeufaco.io";
+
 export const api = axios.create({
-  baseURL: "https://dev9.deixaqueeufaco.io",
+  baseURL: PROD_API_URL,
   headers: {
     "Content-Type": "application/json",
   },

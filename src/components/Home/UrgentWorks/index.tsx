@@ -1,15 +1,11 @@
 import Link from "next/link";
 
 import { ButtonKnewave, JobCard } from "@/components";
-
 import * as S from "./styles";
 import { useUrgentJobs } from "@/hooks";
-import { useUser } from "@/contexts";
-import { CardStatus } from "@/components/JobCard/typings";
 
 function UrgentWorks() {
   const urgentJobs = useUrgentJobs();
-  const { user } = useUser();
 
   return (
     <S.Wrapper>

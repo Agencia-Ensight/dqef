@@ -10,12 +10,12 @@ export function ModalSeeRating({ obs, rating }: IModalSeeRating) {
         <img src="/images/deal-done.png" alt="" />
       </S.NerdImage>
       <S.Description>
-        <AiFillStar size={20} color="#ffb200" />
-        <AiFillStar size={20} color="#ffb200" />
-        <AiFillStar size={20} color="#ffb200" />
-        <AiFillStar size={20} color="#ffb200" />
-        <AiFillStar size={20} />
-        {rating}
+        {new Array(5).fill(0).map((_, index) => (
+          <AiFillStar
+            size={35}
+            color={index < rating ? "#ffb200" : undefined}
+          />
+        ))}
       </S.Description>
 
       <S.TextInformation>

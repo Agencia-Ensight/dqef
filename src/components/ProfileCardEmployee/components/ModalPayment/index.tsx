@@ -1,21 +1,23 @@
 import { IoCopy } from "react-icons/io5";
 import { AiOutlineDownload } from "react-icons/ai";
 
-import { useMedia } from "@/hooks";
+import { useMedia, useSendProposal } from "@/hooks";
 import { ButtonKnewave } from "@/components";
 import { useModal, useToast } from "@/contexts";
 
 import * as S from "./styles";
 import { IModalPayment } from "./typings";
+import { useUpdateProposal } from "@/hooks/useUpdateProposal";
 
-export function ModalPayment({ price }: IModalPayment) {
+export function ModalPayment({ price, proposalId }: IModalPayment) {
   const { close } = useModal();
   const { addToast } = useToast();
-
   const isMobile = useMedia("(max-width: 600px)");
+  const { updateProposal } = useUpdateProposal();
 
   async function handleCopy(info: string) {
     await navigator.clipboard.writeText(info);
+    await updateProposal(proposalId, "accept");
     addToast({ msg: "Copiado para a área de transferência", type: "info" });
   }
 

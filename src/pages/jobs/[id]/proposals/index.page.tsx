@@ -16,6 +16,7 @@ function Proposals({ id }: ProposalProps) {
       <S.Container>
         {proposals.data?.map((proposal) => (
           <ProfileCardEmployee
+            id={proposal.id}
             course={proposal.user.higherCourse}
             img={proposal.user.avatar || "/images/deal-done.png"}
             avgRating={proposal.user.avgRating}
