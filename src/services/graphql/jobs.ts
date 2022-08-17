@@ -75,6 +75,7 @@ export const JOB_FRAGMENT = gql`
     instructions
     obs
     maximum_plagiarism
+    user_id
     job_format {
       id
       name
@@ -168,24 +169,10 @@ export const GET_TOP_10_JOBS = gql`
 export const GET_URGENT_JOBS = gql`
   query {
     jobs {
-      id
-      title
-      thema
-      value_pay
-      delivery
-      higher_course {
-        name
-      }
-      job_has_knowledges {
-        knowledge {
-          name
-        }
-      }
-      job_format {
-        name
-      }
+      ...JobFragment
     }
   }
+  ${JOB_FRAGMENT}
 `;
 
 export const GET_JOBS = gql`
@@ -244,11 +231,15 @@ export const UPDATE_JOB = gql`
 `;
 
 export const UPDATE_JOB_STATUS = gql`
-  mutation UupdateJobStatuses($id: uuid!, $status: Int!) {
-    update_job_statuses(
-      _set: { id: $id }
-      where: { jobs: { id: { _eq: $status } } }
-    )
+  mutation UpdateJobStatus($jobId: Int!, $statusId: Int!) {
+    update_jobs(
+      where: { id: { _eq: $jobId } }
+      _set: { job_status_id: $statusId }
+    ) {
+      returning {
+        id
+      }
+    }
   }
 `;
 
@@ -299,8 +290,10 @@ export const INSERT_JOB = gql`
 `;
 
 export const GET_JOBS_BY_USER = gql`
-  query GetJobsByUser($userId: uuid!) {
-    jobs(where: { user_id: { _eq: $userId } }) {
+  query GetJobsByUser($userId: uuid!, $statusId: Int!) {
+    jobs(
+      where: { user_id: { _eq: $userId }, job_status_id: { _eq: $statusId } }
+    ) {
       ...JobFragment
     }
   }

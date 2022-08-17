@@ -29,7 +29,7 @@ export function ModalSendJob({
     });
   }
 
-  if (isLoading === true) {
+  if (isLoading) {
     return (
       <>
         <h1>Um momento, estamos verificando</h1>
@@ -45,7 +45,7 @@ export function ModalSendJob({
     );
   }
 
-  if (data === true) {
+  if (DataTransferItemList) {
     <>
       <S.NerdImage>
         <img src="/images/sendwork.png" alt="" />

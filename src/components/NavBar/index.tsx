@@ -39,29 +39,19 @@ function NavBar() {
     <S.MainWrapper>
       <S.Container>
         <Link href="/" passHref>
-          <S.LogoWrapper >
+          <S.LogoWrapper>
             <Image
               src="/images/logo-text.png"
               width={300}
               height={60}
               quality={100}
             />
-            
           </S.LogoWrapper>
-          
         </Link>
 
-        
-            <S.LogoImage
-            
-              src="/images/logo-mobile.png"
-             
-            />
-            
-          
-      
+        <S.LogoImage src="/images/logo-mobile.png" />
+
         <S.Wrapper>
-          
           <Link href="/jobs/urgents" passHref>
             <S.MenuItem>Urgentes</S.MenuItem>
           </Link>
@@ -78,7 +68,7 @@ function NavBar() {
             href="https://deixaqueeufaco.notion.site/Como-podemos-ajudar-1105738216d84a37aa57233b1d495c8d"
             passHref
           >
-            <a target="_blank">
+            <a target="_blank" rel="noopener noreferrer">
               <S.MenuItem>FAQ</S.MenuItem>
             </a>
           </Link>

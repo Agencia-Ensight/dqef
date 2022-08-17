@@ -9,20 +9,23 @@ import { useModal } from "@/contexts";
 import { ModalInfoDelivery } from "../ModalInfoDelivery";
 
 export function ModalStartJob({
+  jobId,
   dateOfDelivery,
   dateFirstCharge,
   dateSecondCharge,
   dateThirdCharge,
 }: IModalStartJob) {
   const isMobile = useMedia("(max-width:600px)");
-  const { open } = useModal();
+  const { open, close } = useModal();
 
-  const formattedDate = format(dateOfDelivery, "dd/MM 'às' HH");
+  const formattedDate = format(dateOfDelivery, "dd/MM 'às' HH'h'");
 
-  function handleSendReview() {
+  function handleStartJob() {
+    close();
     open("Informações da Entrega", {
       content: () => (
         <ModalInfoDelivery
+          jobId={jobId}
           dateFirstCharge={dateFirstCharge}
           dateSecondCharge={dateSecondCharge}
           dateThirdCharge={dateThirdCharge}
@@ -45,7 +48,7 @@ export function ModalStartJob({
         <ButtonKnewave
           variant="PRIMARY"
           size={isMobile ? "sm" : "lg"}
-          onClick={() => handleSendReview()}
+          onClick={() => handleStartJob()}
         >
           Continuar
         </ButtonKnewave>

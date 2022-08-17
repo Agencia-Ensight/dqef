@@ -1,42 +1,39 @@
 import { useState } from "react";
-import { useQuery } from "@apollo/client";
 
 import { JobCard, ProfileCard } from "@/components";
 import { useUser } from "@/contexts";
-import { GET_JOBS_BY_USER, Job } from "@/services/graphql/jobs";
+import { JobStatus, useJobsByUser } from "@/hooks";
 import * as S from "./styles";
+import { ensureAuth } from "@/hocs";
 
 type IMenuOption = "proposals" | "jobsOnGoing" | "jobsDone";
 
 type IMenu = {
   title: string;
+  status: JobStatus;
 };
 
-function Menu({ title }: IMenu) {
+function Menu({ title, status }: IMenu) {
   const { user } = useUser();
-  const jobs = useQuery<{ jobs: Job[] }>(GET_JOBS_BY_USER, {
-    variables: { userId: user!.id },
-  });
+  const jobs = useJobsByUser(user!.id, status);
 
   return (
     <>
       <S.Title>{title}</S.Title>
       <S.Container>
-        {jobs.loading && <p>Carregando...</p>}
-        {!jobs.loading && !jobs.data?.jobs.length && <p>Nada encontrado!</p>}
-        {jobs.data?.jobs.map((job) => (
+        {jobs.isLoading && <p>Carregando...</p>}
+        {!jobs.isLoading && !jobs.data?.length && <p>Nada encontrado!</p>}
+        {jobs.data?.map((job) => (
           <JobCard
             key={job.id}
-            type={user!.type.toLocaleLowerCase() as any}
-            status="final-delivery"
-            id={job.id}
-            course={job.higher_course.name}
-            deliveryAt={new Date(job.delivery)}
-            discipline={job.job_has_knowledges[0]?.knowledge.name}
-            price={job.value_pay}
-            theme={job.thema}
-            title={job.title}
-            typeOfWork={job.job_format.name}
+            {...job}
+            totalProposals={0}
+            totalChanges={0}
+            wasEvaluated={false}
+            type={user!.type}
+            typeOfWork={job.typeOfWork.name}
+            course={job.higherCourse.name}
+            knowledges={job.knowledges.map((job) => job.name)}
           />
         ))}
       </S.Container>
@@ -61,13 +58,19 @@ function Profile() {
       </S.ContainerProfileCard>
       {user && (
         <div>
-          {menu === "proposals" && <Menu title="Suas propostas" />}
-          {menu === "jobsOnGoing" && <Menu title="Trabalhos em andamento" />}
-          {menu === "jobsDone" && <Menu title="Trabalhos feitos" />}
+          {menu === "proposals" && (
+            <Menu title="Suas propostas" status="waiting-proposals" />
+          )}
+          {menu === "jobsOnGoing" && (
+            <Menu title="Trabalhos em andamento" status="in-progress" />
+          )}
+          {menu === "jobsDone" && (
+            <Menu title="Trabalhos feitos" status="final-delivery" />
+          )}
         </div>
       )}
     </S.Wrapper>
   );
 }
 
-export default Profile;
+export default ensureAuth(Profile);

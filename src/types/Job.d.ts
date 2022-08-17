@@ -9,10 +9,16 @@ export type JobMediaProps = {
   title: string;
 };
 
+export type JobStatus =
+  | "waiting-proposals"
+  | "ready-to-start"
+  | "in-progress"
+  | "partial-delivery"
+  | "final-delivery";
+
 export type JobProps = {
   id: string;
   title: string;
-  discipline: JobGenericProps;
   theme: string;
   typeOfWork: JobGenericProps;
   pages: number;
@@ -22,12 +28,13 @@ export type JobProps = {
   instructions: string;
   medias: JobMediaProps[];
   price: number;
+  creatorId: string;
   deliveryAt: Date;
   jobType: JobGenericProps;
   higherCourse: JobGenericProps;
   knowledges: JobGenericProps[];
   format: JobGenericProps;
   dateLimit: Date;
-  status: JobGenericProps;
+  status: JobStatus;
   medias: JobMediaProps[];
 };

@@ -7,9 +7,13 @@ import { JobCard } from "@/components";
 import { InfoCard } from "./components/InfoCard";
 import { FileCard } from "./components/FileCard";
 import { useJob } from "@/hooks";
+import { ensureAuth } from "@/hocs";
+import { useUser } from "@/contexts";
+import { CardStatus } from "@/components/JobCard/typings";
 
 function InsideJob({ id }: IInsideJob) {
   const job = useJob(id);
+  const { user } = useUser();
 
   if (job.isLoading) return <h1>Carregando...</h1>;
 
@@ -23,10 +27,13 @@ function InsideJob({ id }: IInsideJob) {
         <JobCard
           key={job.data.id}
           {...job.data}
-          type="student" // TODO: check how to do this
-          status="finished" // TODO: check how to do this
-          discipline={job.data.discipline.name}
+          type={user!.type}
+          status={job.data.status as unknown as CardStatus}
           typeOfWork={job.data.typeOfWork.name}
+          knowledges={job.data.knowledges.map((job) => job.name)}
+          totalProposals={0}
+          totalChanges={0}
+          wasEvaluated={false}
         />
       </S.JobContainer>
       <S.Container>
@@ -57,4 +64,4 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   };
 }
 
-export default InsideJob;
+export default ensureAuth(InsideJob);

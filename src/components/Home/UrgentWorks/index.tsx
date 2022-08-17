@@ -1,14 +1,15 @@
 import Link from "next/link";
 
-import { useQuery } from "@apollo/client";
-
 import { ButtonKnewave, JobCard } from "@/components";
-import { GET_TOP_10_URGENT_JOBS, Job } from "@/services/graphql/jobs";
 
 import * as S from "./styles";
+import { useUrgentJobs } from "@/hooks";
+import { useUser } from "@/contexts";
+import { CardStatus } from "@/components/JobCard/typings";
 
 function UrgentWorks() {
-  const urgentJobs = useQuery<{ jobs: Job[] }>(GET_TOP_10_URGENT_JOBS);
+  const urgentJobs = useUrgentJobs();
+  const { user } = useUser();
 
   return (
     <S.Wrapper>
@@ -21,23 +22,20 @@ function UrgentWorks() {
         </S.Description>
       </S.HeaderContainer>
       <S.MainContainer>
-        {urgentJobs.loading && <p>Carregando...</p>}
+        {urgentJobs.isLoading && <p>Carregando...</p>}
         {urgentJobs.error && <p>Não conseguimos carregar esse módulo</p>}
-        {urgentJobs.data?.jobs.map((urgentJob) => (
+        {urgentJobs.data?.map((urgentJob) => (
           <JobCard
             key={urgentJob.id}
-            type="editor"
-            state="start-job"
-            status="published"
-            id={urgentJob.id}
-            course={urgentJob.higher_course.name}
-            deliveryAt={new Date(urgentJob.delivery)}
-            discipline={urgentJob.job_has_knowledges[0]?.knowledge.name}
-            price={urgentJob.value_pay}
-            theme={urgentJob.thema}
-            title={urgentJob.title}
-            typeOfWork={urgentJob.job_format.name}
-            urgent
+            {...urgentJob}
+            type={user?.type}
+            totalProposals={0}
+            totalChanges={0}
+            wasEvaluated={false}
+            typeOfWork={urgentJob.typeOfWork.name}
+            status={urgentJob.status}
+            course={urgentJob.higherCourse.name}
+            knowledges={urgentJob.knowledges.map((knowledge) => knowledge.name)}
           />
         ))}
       </S.MainContainer>

@@ -5,3 +5,4 @@ export * from "./useUrgentJobs";
 export * from "./useJob";
 export * from "./useProposals";
 export * from "./useUpdateJobStatus";
+export * from "./useJobsByUser";

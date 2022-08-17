@@ -2,21 +2,39 @@ import React, { useState } from "react";
 import { format } from "date-fns";
 
 import { ButtonKnewave } from "@/components";
-import { useMedia } from "@/hooks";
-import { useModal } from "@/contexts";
+import { useMedia, useUpdateJobStatus } from "@/hooks";
+import { useModal, useToast } from "@/contexts";
 
 import * as S from "./styles";
 import { IModalInfoDelivery } from "./typings";
 
 export function ModalInfoDelivery({
+  jobId,
   dateFirstCharge,
   dateSecondCharge,
   dateThirdCharge,
 }: IModalInfoDelivery) {
   const [showMore, setShowMore] = useState(true);
   const isMobile = useMedia("(max-width:600px)");
-
+  const { updateJobStatus } = useUpdateJobStatus();
   const { close } = useModal();
+  const { addToast } = useToast();
+
+  async function onStartJob() {
+    try {
+      await updateJobStatus(jobId, "in-progress");
+      close();
+      addToast({
+        type: "success",
+        msg: "Trabalho iniciado com sucesso!",
+      });
+    } catch (err) {
+      addToast({
+        type: "error",
+        msg: "Aconteceu um erro ao inciar o trabalho, tente novamente mais tarde.",
+      });
+    }
+  }
 
   function formatDate(date: Date) {
     format(date, "dd/MM 'às' HH'h'");
@@ -60,7 +78,7 @@ export function ModalInfoDelivery({
         <ButtonKnewave
           variant="PRIMARY"
           size={isMobile ? "sm" : "lg"}
-          onClick={close}
+          onClick={onStartJob}
         >
           Iniciar
         </ButtonKnewave>

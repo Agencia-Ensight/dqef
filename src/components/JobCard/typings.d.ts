@@ -17,7 +17,7 @@ export type CardStatus =
   | "partial-delivery"
   | "final-delivery";
 
-type CardType = "STUDENT" | "EDITOR";
+export type CardType = "STUDENT" | "EDITOR";
 
 export type CardProps = {
   /**
@@ -34,14 +34,15 @@ export type CardProps = {
 export type ICardProps = CardProps & {
   id: string;
   title: string;
-  discipline: string;
   theme: string;
   typeOfWork: string;
   price: number;
   deliveryAt: Date;
   status: CardStatus;
-  type: CardType;
+  creatorId: string;
+  type?: CardType;
   totalProposals: number;
   totalChanges: number;
   wasEvaluated: boolean;
+  knowledges: string[];
 };

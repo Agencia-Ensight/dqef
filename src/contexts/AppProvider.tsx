@@ -11,11 +11,11 @@ type AppProviderProps = { children: ReactNode };
 function AppProvider({ children }: AppProviderProps) {
   return (
     <ApolloProvider client={graphql}>
-      <UserProvider>
-        <ModalProvider>
-          <ToastProvider>{children}</ToastProvider>
-        </ModalProvider>
-      </UserProvider>
+      <ToastProvider>
+        <UserProvider>
+          <ModalProvider>{children}</ModalProvider>
+        </UserProvider>
+      </ToastProvider>
     </ApolloProvider>
   );
 }

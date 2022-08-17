@@ -1,70 +1,45 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import { format } from "date-fns";
 
 import * as S from "./styles";
 import { ICardProps } from "./typings";
-import { useUpdateJobStatus } from "@/hooks";
-import { useToast, useModal, useUser } from "@/contexts";
-import { ModalRating } from "./components/ModalRating";
-import { ModalOpenWork } from "./components/ModalOpenWork";
-import { ModalStartJob } from "./components/ModalStartJob";
-import { ModalCharge } from "./components/ModalCharge";
-import { ModalProposalInfo } from "./components/ModalProposalInfo";
-import { ModalCounterProposal } from "./components/ModalCounterProposal";
-import { ModalSendJob } from "./components/ModalSendJob";
-import { ModalSeeChanges } from "./components/ModalSeeChanges";
-import { ModalSeeRating } from "./components/ModalSeeRating";
-import { ModalSeeJob } from "./components/ModalSeeJob";
+import { useModal, useUser } from "@/contexts";
+import {
+  ModalRating,
+  ModalStartJob,
+  ModalCharge,
+  ModalProposalInfo,
+  ModalCounterProposal,
+  ModalSendJob,
+  ModalSeeChanges,
+  ModalSeeRating,
+  ModalSeeJob,
+} from "./components";
 
 function handleProblem(jobId: string) {
   const msg = `Olá, estou com um problema com o trabalho ${jobId}`;
-
-  Router.push(
-    `https://api.whatsapp.com/send?phone=554199959588&text=${encodeURI(msg)}`
-  );
+  return `https://api.whatsapp.com/send?phone=554199959588&text=${encodeURI(
+    msg
+  )}`;
 }
 
 function JobCard(job: ICardProps) {
-  const { updateJobStatus } = useUpdateJobStatus();
-  const { open } = useModal();
+  const modal = useModal();
   const { user } = useUser();
-  const { addToast } = useToast();
-  const formattedDate = format(job.deliveryAt, "dd/MM/yyyy 'às' HH:mm");
 
-  // const handlePartialDelivery = useCallback(async () => {
-  //   try {
-  //     await updateJobStatus(job.id, "partial-delivery");
-  //     addToast({ type: "success", msg: "Entrega realizada!" });
-  //   } catch (error) {
-  //     addToast({
-  //       type: "error",
-  //       msg: "Não conseguimos entregar o trabalho, tente novamente mais tarde",
-  //     });
-  //   }
-  // }, [addToast, updateJobStatus, job.id]);
+  const formattedDate = useMemo(
+    () => format(job.deliveryAt, "dd/MM/yyyy 'às' HH:mm"),
+    [job.deliveryAt]
+  );
 
-  // const handleStartJob = useCallback(async () => {
-  //   try {
-  //     await updateJobStatus(job.id, "in-progress");
-  //     addToast({ type: "success", msg: "Trabalho iniciado!" });
-  //   } catch (error) {
-  //     addToast({
-  //       type: "error",
-  //       msg: "Não conseguimos iniciar o trabalho, tente novamente mais tarde",
-  //     });
-  //   }
-  // }, [addToast, updateJobStatus, job.id]);
+  const handleSendReview = useCallback(() => {
+    modal.open(`Olá, ${user?.name}`, { content: () => <ModalRating /> });
+  }, [modal]);
 
-  const handleSendAvaliation = useCallback(() => {}, []);
-
-  function handleSendReview() {
-    open(`Olá, ${user?.name}`, { content: () => <ModalRating /> });
-  }
-
-  function handleJobDelivery() {
-    open("Deseja enviar o trabalho?", {
+  const handleJobDelivery = useCallback(() => {
+    modal.open("Deseja enviar o trabalho?", {
       content: () => (
         <ModalSendJob
           acceptPlagiarism={20} //TODO
@@ -73,21 +48,21 @@ function JobCard(job: ICardProps) {
         />
       ),
     });
-  }
+  }, [modal]);
 
-  function handleSendCounterProposal() {
-    open("Alterar Valor", { content: () => <ModalCounterProposal /> });
-  }
+  const handleSendCounterProposal = useCallback(() => {
+    modal.open("Alterar Valor", { content: () => <ModalCounterProposal /> });
+  }, [modal]);
 
-  function handleAcceptJob() {
-    open(
+  const handleAcceptJob = useCallback(() => {
+    modal.open(
       "Olá, redator! Ficamos felizes pelo seu interesse em um dos trabalhos publicados ",
       { content: () => <ModalProposalInfo /> }
     );
-  }
+  }, [modal]);
 
-  function handleSeeChanges() {
-    open(`Olá, ${user?.name}. Essas são as alterações solicitadas`, {
+  const handleSeeChanges = useCallback(() => {
+    modal.open(`Olá, ${user?.name}. Essas são as alterações solicitadas`, {
       content: () => (
         <ModalSeeChanges
           dateOfTheFinalAdjust={new Date()} //TODO
@@ -95,20 +70,20 @@ function JobCard(job: ICardProps) {
         />
       ),
     });
-  }
+  }, [modal]);
 
-  function handleCharge() {
-    open(`Olá, ${user?.name}`, {
+  const handleCharge = useCallback(() => {
+    modal.open(`Olá, ${user?.name}`, {
       content: () => (
         <ModalCharge
           dateOfDelivery={new Date()} //TODO
         />
       ),
     });
-  }
+  }, [modal]);
 
-  function handleSeeJob() {
-    open(`Olá, ${user?.name}`, {
+  const handleSeeJob = useCallback(() => {
+    modal.open(`Olá, ${user?.name}`, {
       content: () => (
         <ModalSeeJob
           isFirstDelivery={true} //TODO
@@ -116,25 +91,24 @@ function JobCard(job: ICardProps) {
         />
       ),
     });
-  }
+  }, [modal]);
 
-  function handleStartJob() {
-    open(`Negócio Fechado!`, {
+  const handleStartJob = useCallback(() => {
+    modal.open(`Negócio Fechado!`, {
       content: () => (
         <ModalStartJob
-          dateOfDelivery={
-            new Date() // TODO
-          }
+          jobId={job.id}
+          dateOfDelivery={new Date()} //TODO
           dateFirstCharge={new Date()} //TODO
           dateSecondCharge={new Date()} //TODO
           dateThirdCharge={new Date()} //TODO
         />
       ),
     });
-  }
+  }, [modal, job.id]);
 
-  function handleSeeRating() {
-    open("Feedback do Estudante", {
+  const handleSeeRating = useCallback(() => {
+    modal.open("Feedback do Estudante", {
       content: () => (
         <ModalSeeRating
           obs="banana" //TODO
@@ -142,29 +116,9 @@ function JobCard(job: ICardProps) {
         />
       ),
     });
-  }
-
-  const handleSeeAvaliation = useCallback(() => {}, []);
-
-  // const handleSeeChanges = useCallback(() => {}, []);
+  }, [modal]);
 
   const handleSendChanges = useCallback(() => {}, []);
-
-  // const handleAcceptJob = useCallback(async () => {
-  //   try {
-  //     await updateJobStatus(job.id, "ready-to-start");
-  //     addToast({ type: "success", msg: "Trabalho aceito!" });
-  //   } catch (error) {
-  //     addToast({
-  //       type: "error",
-  //       msg: "Erro ao aceitar o trabalho, tente novamente mais tarde",
-  //     });
-  //   }
-  // }, [addToast, updateJobStatus, job.id]);
-
-  // const handleSendCounterProposal = useCallback(() => {}, []);
-
-  const handleSeeDelivery = useCallback(() => {}, []);
 
   return (
     <S.Wrapper>
@@ -178,7 +132,7 @@ function JobCard(job: ICardProps) {
           <S.Title>{job.title}</S.Title>
           <S.InformationContainer>
             <S.Subtitle>Disciplina</S.Subtitle>
-            <S.Description>{job.discipline}</S.Description>
+            <S.Description>{job.knowledges?.join(", ")}</S.Description>
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Tema</S.Subtitle>
@@ -206,7 +160,7 @@ function JobCard(job: ICardProps) {
               )}
             </>
           )}
-          {job.type === "STUDENT" && (
+          {job.type === "STUDENT" && job.creatorId === user?.id && (
             <>
               {(job.status === "ready-to-start" ||
                 (job.status === "partial-delivery" &&
@@ -220,14 +174,16 @@ function JobCard(job: ICardProps) {
           )}
         </S.MainContainer>
       </S.Container>
+
       <S.FooterContainer>
-        {job.type === "STUDENT" && (
+        <Link href={`/jobs/${job.id}`} passHref>
+          <S.Button>Ver mais</S.Button>
+        </Link>
+
+        {job.type === "STUDENT" && job.creatorId === user?.id && (
           <>
             {job.status === "waiting-proposals" && (
               <>
-                <Link href={`/jobs/${job.id}`} passHref>
-                  <S.Button>Ver mais</S.Button>
-                </Link>
                 {job.totalProposals ? (
                   <Link href={`/jobs/${job.id}/proposals`} passHref>
                     <S.Button>Propostas</S.Button>
@@ -242,34 +198,14 @@ function JobCard(job: ICardProps) {
             {job.status === "partial-delivery" && job.totalChanges === 0 && (
               <>
                 <S.Button onClick={handleJobDelivery}>Entrega</S.Button>
-                <Link href={`/jobs/${job.id}`} passHref>
-                  <S.Button>Ver mais</S.Button>
-                </Link>
                 <S.Button onClick={handleSendChanges}>Alterações</S.Button>
               </>
             )}
             {job.status === "final-delivery" &&
               (!job.wasEvaluated ? (
-                <S.Button
-                  onClick={() => handleSendReview()}
-                  // onClick={() => handleSendAvaliation()}
-                >
-                  Avaliar
-                </S.Button>
+                <S.Button onClick={() => handleSendReview()}>Avaliar</S.Button>
               ) : (
-                <>
-                  <S.Button
-                    onClick={() =>
-                      // handleSeeDelivery()
-                      handleSeeJob()
-                    }
-                  >
-                    Entrega
-                  </S.Button>
-                  <Link href={`/jobs/${job.id}`} passHref>
-                    <S.Button>Ver mais</S.Button>
-                  </Link>
-                </>
+                <S.Button onClick={() => handleSeeJob()}>Entrega</S.Button>
               ))}
           </>
         )}
@@ -280,69 +216,47 @@ function JobCard(job: ICardProps) {
               <>
                 <S.Button onClick={() => handleAcceptJob()}>Aceitar</S.Button>
                 <S.Button onClick={() => handleSendCounterProposal()}>
-                  Contraproposta
+                  Proposta
                 </S.Button>
               </>
             )}
             {job.status === "ready-to-start" && (
-              <S.Button
-                onClick={() =>
-                  // handleStartJob()
-                  handleStartJob()
-                }
-              >
-                Iniciar
-              </S.Button>
+              <S.Button onClick={() => handleStartJob()}>Iniciar</S.Button>
             )}
             {job.status === "in-progress" && (
               <>
-                <S.Button
-                  onClick={() =>
-                    // handlePartialDelivery()
-                    handleJobDelivery()
-                  }
-                >
+                <S.Button onClick={() => handleJobDelivery()}>
                   Entregar
                 </S.Button>
-                <Link href={`/jobs/${job.id}`} passHref>
-                  <S.Button>Ver mais</S.Button>
-                </Link>
-                <S.Button onClick={() => handleProblem(job.id)}>
-                  Problema
-                </S.Button>
-                {/* TODO */}
-                <S.Button onClick={() => handleCharge()}>Cobrança</S.Button>
+
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={handleProblem(job.id)}
+                >
+                  <S.Button>Problema</S.Button>
+                </a>
+
+                {/* <S.Button disabled onClick={() => handleCharge()}>
+                  Cobrança
+                </S.Button> */}
               </>
             )}
             {job.status === "partial-delivery" && job.totalChanges > 0 && (
               <>
-                <S.Button
-                  onClick={() =>
-                    // handlePartialDelivery()
-
-                    handleJobDelivery()
-                  }
-                >
+                <S.Button onClick={() => handleJobDelivery()}>
                   Entregar
                 </S.Button>
-                <Link href={`/jobs/${job.id}`} passHref>
-                  <S.Button>Ver mais</S.Button>
-                </Link>
                 <S.Button onClick={() => handleSeeChanges()}>
                   Alterações
                 </S.Button>
               </>
             )}
-            {job.status === "final-delivery" &&
-              (!job.wasEvaluated ? (
-                <Link href={`/jobs/${job.id}`} passHref>
-                  <S.Button>Ver mais</S.Button>
-                </Link>
-              ) : (
-                <S.Button onClick={() => handleSeeRating()}>
-                  Ver avaliação
-                </S.Button>
-              ))}
+            {job.status === "final-delivery" && job.wasEvaluated && (
+              <S.Button onClick={() => handleSeeRating()}>
+                Ver avaliação
+              </S.Button>
+            )}
           </>
         )}
       </S.FooterContainer>

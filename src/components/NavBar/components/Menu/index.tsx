@@ -22,7 +22,7 @@ function Menu() {
       );
     }
 
-    return
+    return;
   }, [user]);
 
   function handleOpen() {
@@ -59,25 +59,24 @@ function Menu() {
           />
         </Link>
         <S.Title>Conta</S.Title>
-            {user && 
-            <> 
+        {user && (
+          <>
             <Link href="/jobs/create" passHref>
-          <ButtonKnewave variant="PRIMARY" size="sm" onClick={handleOpen}>
-            Publicar Trabalho
-          </ButtonKnewave>
-        </Link>
-        <Link href="/profile" passHref>
-          <S.SubTitle onClick={handleOpen}>Meu Perfil</S.SubTitle>
-        </Link>
-        <Link href="/notifications" passHref>
-          <S.SubTitle onClick={handleOpen}>Notificações</S.SubTitle>
-        </Link>
-        <Link href="/config" passHref>
-          <S.SubTitle onClick={handleOpen}>Editar Perfil</S.SubTitle>
-        </Link>
-        
-        </>
-} 
+              <ButtonKnewave variant="PRIMARY" size="sm" onClick={handleOpen}>
+                Publicar Trabalho
+              </ButtonKnewave>
+            </Link>
+            <Link href="/profile" passHref>
+              <S.SubTitle onClick={handleOpen}>Meu Perfil</S.SubTitle>
+            </Link>
+            <Link href="/notifications" passHref>
+              <S.SubTitle onClick={handleOpen}>Notificações</S.SubTitle>
+            </Link>
+            <Link href="/config" passHref>
+              <S.SubTitle onClick={handleOpen}>Editar Perfil</S.SubTitle>
+            </Link>
+          </>
+        )}
 
         {getLoginOrLogout}
 
@@ -94,18 +93,21 @@ function Menu() {
         <Link href="#" passHref>
           <S.SubTitle onClick={handleOpen}>TCC</S.SubTitle>
         </Link>
-        
-          <a target="_blank" onClick={handleOpen}  href="https://deixaqueeufaco.notion.site/Como-podemos-ajudar-1105738216d84a37aa57233b1d495c8d"
-          >
-            <S.SubTitle>FAQ</S.SubTitle>
-          </a>
 
-          {user && 
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleOpen}
+          href="https://deixaqueeufaco.notion.site/Como-podemos-ajudar-1105738216d84a37aa57233b1d495c8d"
+        >
+          <S.SubTitle>FAQ</S.SubTitle>
+        </a>
+
+        {user && (
           <ButtonKnewave variant="SECONDARY" size="sm" onClick={signOut}>
-        Sair
-      </ButtonKnewave>}
-        
-       
+            Sair
+          </ButtonKnewave>
+        )}
       </S.Container>
     </>
   );
