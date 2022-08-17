@@ -26,16 +26,14 @@ function UrgentWorks() {
         {urgentJobs.error && <p>Não conseguimos carregar esse módulo</p>}
         {urgentJobs.data?.map((urgentJob) => (
           <JobCard
-            key={urgentJob.id}
             {...urgentJob}
-            type={user?.type}
-            totalProposals={0}
+            totalProposals={urgentJob.proposals.length}
             totalChanges={0}
-            wasEvaluated={false}
+            wasEvaluated={!!urgentJob.rating}
+            urgent
             typeOfWork={urgentJob.typeOfWork.name}
-            status={urgentJob.status}
-            course={urgentJob.higherCourse.name}
             knowledges={urgentJob.knowledges.map((knowledge) => knowledge.name)}
+            course={urgentJob.higherCourse.name}
           />
         ))}
       </S.MainContainer>

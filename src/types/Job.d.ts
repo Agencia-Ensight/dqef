@@ -16,6 +16,23 @@ export type JobStatus =
   | "partial-delivery"
   | "final-delivery";
 
+export type JobUserProposal = {
+  id: string;
+  name: string;
+  avatar: string;
+};
+
+export type JobProposal = {
+  id: string;
+  user: JobUserProposal;
+  status: JobGenericProps;
+};
+
+export type JobRating = {
+  rating: number;
+  testimonial?: string;
+};
+
 export type JobProps = {
   id: string;
   title: string;
@@ -29,6 +46,7 @@ export type JobProps = {
   medias: JobMediaProps[];
   price: number;
   creatorId: string;
+  editorId?: string;
   deliveryAt: Date;
   jobType: JobGenericProps;
   higherCourse: JobGenericProps;
@@ -37,4 +55,6 @@ export type JobProps = {
   dateLimit: Date;
   status: JobStatus;
   medias: JobMediaProps[];
+  proposals: JobProposal[];
+  rating?: JobRating;
 };

@@ -1,3 +1,3 @@
 export type ProposalProps = {
-  jobId: string;
+  id: string;
 };

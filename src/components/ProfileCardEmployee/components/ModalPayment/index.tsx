@@ -16,7 +16,7 @@ export function ModalPayment({ price }: IModalPayment) {
 
   async function handleCopy(info: string) {
     await navigator.clipboard.writeText(info);
-    alert("Copiado");
+    addToast({ msg: "Copiado para a área de transferência", type: "info" });
   }
 
   const CNPJ = "46.021.642/0001-78";

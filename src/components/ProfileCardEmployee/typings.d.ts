@@ -3,6 +3,6 @@ export type Props = {
   price: number;
   course: string;
   profileName: string;
-  jobs: number;
+  avgRating: number;
   studying: string;
 };

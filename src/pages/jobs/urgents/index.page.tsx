@@ -21,12 +21,14 @@ function UrgentWorks() {
       <S.MainContainer>
         {urgentJobs.data?.map((job) => (
           <JobCard
-            key={job.id}
             {...job}
-            type="student" // TODO: check how to do this
-            status="finished" // TODO: check how to do this
-            discipline={job.discipline.name}
+            totalProposals={job.proposals.length}
+            totalChanges={0}
+            wasEvaluated={!!job.rating}
+            urgent
             typeOfWork={job.typeOfWork.name}
+            knowledges={job.knowledges.map((knowledge) => knowledge.name)}
+            course={job.higherCourse.name}
           />
         ))}
       </S.MainContainer>

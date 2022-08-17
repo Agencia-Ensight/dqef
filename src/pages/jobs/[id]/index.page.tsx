@@ -25,15 +25,14 @@ function InsideJob({ id }: IInsideJob) {
     <S.Wrapper>
       <S.JobContainer>
         <JobCard
-          key={job.data.id}
           {...job.data}
-          type={user!.type}
-          status={job.data.status as unknown as CardStatus}
-          typeOfWork={job.data.typeOfWork.name}
-          knowledges={job.data.knowledges.map((job) => job.name)}
-          totalProposals={0}
+          totalProposals={job.data.proposals.length}
           totalChanges={0}
-          wasEvaluated={false}
+          wasEvaluated={!!job.data.rating}
+          urgent
+          typeOfWork={job.data.typeOfWork.name}
+          knowledges={job.data.knowledges.map((knowledge) => knowledge.name)}
+          course={job.data.higherCourse.name}
         />
       </S.JobContainer>
       <S.Container>

@@ -1,25 +1,52 @@
 import { useState } from "react";
 import { AiOutlineDownload } from "react-icons/ai";
 
-import { useMedia } from "@/hooks";
+import { useJobDelivery, useMedia } from "@/hooks";
 import { ButtonKnewave, Input } from "@/components";
-import { useModal } from "@/contexts";
+import { useModal, useToast } from "@/contexts";
 
 import * as S from "./styles";
 import { IModalSendJob } from "./typings";
 import { ModalApprovedJob } from "./components/ModalApprovedJob";
+import { uploadFile } from "@/services/api/upload";
 
 export function ModalSendJob({
+  jobId,
   acceptPlagiarism,
   plagiarismOfJob,
   dateLimitOfRequestChanges,
 }: IModalSendJob) {
   const isMobile = useMedia("(max-width:600px)");
+  const [files, setFiles] = useState<FileList | null>(null);
   const { close, open } = useModal();
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState(false);
+  const { addToast } = useToast();
+  const { delivery } = useJobDelivery();
 
-  function handleJobApproved() {
+  async function uploadJobFiles() {
+    try {
+      if (!files) {
+        addToast({
+          type: "error",
+          msg: "Nenhum arquivo selecionado",
+        });
+        return;
+      }
+      const uploadIds: string[] = [];
+      for await (const file of files) {
+        const { id } = await uploadFile({ file, title: file.name });
+        uploadIds.push(id);
+      }
+      await delivery(jobId, "partial-delivery", uploadIds);
+      addToast({ type: "success", msg: "Sucesso! Você enviou o trabalho!" });
+    } catch (error) {
+      addToast({ type: "error", msg: "Aconteceu um erro ao enviar o arquivo" });
+    }
+  }
+
+  async function handleJobApproved() {
+    await uploadJobFiles();
+
+    close();
     open("Trabalho Aprovado!", {
       content: () => (
         <ModalApprovedJob
@@ -29,59 +56,59 @@ export function ModalSendJob({
     });
   }
 
-  if (isLoading) {
-    return (
-      <>
-        <h1>Um momento, estamos verificando</h1>
-        <S.NerdImage>
-          <img src="/images/sendwork.png" alt="" />
-        </S.NerdImage>
+  // if (isLoading) {
+  //   return (
+  //     <>
+  //       <h1>Um momento, estamos verificando</h1>
+  //       <S.NerdImage>
+  //         <img src="/images/sendwork.png" alt="" />
+  //       </S.NerdImage>
 
-        <S.TextInformation>
-          <h3>Limite Aceitável do Trabalho</h3>
-          <h2>{acceptPlagiarism}%</h2>
-        </S.TextInformation>
-      </>
-    );
-  }
+  //       <S.TextInformation>
+  //         <h3>Limite Aceitável do Trabalho</h3>
+  //         <h2>{acceptPlagiarism}%</h2>
+  //       </S.TextInformation>
+  //     </>
+  //   );
+  // }
 
-  if (DataTransferItemList) {
-    <>
-      <S.NerdImage>
-        <img src="/images/sendwork.png" alt="" />
-      </S.NerdImage>
+  // if (true) {
+  //   <>
+  //     <S.NerdImage>
+  //       <img src="/images/sendwork.png" alt="" />
+  //     </S.NerdImage>
 
-      <S.TextInformation>
-        <h3>Limite Aceitável do Trabalho</h3>
-        <h2>{acceptPlagiarism}%</h2>
-      </S.TextInformation>
-      <S.TextInformation>
-        <h3>Limite do Trabalho realizado</h3>
-        <h2>{plagiarismOfJob}%</h2>
-      </S.TextInformation>
-      <S.ButtonBang>
-        <AiOutlineDownload color="#42A4EF" />
-        <p>Baixar Relatório de Plágio</p>
-      </S.ButtonBang>
+  //     <S.TextInformation>
+  //       <h3>Limite Aceitável do Trabalho</h3>
+  //       <h2>{acceptPlagiarism}%</h2>
+  //     </S.TextInformation>
+  //     <S.TextInformation>
+  //       <h3>Limite do Trabalho realizado</h3>
+  //       <h2>{plagiarismOfJob}%</h2>
+  //     </S.TextInformation>
+  //     <S.ButtonBang>
+  //       <AiOutlineDownload color="#42A4EF" />
+  //       <p>Baixar Relatório de Plágio</p>
+  //     </S.ButtonBang>
 
-      <S.ButtonFinaleira>
-        <ButtonKnewave
-          size={isMobile ? "sm" : "lg"}
-          variant="SECONDARY"
-          onClick={close}
-        >
-          Cancelar
-        </ButtonKnewave>
-        <ButtonKnewave
-          size={isMobile ? "sm" : "lg"}
-          variant="PRIMARY"
-          onClick={() => handleJobApproved()}
-        >
-          Continuar
-        </ButtonKnewave>
-      </S.ButtonFinaleira>
-    </>;
-  }
+  //     <S.ButtonFinaleira>
+  //       <ButtonKnewave
+  //         size={isMobile ? "sm" : "lg"}
+  //         variant="SECONDARY"
+  //         onClick={close}
+  //       >
+  //         Cancelar
+  //       </ButtonKnewave>
+  //       <ButtonKnewave
+  //         size={isMobile ? "sm" : "lg"}
+  //         variant="PRIMARY"
+  //         onClick={() => handleJobApproved()}
+  //       >
+  //         Continuar
+  //       </ButtonKnewave>
+  //     </S.ButtonFinaleira>
+  //   </>;
+  // }
 
   return (
     <>
@@ -96,9 +123,10 @@ export function ModalSendJob({
         </label>
         <input
           type="file"
-          multiple={true}
+          multiple
           className="inputfile-root"
           id="file"
+          onChange={(e) => setFiles(e.target.files)}
         />
       </S.FileDiv>
 
@@ -113,7 +141,11 @@ export function ModalSendJob({
         >
           Cancelar
         </ButtonKnewave>
-        <ButtonKnewave size={isMobile ? "sm" : "lg"} variant="PRIMARY">
+        <ButtonKnewave
+          size={isMobile ? "sm" : "lg"}
+          variant="PRIMARY"
+          onClick={handleJobApproved}
+        >
           Continuar
         </ButtonKnewave>
       </S.ButtonFinaleira>

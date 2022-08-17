@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Router from "next/router";
 import { BsSearch } from "react-icons/bs";
 
@@ -51,12 +51,14 @@ function AllJobs() {
       <S.MainContainer>
         {filteredData?.map((job) => (
           <JobCard
-            key={job.id}
             {...job}
-            type="student" // TODO: check how to do this
-            status="finished" // TODO: check how to do this
-            discipline={job.discipline.name}
+            totalProposals={job.proposals.length}
+            totalChanges={0}
+            wasEvaluated={!!job.rating}
+            urgent={false}
             typeOfWork={job.typeOfWork.name}
+            knowledges={job.knowledges.map((knowledge) => knowledge.name)}
+            course={job.higherCourse.name}
           />
         ))}
       </S.MainContainer>

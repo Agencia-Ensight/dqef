@@ -1,10 +1,12 @@
 import { JobCard } from "@/components";
+import { useUser } from "@/contexts";
 import { useJob } from "@/hooks";
 
 export default function Test() {
+  const { user } = useUser();
   const { data } = useJob("74");
 
-  if (!data) return null;
+  if (!data || !user) return null;
 
   return (
     <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
@@ -21,7 +23,7 @@ export default function Test() {
         theme={data.theme}
         title={data.title}
         type="EDITOR"
-        creatorId="1"
+        creatorId={user.id}
         deliveryAt={new Date()}
         price={1}
       />

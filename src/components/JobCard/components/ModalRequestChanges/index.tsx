@@ -5,7 +5,11 @@ import { ButtonKnewave } from "@/components";
 
 import * as S from "./styles";
 
-export function ModalRequestChanges() {
+type IModalRequestRequestChanges = {
+  jobId: string;
+};
+
+export function ModalRequestChanges({ jobId }: IModalRequestRequestChanges) {
   const isMobile = useMedia("(max-width:600px)");
 
   return (

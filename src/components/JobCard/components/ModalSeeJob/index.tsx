@@ -10,16 +10,21 @@ import { useModal } from "@/contexts";
 import { ModalRequestChanges } from "../ModalRequestChanges";
 
 export function ModalSeeJob({
+  jobId,
   dateOfChanges,
   isFirstDelivery,
 }: IModalOpenWork) {
   const isMobile = useMedia("(max-width:600px)");
   const { open } = useModal();
 
-  const formattedDate = format(dateOfChanges, "dd/MM 'às' HH");
+  const formattedDate = dateOfChanges
+    ? format(dateOfChanges, "dd/MM 'às' HH")
+    : "";
 
   function handleRequestChanges() {
-    open("Solicitar Alteração", { content: () => <ModalRequestChanges /> });
+    open("Solicitar Alteração", {
+      content: () => <ModalRequestChanges jobId={jobId} />,
+    });
   }
 
   return (

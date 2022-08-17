@@ -15,7 +15,7 @@ type IMenu = {
 
 function Menu({ title, status }: IMenu) {
   const { user } = useUser();
-  const jobs = useJobsByUser(user!.id, status);
+  const jobs = useJobsByUser(user!.id, user!.type, status);
 
   return (
     <>
@@ -25,15 +25,14 @@ function Menu({ title, status }: IMenu) {
         {!jobs.isLoading && !jobs.data?.length && <p>Nada encontrado!</p>}
         {jobs.data?.map((job) => (
           <JobCard
-            key={job.id}
             {...job}
-            totalProposals={0}
+            totalProposals={job.proposals.length}
             totalChanges={0}
-            wasEvaluated={false}
-            type={user!.type}
+            wasEvaluated={!!job.rating}
+            urgent={false}
             typeOfWork={job.typeOfWork.name}
+            knowledges={job.knowledges.map((knowledge) => knowledge.name)}
             course={job.higherCourse.name}
-            knowledges={job.knowledges.map((job) => job.name)}
           />
         ))}
       </S.Container>

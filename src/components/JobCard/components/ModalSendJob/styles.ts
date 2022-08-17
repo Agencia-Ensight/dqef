@@ -100,6 +100,10 @@ export const FileDiv = styled.div`
 
   margin-top: 1.5rem;
 
+  input {
+    display: none;
+  }
+
   .label-inputfile {
     width: 100%;
     border: 2px solid #42a4ef;

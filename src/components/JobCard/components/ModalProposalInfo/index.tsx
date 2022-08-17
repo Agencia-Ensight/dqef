@@ -1,15 +1,33 @@
 import { ButtonKnewave } from "@/components";
-import { useModal } from "@/contexts";
-import { useMedia } from "@/hooks";
+import { useModal, useToast } from "@/contexts";
+import { useMedia, useSendProposal } from "@/hooks";
 import { ModalSentProposal } from "./components/ModalSentProposal";
 import * as S from "./styles";
 
-export function ModalProposalInfo() {
-  const isMobile = useMedia("(max-width:600px)");
-  const { open } = useModal();
+type IModalProposalInfo = {
+  jobId: string;
+  price: number;
+  userId: string;
+};
 
-  function handleNeedsMoreTime() {
-    open("Proposta Enviada!", { content: () => <ModalSentProposal /> });
+export function ModalProposalInfo(data: IModalProposalInfo) {
+  const isMobile = useMedia("(max-width:600px)");
+  const { open, close } = useModal();
+  const { sendProposal } = useSendProposal();
+  const { addToast } = useToast();
+
+  async function handleSendProposal() {
+    try {
+      await sendProposal({ ...data, status: "send" });
+      addToast({ type: "success", msg: "Proposta enviada!" });
+      close();
+      open("Proposta Enviada!", { content: () => <ModalSentProposal /> });
+    } catch (err) {
+      addToast({
+        type: "error",
+        msg: "Erro ao enviar proposta! Tente novamente mais tarde.",
+      });
+    }
   }
 
   return (
@@ -65,7 +83,7 @@ export function ModalProposalInfo() {
         <ButtonKnewave
           size={isMobile ? "sm" : "lg"}
           variant="PRIMARY"
-          onClick={() => handleNeedsMoreTime()}
+          onClick={() => handleSendProposal()}
         >
           Próximo
         </ButtonKnewave>

@@ -6,32 +6,34 @@ import * as S from "./styles";
 import { useProposals } from "@/hooks";
 import { ProposalProps } from "./typings";
 
-function Proposals({ jobId }: ProposalProps) {
-  const proposals = useProposals(jobId);
+function Proposals({ id }: ProposalProps) {
+  const proposals = useProposals(id);
 
   return (
     <S.Wrapper>
       <S.BackButton onClick={Router.back}>Voltar</S.BackButton>
       <S.Title>Propostas Recebidas</S.Title>
       <S.Container>
-        <ProfileCardEmployee
-          course="Direito"
-          img="/images/redatorpicture.png"
-          jobs={10}
-          price={100}
-          profileName="Joao Lobo"
-          studying="1 Periodo"
-        />
+        {proposals.data?.map((proposal) => (
+          <ProfileCardEmployee
+            course={proposal.user.higherCourse}
+            img={proposal.user.avatar || "/images/deal-done.png"}
+            avgRating={proposal.user.avgRating}
+            price={proposal.price}
+            profileName={proposal.user.name}
+            studying={proposal.user.formation}
+          />
+        ))}
       </S.Container>
     </S.Wrapper>
   );
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { jobId } = context.query;
+  const { id } = context.query;
 
   return {
-    props: { jobId },
+    props: { id },
   };
 }
 

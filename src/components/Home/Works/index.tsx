@@ -1,30 +1,26 @@
 import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
-
-import { useQuery } from "@apollo/client";
 import { BsSearch } from "react-icons/bs";
 
-import { ButtonKnewave, Input, JobCard } from "@/components";
-import { GET_TOP_10_JOBS, Job } from "@/services/graphql/jobs";
+import { ButtonKnewave, JobCard } from "@/components";
 import * as S from "./styles";
+import { useJobs } from "@/hooks";
 
 function Works() {
   const [searchJobs, setSearchJobs] = useState("");
-  const jobs = useQuery<{ jobs: Job[] }>(GET_TOP_10_JOBS);
+  const jobs = useJobs();
 
   function handleOnChangeSearchJobs(event: ChangeEvent<HTMLInputElement>) {
     setSearchJobs(event.target.value.toLocaleLowerCase());
   }
 
-  const filteredData: Job[] | undefined = jobs.data?.jobs.filter(
-    (filterJobs) => {
-      if (searchJobs === "") {
-        return filterJobs;
-      } else {
-        return filterJobs.higher_course.name.toLowerCase().includes(searchJobs);
-      }
+  const filteredData = jobs.data?.filter((filterJobs) => {
+    if (searchJobs === "") {
+      return filterJobs;
+    } else {
+      return filterJobs.higherCourse.name.toLowerCase().includes(searchJobs);
     }
-  );
+  });
 
   return (
     <S.Wrapper>
@@ -49,30 +45,20 @@ function Works() {
       </S.HeaderContainer>
 
       <S.MainContainer>
-        {jobs.loading && <p>Carregando...</p>}
+        {jobs.isLoading && <p>Carregando...</p>}
         {jobs.error && <p>Não conseguimos carregar esse módulo</p>}
-        {filteredData?.map((job) => {
-          return (
-            <JobCard
-              id={job.id}
-              type="student"
-              state="show-proposals"
-              key={job.id}
-              course={job.higher_course.name}
-              deliveryAt={new Date(job.delivery)}
-              discipline={job.job_has_knowledges
-                .map(
-                  ({ knowledge: { name: knowledge_name } }) => knowledge_name
-                )
-                .join(", ")}
-              price={job.value_pay}
-              theme={job.thema}
-              title={job.title}
-              typeOfWork={job.job_type.name}
-              urgent={false}
-            />
-          );
-        })}
+        {filteredData?.map((job) => (
+          <JobCard
+            {...job}
+            totalProposals={job.proposals.length}
+            totalChanges={0}
+            wasEvaluated={!!job.rating}
+            urgent={false}
+            typeOfWork={job.typeOfWork.name}
+            knowledges={job.knowledges.map((knowledge) => knowledge.name)}
+            course={job.higherCourse.name}
+          />
+        ))}
       </S.MainContainer>
       <S.ButtonContainer>
         <Link href="/jobs" passHref>

@@ -1,3 +1,5 @@
+import { JobRating } from "@/types/Job";
+
 export type CourseVariant =
   | "DIREITO"
   | "ENG-CIVIL"
@@ -16,8 +18,6 @@ export type CardStatus =
   | "in-progress"
   | "partial-delivery"
   | "final-delivery";
-
-export type CardType = "STUDENT" | "EDITOR";
 
 export type CardProps = {
   /**
@@ -40,8 +40,9 @@ export type ICardProps = CardProps & {
   deliveryAt: Date;
   status: CardStatus;
   creatorId: string;
-  type?: CardType;
+  rating?: JobRating;
   totalProposals: number;
+  editorId?: string;
   totalChanges: number;
   wasEvaluated: boolean;
   knowledges: string[];

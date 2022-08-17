@@ -1,4 +1,4 @@
-import { api } from "../api";
+import { api } from "@/services/api";
 
 type IUploadFileReq = {
   file: File;
@@ -6,7 +6,10 @@ type IUploadFileReq = {
   type?: number;
 };
 
-type IUploadFileRes = {};
+type IUploadFileRes = {
+  id: string;
+  link: string;
+};
 
 export async function uploadFile({
   file,
@@ -22,7 +25,7 @@ export async function uploadFile({
     headers: { "Content-Type": "multipart/form-data" },
   });
 
-  console.log(data);
+  const { id, link } = data.media;
 
-  return {};
+  return { id, link };
 }

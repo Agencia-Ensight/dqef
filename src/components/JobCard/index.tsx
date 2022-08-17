@@ -1,6 +1,5 @@
 import { useCallback, useMemo } from "react";
 import Link from "next/link";
-import Router from "next/router";
 import { format } from "date-fns";
 
 import * as S from "./styles";
@@ -16,6 +15,7 @@ import {
   ModalSeeChanges,
   ModalSeeRating,
   ModalSeeJob,
+  ModalRequestChanges,
 } from "./components";
 
 function handleProblem(jobId: string) {
@@ -35,42 +35,100 @@ function JobCard(job: ICardProps) {
   );
 
   const handleSendReview = useCallback(() => {
-    modal.open(`Olá, ${user?.name}`, { content: () => <ModalRating /> });
-  }, [modal]);
+    modal.open(`Olá, ${user?.name}`, {
+      content: () => (
+        <ModalRating jobId={job.id} editorId={job.editorId || ""} />
+      ),
+    });
+  }, [modal, job.id, user?.name, job?.editorId]);
 
   const handleJobDelivery = useCallback(() => {
     modal.open("Deseja enviar o trabalho?", {
       content: () => (
         <ModalSendJob
+          jobId={job.id}
           acceptPlagiarism={20} //TODO
           plagiarismOfJob={20} //TODO
           dateLimitOfRequestChanges={new Date()} //TODO
         />
       ),
     });
-  }, [modal]);
+  }, [modal, job.id]);
 
   const handleSendCounterProposal = useCallback(() => {
-    modal.open("Alterar Valor", { content: () => <ModalCounterProposal /> });
-  }, [modal]);
+    modal.open("Alterar Valor", {
+      content: () => <ModalCounterProposal jobId={job.id} userId={user!.id} />,
+    });
+  }, [modal, user?.id, job.id]);
 
   const handleAcceptJob = useCallback(() => {
     modal.open(
       "Olá, redator! Ficamos felizes pelo seu interesse em um dos trabalhos publicados ",
-      { content: () => <ModalProposalInfo /> }
+      {
+        content: () => (
+          <ModalProposalInfo
+            jobId={job.id}
+            price={job.price}
+            userId={user!.id}
+          />
+        ),
+      }
     );
-  }, [modal]);
+  }, [modal, job.id, job.price, user?.id]);
 
   const handleSeeChanges = useCallback(() => {
     modal.open(`Olá, ${user?.name}. Essas são as alterações solicitadas`, {
       content: () => (
         <ModalSeeChanges
-          dateOfTheFinalAdjust={new Date()} //TODO
+          dateOfTheFinalAdjust={job.deliveryAt} // TODO
           obs="teste 1" //TODO
         />
       ),
     });
-  }, [modal]);
+  }, [modal, job.deliveryAt]);
+
+  const handleSeeJob = useCallback(() => {
+    modal.open(`Olá, ${user?.name}`, {
+      content: () => (
+        <ModalSeeJob
+          jobId={job.id}
+          isFirstDelivery={job.status === "partial-delivery"}
+          dateOfChanges={new Date()} //TODO
+        />
+      ),
+    });
+  }, [modal, job.id, job.status]);
+
+  const handleStartJob = useCallback(() => {
+    modal.open(`Negócio Fechado!`, {
+      content: () => (
+        <ModalStartJob
+          jobId={job.id}
+          dateOfDelivery={job.deliveryAt}
+          dateFirstCharge={new Date()} //TODO
+          dateSecondCharge={new Date()} //TODO
+          dateThirdCharge={new Date()} //TODO
+        />
+      ),
+    });
+  }, [modal, job.id, job.deliveryAt]);
+
+  const handleSeeRating = useCallback(() => {
+    modal.open("Feedback do Estudante", {
+      content: () => (
+        <ModalSeeRating
+          obs={job.rating?.testimonial || ""}
+          rating={job.rating!.rating}
+        />
+      ),
+    });
+  }, [modal, job.rating]);
+
+  const handleSendChanges = useCallback(() => {
+    modal.open("Solicitar alteração", {
+      content: () => <ModalRequestChanges jobId={job.id} />,
+    });
+  }, [modal, job.id]);
 
   const handleCharge = useCallback(() => {
     modal.open(`Olá, ${user?.name}`, {
@@ -81,44 +139,6 @@ function JobCard(job: ICardProps) {
       ),
     });
   }, [modal]);
-
-  const handleSeeJob = useCallback(() => {
-    modal.open(`Olá, ${user?.name}`, {
-      content: () => (
-        <ModalSeeJob
-          isFirstDelivery={true} //TODO
-          dateOfChanges={new Date()} //TODO
-        />
-      ),
-    });
-  }, [modal]);
-
-  const handleStartJob = useCallback(() => {
-    modal.open(`Negócio Fechado!`, {
-      content: () => (
-        <ModalStartJob
-          jobId={job.id}
-          dateOfDelivery={new Date()} //TODO
-          dateFirstCharge={new Date()} //TODO
-          dateSecondCharge={new Date()} //TODO
-          dateThirdCharge={new Date()} //TODO
-        />
-      ),
-    });
-  }, [modal, job.id]);
-
-  const handleSeeRating = useCallback(() => {
-    modal.open("Feedback do Estudante", {
-      content: () => (
-        <ModalSeeRating
-          obs="banana" //TODO
-          rating={20} //TODO
-        />
-      ),
-    });
-  }, [modal]);
-
-  const handleSendChanges = useCallback(() => {}, []);
 
   return (
     <S.Wrapper>
@@ -150,7 +170,7 @@ function JobCard(job: ICardProps) {
             <S.Subtitle>Data de Entrega {job.urgent && "Urgente"}</S.Subtitle>
             <S.Date urgent={job.urgent}>{formattedDate}</S.Date>
           </S.InformationContainer>
-          {job.type === "EDITOR" && (
+          {user?.type === "EDITOR" && (
             <>
               {((job.status === "waiting-proposals" &&
                 job.totalProposals > 0) ||
@@ -160,7 +180,7 @@ function JobCard(job: ICardProps) {
               )}
             </>
           )}
-          {job.type === "STUDENT" && job.creatorId === user?.id && (
+          {user?.type === "STUDENT" && job.creatorId === user?.id && (
             <>
               {(job.status === "ready-to-start" ||
                 (job.status === "partial-delivery" &&
@@ -180,7 +200,7 @@ function JobCard(job: ICardProps) {
           <S.Button>Ver mais</S.Button>
         </Link>
 
-        {job.type === "STUDENT" && job.creatorId === user?.id && (
+        {user?.type === "STUDENT" && job.creatorId === user?.id && (
           <>
             {job.status === "waiting-proposals" && (
               <>
@@ -197,7 +217,7 @@ function JobCard(job: ICardProps) {
             )}
             {job.status === "partial-delivery" && job.totalChanges === 0 && (
               <>
-                <S.Button onClick={handleJobDelivery}>Entrega</S.Button>
+                <S.Button onClick={handleSeeJob}>Entrega</S.Button>
                 <S.Button onClick={handleSendChanges}>Alterações</S.Button>
               </>
             )}
@@ -210,7 +230,7 @@ function JobCard(job: ICardProps) {
           </>
         )}
 
-        {job.type === "EDITOR" && (
+        {user?.type === "EDITOR" && (
           <>
             {job.status === "waiting-proposals" && job.totalProposals === 0 && (
               <>

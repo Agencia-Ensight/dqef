@@ -80,6 +80,19 @@ export const JOB_FRAGMENT = gql`
       id
       name
     }
+    proposals {
+      id
+      user_id
+      user {
+        avatar
+        id
+        name
+      }
+      proposal_status {
+        id
+        name
+      }
+    }
     higher_course {
       id
       name
@@ -105,6 +118,10 @@ export const JOB_FRAGMENT = gql`
         title
       }
     }
+    user_ratings {
+      rating
+      testimonial
+    }
   }
 `;
 
@@ -120,50 +137,19 @@ export const GET_JOB = gql`
 export const GET_TOP_10_URGENT_JOBS = gql`
   query {
     jobs(limit: 10) {
-      id
-      title
-      thema
-      value_pay
-      delivery
-      higher_course {
-        name
-      }
-      job_has_knowledges {
-        knowledge {
-          name
-        }
-      }
-      job_format {
-        name
-      }
+      ...JobFragment
     }
   }
+  ${JOB_FRAGMENT}
 `;
 
 export const GET_TOP_10_JOBS = gql`
   query {
     jobs(limit: 10) {
-      id
-      title
-      thema
-      value_pay
-      delivery
-      job_type {
-        name
-      }
-      higher_course {
-        name
-      }
-      job_has_knowledges {
-        knowledge {
-          name
-        }
-      }
-      job_format {
-        name
-      }
+      ...JobFragment
     }
   }
+  ${JOB_FRAGMENT}
 `;
 
 export const GET_URGENT_JOBS = gql`
@@ -178,27 +164,10 @@ export const GET_URGENT_JOBS = gql`
 export const GET_JOBS = gql`
   query {
     jobs {
-      id
-      title
-      thema
-      value_pay
-      delivery
-      job_type {
-        name
-      }
-      higher_course {
-        name
-      }
-      job_has_knowledges {
-        knowledge {
-          name
-        }
-      }
-      job_format {
-        name
-      }
+      ...JobFragment
     }
   }
+  ${JOB_FRAGMENT}
 `;
 
 export const GET_JOB_FORMATS = gql`
@@ -289,10 +258,90 @@ export const INSERT_JOB = gql`
   }
 `;
 
+export const INSERT_DELIVERY = gql`
+  mutation InsertPartialDelivery(
+    $jobId: Int!
+    $statusId: Int!
+    $medias: [job_has_medias_insert_input!]!
+  ) {
+    insert_job_has_medias(objects: $medias) {
+      returning {
+        id
+      }
+    }
+    update_jobs(
+      where: { id: { _eq: $jobId } }
+      _set: { job_status_id: $statusId }
+    ) {
+      returning {
+        id
+      }
+    }
+  }
+`;
+
+export const SEND_PROPOSAL = gql`
+  mutation SendProposal(
+    $jobId: Int!
+    $userId: uuid!
+    $price: Float!
+    $statusId: Int!
+  ) {
+    insert_proposals_one(
+      object: {
+        job_id: $jobId
+        price: $price
+        user_id: $userId
+        proposal_status_id: $statusId
+      }
+    ) {
+      id
+    }
+  }
+`;
+
+export const INSERT_JOB_REVIEW = gql`
+  mutation InsertJobReview(
+    $jobId: Int!
+    $userId: uuid!
+    $reviwerId: uuid!
+    $review: Float!
+    $testimonial: String
+  ) {
+    insert_user_ratings_one(
+      object: {
+        job_id: $jobId
+        rating: $review
+        testimonial: $testimonial
+        user_id: $userId
+        evaluator_user_id: $reviwerId
+      }
+    ) {
+      id
+    }
+  }
+`;
+
 export const GET_JOBS_BY_USER = gql`
   query GetJobsByUser($userId: uuid!, $statusId: Int!) {
     jobs(
       where: { user_id: { _eq: $userId }, job_status_id: { _eq: $statusId } }
+    ) {
+      ...JobFragment
+    }
+  }
+  ${JOB_FRAGMENT}
+`;
+
+export const GET_JOBS_BY_EDITOR = gql`
+  query GetJobsByEditor($editorId: uuid!, $statusId: Int!) {
+    jobs(
+      where: {
+        proposals: {
+          _and: { user_id: { _in: $editorId }, proposal_status_id: { _eq: 1 } }
+        }
+        job_status_id: { _eq: $statusId }
+      }
     ) {
       ...JobFragment
     }
@@ -307,10 +356,28 @@ export const GET_PROPOSALS_BY_JOB = gql`
       job {
         id
       }
+      proposal_status {
+        id
+        name
+      }
+      price
       user {
         avatar
         id
         name
+        higher_course {
+          name
+        }
+        formation {
+          name
+        }
+        userRatingsByUserId_aggregate {
+          aggregate {
+            avg {
+              rating
+            }
+          }
+        }
       }
     }
   }

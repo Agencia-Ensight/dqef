@@ -12,10 +12,11 @@ function ProfileCardEmployee({
   price,
   course,
   profileName,
-  jobs,
+  avgRating,
   studying,
 }: Props) {
   const { open } = useModal();
+
   const formatPrice = price.toLocaleString("pt-br", {
     style: "currency",
     currency: "BRL",
@@ -24,6 +25,7 @@ function ProfileCardEmployee({
   function handleStartJob() {
     open("Calma lá!", { content: () => <ModalPayment price={formatPrice} /> });
   }
+
   return (
     <div>
       <S.Wrapper>
@@ -34,19 +36,20 @@ function ProfileCardEmployee({
         <S.Course>{course}</S.Course>
         <S.ProfileName>{profileName}</S.ProfileName>
         <S.RatingContainer>
-          <AiFillStar size={20} color="#ffb200" />
-          <AiFillStar size={20} color="#ffb200" />
-          <AiFillStar size={20} color="#ffb200" />
-          <AiFillStar size={20} color="#ffb200" />
-          <AiFillStar size={20} />
+          {new Array(avgRating).fill(0).map((_, index) => (
+            <AiFillStar
+              size={20}
+              color={index < avgRating ? "#ffb200" : undefined}
+            />
+          ))}
         </S.RatingContainer>
-        <S.InfoContainer>
+        {/* <S.InfoContainer>
           <S.Line />
-          <S.Course>{jobs}</S.Course>
-          <S.InfoTitle>Trabalhos Realizados</S.InfoTitle>
-        </S.InfoContainer>
-        <S.Line />
-        <S.InfoContainer>
+          <S.Course>{avgRating} estrelas</S.Course>
+          <S.InfoTitle>Média de reviews</S.InfoTitle>
+        </S.InfoContainer> */}
+        {/* <S.Line /> */}
+        {/* <S.InfoContainer>
           <S.InfoTitle>Conhecimentos</S.InfoTitle>
           <S.TagsContainer>
             <TagKnowledge>Banana</TagKnowledge>
@@ -54,14 +57,14 @@ function ProfileCardEmployee({
             <TagKnowledge>Banana</TagKnowledge>
             <TagKnowledge>Banana</TagKnowledge>
           </S.TagsContainer>
-        </S.InfoContainer>
+        </S.InfoContainer> */}
         <S.Line />
         <S.InfoContainer>
           <S.InfoTitle>{studying}</S.InfoTitle>
         </S.InfoContainer>
       </S.Wrapper>
       <S.Footer>
-        <S.ButtonSee>Ver Mais</S.ButtonSee>
+        {/* <S.ButtonSee>Ver Mais</S.ButtonSee> */}
         <S.ButtonStart onClick={handleStartJob}>Iniciar</S.ButtonStart>
       </S.Footer>
     </div>
