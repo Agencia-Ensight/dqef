@@ -16,10 +16,18 @@ export function ModalRequestChanges() {
 
       <S.InputText></S.InputText>
 
-      <S.ButtonBang>
-        <AiOutlineDownload color="#42A4EF" />
-        <h2>Anexar arquivo</h2>
-      </S.ButtonBang>
+      <S.FileDiv>
+        <label htmlFor="file" className="label-inputfile">
+          Anexar Arquivos
+          <AiOutlineDownload />
+        </label>
+        <input
+          type="file"
+          multiple={true}
+          className="inputfile-root"
+          id="file"
+        />
+      </S.FileDiv>
 
       <S.ButtonFinaleira>
         <ButtonKnewave size={isMobile ? "sm" : "lg"} variant="PRIMARY">
