@@ -284,7 +284,7 @@ export const SEND_PROPOSAL = gql`
   mutation SendProposal(
     $jobId: Int!
     $userId: uuid!
-    $price: Float!
+    $price: Int!
     $statusId: Int!
   ) {
     insert_proposals_one(
