@@ -1,15 +1,24 @@
+import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { MdSegment, MdClose } from "react-icons/md";
-import Image from "next/image";
-import Link from "next/link";
+
+import { ButtonKnewave } from "@/components";
+import { useUser, useModal } from "@/contexts";
+import { ModalHoldOn } from "../ModalHoldOn";
 
 import * as S from "./styles";
-import { ButtonKnewave } from "@/components";
-import { useUser } from "@/contexts";
 
 function Menu() {
   const { user, signOut } = useUser();
+  const { open } = useModal();
+
   const [isOpen, setIsOpen] = useState(false);
+
+  function handlePublishJob() {
+    open("Calma lá!", { content: () => <ModalHoldOn /> });
+    setIsOpen((oldIsOpen) => !oldIsOpen);
+  }
 
   const getLoginOrLogout = useMemo(() => {
     if (!user) {
@@ -76,6 +85,19 @@ function Menu() {
               <S.SubTitle onClick={handleOpen}>Editar Perfil</S.SubTitle>
             </Link>
           </>
+        )}
+        {user && user.type == "STUDENT" && (
+          <Link href="/jobs/create" passHref>
+            <ButtonKnewave size="sm" variant="PRIMARY">
+              Publicar Trabalho
+            </ButtonKnewave>
+          </Link>
+        )}
+
+        {!user && (
+          <ButtonKnewave size="sm" variant="PRIMARY" onClick={handlePublishJob}>
+            Publicar Trabalho
+          </ButtonKnewave>
         )}
 
         {getLoginOrLogout}
