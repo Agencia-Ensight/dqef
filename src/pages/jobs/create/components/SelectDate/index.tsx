@@ -7,7 +7,7 @@ import pt from "date-fns/locale/pt";
 import { ButtonKnewave, IRenderProps } from "@/components";
 import * as S from "./styles";
 
-export function SelectDate({ onComplete, prevRes }: IRenderProps) {
+export function SelectDate({ onComplete, prevRes, onPrevStep }: IRenderProps) {
   const [delivery, setDelivery] = useState(new Date());
   const tommorrow = new Date();
 
@@ -21,7 +21,7 @@ export function SelectDate({ onComplete, prevRes }: IRenderProps) {
 
   return (
     <form>
-      <S.BackButton onClick={Router.back}>Voltar</S.BackButton>
+      <S.BackButton onClick={() => onPrevStep()}>Voltar</S.BackButton>
       <S.HeaderContainer>
         <S.Title>Selecione uma data</S.Title>
 

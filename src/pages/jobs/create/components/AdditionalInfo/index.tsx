@@ -12,7 +12,7 @@ const fruits = [
   { id: 2, name: "maca" },
 ];
 
-function AdditionalInfo({ onComplete, prevRes }: IRenderProps) {
+function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
   const mediaTypes = useQuery<{ media_types: any }>(GET_MEDIA_TYPES);
   const [maximum_plagiarism, setMaximum_plagiarism] = useState("");
   const [job_format_id, setJob_format_id] = useState(
@@ -50,6 +50,8 @@ function AdditionalInfo({ onComplete, prevRes }: IRenderProps) {
 
   return (
     <form onSubmit={handleSubmit}>
+      <S.BackButton onClick={() => onPrevStep()}>Voltar</S.BackButton>
+
       <S.HeaderContainer>
         <S.Title>Últimos Ajustes</S.Title>
         <S.Steps>3 de 3</S.Steps>
