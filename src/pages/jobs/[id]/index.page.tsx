@@ -7,7 +7,6 @@ import { JobCard } from "@/components";
 import { InfoCard } from "./components/InfoCard";
 import { FileCard } from "./components/FileCard";
 import { useJob } from "@/hooks";
-import { ensureAuth } from "@/hocs";
 import { useUser } from "@/contexts";
 
 function InsideJob({ id }: IInsideJob) {
@@ -69,4 +68,4 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   };
 }
 
-export default ensureAuth(InsideJob);
+export default InsideJob;
