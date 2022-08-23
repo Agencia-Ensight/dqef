@@ -1,10 +1,32 @@
-import * as S from "./styles";
+import { useCallback, useMemo, useState } from "react";
+import { BsSearch } from "react-icons/bs";
 
 import { JobCard } from "@/components";
 import { useUrgentJobs } from "@/hooks";
 
+import * as S from "./styles";
+
 function UrgentWorks() {
+  const [searchJobs, setSearchJobs] = useState("");
   const urgentJobs = useUrgentJobs();
+
+  const handleSearchJobs = useCallback((value: string) => {
+    setSearchJobs(value.toLowerCase());
+  }, []);
+
+  const filteredData = useMemo(
+    () =>
+      urgentJobs.data?.filter((filterJobs) => {
+        if (searchJobs === "") {
+          return filterJobs;
+        } else {
+          return filterJobs.higherCourse.name
+            .toLowerCase()
+            .includes(searchJobs);
+        }
+      }),
+    [urgentJobs.data]
+  );
 
   return (
     <S.Wrapper>
@@ -17,6 +39,14 @@ function UrgentWorks() {
             premium possuem permissão para realizar.
           </S.Description>
         </div>
+        <S.InputContainer>
+          <S.SearchInput
+            placeholder="Pesquisar"
+            value={searchJobs}
+            onChange={(e) => handleSearchJobs(e.target.value)}
+          />
+          <BsSearch size={20} color="#42A4EF" />
+        </S.InputContainer>
       </S.HeaderContainer>
       <S.MainContainer>
         {urgentJobs.data?.map((job) => (
