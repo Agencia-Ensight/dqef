@@ -17,7 +17,7 @@ export function useUrgentJobs() {
       gte: currentDate,
       lte: nextTwoDays,
     },
-    displayName: "urgent-jobs",
+    pollInterval: 10000,
   });
 
   const data = rawData?.jobs.map((job) => toJob(job));

@@ -1,21 +1,31 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
-import Router from "next/router";
+import { useMemo, useState } from "react";
 import DatePicker from "react-datepicker";
-import pt from "date-fns/locale/pt";
+import pt from "date-fns/locale/pt-BR";
+import { addDays, differenceInDays, startOfDay, subDays } from "date-fns";
 
 import { ButtonKnewave, IRenderProps } from "@/components";
 import * as S from "./styles";
 
+const today = startOfDay(new Date());
+const tomorrow = addDays(today, 1);
+
 export function SelectDate({ onComplete, prevRes, onPrevStep }: IRenderProps) {
-  const [delivery, setDelivery] = useState(new Date());
-  const tommorrow = new Date();
+  const [delivery, setDelivery] = useState(tomorrow);
+
+  const deadline = useMemo(() => {
+    const eachDay = differenceInDays(delivery, today) + 1;
+
+    const daysToAdd = eachDay % 2 === 0 ? eachDay / 2 : (eachDay - 1) / 2 + 1;
+
+    return subDays(delivery, daysToAdd);
+  }, [delivery]);
 
   function onSubmit() {
     onComplete({
       ...prevRes,
       delivery,
-      date_limit: delivery,
+      date_limit: deadline,
     });
   }
 
@@ -39,18 +49,18 @@ export function SelectDate({ onComplete, prevRes, onPrevStep }: IRenderProps) {
             onChange={(date: Date) => setDelivery(date)}
             locale={pt}
             placeholderText="Selecione a Data"
-            minDate={tommorrow}
+            minDate={tomorrow}
             showTimeSelect
           />
         </div>
         <div>
           <label>Nossa previsão de entrega</label>
           <DatePicker
-            selected={delivery}
+            selected={deadline}
             onChange={(date: Date) => setDelivery(date)}
             locale={pt}
             placeholderText="Selecione a Data"
-            minDate={new Date()}
+            minDate={tomorrow}
             disabled
           />
         </div>

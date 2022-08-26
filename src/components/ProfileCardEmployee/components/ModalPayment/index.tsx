@@ -1,3 +1,4 @@
+import Router from "next/router";
 import { IoCopy } from "react-icons/io5";
 import { AiOutlineDownload } from "react-icons/ai";
 
@@ -7,18 +8,28 @@ import { useModal, useToast } from "@/contexts";
 
 import * as S from "./styles";
 import { IModalPayment } from "./typings";
-import { useUpdateProposal } from "@/hooks/useUpdateProposal";
+import { useAcceptProposal } from "@/hooks/useAcceptProposal";
 
-export function ModalPayment({ price, proposalId }: IModalPayment) {
+export function ModalPayment({
+  price,
+  proposalId,
+  jobId,
+  editorId,
+}: IModalPayment) {
   const { close } = useModal();
   const { addToast } = useToast();
   const isMobile = useMedia("(max-width: 600px)");
-  const { updateProposal } = useUpdateProposal();
+  const { acceptProposal, isLoading } = useAcceptProposal();
 
   async function handleCopy(info: string) {
     await navigator.clipboard.writeText(info);
-    await updateProposal(proposalId, "accept");
     addToast({ msg: "Copiado para a área de transferência", type: "info" });
+  }
+
+  async function handleSubmit() {
+    await acceptProposal(proposalId, jobId, editorId);
+    close();
+    Router.replace("/profile");
   }
 
   const CNPJ = "46.021.642/0001-78";
@@ -74,8 +85,13 @@ export function ModalPayment({ price, proposalId }: IModalPayment) {
         >
           Cancelar
         </ButtonKnewave>
-        <ButtonKnewave size={isMobile ? "sm" : "lg"} variant="PRIMARY">
-          Continuar
+        <ButtonKnewave
+          disabled={isLoading}
+          size={isMobile ? "sm" : "lg"}
+          variant="PRIMARY"
+          onClick={handleSubmit}
+        >
+          {isLoading ? "Carregando..." : "Continuar"}
         </ButtonKnewave>
       </S.ButtonFinaleira>
     </>

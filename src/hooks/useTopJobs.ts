@@ -15,7 +15,7 @@ export function useTopJobs() {
     variables: {
       gte: currentDate,
     },
-    displayName: "top-jobs",
+    pollInterval: 10000,
   });
 
   const data = rawData?.jobs.map((job) => toJob(job));

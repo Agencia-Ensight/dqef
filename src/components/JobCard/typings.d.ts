@@ -35,7 +35,8 @@ export type ICardProps = CardProps & {
   id: string;
   title: string;
   theme: string;
-  typeOfWork: string;
+  mediaType: string;
+  obs?: string;
   price: number;
   deliveryAt: Date;
   status: CardStatus;
@@ -46,6 +47,7 @@ export type ICardProps = CardProps & {
   editorId?: string;
   totalChanges: number;
   wasEvaluated: boolean;
+  dateLimit: Date;
   knowledges: string[];
   medias: JobMediaProps[];
 };

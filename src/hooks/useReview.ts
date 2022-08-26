@@ -1,6 +1,16 @@
 import { useMutation } from "@apollo/client";
 
-import { INSERT_JOB_REVIEW } from "@/services/graphql/jobs";
+import {
+  GET_JOB,
+  GET_JOBS,
+  GET_JOBS_BY_EDITOR,
+  GET_JOBS_BY_USER,
+  GET_PROPOSALS_BY_JOB,
+  GET_TOP_10_JOBS,
+  GET_TOP_10_URGENT_JOBS,
+  GET_URGENT_JOBS,
+  INSERT_JOB_REVIEW,
+} from "@/services/graphql/jobs";
 import { useUser } from "@/contexts";
 
 type IReview = {
@@ -25,13 +35,14 @@ export function useReview() {
         reviwerId: user?.id,
       },
       refetchQueries: [
-        "jobs",
-        "urgent-jobs",
-        "jobs-by-user",
-        `job-${jobId}`,
-        "proposals",
-        "top-jobs",
-        "top-urgent-jobs",
+        GET_JOBS,
+        GET_URGENT_JOBS,
+        GET_JOBS_BY_USER,
+        GET_JOBS_BY_EDITOR,
+        GET_JOB,
+        GET_PROPOSALS_BY_JOB,
+        GET_TOP_10_JOBS,
+        GET_TOP_10_URGENT_JOBS,
       ],
     });
   }

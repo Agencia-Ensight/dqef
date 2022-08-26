@@ -1,34 +1,22 @@
 import { FormEvent, useState } from "react";
-import { useQuery } from "@apollo/client";
 import Router from "next/router";
 
 import { Input, ComboboxComp, ButtonKnewave, IRenderProps } from "@/components";
 import * as S from "./styles";
-import {
-  GET_COURSES,
-  GET_FORMATS,
-  GET_KNOWLEDGES_BY_COURSE_ID,
-} from "@/services/graphql/queries";
+import { useCourses, useJobFormats, useKnowledgesByCourse } from "@/hooks";
 
 function MainInfo({ onComplete }: IRenderProps) {
   const [higher_course_id, setHigher_course_id] = useState(1);
   const [title, setTitle] = useState("");
   const [pages, setPages] = useState(0);
   const [words, setWords] = useState(0);
-  const [job_type_id, setJob_type_id] = useState(1);
+  const [job_format_id, setJob_format_id] = useState(1);
   const [thema, setThema] = useState("");
   const [instructions, setInstructions] = useState("");
   const [knowledge_id, setKnowledge_id] = useState(1);
-  const courses = useQuery<{ higher_courses: any }>(GET_COURSES);
-  const knowledges = useQuery<{ knowledges: any }>(
-    GET_KNOWLEDGES_BY_COURSE_ID,
-    {
-      variables: {
-        higher_course_id,
-      },
-    }
-  );
-  const formats = useQuery<{ job_formats: any }>(GET_FORMATS);
+  const courses = useCourses();
+  const knowledges = useKnowledgesByCourse(higher_course_id);
+  const formats = useJobFormats();
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -38,7 +26,7 @@ function MainInfo({ onComplete }: IRenderProps) {
       title,
       pages,
       words,
-      job_type_id,
+      job_format_id,
       thema,
       instructions,
       knowledge_id,
@@ -73,23 +61,32 @@ function MainInfo({ onComplete }: IRenderProps) {
 
           <ComboboxComp
             label="Tipo do Trabalho"
-            items={formats.data?.job_formats || []}
-            onSelectedChange={(item) => setJob_type_id(item.id)}
+            placeholder="Insira o tipo"
+            items={formats.data || []}
+            onSelectedChange={(item) => setJob_format_id(item.id)}
+            required
+            mandatory
           />
         </S.FirstInputContainer>
         <S.TextInputContainer>
           <ComboboxComp
             label="Curso do Trabalho"
-            items={courses.data?.higher_courses || []}
+            placeholder="Insira o curso"
+            items={courses.data || []}
             onSelectedChange={(item) => {
               setHigher_course_id(item.id);
             }}
+            required
+            mandatory
           />
 
           <ComboboxComp
             label="Disciplina do Trabalho"
-            items={knowledges.data?.knowledges || []}
+            items={knowledges.data || []}
+            placeholder="Insira a disciplina"
             onSelectedChange={(item) => setKnowledge_id(item.id)}
+            required
+            mandatory
           />
 
           <Input
@@ -122,7 +119,6 @@ function MainInfo({ onComplete }: IRenderProps) {
             name="pages"
             value={pages}
             onChange={(e) => setPages(Number(e.target.value))}
-            required
           />
           <Input
             label="Número de palavras"
@@ -131,7 +127,6 @@ function MainInfo({ onComplete }: IRenderProps) {
             type="number"
             value={words}
             onChange={(e) => setWords(Number(e.target.value))}
-            required
           />
         </S.LastInputs>
         <ButtonKnewave variant="PRIMARY" size="sm" type="submit">

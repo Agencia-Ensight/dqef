@@ -37,7 +37,7 @@ export type JobProps = {
   id: string;
   title: string;
   theme: string;
-  typeOfWork: JobGenericProps;
+  mediaType: JobGenericProps;
   pages: number;
   words: number;
   obs: string;
@@ -48,6 +48,7 @@ export type JobProps = {
   creatorId: string;
   editorId?: string;
   deliveryAt: Date;
+  dateLimit: Date;
   jobType: JobGenericProps;
   higherCourse: JobGenericProps;
   knowledges: JobGenericProps[];

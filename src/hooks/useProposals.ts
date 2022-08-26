@@ -11,7 +11,6 @@ export function useProposals(jobId: string) {
     error,
   } = useQuery(GET_PROPOSALS_BY_JOB, {
     variables: { jobId },
-    displayName: "proposals",
   });
 
   const data = rawData?.proposals.map((proposal: Record<string, any>) =>

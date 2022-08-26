@@ -65,6 +65,11 @@ export const JOB_FRAGMENT = gql`
   fragment JobFragment on jobs {
     id
     date_limit
+    job_media_types {
+      id
+      name
+    }
+    editor_id
     delivery
     thema
     title
@@ -231,6 +236,7 @@ export const INSERT_JOB = gql`
     $job_format_id: Int!
     $obs: String!
     $maximum_plagiarism: String!
+    $job_media_type_id: Int!
   ) {
     insert_jobs_one(
       object: {
@@ -251,6 +257,7 @@ export const INSERT_JOB = gql`
         date_limit: $date_limit
         delivery: $delivery
         instructions: $instructions
+        job_media_type_id: $job_media_type_id
       }
     ) {
       id
@@ -284,7 +291,7 @@ export const SEND_PROPOSAL = gql`
   mutation SendProposal(
     $jobId: Int!
     $userId: uuid!
-    $price: Int!
+    $price: float8!
     $statusId: Int!
   ) {
     insert_proposals_one(
@@ -323,9 +330,9 @@ export const INSERT_JOB_REVIEW = gql`
 `;
 
 export const GET_JOBS_BY_USER = gql`
-  query GetJobsByUser($userId: uuid!, $statusId: Int!) {
+  query GetJobsByUser($userId: uuid!, $statusesId: [Int!]) {
     jobs(
-      where: { user_id: { _eq: $userId }, job_status_id: { _eq: $statusId } }
+      where: { user_id: { _eq: $userId }, job_status_id: { _in: $statusesId } }
     ) {
       ...JobFragment
     }
@@ -334,22 +341,44 @@ export const GET_JOBS_BY_USER = gql`
 `;
 
 export const UPDATE_PROPOSAL = gql`
-  mutation UpdateProposal($proposalId: String!, $statusId: Int!) {
+  mutation UpdateProposal(
+    $proposalId: uuid!
+    $statusId: Int!
+    $editorId: uuid
+  ) {
     update_proposals_by_pk(
       pk_columns: { id: $proposalId }
       _set: { proposal_status_id: $statusId }
-    )
+    ) {
+      id
+    }
+  }
+`;
+
+export const ACCEPT_PROPOSAL = gql`
+  mutation AcceptProposal($proposalId: uuid!, $jobId: Int!, $editorId: uuid!) {
+    update_proposals_by_pk(
+      pk_columns: { id: $proposalId }
+      _set: { proposal_status_id: 2 }
+    ) {
+      id
+    }
+
+    update_jobs_by_pk(
+      pk_columns: { id: $jobId }
+      _set: { editor_id: $editorId }
+    ) {
+      id
+    }
   }
 `;
 
 export const GET_JOBS_BY_EDITOR = gql`
-  query GetJobsByEditor($editorId: uuid!, $statusId: Int!) {
+  query GetJobsByEditor($editorId: uuid!, $statusesId: [Int!]) {
     jobs(
       where: {
-        proposals: {
-          _and: { user_id: { _in: $editorId }, proposal_status_id: { _eq: 1 } }
-        }
-        job_status_id: { _eq: $statusId }
+        proposals: { user_id: { _eq: $editorId } }
+        job_status_id: { _in: $statusesId }
       }
     ) {
       ...JobFragment

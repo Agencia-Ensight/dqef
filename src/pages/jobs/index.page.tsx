@@ -57,7 +57,7 @@ function AllJobs() {
             totalChanges={0}
             wasEvaluated={!!job.rating}
             urgent={false}
-            typeOfWork={job.typeOfWork.name}
+            mediaType={job.mediaType.name}
             knowledges={job.knowledges.map((knowledge) => knowledge.name)}
             course={job.higherCourse.name}
           />

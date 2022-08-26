@@ -10,7 +10,7 @@ type IMenuOption = "proposals" | "jobsOnGoing" | "jobsDone";
 
 type IMenu = {
   title: string;
-  status: JobStatus;
+  status: JobStatus[];
 };
 
 function Menu({ title, status }: IMenu) {
@@ -30,7 +30,7 @@ function Menu({ title, status }: IMenu) {
             totalChanges={0}
             wasEvaluated={!!job.rating}
             urgent={false}
-            typeOfWork={job.typeOfWork.name}
+            mediaType={job.mediaType.name}
             knowledges={job.knowledges.map((knowledge) => knowledge.name)}
             course={job.higherCourse.name}
           />
@@ -58,13 +58,19 @@ function Profile() {
       {user && (
         <div>
           {menu === "proposals" && (
-            <Menu title="Suas propostas" status="waiting-proposals" />
+            <Menu
+              title="Suas propostas"
+              status={["waiting-proposals", "ready-to-start"]}
+            />
           )}
           {menu === "jobsOnGoing" && (
-            <Menu title="Trabalhos em andamento" status="in-progress" />
+            <Menu
+              title="Trabalhos em andamento"
+              status={["in-progress", "partial-delivery"]}
+            />
           )}
           {menu === "jobsDone" && (
-            <Menu title="Trabalhos feitos" status="final-delivery" />
+            <Menu title="Trabalhos feitos" status={["final-delivery"]} />
           )}
         </div>
       )}

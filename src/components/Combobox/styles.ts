@@ -1,106 +1,57 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
   label {
     color: #53647e;
     font-size: 18px;
     margin-bottom: 10px;
-  }
-`;
 
-export const ComboboxWrapper = styled.div``;
-
-export const ComboboxContainer = styled.div`
-  overflow: hidden;
-  text-align: left;
-  cursor: default;
-  border: 2px solid #42a4ef;
-  border-radius: 99px;
-  width: 100%;
-  height: 51px;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  position: relative;
-
-  @media (min-width: 640px) {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-
-  .combobox-input {
-    outline: 0;
-    background: transparent;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 0.75rem;
-    padding-right: 2.5rem;
-    color: #111827;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    line-height: 1.25rem;
-    width: 100%;
-    border-style: none;
-  }
-
-  .combobox-button {
-    display: flex;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    padding-right: 0.5rem;
-    align-items: center;
-  }
-
-  .combobox-options {
-    overflow: auto;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    position: absolute;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    margin-top: 0.25rem;
-    background-color: red;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    width: 100%;
-    border-radius: 0.375rem;
-    box-shadow: var(--tw-ring-inset) 0 0 0
-      calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-    --ring-color: #000000;
-    --ring-opacity: 0.05;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05);
-
-    @media (min-width: 640px) {
-      font-size: 0.875rem;
-      line-height: 1.25rem;
+    span {
+      color: #e62f5b;
     }
   }
 
-  .combobox-no-option {
-    position: relative;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    color: #374151;
-    cursor: default;
-    user-select: none;
-  }
+  .combobox-options {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    background: white;
+    color: #222;
+    border: 1px solid #eee;
+    margin: 5px 0;
 
-  .combobox-option {
-    position: relative;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-right: 1rem;
-    padding-left: 2.5rem;
-    cursor: pointer;
-    user-select: none;
+    span {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  }
+`;
+
+export const ComboWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  border: 2px solid #42a4ef;
+  border-radius: 99px;
+  padding: 10px 29px;
+
+  input {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    outline: 0;
+
+    &::placeholder {
+      color: #848484;
+    }
+
+    &:disabled {
+      background: #e0e0e0;
+    }
   }
 `;

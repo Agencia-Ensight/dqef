@@ -30,8 +30,8 @@ function JobCard(job: ICardProps) {
   const { user } = useUser();
 
   const formattedDate = useMemo(
-    () => format(job.deliveryAt, "dd/MM/yyyy 'às' HH:mm"),
-    [job.deliveryAt]
+    () => format(job.dateLimit, "dd/MM/yyyy"),
+    [job.dateLimit]
   );
 
   const handleSendReview = useCallback(() => {
@@ -162,7 +162,7 @@ function JobCard(job: ICardProps) {
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Tipo do Trabalho</S.Subtitle>
-            <S.Description>{job.typeOfWork}</S.Description>
+            <S.Description>{job.mediaType}</S.Description>
           </S.InformationContainer>
           <S.InformationContainer>
             <S.Subtitle>Preço Total</S.Subtitle>

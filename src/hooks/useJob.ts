@@ -8,7 +8,7 @@ export function useJob(id: string) {
     data: rawData,
     loading,
     error,
-  } = useQuery(GET_JOB, { variables: { id }, displayName: `job-${id}` });
+  } = useQuery(GET_JOB, { variables: { id }, pollInterval: 5000 });
 
   const data = rawData?.jobs_by_pk ? toJob(rawData.jobs_by_pk) : undefined;
 

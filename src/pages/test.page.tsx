@@ -16,13 +16,12 @@ export default function Test() {
         totalChanges={0}
         wasEvaluated={false}
         urgent={false}
-        typeOfWork={data.typeOfWork.name}
+        mediaType={data.mediaType.name}
         knowledges={data.knowledges.map((knowledge) => knowledge.name)}
         course={data.higherCourse.name}
         status={data.status}
         theme={data.theme}
         title={data.title}
-        type="EDITOR"
         creatorId={user.id}
         deliveryAt={new Date()}
         price={1}

@@ -4,5 +4,6 @@ export type IModalOpenWork = {
   jobId: string;
   isFirstDelivery: boolean;
   dateOfChanges?: Date;
+  obs?: string;
   medias: JobMediaProps[];
 };

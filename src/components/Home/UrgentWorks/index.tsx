@@ -27,7 +27,7 @@ function UrgentWorks() {
             totalChanges={0}
             wasEvaluated={!!urgentJob.rating}
             urgent
-            typeOfWork={urgentJob.typeOfWork.name}
+            mediaType={urgentJob.mediaType.name}
             knowledges={urgentJob.knowledges.map((knowledge) => knowledge.name)}
             course={urgentJob.higherCourse.name}
           />

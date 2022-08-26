@@ -14,7 +14,7 @@ export type JobStatus =
 export function useJobsByUser(
   userId: string,
   userType: "STUDENT" | "EDITOR",
-  status: JobStatus
+  statuses: JobStatus[]
 ) {
   if (userType === "STUDENT") {
     const {
@@ -22,8 +22,12 @@ export function useJobsByUser(
       loading,
       error,
     } = useQuery<{ jobs: Record<string, any>[] }>(GET_JOBS_BY_USER, {
-      variables: { userId, statusId: status ? statusOnDb[status] : undefined },
-      displayName: "jobs-by-user",
+      variables: {
+        userId,
+        statusesId: statuses
+          ? statuses.map((status) => statusOnDb[status])
+          : undefined,
+      },
     });
 
     const data = rawData?.jobs.map(toJob);
@@ -38,8 +42,11 @@ export function useJobsByUser(
   } = useQuery<{ jobs: Record<string, any>[] }>(GET_JOBS_BY_EDITOR, {
     variables: {
       editorId: userId,
-      statusId: status ? statusOnDb[status] : undefined,
+      statusesId: statuses
+        ? statuses.map((status) => statusOnDb[status])
+        : undefined,
     },
+    pollInterval: 5000,
   });
 
   const data = rawData?.jobs.map(toJob);

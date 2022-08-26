@@ -17,7 +17,7 @@ export function useTopUrgentJobs() {
       gte: currentDate,
       lte: nextTwoDays,
     },
-    displayName: "top-urgent-jobs",
+    pollInterval: 10000,
   });
 
   const data = rawData?.jobs.map((job) => toJob(job));

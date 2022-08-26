@@ -13,7 +13,7 @@ export function useJobs() {
     error,
   } = useQuery<{ jobs: Job[] }>(GET_JOBS, {
     variables: { gte: currentDate },
-    displayName: "jobs",
+    pollInterval: 10000,
   });
 
   const data = rawData?.jobs.map((job) => toJob(job));

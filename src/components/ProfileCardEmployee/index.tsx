@@ -15,6 +15,8 @@ function ProfileCardEmployee({
   profileName,
   avgRating,
   studying,
+  userId,
+  jobId,
 }: Props) {
   const { open } = useModal();
 
@@ -25,7 +27,14 @@ function ProfileCardEmployee({
 
   function handleStartJob() {
     open("Calma lá!", {
-      content: () => <ModalPayment price={formatPrice} proposalId={id} />,
+      content: () => (
+        <ModalPayment
+          price={formatPrice}
+          proposalId={id}
+          editorId={userId}
+          jobId={jobId}
+        />
+      ),
     });
   }
 

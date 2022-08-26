@@ -28,7 +28,7 @@ function InsideJob({ id }: IInsideJob) {
           totalChanges={0}
           wasEvaluated={!!job.data.rating}
           urgent
-          typeOfWork={job.data.typeOfWork.name}
+          mediaType={job.data.mediaType.name}
           knowledges={job.data.knowledges.map((knowledge) => knowledge.name)}
           course={job.data.higherCourse.name}
         />

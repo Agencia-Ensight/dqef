@@ -1,29 +1,21 @@
 import { FormEvent, useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 
 import { ButtonKnewave, Input, ComboboxComp, IRenderProps } from "@/components";
 import { INSERT_JOB } from "@/services/graphql/jobs";
 import { useUser } from "@/contexts";
+import { useMediaTypes } from "@/hooks";
 import * as S from "./styles";
-import { GET_FORMATS, GET_MEDIA_TYPES } from "@/services/graphql/queries";
-
-const fruits = [
-  { id: 1, name: "banana" },
-  { id: 2, name: "maca" },
-];
 
 function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
-  const mediaTypes = useQuery<{ media_types: any }>(GET_MEDIA_TYPES);
-  const [maximum_plagiarism, setMaximum_plagiarism] = useState("");
-  const [job_format_id, setJob_format_id] = useState(
-    mediaTypes.data?.media_types[1].id
-  );
+  const mediaTypes = useMediaTypes();
+  const [maxPlagiarism, setMaxPlagiarism] = useState("");
+  const [jobMediaType, setJobMediaType] = useState(1);
   const [obs, setObs] = useState("");
   const [value, setValue] = useState(0);
-
-  const value_pay = value - value * 0.3;
-
   const { user } = useUser();
+
+  const editorValue = value - value * 0.3;
 
   const [insertJob, { loading }] = useMutation(INSERT_JOB);
 
@@ -35,12 +27,13 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
         variables: {
           ...prevRes,
           user_id: user?.id,
-          job_status_id: "1",
-          job_format_id,
-          maximum_plagiarism,
+          job_status_id: 1,
+          job_type_id: 1,
+          job_media_type_id: jobMediaType,
+          maximum_plagiarism: maxPlagiarism,
           obs,
           value,
-          value_pay,
+          value_pay: editorValue,
         },
       });
 
@@ -62,17 +55,19 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
           <Input
             label="Máximo de Plágio Aceitável"
             placeholder="Insira o Valor"
-            mandatory={false}
+            mandatory
             type="number"
             name="maximum_plagiarism"
             id="maximum_plagiarism"
-            value={maximum_plagiarism}
-            onChange={(e) => setMaximum_plagiarism(e.target.value)}
+            value={maxPlagiarism}
+            onChange={(e) => setMaxPlagiarism(e.target.value)}
+            required
           />
           <ComboboxComp
+            mandatory
             label="Formato do Trabalho"
-            items={mediaTypes.data?.media_types || []}
-            onSelectedChange={(item) => setJob_format_id(item.id)}
+            items={mediaTypes.data || []}
+            onSelectedChange={(item) => setJobMediaType(item.id)}
           />
         </S.FirstInputContainer>
         <S.FirstInputContainer>
@@ -80,7 +75,7 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
             placeholder="Disposto a Pagar"
             label="Disposto a Pagar"
             mandatory={true}
-            value={value}
+            value={`R$ ${value}`}
             onChange={(e) => setValue(Number(e.target.value))}
           />
           <Input
@@ -88,7 +83,7 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
             mandatory={false}
             disabled
             name="value_pay"
-            value={value_pay}
+            value={`R$ ${editorValue}`}
           />
         </S.FirstInputContainer>
         <S.FirstInputContainer>

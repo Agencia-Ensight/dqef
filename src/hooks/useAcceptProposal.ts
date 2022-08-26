@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 
 import {
+  ACCEPT_PROPOSAL,
   GET_JOB,
   GET_JOBS,
   GET_JOBS_BY_EDITOR,
@@ -9,20 +10,21 @@ import {
   GET_TOP_10_JOBS,
   GET_TOP_10_URGENT_JOBS,
   GET_URGENT_JOBS,
-  UPDATE_PROPOSAL,
 } from "@/services/graphql/jobs";
 
-export function useUpdateProposal() {
-  const [update, { data, loading, error }] = useMutation(UPDATE_PROPOSAL);
+export function useAcceptProposal() {
+  const [update, { data, loading, error }] = useMutation(ACCEPT_PROPOSAL);
 
-  async function updateProposal(
+  async function acceptProposal(
     proposalId: string,
-    status: "accept" | "reject"
+    jobId: string,
+    editorId: string
   ) {
     await update({
       variables: {
         proposalId,
-        statusId: status === "accept" ? 2 : 3,
+        jobId,
+        editorId,
       },
       refetchQueries: [
         GET_JOBS,
@@ -37,5 +39,5 @@ export function useUpdateProposal() {
     });
   }
 
-  return { updateProposal, data, isLoading: loading, error };
+  return { acceptProposal, data, isLoading: loading, error };
 }

@@ -3,7 +3,7 @@ import { Combobox } from "@headlessui/react";
 import { BiChevronDown } from "react-icons/bi";
 import { FixedSizeList as List } from "react-window";
 
-import * as S from "./newStyles";
+import * as S from "./styles";
 
 type ComboboxData = {
   id: number;
@@ -14,11 +14,13 @@ type ComboboxProps = {
   items: ComboboxData[];
   onSelectedChange: (data: ComboboxData) => void;
   label: string;
+  mandatory?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 function ComboboxComp({
   onSelectedChange,
   items,
+  mandatory = false,
   label,
   ...rest
 }: ComboboxProps) {
@@ -45,7 +47,9 @@ function ComboboxComp({
 
   return (
     <S.Container>
-      <label>{label}</label>
+      <label>
+        {label} <span>{mandatory && "*"}</span>
+      </label>
       <Combobox value={selected} onChange={handleChange}>
         <S.ComboWrapper>
           {/* <S.ComboboxWrapper> */}

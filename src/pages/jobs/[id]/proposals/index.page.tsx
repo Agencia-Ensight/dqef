@@ -24,6 +24,8 @@ function Proposals({ id }: ProposalProps) {
             price={proposal.price}
             profileName={proposal.user.name}
             studying={proposal.user.formation}
+            jobId={proposal.job.id}
+            userId={proposal.user.id}
           />
         ))}
       </S.Container>

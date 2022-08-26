@@ -12,6 +12,7 @@ import { PROD_API_URL } from "@/services/api";
 export function ModalSeeJob({
   jobId,
   dateOfChanges,
+  obs,
   isFirstDelivery,
   medias,
 }: IModalOpenWork) {
@@ -66,6 +67,7 @@ export function ModalSeeJob({
         ))}
       </ul>
 
+      <p>{obs}</p>
       {/* <S.ButtonBang>
         <AiOutlineDownload color="#42A4EF" />
         <h2>Baixar Trabalho</h2>

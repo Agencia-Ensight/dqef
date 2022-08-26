@@ -12,3 +12,6 @@ export * from "./useFormations";
 export * from "./useKnowledges";
 export * from "./useCourses";
 export * from "./useColleges";
+export * from "./useJobFormats";
+export * from "./useKnowlegesByCourse";
+export * from "./useMediaTypes";

@@ -1,3 +1,5 @@
+import { addDays } from "date-fns";
+
 import {
   JobGenericProps,
   JobMediaProps,
@@ -55,7 +57,7 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     id: dbJob.id,
     title: dbJob.title,
     theme: dbJob.thema,
-    typeOfWork: toJobGeneric(dbJob.job_type),
+    mediaType: toJobGeneric(dbJob.job_media_types),
     pages: dbJob.pages,
     words: dbJob.words,
     obs: dbJob.obs,
@@ -64,12 +66,12 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     instructions: dbJob.instructions,
     medias: toJobMedias(dbJob.job_has_medias || []),
     price: dbJob.value_pay,
-    deliveryAt: new Date(dbJob.delivery),
+    deliveryAt: addDays(new Date(dbJob.delivery), 1),
     jobType: toJobGeneric(dbJob.job_type),
     higherCourse: toJobGeneric(dbJob.higher_course),
     knowledges: toJobKnowledges(dbJob.job_has_knowledges),
     format: toJobGeneric(dbJob.job_format),
-    dateLimit: new Date(dbJob.delivery),
+    dateLimit: addDays(new Date(dbJob.date_limit), 1),
     status: toJobStatus(dbJob.job_status.id),
     proposals: toJobProposals(dbJob.proposals),
     editorId: dbJob.editor_id,
