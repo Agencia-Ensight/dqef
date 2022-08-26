@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   }
 
   .css-1s2u09g-control {
-    border: 2px solid #42a4ef;
+    /* border: 2px solid #42a4ef; */
     border-radius: 99px;
     width: 100%;
     font-size: 18px;
@@ -14,9 +14,9 @@ export const Wrapper = styled.div`
   }
 
   .css-1rhbuit-multiValue {
-    background: linear-gradient(180deg, #56ccf2 0%, #2f80ed 100%);
+    /* background: linear-gradient(180deg, #56ccf2 0%, #2f80ed 100%); */
     border-radius: 5px;
-    color: #42a4ef;
+    /* color: #42a4ef; */
 
     padding: 3px 6px 3px 10px;
 

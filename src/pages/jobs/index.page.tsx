@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import Router from "next/router";
 import { BsSearch } from "react-icons/bs";
 
-import { JobCard } from "@/components";
+import { JobCard, Loading } from "@/components";
 import * as S from "./styles";
 import { useJobs } from "@/hooks";
 
@@ -49,6 +49,7 @@ function AllJobs() {
         </S.InputContainer>
       </S.HeaderContainer>
       <S.MainContainer>
+        {jobs.isLoading && <Loading />}
         {filteredData?.map((job) => (
           <JobCard
             {...job}

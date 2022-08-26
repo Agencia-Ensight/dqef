@@ -20,15 +20,30 @@ function MultiSelect({ options, id, name, onChange }: Props) {
   }, [selectedOption]);
 
   return (
-    <S.Wrapper>
+    <>
       <Select
+        placeholder="Selecione..."
         options={options}
-        filterOption={createFilter({ ignoreAccents: false })}
-        className="basic-multi-select"
+        filterOption={createFilter({ ignoreAccents: false, ignoreCase: true })}
+        // className="basic-multi-select"
         onChange={(e) => handleChange(e!)}
+        styles={{
+          control: (provided, state) => ({
+            ...provided,
+            borderRadius: 99,
+            padding: "6px 5px",
+            background: "white",
+            border: "2px solid #42a4ef",
+          }),
+          option: (provided) => ({
+            ...provided,
+            background: "white",
+            color: "#222",
+          }),
+        }}
       />
       <input type="hidden" name={name} id={id} value={inputValue} />
-    </S.Wrapper>
+    </>
   );
 }
 

@@ -1,8 +1,9 @@
-import { InputHTMLAttributes, useState } from "react";
+import { InputHTMLAttributes, useRef, useState } from "react";
 import { Combobox } from "@headlessui/react";
 import { BiChevronDown } from "react-icons/bi";
+import { FixedSizeList as List } from "react-window";
 
-import * as S from "./styles";
+import * as S from "./newStyles";
 
 type ComboboxData = {
   id: number;
@@ -43,40 +44,53 @@ function ComboboxComp({
   }
 
   return (
-    <S.Wrapper className="combobox-root">
+    <S.Container>
       <label>{label}</label>
       <Combobox value={selected} onChange={handleChange}>
-        <S.ComboboxWrapper>
-          <S.ComboboxContainer>
-            <Combobox.Input
-              {...rest}
-              className="combobox-input"
-              displayValue={(item: ComboboxData) => item?.name}
-              onChange={(event) => setQuery(event.target.value)}
-            />
-            <Combobox.Button className="combobox-button">
-              <BiChevronDown size={20} aria-hidden="true" />
-            </Combobox.Button>
-          </S.ComboboxContainer>
+        <S.ComboWrapper>
+          {/* <S.ComboboxWrapper> */}
+          {/* <S.ComboboxContainer> */}
+          <Combobox.Input
+            {...rest}
+            displayValue={(item: ComboboxData) => item?.name}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+          <Combobox.Button>
+            <BiChevronDown size={20} aria-hidden="true" />
+          </Combobox.Button>
+        </S.ComboWrapper>
+        {/* </S.ComboboxContainer> */}
 
-          <Combobox.Options className="combobox-options">
-            {filtered.length === 0 && query !== "" ? (
-              <div className="combobox-no-option">Não encontrado</div>
-            ) : (
-              filtered.map((item) => (
+        <Combobox.Options className="combobox-options">
+          {filtered.length === 0 && query !== "" ? (
+            <div className="combobox-no-option">Não encontrado</div>
+          ) : (
+            <List
+              height={150}
+              itemCount={items.length}
+              itemSize={35}
+              width="100%"
+            >
+              {({ index, style }) => (
                 <Combobox.Option
-                  key={item.id}
-                  value={item}
+                  key={filtered[index]?.id}
+                  value={filtered[index]}
                   className="combobox-option"
+                  style={style}
                 >
-                  {({ selected, active }) => <span>{item.name}</span>}
+                  {({ selected, active }) => (
+                    <span style={{ color: selected ? "#42a4ef" : "#222" }}>
+                      {filtered[index]?.name}
+                    </span>
+                  )}
                 </Combobox.Option>
-              ))
-            )}
-          </Combobox.Options>
-        </S.ComboboxWrapper>
+              )}
+            </List>
+          )}
+        </Combobox.Options>
+        {/* </S.ComboboxWrapper> */}
       </Combobox>
-    </S.Wrapper>
+    </S.Container>
   );
 }
 

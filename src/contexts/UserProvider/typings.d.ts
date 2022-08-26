@@ -12,19 +12,19 @@ type CreateEditorUserProps = {
   type: "EDITOR";
   formationId: number;
   cpf: string;
-  collegeId: number;
   knowledgeIds: number[];
+  payment: string;
 };
 
 type CreateSdutentUserProps = {
   type: "STUDENT";
-  courseId: number;
-  collegeId: number;
 };
 
 type CreateUserProps = {
   name: string;
   email: string;
+  collegeId: number;
+  courseId: number;
   password: string;
   phone: string;
 } & (CreateEditorUserProps | CreateSdutentUserProps);

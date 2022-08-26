@@ -9,7 +9,10 @@ export function useProposals(jobId: string) {
     data: rawData,
     loading,
     error,
-  } = useQuery(GET_PROPOSALS_BY_JOB, { variables: { jobId } });
+  } = useQuery(GET_PROPOSALS_BY_JOB, {
+    variables: { jobId },
+    displayName: "proposals",
+  });
 
   const data = rawData?.proposals.map((proposal: Record<string, any>) =>
     toProposal(proposal)

@@ -24,6 +24,15 @@ export function useReview() {
         userId: editorId,
         reviwerId: user?.id,
       },
+      refetchQueries: [
+        "jobs",
+        "urgent-jobs",
+        "jobs-by-user",
+        `job-${jobId}`,
+        "proposals",
+        "top-jobs",
+        "top-urgent-jobs",
+      ],
     });
   }
 

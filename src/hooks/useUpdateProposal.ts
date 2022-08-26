@@ -14,6 +14,14 @@ export function useUpdateProposal() {
         proposalId,
         statusId: status === "accept" ? 2 : 3,
       },
+      refetchQueries: [
+        "jobs",
+        "urgent-jobs",
+        "jobs-by-user",
+        "proposals",
+        "top-jobs",
+        "top-urgent-jobs",
+      ],
     });
   }
 

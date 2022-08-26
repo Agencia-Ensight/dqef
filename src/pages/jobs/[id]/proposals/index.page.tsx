@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from "next";
 import Router from "next/router";
 
-import { ProfileCardEmployee } from "@/components";
+import { Loading, ProfileCardEmployee } from "@/components";
 import * as S from "./styles";
 import { useProposals } from "@/hooks";
 import { ProposalProps } from "./typings";
@@ -14,6 +14,7 @@ function Proposals({ id }: ProposalProps) {
       <S.BackButton onClick={Router.back}>Voltar</S.BackButton>
       <S.Title>Propostas Recebidas</S.Title>
       <S.Container>
+        {proposals.isLoading && <Loading />}
         {proposals.data?.map((proposal) => (
           <ProfileCardEmployee
             id={proposal.id}

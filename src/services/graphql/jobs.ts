@@ -135,8 +135,8 @@ export const GET_JOB = gql`
 `;
 
 export const GET_TOP_10_URGENT_JOBS = gql`
-  query {
-    jobs(limit: 10) {
+  query GetTopUrgentJobs($gte: date!, $lte: date!) {
+    jobs(limit: 10, where: { date_limit: { _gte: $gte, _lte: $lte } }) {
       ...JobFragment
     }
   }
@@ -144,8 +144,8 @@ export const GET_TOP_10_URGENT_JOBS = gql`
 `;
 
 export const GET_TOP_10_JOBS = gql`
-  query {
-    jobs(limit: 10) {
+  query GetTopJobs($gte: date!) {
+    jobs(limit: 10, where: { date_limit: { _gte: $gte } }) {
       ...JobFragment
     }
   }
@@ -153,8 +153,8 @@ export const GET_TOP_10_JOBS = gql`
 `;
 
 export const GET_URGENT_JOBS = gql`
-  query {
-    jobs {
+  query GetUrgentJobs($gte: date!, $lte: date!) {
+    jobs(where: { date_limit: { _gte: $gte, _lte: $lte } }) {
       ...JobFragment
     }
   }
@@ -162,8 +162,8 @@ export const GET_URGENT_JOBS = gql`
 `;
 
 export const GET_JOBS = gql`
-  query {
-    jobs {
+  query GetJobs($gte: date!) {
+    jobs(where: { date_limit: { _gte: $gte } }) {
       ...JobFragment
     }
   }

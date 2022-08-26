@@ -21,6 +21,15 @@ export function useSendProposal() {
   async function sendProposal({ jobId, userId, price, status }: ISendProposal) {
     await insert({
       variables: { jobId, statusId: dbStatus[status], userId, price },
+      refetchQueries: [
+        "jobs",
+        "urgent-jobs",
+        "jobs-by-user",
+        `job-${jobId}`,
+        "proposals",
+        "top-jobs",
+        "top-urgent-jobs",
+      ],
     });
   }
 

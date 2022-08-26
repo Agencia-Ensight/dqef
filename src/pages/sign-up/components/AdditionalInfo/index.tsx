@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import {
   ButtonKnewave,
@@ -6,18 +6,11 @@ import {
   InputCheckbox,
   ComboboxComp,
   IRenderProps,
+  Input,
 } from "@/components";
 import { useToast, useUser } from "@/contexts";
 import * as S from "./styles";
-import { useQuery } from "@apollo/client";
-import {
-  CollegeProps,
-  FormationProps,
-  GET_COLLEGES,
-  GET_FORMATIONS,
-  GET_KNOWLEDGES,
-  KnowledgeProps,
-} from "@/services/graphql/queries";
+import { useColleges, useCourses, useFormations, useKnowledges } from "@/hooks";
 
 type IAdditionalInfo = {
   type: "EDITOR" | "STUDENT";
@@ -29,23 +22,19 @@ export function AdditionalInfo({
   type,
   onPrevStep,
 }: IAdditionalInfo) {
+  const [payment, setPaymnet] = useState("");
+  const [course, setCourse] = useState(1);
   const [formation, setFormation] = useState(1);
   const [college, setCollege] = useState(1);
   const [knowledges, setKnowledges] = useState<number[]>([]);
   const [termsOfUse, setTermsOfUse] = useState(false);
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
-  const colleges = useQuery<{ colleges: CollegeProps[] }>(GET_COLLEGES);
-  const allKnowledges =
-    useQuery<{ knowledges: KnowledgeProps[] }>(GET_KNOWLEDGES);
-  const formations = useQuery<{ formations: FormationProps[] }>(GET_FORMATIONS);
-  const knowledgesToOptions = useMemo(
-    () =>
-      allKnowledges?.data?.knowledges?.map((knowledge) => ({
-        id: knowledge.id,
-        label: knowledge.name,
-      })) || [],
-    [allKnowledges?.data?.knowledges]
-  );
+
+  const knowledgesList = useKnowledges();
+  const courses = useCourses();
+  const formations = useFormations();
+  const colleges = useColleges();
+
   const { signUp } = useUser();
   const { addToast } = useToast();
 
@@ -68,8 +57,10 @@ export function AdditionalInfo({
           formationId: formation,
           collegeId: college,
           knowledgeIds: knowledges,
+          courseId: course,
           cpf: prevRes.cpf,
           phone: prevRes.phone,
+          payment,
         });
       } else {
         await signUp({
@@ -78,7 +69,7 @@ export function AdditionalInfo({
           name: prevRes.name,
           password: prevRes.password,
           collegeId: college,
-          courseId: prevRes.courseId,
+          courseId: course,
           phone: prevRes.phone,
         });
       }
@@ -110,29 +101,54 @@ export function AdditionalInfo({
       <S.InputContainer>
         <ComboboxComp
           label="Faculdade"
-          items={colleges?.data?.colleges || []}
+          items={colleges.data || []}
           onSelectedChange={(item) => setCollege(item.id)}
           name="college"
         />
 
-        <S.Label>Áreas de conhecimento</S.Label>
+        <S.Label>Curso</S.Label>
         <MultiSelect
-          options={knowledgesToOptions}
-          id="knowledges"
-          name="knowledges"
-          onChange={(e) => setKnowledges((knowledges) => [...knowledges, e.id])}
+          options={
+            courses.data?.map((know) => ({
+              id: know.id,
+              label: know.name,
+            })) || []
+          }
+          id="course"
+          name="course"
+          onChange={(e) => setCourse(e.id)}
         />
 
-        <ComboboxComp
-          items={formations?.data?.formations || []}
-          onSelectedChange={(e) => setFormation(e.id)}
-          label="Formação"
-        />
+        {type === "EDITOR" && (
+          <>
+            <S.Label>Áreas de conhecimento</S.Label>
+            <MultiSelect
+              options={
+                knowledgesList.data?.map((know) => ({
+                  id: know.id,
+                  label: know.name,
+                })) || []
+              }
+              id="knowledges"
+              name="knowledges"
+              onChange={(e) =>
+                setKnowledges((knowledges) => [...knowledges, e.id])
+              }
+            />
 
-        {/* <Input
-          label="Forma de Pagamento"
-          placeholder="Insira o seu pix ou dados de pagamento"
-        /> */}
+            {/* <Input
+              label="Forma de Pagamento"
+              placeholder="Insira o seu pix ou dados de pagamento"
+              value={payment}
+              onChange={(e) => setPaymnet(e.target.value)}
+            /> */}
+            <ComboboxComp
+              items={formations?.data || []}
+              onSelectedChange={(e) => setFormation(e.id)}
+              label="Formação"
+            />
+          </>
+        )}
       </S.InputContainer>
       <S.CheckboxContainer>
         <S.InputCheckboxContainer>

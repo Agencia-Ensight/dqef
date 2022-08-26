@@ -8,29 +8,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const ComboboxWrapper = styled.div`
-  position: relative;
-  margin-top: 0.25rem;
-
-  ul {
-    overflow: scroll;
-    list-style-type: none;
-    background: white;
-    border-radius: 8px;
-    margin-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    max-height: 200px;
-    box-shadow: 0 5px 3px -3px rgba(198, 198, 198, 0.1),
-      0 4px 6px -2px rgba(198, 198, 198, 0.1);
-    padding: 0.5rem 1rem;
-  }
-
-  li {
-    cursor: pointer;
-  }
-`;
+export const ComboboxWrapper = styled.div``;
 
 export const ComboboxContainer = styled.div`
   overflow: hidden;

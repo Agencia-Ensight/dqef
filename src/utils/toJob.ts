@@ -51,10 +51,6 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     }));
   }
 
-  const editorId = dbJob.proposals?.find(
-    (proposal: Record<string, any>) => proposal.proposal_status.id === 2
-  )?.user_id;
-
   return {
     id: dbJob.id,
     title: dbJob.title,
@@ -76,7 +72,7 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     dateLimit: new Date(dbJob.delivery),
     status: toJobStatus(dbJob.job_status.id),
     proposals: toJobProposals(dbJob.proposals),
-    editorId,
+    editorId: dbJob.editor_id,
     rating: dbJob?.user_ratings[0],
   };
 }

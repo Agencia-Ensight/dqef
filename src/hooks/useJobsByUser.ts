@@ -23,6 +23,7 @@ export function useJobsByUser(
       error,
     } = useQuery<{ jobs: Record<string, any>[] }>(GET_JOBS_BY_USER, {
       variables: { userId, statusId: status ? statusOnDb[status] : undefined },
+      displayName: "jobs-by-user",
     });
 
     const data = rawData?.jobs.map(toJob);

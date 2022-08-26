@@ -30,6 +30,15 @@ export function useJobDelivery() {
           media_id: mediaId,
         })),
       },
+      refetchQueries: [
+        "jobs",
+        "urgent-jobs",
+        "jobs-by-user",
+        `job-${jobId}`,
+        "proposals",
+        "top-jobs",
+        "top-urgent-jobs",
+      ],
     });
   }
 

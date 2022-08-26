@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 
-import { JobCard } from "@/components";
+import { JobCard, Loading } from "@/components";
 import { useUrgentJobs } from "@/hooks";
 
 import * as S from "./styles";
@@ -49,6 +49,7 @@ function UrgentWorks() {
         </S.InputContainer>
       </S.HeaderContainer>
       <S.MainContainer>
+        {urgentJobs.isLoading && <Loading />}
         {urgentJobs.data?.map((job) => (
           <JobCard
             {...job}

@@ -1,11 +1,11 @@
 import Link from "next/link";
 
-import { ButtonKnewave, JobCard } from "@/components";
+import { ButtonKnewave, JobCard, Loading } from "@/components";
 import * as S from "./styles";
-import { useUrgentJobs } from "@/hooks";
+import { useTopUrgentJobs } from "@/hooks";
 
 function UrgentWorks() {
-  const urgentJobs = useUrgentJobs();
+  const urgentJobs = useTopUrgentJobs();
 
   return (
     <S.Wrapper>
@@ -18,7 +18,7 @@ function UrgentWorks() {
         </S.Description>
       </S.HeaderContainer>
       <S.MainContainer>
-        {urgentJobs.isLoading && <p>Carregando...</p>}
+        {urgentJobs.isLoading && <Loading />}
         {urgentJobs.error && <p>Não conseguimos carregar esse módulo</p>}
         {urgentJobs.data?.map((urgentJob) => (
           <JobCard

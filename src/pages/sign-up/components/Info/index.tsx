@@ -40,7 +40,7 @@ function Info({ onComplete, type }: IInfo) {
           error={errors.name?.message}
         />
         <Input
-          label="Email"
+          label="E-mail"
           name="email"
           placeholder="teste@gmail.com"
           register={register}

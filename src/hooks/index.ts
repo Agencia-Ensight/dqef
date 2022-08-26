@@ -1,5 +1,4 @@
 export * from "./useMedia";
-export * from "./useModal";
 export * from "./useJobs";
 export * from "./useUrgentJobs";
 export * from "./useJob";
@@ -8,3 +7,8 @@ export * from "./useJobsByUser";
 export * from "./useJobDelivery";
 export * from "./useReview";
 export * from "./useSendProposal";
+export * from "./useTopUrgentJobs";
+export * from "./useFormations";
+export * from "./useKnowledges";
+export * from "./useCourses";
+export * from "./useColleges";

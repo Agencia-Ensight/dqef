@@ -1,23 +1,21 @@
 import { useQuery } from "@apollo/client";
 import { addDays } from "date-fns";
 
-import { GET_URGENT_JOBS, Job } from "@/services/graphql/jobs";
+import { GET_TOP_10_JOBS, Job } from "@/services/graphql/jobs";
 import { toJob } from "@/utils";
 
-const currentDate = new Date();
-const nextTwoDays = addDays(currentDate, 2);
+const currentDate = addDays(new Date(), 2);
 
-export function useUrgentJobs() {
+export function useTopJobs() {
   const {
     data: rawData,
     loading,
     error,
-  } = useQuery<{ jobs: Job[] }>(GET_URGENT_JOBS, {
+  } = useQuery<{ jobs: Job[] }>(GET_TOP_10_JOBS, {
     variables: {
       gte: currentDate,
-      lte: nextTwoDays,
     },
-    displayName: "urgent-jobs",
+    displayName: "top-jobs",
   });
 
   const data = rawData?.jobs.map((job) => toJob(job));

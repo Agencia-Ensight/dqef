@@ -10,11 +10,13 @@ import * as S from "./styles";
 
 function updateJob() {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+
   const files = acceptedFiles.map((file, key) => (
     <li key={key}>
       {file.name} - {file.size} bytes
     </li>
   ));
+
   return (
     <S.Wrapper>
       <S.ContainerImage>

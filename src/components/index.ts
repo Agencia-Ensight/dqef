@@ -13,3 +13,4 @@ export * from "./JobCard";
 export * from "./Combobox";
 export * from "./InputCheckbox";
 export * from "./Stepper";
+export * from "./Loading";

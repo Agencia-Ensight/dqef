@@ -3,7 +3,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 
 import * as S from "./styles";
 import { IInsideJob } from "./typings";
-import { JobCard } from "@/components";
+import { JobCard, Loading } from "@/components";
 import { InfoCard } from "./components/InfoCard";
 import { FileCard } from "./components/FileCard";
 import { useJob } from "@/hooks";
@@ -13,7 +13,7 @@ function InsideJob({ id }: IInsideJob) {
   const job = useJob(id);
   const { user } = useUser();
 
-  if (job.isLoading) return <h1>Carregando...</h1>;
+  if (job.isLoading) return <Loading size={25} />;
 
   if (job.error) return <h1>Erro!</h1>;
 

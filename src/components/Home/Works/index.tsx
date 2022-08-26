@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import { BsSearch } from "react-icons/bs";
 
-import { ButtonKnewave, JobCard } from "@/components";
+import { ButtonKnewave, JobCard, Loading } from "@/components";
 import * as S from "./styles";
 import { useJobs } from "@/hooks";
 
@@ -45,7 +45,7 @@ function Works() {
       </S.HeaderContainer>
 
       <S.MainContainer>
-        {jobs.isLoading && <p>Carregando...</p>}
+        {jobs.isLoading && <Loading />}
         {jobs.error && <p>Não conseguimos carregar esse módulo</p>}
         {filteredData?.map((job) => (
           <JobCard
