@@ -1,5 +1,5 @@
 export type JobGenericProps = {
-  id: string;
+  id: number;
   name: string;
 };
 
@@ -41,7 +41,7 @@ export type JobProps = {
   pages: number;
   words: number;
   obs: string;
-  maximumPlagiarism: string;
+  maximumPlagiarism: number;
   instructions: string;
   medias: JobMediaProps[];
   price: number;

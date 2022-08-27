@@ -1,0 +1,9 @@
+- [] Resolver bug do perfil de atualizar
+- [] Apenas jobs não começados
+- [] Arrumar o update de job
+- [] Colocar os arquivos
+- [] Linkar com a API de plágio
+- [] Alterações
+- [] Cobrança
+- [] Aba de notificações
+- [] Chat do Job

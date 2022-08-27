@@ -1,3 +1,4 @@
+import { useUser } from "@/contexts";
 import {
   AiFillStar,
   AiOutlineEdit,
@@ -15,6 +16,7 @@ function ProfileCard({
   variant,
   onChangeMenu,
 }: Props) {
+  const { user } = useUser();
   function handleMenuEditorChange(menu: EditorMenuProps) {
     onChangeMenu(menu);
   }
@@ -25,7 +27,7 @@ function ProfileCard({
         <S.ProfileImage src={img} />
         <S.Course>{course}</S.Course>
         <S.ProfileName>{profileName}</S.ProfileName>
-        {variant === "EMPLOYEE" && (
+        {user?.type === "EDITOR" && (
           <S.RatingContainer>
             <AiFillStar size={20} color="#ffb200" />
             <AiFillStar size={20} color="#ffb200" />
@@ -38,12 +40,12 @@ function ProfileCard({
         <S.MainInfo>
           <S.InfoContainer>
             <HiOutlinePuzzle size={20} color="#42A4EF" />
-            {variant === "STUDENT" && (
+            {user?.type === "STUDENT" && (
               <S.InfoTitle onClick={() => handleMenuEditorChange("proposals")}>
                 Trabalhos Publicados
               </S.InfoTitle>
             )}
-            {variant === "EMPLOYEE" && (
+            {user?.type === "EDITOR" && (
               <S.InfoTitle onClick={() => handleMenuEditorChange("proposals")}>
                 Propostas enviadas
               </S.InfoTitle>

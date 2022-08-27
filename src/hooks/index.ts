@@ -15,3 +15,4 @@ export * from "./useColleges";
 export * from "./useJobFormats";
 export * from "./useKnowlegesByCourse";
 export * from "./useMediaTypes";
+export * from "./useUpdateJob";

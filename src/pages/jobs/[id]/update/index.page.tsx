@@ -1,21 +1,99 @@
-import { Select } from "@chakra-ui/react";
-import DatePicker from "react-datepicker";
-import pt from "date-fns/locale/pt";
-import "react-datepicker/dist/react-datepicker.css";
-import { AiOutlineDownload } from "react-icons/ai";
-import { useDropzone } from "react-dropzone";
+import Link from "next/link";
+import { useState } from "react";
+import { GetServerSidePropsContext } from "next";
 
-import { ButtonKnewave, Input } from "@/components";
+import {
+  ButtonKnewave,
+  Input,
+  Loading,
+  ComboboxComp,
+  DatePicker,
+  Dropzone,
+} from "@/components";
 import * as S from "./styles";
+import {
+  useCourses,
+  useJob,
+  useJobFormats,
+  useKnowledges,
+  useMediaTypes,
+  useUpdateJob,
+} from "@/hooks";
+import { useToast } from "@/contexts";
 
-function updateJob() {
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+type IUpdateJob = {
+  id: string;
+};
 
-  const files = acceptedFiles.map((file, key) => (
-    <li key={key}>
-      {file.name} - {file.size} bytes
-    </li>
-  ));
+function UpdateJob({ id }: IUpdateJob) {
+  const [title, setTitle] = useState("");
+  const [theme, setTheme] = useState("");
+  const [instructions, setInstructions] = useState("");
+  const [pages, setPages] = useState(1);
+  const [words, setWords] = useState(1);
+  const [deliveryAt, setDeliveryAt] = useState(new Date());
+  const [dateLimit, setDateLimit] = useState(new Date());
+  const [maxPlagiarism, setMaxPlagiarism] = useState(1);
+  const [price, setPrice] = useState(1);
+  const [editorPrice, setEditorPrice] = useState(1);
+  const [medias, setMedias] = useState<string[]>([]);
+  const [mediaTypeId, setMediaTypeId] = useState(1);
+  const [courseId, setCourseId] = useState(1);
+  const [knowledgeIds, setKnowledgeIds] = useState<number[]>([1]);
+  const [formatId, setFormatId] = useState(1);
+  const [obs, setObs] = useState("");
+
+  const mediaTypes = useMediaTypes();
+  const courses = useCourses();
+  const knowledges = useKnowledges();
+  const formats = useJobFormats();
+  const { addToast } = useToast();
+  const job = useJob(id, {
+    onCompleted: (job) => {
+      setTitle(job.title);
+      setTheme(job.theme);
+      setInstructions(job.instructions);
+      setPages(job.pages);
+      setWords(job.words);
+      setDeliveryAt(job.deliveryAt);
+      setDateLimit(job.dateLimit);
+      setMaxPlagiarism(job.maximumPlagiarism);
+      setPrice(job.price);
+      setMedias(job.medias.map((media) => media.id));
+      setMediaTypeId(job.jobType.id);
+      setCourseId(job.higherCourse.id);
+      setKnowledgeIds(job.knowledges.map((knwowledge) => knwowledge.id));
+      setFormatId(job.format.id);
+      setObs(job.obs);
+    },
+  });
+  const { updateJob, isLoading } = useUpdateJob(id);
+
+  async function handleJob() {
+    await updateJob({
+      title,
+      theme,
+      editorPrice,
+      dateLimit,
+      deliveryAt,
+      formatId,
+      instructions,
+      courseId,
+      maximumPlagiarism: maxPlagiarism,
+      knowledgeIds,
+      mediasIds: medias,
+      obs,
+      mediaTypeId,
+      pages,
+      price,
+      words,
+    });
+    addToast({ msg: "Atualizado com sucesso!", type: "success" });
+  }
+
+  if (job.isLoading) {
+    return <Loading />;
+  }
 
   return (
     <S.Wrapper>
@@ -24,7 +102,9 @@ function updateJob() {
       </S.ContainerImage>
 
       <S.ContainerInformation>
-        <a href="#">Voltar</a>
+        <Link href={`/job/${id}`}>
+          <a>Voltar</a>
+        </Link>
         <h1>Preencha os Campos</h1>
         <p>Edite o os campos desejados e salve no final da página</p>
 
@@ -35,48 +115,52 @@ function updateJob() {
               placeholder="Insira o nome"
               type="text"
               required
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
             />
 
             <S.ContainerMini>
-              <h3>Tipo de trabalho*</h3>
-              <Select placeholder="Selecione">
-                <option value="option1">Cursando</option>
-                <option value="option2">Graduado</option>
-                <option value="option3">Pós-graduado</option>
-                <option value="option3">Mestrado</option>
-                <option value="option3">Doutorado</option>
-              </Select>
+              <ComboboxComp
+                items={formats.data || []}
+                label="Tipo de trabalho"
+                mandatory
+                value={formatId}
+                onSelectedChange={({ id }) => setFormatId(id)}
+              />
             </S.ContainerMini>
           </S.ContainerLine>
         </S.ContainerInformationDosBang>
         <S.ContainerInformationDosBang>
           <S.ContainerLine>
             <S.ContainerMini>
-              <h3>Curso*</h3>
-              <Select placeholder="Selecione">
-                <option value="option1">Cursando</option>
-                <option value="option2">Graduado</option>
-                <option value="option3">Pós-graduado</option>
-                <option value="option3">Mestrado</option>
-                <option value="option3">Doutorado</option>
-              </Select>
+              <ComboboxComp
+                items={courses.data || []}
+                label="Curso"
+                mandatory
+                value={courseId}
+                onSelectedChange={({ id }) => setCourseId(id)}
+              />
             </S.ContainerMini>
             <S.ContainerMini>
-              <h3>Disciplina*</h3>
-              <Select placeholder="Selecione">
-                <option value="option1">Cursando</option>
-                <option value="option2">Graduado</option>
-                <option value="option3">Pós-graduado</option>
-                <option value="option3">Mestrado</option>
-                <option value="option3">Doutorado</option>
-              </Select>
+              <ComboboxComp
+                items={knowledges.data || []}
+                label="Disciplina"
+                mandatory
+                value={knowledgeIds[0]}
+                onSelectedChange={({ id }) => {
+                  setKnowledgeIds([id]);
+                }}
+              />
             </S.ContainerMini>
             <S.ContainerMini>
               <Input
-                label="Tema*"
+                label="Tema"
                 placeholder="Digite o Tema"
                 type="text"
+                value={theme}
+                onChange={(e) => setTheme(e.target.value)}
                 required
+                mandatory
               />
             </S.ContainerMini>
           </S.ContainerLine>
@@ -90,6 +174,8 @@ function updateJob() {
             id=""
             rows={5}
             placeholder="Ex: escreva sobre o trabalho"
+            value={instructions}
+            onChange={(e) => setInstructions(e.target.value)}
           ></textarea>
         </S.ContainerMini>
 
@@ -99,12 +185,16 @@ function updateJob() {
             placeholder="Quantidade"
             type="text"
             required
+            value={pages}
+            onChange={(e) => setPages(Number(e.target.value))}
           />
           <Input
             label="Número de Palavras"
             placeholder="Quantidade"
             type="text"
             required
+            value={words}
+            onChange={(e) => setWords(Number(e.target.value))}
           />
         </S.ContainerLine>
 
@@ -116,26 +206,18 @@ function updateJob() {
               Data de entrega solicitada pelo professor<span>*</span>
             </label>
             <DatePicker
-              name="date_limit"
-              selected={new Date()}
+              selected={deliveryAt}
               onChange={() => {}}
-              locale={pt}
-              placeholderText="Selecione a Data"
+              placeholder="Selecione a Data"
               minDate={new Date()}
-              showTimeSelect
-              // showTimeInput
-              // timeFormat="90"
-              // timeCaption="32"
-              // showTimeSelectOnly
             />
           </div>
           <div>
             <label>Nossa previsão de entrega</label>
             <DatePicker
-              selected={new Date()}
+              selected={dateLimit}
               onChange={() => {}}
-              locale={pt}
-              placeholderText="Selecione a Data"
+              placeholder="Selecione a Data"
               minDate={new Date()}
               disabled
             />
@@ -157,19 +239,18 @@ function updateJob() {
               placeholder="Insira o Valor"
               type="text"
               required
+              value={maxPlagiarism}
+              onChange={(e) => setMaxPlagiarism(Number(e.target.value))}
             />
           </div>
-          <S.ContainerMini>
-            <h3>Formato de Trabalho</h3>
-            <Select placeholder="Selecione">
-              <option value="option1">Cursando</option>
-              <option value="option2">Graduado</option>
-              <option value="option3">Pós-graduado</option>
-              <option value="option3">Mestrado</option>
-              <option value="option3">Doutorado</option>
-            </Select>
-          </S.ContainerMini>
-          <div></div>
+          <ComboboxComp
+            items={mediaTypes.data || []}
+            label="Formato de Trabalho"
+            mandatory
+            value={mediaTypeId}
+            onSelectedChange={(mediaType) => setMediaTypeId(mediaType.id)}
+          />
+          <div />
         </S.InputsContainer>
         <S.InputsContainer>
           <div>
@@ -178,6 +259,8 @@ function updateJob() {
               placeholder="Insira o Valor"
               type="text"
               required
+              value={price}
+              onChange={(e) => setPrice(Number(e.target.value))}
             />
           </div>
           <S.ContainerMini>
@@ -188,42 +271,44 @@ function updateJob() {
                 type="text"
                 required
                 disabled
+                value={editorPrice}
               />
             </div>
           </S.ContainerMini>
-          <div></div>
+          <div />
         </S.InputsContainer>
 
         <S.ContainerMini>
           <h3>Observações</h3>
           <textarea
-            name=""
-            id=""
+            value={obs}
+            onChange={(e) => setObs(e.target.value)}
             rows={5}
             placeholder="Ex: Espaço para adicionar algum comentário, dica ou pedido ao redator."
-          ></textarea>
-        </S.ContainerMini>
-        <S.ContainerMini>
-          <h3>Anexar Arquivos</h3>
-          <section className="container">
-            <div {...getRootProps({ className: "dropzone" })}>
-              <input {...getInputProps()} name="attachments" />
-              <S.IconContainer>
-                <AiOutlineDownload size={35} color="#000" />
-              </S.IconContainer>
-            </div>
-            <aside>
-              <ul>{files}</ul>
-            </aside>
-          </section>
+          />
         </S.ContainerMini>
 
-        <ButtonKnewave variant="PRIMARY" size="sm">
-          Próximo
+        <Dropzone />
+
+        <ButtonKnewave
+          variant="PRIMARY"
+          size="sm"
+          onClick={handleJob}
+          disabled={isLoading}
+        >
+          {isLoading ? "Carregando..." : "Próximo"}
         </ButtonKnewave>
       </S.ContainerInformation>
     </S.Wrapper>
   );
 }
 
-export default updateJob;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { id } = context.query;
+
+  return {
+    props: { id },
+  };
+}
+
+export default UpdateJob;

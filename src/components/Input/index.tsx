@@ -8,10 +8,12 @@ function Input({ label, mandatory, error, register, ...props }: Props) {
         {label}
         <span>{mandatory && "*"}</span>
       </label>
+
       <input
         {...props}
         {...((register && props.name && register(props.name)) ?? {})}
       />
+
       <S.Error>{error}</S.Error>
     </S.Wrapper>
   );

@@ -131,30 +131,4 @@ export const InputsContainer = styled.div`
     flex-wrap: wrap;
     gap: 20px;
   }
-  label {
-    color: #53647e;
-    font-size: 18px;
-    span {
-      color: #e62f5b;
-    }
-  }
-  input {
-    border: 2px solid #42a4ef;
-    border-radius: 99px;
-    width: 350px;
-    font-size: 18px;
-    height: 51px;
-    padding: 0 20px;
-    margin-top: 10px;
-    @media (max-width: 600px) {
-      width: 100%;
-    }
-    &::placeholder {
-      color: #848484;
-    }
-    :disabled {
-      background: #e0e0e0;
-      cursor: not-allowed;
-    }
-  }
 `;

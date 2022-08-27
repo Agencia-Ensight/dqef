@@ -1,4 +1,4 @@
-type IEnum = {
+export type IEnum = {
   id: number;
   name: string;
 };

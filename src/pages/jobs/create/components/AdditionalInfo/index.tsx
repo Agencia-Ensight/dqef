@@ -61,12 +61,14 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
             id="maximum_plagiarism"
             value={maxPlagiarism}
             onChange={(e) => setMaxPlagiarism(e.target.value)}
+            max={100}
             required
           />
           <ComboboxComp
             mandatory
             label="Formato do Trabalho"
             items={mediaTypes.data || []}
+            value={jobMediaType}
             onSelectedChange={(item) => setJobMediaType(item.id)}
           />
         </S.FirstInputContainer>
@@ -75,7 +77,7 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
             placeholder="Disposto a Pagar"
             label="Disposto a Pagar"
             mandatory={true}
-            value={`R$ ${value}`}
+            value={value}
             onChange={(e) => setValue(Number(e.target.value))}
           />
           <Input

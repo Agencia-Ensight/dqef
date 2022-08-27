@@ -3,7 +3,12 @@ import Router from "next/router";
 
 import { Input, ComboboxComp, ButtonKnewave, IRenderProps } from "@/components";
 import * as S from "./styles";
-import { useCourses, useJobFormats, useKnowledgesByCourse } from "@/hooks";
+import {
+  useCourses,
+  useJobFormats,
+  useKnowledges,
+  useKnowledgesByCourse,
+} from "@/hooks";
 
 function MainInfo({ onComplete }: IRenderProps) {
   const [higher_course_id, setHigher_course_id] = useState(1);
@@ -15,7 +20,7 @@ function MainInfo({ onComplete }: IRenderProps) {
   const [instructions, setInstructions] = useState("");
   const [knowledge_id, setKnowledge_id] = useState(1);
   const courses = useCourses();
-  const knowledges = useKnowledgesByCourse(higher_course_id);
+  const knowledges = useKnowledges();
   const formats = useJobFormats();
 
   function onSubmit(e: FormEvent) {
@@ -63,6 +68,7 @@ function MainInfo({ onComplete }: IRenderProps) {
             label="Tipo do Trabalho"
             placeholder="Insira o tipo"
             items={formats.data || []}
+            value={job_format_id}
             onSelectedChange={(item) => setJob_format_id(item.id)}
             required
             mandatory
@@ -72,6 +78,7 @@ function MainInfo({ onComplete }: IRenderProps) {
           <ComboboxComp
             label="Curso do Trabalho"
             placeholder="Insira o curso"
+            value={higher_course_id}
             items={courses.data || []}
             onSelectedChange={(item) => {
               setHigher_course_id(item.id);
@@ -83,6 +90,7 @@ function MainInfo({ onComplete }: IRenderProps) {
           <ComboboxComp
             label="Disciplina do Trabalho"
             items={knowledges.data || []}
+            value={knowledge_id}
             placeholder="Insira a disciplina"
             onSelectedChange={(item) => setKnowledge_id(item.id)}
             required

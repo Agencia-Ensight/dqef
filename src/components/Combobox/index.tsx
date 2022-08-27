@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useRef, useState } from "react";
+import { InputHTMLAttributes, useState } from "react";
 import { Combobox } from "@headlessui/react";
 import { BiChevronDown } from "react-icons/bi";
 import { FixedSizeList as List } from "react-window";
@@ -15,6 +15,7 @@ type ComboboxProps = {
   onSelectedChange: (data: ComboboxData) => void;
   label: string;
   mandatory?: boolean;
+  value: number;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 function ComboboxComp({
@@ -24,10 +25,6 @@ function ComboboxComp({
   label,
   ...rest
 }: ComboboxProps) {
-  const [selected, setSelected] = useState<ComboboxData | undefined>(() => {
-    if (items.length > 0) return items[0];
-    return undefined;
-  });
   const [query, setQuery] = useState("");
 
   const filtered =
@@ -41,7 +38,6 @@ function ComboboxComp({
         );
 
   function handleChange(data: ComboboxData) {
-    setSelected(data);
     onSelectedChange(data);
   }
 
@@ -50,10 +46,11 @@ function ComboboxComp({
       <label>
         {label} <span>{mandatory && "*"}</span>
       </label>
-      <Combobox value={selected} onChange={handleChange}>
+      <Combobox
+        value={items.find((item) => item.id === rest.value)}
+        onChange={handleChange}
+      >
         <S.ComboWrapper>
-          {/* <S.ComboboxWrapper> */}
-          {/* <S.ComboboxContainer> */}
           <Combobox.Input
             {...rest}
             displayValue={(item: ComboboxData) => item?.name}
@@ -63,7 +60,6 @@ function ComboboxComp({
             <BiChevronDown size={20} aria-hidden="true" />
           </Combobox.Button>
         </S.ComboWrapper>
-        {/* </S.ComboboxContainer> */}
 
         <Combobox.Options className="combobox-options">
           {filtered.length === 0 && query !== "" ? (
@@ -92,7 +88,6 @@ function ComboboxComp({
             </List>
           )}
         </Combobox.Options>
-        {/* </S.ComboboxWrapper> */}
       </Combobox>
     </S.Container>
   );

@@ -14,3 +14,5 @@ export * from "./Combobox";
 export * from "./InputCheckbox";
 export * from "./Stepper";
 export * from "./Loading";
+export * from "./DatePicker";
+export * from "./Dropzone";

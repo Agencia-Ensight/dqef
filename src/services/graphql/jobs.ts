@@ -21,7 +21,7 @@ export type Job = {
   pages: number;
   words: number;
   obs: string;
-  maximum_plagiarism: string;
+  maximum_plagiarism: number;
   instructions: string;
   job_has_medias: {
     media: {
@@ -49,7 +49,7 @@ export type CreateJobProps = {
   instructions: string;
   job_format_id: number;
   obs: string;
-  maximum_plagiarism: string;
+  maximum_plagiarism: number;
 };
 
 export type JobFormatProps = {
@@ -186,7 +186,7 @@ export const GET_JOB_FORMATS = gql`
 
 export const UPDATE_JOB = gql`
   mutation UpdateJobByPk(
-    $id: uuid!
+    $id: Int!
     $object: jobs_set_input!
     $knowledges: [job_has_knowledges_insert_input!]!
   ) {
@@ -200,6 +200,9 @@ export const UPDATE_JOB = gql`
     }
     insert_job_has_knowledges(objects: $knowledges) {
       affected_rows
+      returning {
+        id
+      }
     }
   }
 `;
@@ -235,7 +238,7 @@ export const INSERT_JOB = gql`
     $instructions: String!
     $job_format_id: Int!
     $obs: String!
-    $maximum_plagiarism: String!
+    $maximum_plagiarism: Int!
     $job_media_type_id: Int!
   ) {
     insert_jobs_one(
