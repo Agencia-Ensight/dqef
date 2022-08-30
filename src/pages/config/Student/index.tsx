@@ -87,6 +87,7 @@ function StudentEditProfile({
             <ComboboxComp
               items={higher_courses}
               label="Curso"
+              value={1}
               onSelectedChange={() => {}}
             />
           </S.ContainerMini>
@@ -94,6 +95,7 @@ function StudentEditProfile({
             <ComboboxComp
               items={formations}
               label="Período"
+              value={1}
               onSelectedChange={() => {}}
             />
           </S.ContainerMini>
@@ -105,6 +107,7 @@ function StudentEditProfile({
           <ComboboxComp
             items={colleges}
             label="Faculdade"
+            value={1}
             onSelectedChange={() => {}}
           />
         </S.SpecialOne>

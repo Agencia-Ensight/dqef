@@ -101,6 +101,7 @@ export function AdditionalInfo({
       <S.InputContainer>
         <ComboboxComp
           label="Faculdade"
+          value={1}
           items={colleges.data || []}
           onSelectedChange={(item) => setCollege(item.id)}
           name="college"
@@ -143,6 +144,7 @@ export function AdditionalInfo({
               onChange={(e) => setPaymnet(e.target.value)}
             /> */}
             <ComboboxComp
+              value={formation}
               items={formations?.data || []}
               onSelectedChange={(e) => setFormation(e.id)}
               label="Formação"

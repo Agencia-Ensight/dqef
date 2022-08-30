@@ -87,6 +87,7 @@ function EditorEditProfile({
           <S.ContainerMini>
             <ComboboxComp
               items={higher_courses}
+              value={1}
               label="Curso"
               onSelectedChange={() => {}}
             />
@@ -95,6 +96,7 @@ function EditorEditProfile({
             <ComboboxComp
               items={formations}
               label="Formação"
+              value={1}
               onSelectedChange={() => {}}
             />
           </S.ContainerMini>
