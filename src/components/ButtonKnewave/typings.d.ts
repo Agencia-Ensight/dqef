@@ -7,4 +7,5 @@ type ButtonSize = "lg" | "md" | "sm";
 export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   size: ButtonSize;
   variant: ButtonVariant;
+  loading?: boolean;
 };

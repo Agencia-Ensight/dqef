@@ -1,6 +1,6 @@
 - [] Resolver bug do perfil de atualizar
-- [] Apenas jobs não começados
-- [] Arrumar o update de job
+- [x] Apenas jobs não começados
+- [x] Arrumar o update de job
 - [] Colocar os arquivos
 - [] Linkar com a API de plágio
 - [] Alterações

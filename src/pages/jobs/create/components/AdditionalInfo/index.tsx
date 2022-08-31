@@ -1,11 +1,16 @@
 import { FormEvent, useState } from "react";
-import { useMutation } from "@apollo/client";
 
-import { ButtonKnewave, Input, ComboboxComp, IRenderProps } from "@/components";
-import { INSERT_JOB } from "@/services/graphql/jobs";
+import {
+  ButtonKnewave,
+  Input,
+  ComboboxComp,
+  IRenderProps,
+  Dropzone,
+} from "@/components";
 import { useUser } from "@/contexts";
 import { useMediaTypes } from "@/hooks";
 import * as S from "./styles";
+import { useCreateJob } from "@/hooks/useCreateJob";
 
 function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
   const mediaTypes = useMediaTypes();
@@ -13,30 +18,25 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
   const [jobMediaType, setJobMediaType] = useState(1);
   const [obs, setObs] = useState("");
   const [value, setValue] = useState(0);
+  const [files, setFiles] = useState<File[]>([]);
   const { user } = useUser();
-
-  const editorValue = value - value * 0.3;
-
-  const [insertJob, { loading }] = useMutation(INSERT_JOB);
+  const editorPrice = value - value * 0.3;
+  const { createJob, isLoading } = useCreateJob();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
     try {
-      await insertJob({
-        variables: {
-          ...prevRes,
-          user_id: user?.id,
-          job_status_id: 1,
-          job_type_id: 1,
-          job_media_type_id: jobMediaType,
-          maximum_plagiarism: maxPlagiarism,
-          obs,
-          value,
-          value_pay: editorValue,
-        },
+      await createJob({
+        ...prevRes,
+        maxPlagiarism,
+        mediaTypeId: jobMediaType,
+        obs,
+        files,
+        editorPrice,
+        userId: user!.id,
+        price: value,
       });
-
       onComplete({});
     } catch {}
   }
@@ -84,8 +84,7 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
             label="Valor Pago ao Redator"
             mandatory={false}
             disabled
-            name="value_pay"
-            value={`R$ ${editorValue}`}
+            value={`R$ ${editorPrice}`}
           />
         </S.FirstInputContainer>
         <S.FirstInputContainer>
@@ -101,26 +100,15 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
           value={obs}
           onChange={(e) => setObs(e.target.value)}
         ></textarea>
-        {/* <label>Anexar arquivos</label>
-        <section className="container">
-          <div {...getRootProps({ className: "dropzone" })}>
-            <input {...getInputProps()} name="attachments" />
-            <S.IconContainer>
-              <AiOutlineDownload size={35} color="#000" />
-            </S.IconContainer>
-          </div>
-          <aside>
-            <ul>{files}</ul>
-          </aside>
-        </section> */}
+        <Dropzone onChange={setFiles} />
       </S.InputFields>
       <ButtonKnewave
         variant="PRIMARY"
         type="submit"
         size="sm"
-        disabled={loading}
+        loading={isLoading}
       >
-        {loading ? "Carregando..." : "Publicar"}
+        Publicar
       </ButtonKnewave>
     </form>
   );

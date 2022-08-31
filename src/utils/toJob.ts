@@ -8,6 +8,7 @@ import {
   JobRating,
   JobStatus,
 } from "@/types/Job";
+import { PROD_API_URL } from "@/services/api";
 
 export const statusOnDb = {
   1: "waiting-proposals",
@@ -28,7 +29,7 @@ export function toJob(dbJob: Record<string, any>): JobProps {
   function toJobMedias(dbJob: Record<string, any>): JobMediaProps[] {
     return dbJob.map(({ media }: Record<string, any>) => ({
       id: media.id,
-      link: media.link,
+      link: `${PROD_API_URL}${media.link}`,
       title: media.title,
     }));
   }

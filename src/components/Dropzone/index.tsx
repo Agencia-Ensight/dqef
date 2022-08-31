@@ -3,18 +3,31 @@ import { AiOutlineDownload } from "react-icons/ai";
 
 import { IDropzone } from "./typings";
 import * as S from "./styles";
+import { useEffect, useState } from "react";
 
 export function Dropzone({
   label = "Anexar arquivos",
-  defaulItems = [],
+  defaultItems = [],
+  onChange,
 }: IDropzone) {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+  const [files, setFiles] = useState([...defaultItems, ...acceptedFiles]);
 
-  const files = [...defaulItems, ...acceptedFiles].map((file, key) => (
-    <li key={key}>
-      {file.name} - {file.size} bytes
-    </li>
-  ));
+  const removeFile = (key: number) => {
+    setFiles((oldFiles) => {
+      const newFiles = oldFiles.filter((_, index) => index !== key);
+      onChange && onChange(newFiles);
+      return newFiles;
+    });
+  };
+
+  useEffect(() => {
+    setFiles((oldFiles) => {
+      const newFiles = [...oldFiles, ...acceptedFiles];
+      onChange && onChange(newFiles);
+      return newFiles;
+    });
+  }, [acceptedFiles, onChange]);
 
   return (
     <S.Container>
@@ -27,7 +40,16 @@ export function Dropzone({
           </S.IconContainer>
         </div>
         <aside>
-          <ul>{files}</ul>
+          <ul>
+            {files.map((file, key) => (
+              <li key={key}>
+                {file.name} - {file.size} bytes{" "}
+                <button type="button" onClick={() => removeFile(key)}>
+                  X
+                </button>
+              </li>
+            ))}
+          </ul>
         </aside>
       </section>
     </S.Container>

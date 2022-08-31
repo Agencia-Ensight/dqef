@@ -1,5 +1,6 @@
-import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { nanoid } from "nanoid";
+import Router from "next/router";
 import { GetServerSidePropsContext } from "next";
 
 import {
@@ -20,8 +21,14 @@ import {
   useUpdateJob,
 } from "@/hooks";
 import { useToast } from "@/contexts";
+import { JobMediaProps } from "@/types/Job";
 
 type IUpdateJob = {
+  id: string;
+};
+
+type IFileWithId = {
+  file: File;
   id: string;
 };
 
@@ -36,12 +43,13 @@ function UpdateJob({ id }: IUpdateJob) {
   const [maxPlagiarism, setMaxPlagiarism] = useState(1);
   const [price, setPrice] = useState(1);
   const [editorPrice, setEditorPrice] = useState(1);
-  const [medias, setMedias] = useState<string[]>([]);
   const [mediaTypeId, setMediaTypeId] = useState(1);
   const [courseId, setCourseId] = useState(1);
   const [knowledgeIds, setKnowledgeIds] = useState<number[]>([1]);
   const [formatId, setFormatId] = useState(1);
   const [obs, setObs] = useState("");
+  const [files, setFiles] = useState<IFileWithId[]>([]);
+  const [isFileLoaded, setIsFileLoaded] = useState(false);
 
   const mediaTypes = useMediaTypes();
   const courses = useCourses();
@@ -49,7 +57,7 @@ function UpdateJob({ id }: IUpdateJob) {
   const formats = useJobFormats();
   const { addToast } = useToast();
   const job = useJob(id, {
-    onCompleted: (job) => {
+    onCompleted: async (job) => {
       setTitle(job.title);
       setTheme(job.theme);
       setInstructions(job.instructions);
@@ -59,17 +67,36 @@ function UpdateJob({ id }: IUpdateJob) {
       setDateLimit(job.dateLimit);
       setMaxPlagiarism(job.maximumPlagiarism);
       setPrice(job.price);
-      setMedias(job.medias.map((media) => media.id));
       setMediaTypeId(job.jobType.id);
       setCourseId(job.higherCourse.id);
       setKnowledgeIds(job.knowledges.map((knwowledge) => knwowledge.id));
       setFormatId(job.format.id);
       setObs(job.obs);
+      setFiles(await loadFiles(job.medias));
+      setIsFileLoaded(true);
     },
   });
   const { updateJob, isLoading } = useUpdateJob(id);
 
+  /*
+    - maria
+    - joana
+    - sergio
+
+    files -> [margia, sergio]
+
+  */
+
   async function handleJob() {
+    const mediasToBeAdded = files
+      .filter((file) => !job.data?.medias.find((media) => media.id === file.id))
+      .map((file) => file.file);
+
+    const mediaIdsTobeDeleted =
+      job.data?.medias
+        .filter((media) => !files.find((file) => file.id === media.id))
+        .map((media) => media.id) || [];
+
     await updateJob({
       title,
       theme,
@@ -81,17 +108,39 @@ function UpdateJob({ id }: IUpdateJob) {
       courseId,
       maximumPlagiarism: maxPlagiarism,
       knowledgeIds,
-      mediasIds: medias,
       obs,
       mediaTypeId,
       pages,
       price,
       words,
+      mediasToBeAdded,
+      mediaIdsTobeDeleted,
     });
     addToast({ msg: "Atualizado com sucesso!", type: "success" });
   }
 
-  if (job.isLoading) {
+  const createNewFiles = useCallback((newFiles: File[]) => {
+    setFiles((oldFiles) =>
+      newFiles.map((file) => {
+        const fileExists = oldFiles.find((f) => f.file === file);
+        if (fileExists) return fileExists;
+        return { file, id: nanoid() };
+      })
+    );
+  }, []);
+
+  async function loadFiles(medias: JobMediaProps[]) {
+    return Promise.all(
+      medias.map(async (media) => {
+        const res = await fetch(media.link);
+        const buf = await res.arrayBuffer();
+        const file = new File([buf], media.title, { type: "image/png" });
+        return { file, id: media.id };
+      })
+    );
+  }
+
+  if (job.isLoading || !isFileLoaded) {
     return <Loading />;
   }
 
@@ -102,9 +151,8 @@ function UpdateJob({ id }: IUpdateJob) {
       </S.ContainerImage>
 
       <S.ContainerInformation>
-        <Link href={`/job/${id}`}>
-          <a>Voltar</a>
-        </Link>
+        <a onClick={() => Router.back()}>Voltar</a>
+
         <h1>Preencha os Campos</h1>
         <p>Edite o os campos desejados e salve no final da página</p>
 
@@ -288,15 +336,20 @@ function UpdateJob({ id }: IUpdateJob) {
           />
         </S.ContainerMini>
 
-        <Dropzone />
+        <Dropzone
+          onChange={createNewFiles}
+          defaultItems={files.map((file) => file.file)}
+        />
 
         <ButtonKnewave
+          style={{ marginTop: 20 }}
           variant="PRIMARY"
           size="sm"
           onClick={handleJob}
           disabled={isLoading}
+          loading={isLoading}
         >
-          {isLoading ? "Carregando..." : "Próximo"}
+          Salvar
         </ButtonKnewave>
       </S.ContainerInformation>
     </S.Wrapper>

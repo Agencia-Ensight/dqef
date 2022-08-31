@@ -4,19 +4,23 @@ export const Container = styled.div`
   label {
     color: #53647e;
     font-size: 18px;
-    margin-bottom: 10px;
 
     span {
       color: #e62f5b;
     }
   }
+
+  section {
+    margin-top: 10px;
+    border: 2px solid #42a4ef;
+    border-radius: 15px;
+    padding: 10px 29px;
+  }
 `;
 
 export const Input = styled.input`
   width: 100%;
-  padding: 10px 29px;
-  border: 2px solid #42a4ef;
-  border-radius: 99px;
+
   width: 100%;
   font-size: 18px;
 

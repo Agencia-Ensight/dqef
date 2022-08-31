@@ -1,4 +1,5 @@
 export type IDropzone = {
   label?: string;
-  defaulItems?: File[];
+  defaultItems?: File[];
+  onChange?: (files: File[]) => void;
 };

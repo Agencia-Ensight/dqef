@@ -11,21 +11,21 @@ const today = startOfDay(new Date());
 const tomorrow = addDays(today, 1);
 
 export function SelectDate({ onComplete, prevRes, onPrevStep }: IRenderProps) {
-  const [delivery, setDelivery] = useState(tomorrow);
+  const [deliveryAt, setDeliveryAt] = useState(tomorrow);
 
   const deadline = useMemo(() => {
-    const eachDay = differenceInDays(delivery, today) + 1;
+    const eachDay = differenceInDays(deliveryAt, today) + 1;
 
     const daysToAdd = eachDay % 2 === 0 ? eachDay / 2 : (eachDay - 1) / 2 + 1;
 
-    return subDays(delivery, daysToAdd);
-  }, [delivery]);
+    return subDays(deliveryAt, daysToAdd);
+  }, [deliveryAt]);
 
   function onSubmit() {
     onComplete({
       ...prevRes,
-      delivery,
-      date_limit: deadline,
+      deliveryAt,
+      dateLimit: deadline,
     });
   }
 
@@ -45,8 +45,8 @@ export function SelectDate({ onComplete, prevRes, onPrevStep }: IRenderProps) {
           </label>
           <DatePicker
             name="date_limit"
-            selected={delivery}
-            onChange={(date: Date) => setDelivery(date)}
+            selected={deliveryAt}
+            onChange={(date: Date) => setDeliveryAt(date)}
             locale={pt}
             placeholderText="Selecione a Data"
             minDate={tomorrow}
@@ -57,7 +57,7 @@ export function SelectDate({ onComplete, prevRes, onPrevStep }: IRenderProps) {
           <label>Nossa previsão de entrega</label>
           <DatePicker
             selected={deadline}
-            onChange={(date: Date) => setDelivery(date)}
+            onChange={(date: Date) => setDeliveryAt(date)}
             locale={pt}
             placeholderText="Selecione a Data"
             minDate={tomorrow}

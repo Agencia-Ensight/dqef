@@ -12,4 +12,5 @@ export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
    * @default primary
    */
   variant?: ButtonVariant;
+  loading?: boolean;
 };

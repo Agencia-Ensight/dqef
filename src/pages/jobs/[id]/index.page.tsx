@@ -7,11 +7,9 @@ import { JobCard, Loading } from "@/components";
 import { InfoCard } from "./components/InfoCard";
 import { FileCard } from "./components/FileCard";
 import { useJob } from "@/hooks";
-import { useUser } from "@/contexts";
 
 function InsideJob({ id }: IInsideJob) {
   const job = useJob(id);
-  const { user } = useUser();
 
   if (job.isLoading) return <Loading size={25} />;
 
@@ -42,18 +40,12 @@ function InsideJob({ id }: IInsideJob) {
           description={job.data.instructions}
           observations={job.data.obs}
         />
-        {job.data.creatorId === user?.id ||
-          (job.data.editorId === user?.id && (
-            <ScrollContainer
-              horizontal
-              hideScrollbars
-              className="files-container"
-            >
-              {job.data.medias.map((media) => (
-                <FileCard key={media.id} title={media.title} />
-              ))}
-            </ScrollContainer>
+
+        <ScrollContainer horizontal hideScrollbars className="files-container">
+          {job.data.medias.map((media) => (
+            <FileCard key={media.id} {...media} />
           ))}
+        </ScrollContainer>
         {/* <FAQCard jobId={job.id} /> */}
       </S.Container>
     </S.Wrapper>

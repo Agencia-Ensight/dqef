@@ -141,7 +141,13 @@ export const GET_JOB = gql`
 
 export const GET_TOP_10_URGENT_JOBS = gql`
   query GetTopUrgentJobs($gte: date!, $lte: date!) {
-    jobs(limit: 10, where: { date_limit: { _gte: $gte, _lte: $lte } }) {
+    jobs(
+      limit: 10
+      where: {
+        job_status: { id: { _eq: 1 } }
+        date_limit: { _gte: $gte, _lte: $lte }
+      }
+    ) {
       ...JobFragment
     }
   }
@@ -150,7 +156,10 @@ export const GET_TOP_10_URGENT_JOBS = gql`
 
 export const GET_TOP_10_JOBS = gql`
   query GetTopJobs($gte: date!) {
-    jobs(limit: 10, where: { date_limit: { _gte: $gte } }) {
+    jobs(
+      limit: 10
+      where: { job_status: { id: { _eq: 1 } }, date_limit: { _gte: $gte } }
+    ) {
       ...JobFragment
     }
   }
@@ -159,7 +168,12 @@ export const GET_TOP_10_JOBS = gql`
 
 export const GET_URGENT_JOBS = gql`
   query GetUrgentJobs($gte: date!, $lte: date!) {
-    jobs(where: { date_limit: { _gte: $gte, _lte: $lte } }) {
+    jobs(
+      where: {
+        job_status: { id: { _eq: 1 } }
+        date_limit: { _gte: $gte, _lte: $lte }
+      }
+    ) {
       ...JobFragment
     }
   }
@@ -168,7 +182,9 @@ export const GET_URGENT_JOBS = gql`
 
 export const GET_JOBS = gql`
   query GetJobs($gte: date!) {
-    jobs(where: { date_limit: { _gte: $gte } }) {
+    jobs(
+      where: { job_status: { id: { _eq: 1 } }, date_limit: { _gte: $gte } }
+    ) {
       ...JobFragment
     }
   }
@@ -189,6 +205,8 @@ export const UPDATE_JOB = gql`
     $id: Int!
     $object: jobs_set_input!
     $knowledges: [job_has_knowledges_insert_input!]!
+    $deleteMedias: [uuid!]
+    $addMedias: [job_has_medias_insert_input!]!
   ) {
     update_jobs_by_pk(pk_columns: { id: $id }, _set: $object) {
       id
@@ -198,6 +216,19 @@ export const UPDATE_JOB = gql`
         id
       }
     }
+
+    delete_medias(where: { id: { _in: $deleteMedias } }) {
+      returning {
+        id
+      }
+    }
+
+    insert_job_has_medias(objects: $addMedias) {
+      returning {
+        id
+      }
+    }
+
     insert_job_has_knowledges(objects: $knowledges) {
       affected_rows
       returning {
@@ -240,6 +271,7 @@ export const INSERT_JOB = gql`
     $obs: String!
     $maximum_plagiarism: Int!
     $job_media_type_id: Int!
+    $job_medias: [job_has_medias_insert_input!]!
   ) {
     insert_jobs_one(
       object: {
@@ -253,6 +285,7 @@ export const INSERT_JOB = gql`
         obs: $obs
         maximum_plagiarism: $maximum_plagiarism
         job_has_knowledges: { data: { knowledge_id: $knowledge_id } }
+        job_has_medias: { data: $job_medias }
         job_status_id: $job_status_id
         job_format_id: $job_format_id
         value: $value

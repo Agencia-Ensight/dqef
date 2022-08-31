@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.a`
   box-shadow: 0px 10px 25px rgba(198, 198, 198, 0.1);
   border-radius: 20px;
   background: white;

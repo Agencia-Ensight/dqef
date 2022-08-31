@@ -3,22 +3,17 @@ import Router from "next/router";
 
 import { Input, ComboboxComp, ButtonKnewave, IRenderProps } from "@/components";
 import * as S from "./styles";
-import {
-  useCourses,
-  useJobFormats,
-  useKnowledges,
-  useKnowledgesByCourse,
-} from "@/hooks";
+import { useCourses, useJobFormats, useKnowledges } from "@/hooks";
 
 function MainInfo({ onComplete }: IRenderProps) {
-  const [higher_course_id, setHigher_course_id] = useState(1);
+  const [courseId, setCourseId] = useState(1);
   const [title, setTitle] = useState("");
   const [pages, setPages] = useState(0);
   const [words, setWords] = useState(0);
-  const [job_format_id, setJob_format_id] = useState(1);
-  const [thema, setThema] = useState("");
+  const [formatId, setFormatId] = useState(1);
+  const [theme, setTheme] = useState("");
   const [instructions, setInstructions] = useState("");
-  const [knowledge_id, setKnowledge_id] = useState(1);
+  const [knowledgeId, setKnowledgeId] = useState(1);
   const courses = useCourses();
   const knowledges = useKnowledges();
   const formats = useJobFormats();
@@ -27,14 +22,14 @@ function MainInfo({ onComplete }: IRenderProps) {
     e.preventDefault();
 
     onComplete({
-      higher_course_id,
+      courseId,
       title,
       pages,
       words,
-      job_format_id,
-      thema,
+      formatId,
+      theme,
       instructions,
-      knowledge_id,
+      knowledgeId,
     });
   }
 
@@ -68,8 +63,8 @@ function MainInfo({ onComplete }: IRenderProps) {
             label="Tipo do Trabalho"
             placeholder="Insira o tipo"
             items={formats.data || []}
-            value={job_format_id}
-            onSelectedChange={(item) => setJob_format_id(item.id)}
+            value={formatId}
+            onSelectedChange={(item) => setFormatId(item.id)}
             required
             mandatory
           />
@@ -78,10 +73,10 @@ function MainInfo({ onComplete }: IRenderProps) {
           <ComboboxComp
             label="Curso do Trabalho"
             placeholder="Insira o curso"
-            value={higher_course_id}
+            value={courseId}
             items={courses.data || []}
             onSelectedChange={(item) => {
-              setHigher_course_id(item.id);
+              setCourseId(item.id);
             }}
             required
             mandatory
@@ -90,9 +85,9 @@ function MainInfo({ onComplete }: IRenderProps) {
           <ComboboxComp
             label="Disciplina do Trabalho"
             items={knowledges.data || []}
-            value={knowledge_id}
+            value={knowledgeId}
             placeholder="Insira a disciplina"
-            onSelectedChange={(item) => setKnowledge_id(item.id)}
+            onSelectedChange={(item) => setKnowledgeId(item.id)}
             required
             mandatory
           />
@@ -103,8 +98,8 @@ function MainInfo({ onComplete }: IRenderProps) {
             label="Tema do Trabalho"
             mandatory
             name="thema"
-            value={thema}
-            onChange={(e) => setThema(e.target.value)}
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
             required
           />
         </S.TextInputContainer>
