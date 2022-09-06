@@ -9,6 +9,7 @@ import * as S from "./styles";
 import { IModalSendJob } from "./typings";
 import { ModalApprovedJob } from "./components/ModalApprovedJob";
 import { uploadFile } from "@/services/api/upload";
+import { usePlagiarism } from "@/hooks/usePlagiarism";
 
 export function ModalSendJob({
   jobId,
@@ -17,10 +18,12 @@ export function ModalSendJob({
   dateLimitOfRequestChanges,
 }: IModalSendJob) {
   const isMobile = useMedia("(max-width:600px)");
+  const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState<FileList | null>(null);
   const { close, open } = useModal();
   const { addToast } = useToast();
   const { delivery } = useJobDelivery();
+  const { checkPLagiarism } = usePlagiarism();
 
   async function uploadJobFiles() {
     try {
@@ -32,20 +35,37 @@ export function ModalSendJob({
         return;
       }
       const uploadIds: string[] = [];
+
       for await (const file of files) {
         const { id } = await uploadFile({ file, title: file.name });
         uploadIds.push(id);
       }
-      await delivery(jobId, "partial-delivery", uploadIds);
-      addToast({ type: "success", msg: "Sucesso! Você enviou o trabalho!" });
+
+      return uploadIds;
     } catch (error) {
       addToast({ type: "error", msg: "Aconteceu um erro ao enviar o arquivo" });
     }
   }
 
   async function handleJobApproved() {
-    await uploadJobFiles();
+    setIsLoading(true);
 
+    const uploadIds = await uploadJobFiles();
+
+    const checkPlag = await checkPLagiarism();
+
+    if (!checkPlag) {
+      addToast({
+        type: "error",
+        msg: "Seus arquivos não passaram pelo teste de plágio.",
+      });
+      return;
+    }
+
+    await delivery(jobId, "partial-delivery", uploadIds);
+    addToast({ type: "success", msg: "Sucesso! Você enviou o trabalho!" });
+
+    setIsLoading(false);
     close();
     open("Trabalho Aprovado!", {
       content: () => (
@@ -138,6 +158,8 @@ export function ModalSendJob({
           size={isMobile ? "sm" : "lg"}
           variant="SECONDARY"
           onClick={close}
+          loading={isLoading}
+          disabled={isLoading}
         >
           Cancelar
         </ButtonKnewave>

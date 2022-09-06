@@ -13,9 +13,9 @@ export type Question = {
 };
 
 export const INSERT_QUESTION = gql`
-  mutation InsertQuestion($job_id: uuid!, $question: String!, $user_id: uuid!) {
+  mutation InsertQuestion($jobId: Int!, $question: String!, $userId: uuid!) {
     insert_user_job_questions_one(
-      object: { job_id: $job_id, question: $question, user_id: $user_id }
+      object: { job_id: $jobId, question: $question, user_id: $userId }
     ) {
       id
     }
@@ -23,9 +23,9 @@ export const INSERT_QUESTION = gql`
 `;
 
 export const INSERT_ANSWER = gql`
-  mutation InsertAnswer($answer: String!, $user_job_question_id: Int!) {
+  mutation InsertAnswer($answer: String!, $userJobQuestionId: Int!) {
     insert_user_job_question_replies_one(
-      object: { question: $answer, user_job_question_id: $user_job_question_id }
+      object: { question: $answer, user_job_question_id: $userJobQuestionId }
     ) {
       id
     }
@@ -33,7 +33,7 @@ export const INSERT_ANSWER = gql`
 `;
 
 export const QUESTIONS_BY_JOB = gql`
-  query QuestionsByJob($job: uuid!) {
+  query QuestionsByJob($job: Int!) {
     user_job_questions(
       where: { job_id: { _eq: $job } }
       order_by: { created_at: desc }

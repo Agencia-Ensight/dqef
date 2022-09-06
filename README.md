@@ -2,8 +2,8 @@
 - [x] Apenas jobs não começados
 - [x] Arrumar o update de job
 - [x] Colocar os arquivos
-- [] Linkar com a API de plágio
+- [-] Linkar com a API de plágio
 - [] Alterações
 - [] Cobrança
-- [] Aba de notificações
-- [] Chat do Job
+- [-] Aba de notificações
+- [x] Chat do Job

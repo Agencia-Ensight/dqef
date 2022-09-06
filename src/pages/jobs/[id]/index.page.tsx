@@ -7,6 +7,7 @@ import { JobCard, Loading } from "@/components";
 import { InfoCard } from "./components/InfoCard";
 import { FileCard } from "./components/FileCard";
 import { useJob } from "@/hooks";
+import { FAQCard } from "./components";
 
 function InsideJob({ id }: IInsideJob) {
   const job = useJob(id);
@@ -46,7 +47,7 @@ function InsideJob({ id }: IInsideJob) {
             <FileCard key={media.id} {...media} />
           ))}
         </ScrollContainer>
-        {/* <FAQCard jobId={job.id} /> */}
+        <FAQCard jobId={job.data.id} jobOwnerId={job.data.creatorId} />
       </S.Container>
     </S.Wrapper>
   );
