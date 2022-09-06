@@ -456,3 +456,23 @@ export const GET_PROPOSALS_BY_JOB = gql`
     }
   }
 `;
+
+export const ADD_JOB_PAYMENT = gql`
+  mutation AddPayment(
+    $jobId: Int!
+    $paymentMethodId: Int!
+    $userId: uuid!
+    $mediaId: uuid!
+  ) {
+    insert_user_payments_one(
+      object: {
+        job_id: $jobId
+        payment_method_id: $paymentMethodId
+        user_id: $userId
+        media_id: $mediaId
+      }
+    ) {
+      id
+    }
+  }
+`;

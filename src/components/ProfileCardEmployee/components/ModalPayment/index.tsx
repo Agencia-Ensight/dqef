@@ -3,12 +3,15 @@ import { IoCopy } from "react-icons/io5";
 import { AiOutlineDownload } from "react-icons/ai";
 
 import { useMedia, useSendProposal } from "@/hooks";
-import { ButtonKnewave } from "@/components";
+import { ButtonKnewave, Dropzone } from "@/components";
 import { useModal, useToast } from "@/contexts";
 
 import * as S from "./styles";
 import { IModalPayment } from "./typings";
 import { useAcceptProposal } from "@/hooks/useAcceptProposal";
+import { useAddPayment } from "@/hooks/useAddPayment";
+import { useState } from "react";
+import { uploadFile } from "@/services/api/upload";
 
 export function ModalPayment({
   price,
@@ -19,7 +22,10 @@ export function ModalPayment({
   const { close } = useModal();
   const { addToast } = useToast();
   const isMobile = useMedia("(max-width: 600px)");
-  const { acceptProposal, isLoading } = useAcceptProposal();
+  const { acceptProposal } = useAcceptProposal();
+  const [isLoading, setIsLoading] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
+  const { addPayment } = useAddPayment();
 
   async function handleCopy(info: string) {
     await navigator.clipboard.writeText(info);
@@ -27,8 +33,20 @@ export function ModalPayment({
   }
 
   async function handleSubmit() {
+    setIsLoading(true);
+    if (files.length === 0) {
+      addToast({ msg: "Anexe o comprovante de pagamento", type: "error" });
+      setIsLoading(false);
+      return;
+    }
+    const { id } = await uploadFile({ file: files[0], title: files[0].name });
+    await addPayment({
+      jobId,
+      mediaId: id,
+    });
     await acceptProposal(proposalId, jobId, editorId);
     close();
+    setIsLoading(false);
     Router.replace("/profile");
   }
 
@@ -72,10 +90,7 @@ export function ModalPayment({
           </S.ContainerPadrao2>
         </S.Description>
       </S.Descriptionsplit>
-      <S.ButtonBang>
-        <AiOutlineDownload color="#42A4EF" />
-        <p>Anexe o comprovante de pagamento</p>
-      </S.ButtonBang>
+      <Dropzone onChange={setFiles} label="Anexe o comprovante de pagamento" />
 
       <S.ButtonFinaleira>
         <ButtonKnewave
