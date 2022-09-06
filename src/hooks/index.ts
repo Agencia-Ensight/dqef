@@ -16,3 +16,5 @@ export * from "./useJobFormats";
 export * from "./useKnowlegesByCourse";
 export * from "./useMediaTypes";
 export * from "./useUpdateJob";
+export * from "./useUser";
+export * from "./useUpdateUser";

@@ -5,7 +5,10 @@ type UserProps = {
   type: "EDITOR" | "STUDENT";
   name: string;
   email: string;
+  phone?: string;
+  cpf?: string;
   avatar?: string;
+  payment?: string;
 };
 
 type CreateEditorUserProps = {

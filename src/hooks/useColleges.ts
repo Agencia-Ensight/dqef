@@ -1,7 +1,18 @@
 import { useQuery } from "@apollo/client";
 
 import { GET_COLLEGES } from "@/services/graphql/queries";
-import { toEnum } from "@/utils";
+
+type ICollege = {
+  id: number;
+  name: string;
+};
+
+function toCollege(data: Record<string, any>): ICollege {
+  return {
+    id: data.id,
+    name: `${data.sigla} - ${data.name}`,
+  };
+}
 
 export function useColleges() {
   const {
@@ -10,7 +21,7 @@ export function useColleges() {
     error,
   } = useQuery<{ colleges: Record<string, any>[] }>(GET_COLLEGES);
 
-  const data = rawData?.colleges.map(toEnum);
+  const data = rawData?.colleges.map(toCollege);
 
   return { data, isLoading, error };
 }
