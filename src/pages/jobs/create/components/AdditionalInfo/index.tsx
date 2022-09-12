@@ -14,7 +14,7 @@ import { useCreateJob } from "@/hooks/useCreateJob";
 
 function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
   const mediaTypes = useMediaTypes();
-  const [maxPlagiarism, setMaxPlagiarism] = useState(0);
+  const [maxPlagiarism, setMaxPlagiarism] = useState("0");
   const [jobMediaType, setJobMediaType] = useState(1);
   const [obs, setObs] = useState("");
   const [value, setValue] = useState(0);
@@ -60,7 +60,7 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
             name="maximum_plagiarism"
             id="maximum_plagiarism"
             value={maxPlagiarism}
-            onChange={(e) => setMaxPlagiarism(Number(e.target.value))}
+            onChange={(e) => setMaxPlagiarism(e.target.value)}
             max={100}
             required
           />

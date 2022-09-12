@@ -40,7 +40,7 @@ function UpdateJob({ id }: IUpdateJob) {
   const [words, setWords] = useState(1);
   const [deliveryAt, setDeliveryAt] = useState(new Date());
   const [dateLimit, setDateLimit] = useState(new Date());
-  const [maxPlagiarism, setMaxPlagiarism] = useState(1);
+  const [maxPlagiarism, setMaxPlagiarism] = useState("1");
   const [price, setPrice] = useState(1);
   const [editorPrice, setEditorPrice] = useState(1);
   const [mediaTypeId, setMediaTypeId] = useState(1);
@@ -288,7 +288,7 @@ function UpdateJob({ id }: IUpdateJob) {
               type="text"
               required
               value={maxPlagiarism}
-              onChange={(e) => setMaxPlagiarism(Number(e.target.value))}
+              onChange={(e) => setMaxPlagiarism(e.target.value)}
             />
           </div>
           <ComboboxComp

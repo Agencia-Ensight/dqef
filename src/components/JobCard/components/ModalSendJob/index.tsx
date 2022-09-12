@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiOutlineDownload } from "react-icons/ai";
 
 import { useJobDelivery, useMedia } from "@/hooks";
-import { ButtonKnewave, Input } from "@/components";
+import { ButtonKnewave, Dropzone, Input } from "@/components";
 import { useModal, useToast } from "@/contexts";
 
 import * as S from "./styles";
@@ -15,11 +15,12 @@ export function ModalSendJob({
   jobId,
   acceptPlagiarism,
   plagiarismOfJob,
+  isLastDelivery,
   dateLimitOfRequestChanges,
 }: IModalSendJob) {
   const isMobile = useMedia("(max-width:600px)");
   const [isLoading, setIsLoading] = useState(false);
-  const [files, setFiles] = useState<FileList | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
   const { close, open } = useModal();
   const { addToast } = useToast();
   const { delivery } = useJobDelivery();
@@ -62,7 +63,11 @@ export function ModalSendJob({
       return;
     }
 
-    await delivery(jobId, "partial-delivery", uploadIds);
+    await delivery(
+      jobId,
+      isLastDelivery ? "FINAL_DELIVERY" : "FIRST_DELIVERY",
+      uploadIds
+    );
     addToast({ type: "success", msg: "Sucesso! Você enviou o trabalho!" });
 
     setIsLoading(false);
@@ -136,19 +141,7 @@ export function ModalSendJob({
         <img src="/images/insertwork.png" alt="" />
       </S.NerdImage>
 
-      <S.FileDiv>
-        <label htmlFor="file" className="label-inputfile">
-          Anexar Arquivos
-          <AiOutlineDownload />
-        </label>
-        <input
-          type="file"
-          multiple
-          className="inputfile-root"
-          id="file"
-          onChange={(e) => setFiles(e.target.files)}
-        />
-      </S.FileDiv>
+      <Dropzone onChange={setFiles} />
 
       <S.ButtonInputSolid>
         <Input placeholder="Observações" className="inputsolido"></Input>
@@ -158,8 +151,6 @@ export function ModalSendJob({
           size={isMobile ? "sm" : "lg"}
           variant="SECONDARY"
           onClick={close}
-          loading={isLoading}
-          disabled={isLoading}
         >
           Cancelar
         </ButtonKnewave>
@@ -167,6 +158,8 @@ export function ModalSendJob({
           size={isMobile ? "sm" : "lg"}
           variant="PRIMARY"
           onClick={handleJobApproved}
+          loading={isLoading}
+          disabled={isLoading}
         >
           Continuar
         </ButtonKnewave>

@@ -43,13 +43,13 @@ export type CreateJobProps = {
   delivery: Date;
   thema: string;
   knowledge_id: number;
-  user_id: string;
+  user_id: number;
   pages: number;
   words: number;
   instructions: string;
   job_format_id: number;
   obs: string;
-  maximum_plagiarism: number;
+  maximum_plagiarism: string;
 };
 
 export type JobFormatProps = {
@@ -84,6 +84,17 @@ export const JOB_FRAGMENT = gql`
     job_format {
       id
       name
+    }
+    job_alterations {
+      id
+      obs
+      job_alteration_has_medias {
+        media {
+          id
+          link
+          title
+        }
+      }
     }
     proposals {
       id
@@ -205,7 +216,7 @@ export const UPDATE_JOB = gql`
     $id: Int!
     $object: jobs_set_input!
     $knowledges: [job_has_knowledges_insert_input!]!
-    $deleteMedias: [uuid!]
+    $deleteMedias: [Int!]
     $addMedias: [job_has_medias_insert_input!]!
   ) {
     update_jobs_by_pk(pk_columns: { id: $id }, _set: $object) {
@@ -263,13 +274,13 @@ export const INSERT_JOB = gql`
     $delivery: date!
     $thema: String!
     $knowledge_id: Int!
-    $user_id: uuid!
+    $user_id: Int!
     $pages: Int!
     $words: Int!
     $instructions: String!
     $job_format_id: Int!
     $obs: String!
-    $maximum_plagiarism: Int!
+    $maximum_plagiarism: String!
     $job_media_type_id: Int!
     $job_medias: [job_has_medias_insert_input!]!
   ) {
@@ -326,7 +337,7 @@ export const INSERT_DELIVERY = gql`
 export const SEND_PROPOSAL = gql`
   mutation SendProposal(
     $jobId: Int!
-    $userId: uuid!
+    $userId: Int!
     $price: float8!
     $statusId: Int!
   ) {
@@ -346,8 +357,8 @@ export const SEND_PROPOSAL = gql`
 export const INSERT_JOB_REVIEW = gql`
   mutation InsertJobReview(
     $jobId: Int!
-    $userId: uuid!
-    $reviwerId: uuid!
+    $userId: Int!
+    $reviwerId: Int!
     $review: Float!
     $testimonial: String
   ) {
@@ -366,7 +377,7 @@ export const INSERT_JOB_REVIEW = gql`
 `;
 
 export const GET_JOBS_BY_USER = gql`
-  query GetJobsByUser($userId: uuid!, $statusesId: [Int!]) {
+  query GetJobsByUser($userId: Int!, $statusesId: [Int!]) {
     jobs(
       where: { user_id: { _eq: $userId }, job_status_id: { _in: $statusesId } }
     ) {
@@ -377,11 +388,7 @@ export const GET_JOBS_BY_USER = gql`
 `;
 
 export const UPDATE_PROPOSAL = gql`
-  mutation UpdateProposal(
-    $proposalId: uuid!
-    $statusId: Int!
-    $editorId: uuid
-  ) {
+  mutation UpdateProposal($proposalId: Int!, $statusId: Int!, $editorId: uuid) {
     update_proposals_by_pk(
       pk_columns: { id: $proposalId }
       _set: { proposal_status_id: $statusId }
@@ -392,7 +399,7 @@ export const UPDATE_PROPOSAL = gql`
 `;
 
 export const ACCEPT_PROPOSAL = gql`
-  mutation AcceptProposal($proposalId: uuid!, $jobId: Int!, $editorId: uuid!) {
+  mutation AcceptProposal($proposalId: Int!, $jobId: Int!, $editorId: Int!) {
     update_proposals_by_pk(
       pk_columns: { id: $proposalId }
       _set: { proposal_status_id: 2 }
@@ -410,7 +417,7 @@ export const ACCEPT_PROPOSAL = gql`
 `;
 
 export const GET_JOBS_BY_EDITOR = gql`
-  query GetJobsByEditor($editorId: uuid!, $statusesId: [Int!]) {
+  query GetJobsByEditor($editorId: Int!, $statusesId: [Int!]) {
     jobs(
       where: {
         proposals: { user_id: { _eq: $editorId } }
@@ -461,8 +468,8 @@ export const ADD_JOB_PAYMENT = gql`
   mutation AddPayment(
     $jobId: Int!
     $paymentMethodId: Int!
-    $userId: uuid!
-    $mediaId: uuid!
+    $userId: Int!
+    $mediaId: Int!
   ) {
     insert_user_payments_one(
       object: {
@@ -472,6 +479,24 @@ export const ADD_JOB_PAYMENT = gql`
         media_id: $mediaId
       }
     ) {
+      id
+    }
+  }
+`;
+
+export const INSERT_JOB_CHANGE = gql`
+  mutation InsertJobChange($jobId: Int!, $obs: String!, $mediaId: Int!) {
+    insert_job_alterations_one(
+      object: {
+        job_id: $jobId
+        obs: $obs
+        job_alteration_has_medias: { data: { media_id: $mediaId } }
+      }
+    ) {
+      id
+    }
+
+    update_jobs_by_pk(pk_columns: { id: $jobId }, _set: { job_status_id: 5 }) {
       id
     }
   }

@@ -1,6 +1,7 @@
 import { addDays } from "date-fns";
 
 import {
+  JobChange,
   JobGenericProps,
   JobMediaProps,
   JobProposal,
@@ -11,12 +12,24 @@ import {
 import { PROD_API_URL } from "@/services/api";
 
 export const statusOnDb = {
-  1: "waiting-proposals",
-  2: "ready-to-start",
-  3: "in-progress",
-  4: "partial-delivery",
-  5: "final-delivery",
-};
+  1: "PUBLISHED",
+  2: "ACCEPTED_EDITOR",
+  3: "IN_PROGRESS",
+  4: "FIRST_DELIVERY",
+  5: "REQUEST_CHANGE",
+  6: "FINAL_DELIVERY",
+  7: "FINISHED",
+} as Record<number, JobStatus>;
+
+export const statusOnDbReverse = {
+  PUBLISHED: 1,
+  ACCEPTED_EDITOR: 2,
+  IN_PROGRESS: 3,
+  FIRST_DELIVERY: 4,
+  REQUEST_CHANGE: 5,
+  FINAL_DELIVERY: 6,
+  FINISHED: 7,
+} as Record<JobStatus, number>;
 
 export function toJob(dbJob: Record<string, any>): JobProps {
   function toJobGeneric(dbJob: Record<string, any>): JobGenericProps {
@@ -41,7 +54,7 @@ export function toJob(dbJob: Record<string, any>): JobProps {
   }
 
   function toJobStatus(dbStatus: 1 | 2 | 3 | 4 | 5): JobStatus {
-    return statusOnDb[dbStatus] as JobStatus;
+    return statusOnDb[dbStatus];
   }
 
   function toJobProposals(dbProposal: Record<string, any>): JobProposal[] {
@@ -52,6 +65,14 @@ export function toJob(dbJob: Record<string, any>): JobProps {
         name: prop.proposal_status.name as string,
       },
     }));
+  }
+
+  function toJobChange(dbChange: Record<string, any>): JobChange | undefined {
+    if (!dbChange) return undefined;
+    return {
+      obs: dbChange.obs,
+      medias: toJobMedias(dbChange.job_alteration_has_medias),
+    };
   }
 
   return {
@@ -66,7 +87,8 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     maximumPlagiarism: dbJob.maximum_plagiarism,
     instructions: dbJob.instructions,
     medias: toJobMedias(dbJob.job_has_medias || []),
-    price: dbJob.value_pay,
+    price: dbJob.value,
+    editorPrice: dbJob.value_pay,
     deliveryAt: addDays(new Date(dbJob.delivery), 1),
     jobType: toJobGeneric(dbJob.job_type),
     higherCourse: toJobGeneric(dbJob.higher_course),
@@ -77,5 +99,6 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     proposals: toJobProposals(dbJob.proposals),
     editorId: dbJob.editor_id,
     rating: dbJob?.user_ratings[0],
+    change: toJobChange(dbJob.job_alterations && dbJob.job_alterations[0]),
   };
 }

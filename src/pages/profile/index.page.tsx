@@ -2,9 +2,10 @@ import { useState } from "react";
 
 import { JobCard, ProfileCard } from "@/components";
 import { useUser } from "@/contexts";
-import { JobStatus, useJobsByUser } from "@/hooks";
+import { useJobsByUser } from "@/hooks";
 import * as S from "./styles";
 import { ensureAuth } from "@/hocs";
+import { JobStatus } from "@/types/Job";
 
 type IMenuOption = "proposals" | "jobsOnGoing" | "jobsDone";
 
@@ -60,17 +61,17 @@ function Profile() {
           {menu === "proposals" && (
             <Menu
               title="Suas propostas"
-              status={["waiting-proposals", "ready-to-start"]}
+              status={["PUBLISHED", "ACCEPTED_EDITOR"]}
             />
           )}
           {menu === "jobsOnGoing" && (
             <Menu
               title="Trabalhos em andamento"
-              status={["in-progress", "partial-delivery"]}
+              status={["IN_PROGRESS", "FIRST_DELIVERY", "REQUEST_CHANGE"]}
             />
           )}
           {menu === "jobsDone" && (
-            <Menu title="Trabalhos feitos" status={["final-delivery"]} />
+            <Menu title="Trabalhos feitos" status={["FINAL_DELIVERY"]} />
           )}
         </div>
       )}

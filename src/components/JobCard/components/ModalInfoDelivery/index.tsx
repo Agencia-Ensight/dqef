@@ -21,7 +21,7 @@ export function ModalInfoDelivery({
 
   async function onStartJob() {
     try {
-      await delivery(jobId, "in-progress");
+      await delivery(jobId, "IN_PROGRESS");
       close();
       addToast({
         type: "success",

@@ -7,7 +7,6 @@ import * as S from "./styles";
 import { IModalOpenWork } from "./typings";
 import { useModal, useToast } from "@/contexts";
 import { ModalRequestChanges } from "../ModalRequestChanges";
-import { PROD_API_URL } from "@/services/api";
 
 export function ModalSeeJob({
   jobId,
@@ -33,7 +32,7 @@ export function ModalSeeJob({
 
   async function handleConfirmDelivery() {
     try {
-      await delivery(jobId, "final-delivery");
+      await delivery(jobId, "FINAL_DELIVERY");
       close();
       addToast({ msg: "Trabalho entregue com sucesso", type: "success" });
     } catch (error) {
@@ -56,11 +55,7 @@ export function ModalSeeJob({
       <ul>
         {medias.map((media) => (
           <li key={media.id}>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`${PROD_API_URL}${media.link}`}
-            >
+            <a target="_blank" rel="noopener noreferrer" href={media.link}>
               {media.title}
             </a>
           </li>
@@ -87,15 +82,7 @@ export function ModalSeeJob({
             Confirmar Entrega
           </ButtonKnewave>
         )}
-        {isFirstDelivery && (
-          <ButtonKnewave
-            size={isMobile ? "sm" : "lg"}
-            variant="SECONDARY"
-            onClick={() => handleRequestChanges()}
-          >
-            Alteração
-          </ButtonKnewave>
-        )}
+
         <a target="_blank" href="https://wa.me/message/V5ETOHOBOW2HD1">
           <ButtonKnewave size={isMobile ? "sm" : "lg"} variant="SECONDARY">
             Relatar Problema

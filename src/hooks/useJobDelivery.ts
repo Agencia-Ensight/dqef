@@ -1,6 +1,5 @@
 import { useMutation } from "@apollo/client";
 
-import { CardStatus } from "@/components/JobCard/typings";
 import {
   GET_JOB,
   GET_JOBS,
@@ -12,14 +11,8 @@ import {
   GET_URGENT_JOBS,
   INSERT_DELIVERY,
 } from "@/services/graphql/jobs";
-
-export const statusOnDb = {
-  "waiting-proposals": 1,
-  "ready-to-start": 2,
-  "in-progress": 3,
-  "partial-delivery": 4,
-  "final-delivery": 5,
-};
+import { JobStatus } from "@/types/Job";
+import { statusOnDbReverse } from "@/utils";
 
 export function useJobDelivery() {
   const [insert, { data, loading, error }] = useMutation(INSERT_DELIVERY, {
@@ -28,13 +21,13 @@ export function useJobDelivery() {
 
   async function delivery(
     jobId: string,
-    status: CardStatus,
+    status: JobStatus,
     mediaIds: string[] = []
   ) {
     await insert({
       variables: {
         jobId,
-        statusId: statusOnDb[status],
+        statusId: statusOnDbReverse[status],
         medias: mediaIds.map((mediaId) => ({
           job_id: jobId,
           media_id: mediaId,

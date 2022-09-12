@@ -47,13 +47,14 @@ function JobCard(job: ICardProps) {
       content: () => (
         <ModalSendJob
           jobId={job.id}
+          isLastDelivery={job.status === "REQUEST_CHANGE"}
           acceptPlagiarism={20} //TODO
           plagiarismOfJob={20} //TODO
           dateLimitOfRequestChanges={new Date()} //TODO
         />
       ),
     });
-  }, [modal, job.id]);
+  }, [modal, job]);
 
   const handleSendCounterProposal = useCallback(() => {
     modal.open("Alterar Valor", {
@@ -80,12 +81,13 @@ function JobCard(job: ICardProps) {
     modal.open(`Olá, ${user?.name}. Essas são as alterações solicitadas`, {
       content: () => (
         <ModalSeeChanges
+          medias={job.change!.medias}
           dateOfTheFinalAdjust={job.deliveryAt} // TODO
-          obs="teste 1" //TODO
+          obs={job.change!.obs}
         />
       ),
     });
-  }, [modal, job.deliveryAt]);
+  }, [modal, job]);
 
   const handleSeeJob = useCallback(() => {
     modal.open(`Olá, ${user?.name}`, {
@@ -93,7 +95,7 @@ function JobCard(job: ICardProps) {
         <ModalSeeJob
           jobId={job.id}
           medias={job.medias}
-          isFirstDelivery={job.status === "partial-delivery"}
+          isFirstDelivery={job.status === "FIRST_DELIVERY"}
           dateOfChanges={new Date()} //TODO
         />
       ),
@@ -130,7 +132,7 @@ function JobCard(job: ICardProps) {
     modal.open("Solicitar alteração", {
       content: () => <ModalRequestChanges jobId={job.id} />,
     });
-  }, [modal, job.id]);
+  }, [modal, job]);
 
   const handleCharge = useCallback(() => {
     modal.open(`Olá, ${user?.name}`, {
@@ -174,13 +176,13 @@ function JobCard(job: ICardProps) {
           </S.InformationContainer>
           {user?.type === "EDITOR" && (
             <>
-              {((job.status === "waiting-proposals" &&
+              {((job.status === "PUBLISHED" &&
                 job.totalProposals > 0 &&
                 job.proposals.find(
                   (proposal) =>
                     proposal.user.id === user?.id && proposal.status.id === 1
                 )) ||
-                (job.status === "partial-delivery" &&
+                (job.status === "FIRST_DELIVERY" &&
                   job.totalChanges == 0 &&
                   job.proposals.find(
                     (proposal) =>
@@ -190,12 +192,14 @@ function JobCard(job: ICardProps) {
           )}
           {user?.type === "STUDENT" && job.creatorId === user?.id && (
             <>
-              {(job.status === "ready-to-start" ||
-                (job.status === "partial-delivery" &&
-                  job.totalChanges > 0)) && (
+              {((job.status === "PUBLISHED" &&
+                job.proposals.find((proposal) => proposal.status.id === 2)) ||
+                job.status === "ACCEPTED_EDITOR" ||
+                job.status === "REQUEST_CHANGE" ||
+                (job.status === "FIRST_DELIVERY" && job.totalChanges > 0)) && (
                 <S.WaitStudent>Aguardando editor...</S.WaitStudent>
               )}
-              {job.status === "in-progress" && (
+              {job.status === "IN_PROGRESS" && (
                 <S.WaitStudent>Em andamento com o editor</S.WaitStudent>
               )}
             </>
@@ -210,37 +214,45 @@ function JobCard(job: ICardProps) {
 
         {user?.type === "STUDENT" && job.creatorId === user?.id && (
           <>
-            {job.status === "waiting-proposals" && (
+            {job.status === "PUBLISHED" && (
               <>
-                {job.totalProposals ? (
-                  <Link href={`/jobs/${job.id}/proposals`} passHref>
-                    <S.Button>Propostas</S.Button>
-                  </Link>
-                ) : (
+                {!!job.totalProposals &&
+                  !job.proposals.find(
+                    (proposal) => proposal.status.id === 2
+                  ) && (
+                    <Link href={`/jobs/${job.id}/proposals`} passHref>
+                      <S.Button>Propostas</S.Button>
+                    </Link>
+                  )}
+                {!job.totalProposals && (
                   <Link href={`/jobs/${job.id}/update`} passHref>
                     <S.Button>Editar</S.Button>
                   </Link>
                 )}
               </>
             )}
-            {job.status === "partial-delivery" && job.totalChanges === 0 && (
+            {job.status === "FIRST_DELIVERY" && job.totalChanges === 0 && (
               <>
                 <S.Button onClick={handleSeeJob}>Entrega</S.Button>
                 <S.Button onClick={handleSendChanges}>Alterações</S.Button>
               </>
             )}
-            {job.status === "final-delivery" &&
-              (!job.wasEvaluated ? (
-                <S.Button onClick={() => handleSendReview()}>Avaliar</S.Button>
-              ) : (
+            {job.status === "FINAL_DELIVERY" && (
+              <>
+                {!job.wasEvaluated && (
+                  <S.Button onClick={() => handleSendReview()}>
+                    Avaliar
+                  </S.Button>
+                )}
                 <S.Button onClick={() => handleSeeJob()}>Entrega</S.Button>
-              ))}
+              </>
+            )}
           </>
         )}
 
         {user?.type === "EDITOR" && (
           <>
-            {job.status === "waiting-proposals" && job.totalProposals === 0 && (
+            {job.status === "PUBLISHED" && job.totalProposals === 0 && (
               <>
                 <S.Button onClick={() => handleAcceptJob()}>Aceitar</S.Button>
                 <S.Button onClick={() => handleSendCounterProposal()}>
@@ -249,15 +261,15 @@ function JobCard(job: ICardProps) {
               </>
             )}
 
-            {job.proposals.find(
+            {!!job.proposals.find(
               (proposal) =>
                 proposal.user.id === user?.id && proposal.status.id === 2
             ) && (
               <>
-                {job.status === "ready-to-start" && (
+                {job.status === "ACCEPTED_EDITOR" && (
                   <S.Button onClick={() => handleStartJob()}>Iniciar</S.Button>
                 )}
-                {job.status === "in-progress" && (
+                {job.status === "IN_PROGRESS" && (
                   <>
                     <S.Button onClick={() => handleJobDelivery()}>
                       Entregar
@@ -276,7 +288,7 @@ function JobCard(job: ICardProps) {
                 </S.Button> */}
                   </>
                 )}
-                {job.status === "partial-delivery" && job.totalChanges > 0 && (
+                {job.status === "REQUEST_CHANGE" && (
                   <>
                     <S.Button onClick={() => handleJobDelivery()}>
                       Entregar
@@ -286,7 +298,7 @@ function JobCard(job: ICardProps) {
                     </S.Button>
                   </>
                 )}
-                {job.status === "final-delivery" && job.wasEvaluated && (
+                {job.status === "FINAL_DELIVERY" && job.wasEvaluated && (
                   <S.Button onClick={() => handleSeeRating()}>
                     Ver avaliação
                   </S.Button>

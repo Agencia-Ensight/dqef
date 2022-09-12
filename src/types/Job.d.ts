@@ -9,13 +9,6 @@ export type JobMediaProps = {
   title: string;
 };
 
-export type JobStatus =
-  | "waiting-proposals"
-  | "ready-to-start"
-  | "in-progress"
-  | "partial-delivery"
-  | "final-delivery";
-
 export type JobUserProposal = {
   id: string;
   name: string;
@@ -33,6 +26,11 @@ export type JobRating = {
   testimonial?: string;
 };
 
+export type JobChange = {
+  obs: string;
+  medias: JobMediaProps[];
+};
+
 export type JobProps = {
   id: string;
   title: string;
@@ -41,10 +39,10 @@ export type JobProps = {
   pages: number;
   words: number;
   obs: string;
-  maximumPlagiarism: number;
+  maximumPlagiarism: string;
   instructions: string;
-  medias: JobMediaProps[];
   price: number;
+  editorPrice: number;
   creatorId: string;
   editorId?: string;
   deliveryAt: Date;
@@ -53,9 +51,18 @@ export type JobProps = {
   higherCourse: JobGenericProps;
   knowledges: JobGenericProps[];
   format: JobGenericProps;
-  dateLimit: Date;
   status: JobStatus;
   medias: JobMediaProps[];
+  change?: JobChange;
   proposals: JobProposal[];
   rating?: JobRating;
 };
+
+export type JobStatus =
+  | "PUBLISHED"
+  | "ACCEPTED_EDITOR"
+  | "IN_PROGRESS"
+  | "FIRST_DELIVERY"
+  | "REQUEST_CHANGE"
+  | "FINAL_DELIVERY"
+  | "FINISHED";

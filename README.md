@@ -1,9 +1,5 @@
-- [x] Resolver bug do perfil de atualizar
-- [x] Apenas jobs não começados
-- [x] Arrumar o update de job
-- [x] Colocar os arquivos
-- [-] Linkar com a API de plágio
-- [] Alterações
-- [] Cobrança
-- [-] Aba de notificações
-- [x] Chat do Job
+SERVIDOR ADONIS
+app
+server.ts
+public
+index.html

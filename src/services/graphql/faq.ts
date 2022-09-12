@@ -13,7 +13,7 @@ export type Question = {
 };
 
 export const INSERT_QUESTION = gql`
-  mutation InsertQuestion($jobId: Int!, $question: String!, $userId: uuid!) {
+  mutation InsertQuestion($jobId: Int!, $question: String!, $userId: Int!) {
     insert_user_job_questions_one(
       object: { job_id: $jobId, question: $question, user_id: $userId }
     ) {

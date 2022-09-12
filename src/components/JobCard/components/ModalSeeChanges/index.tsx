@@ -10,6 +10,7 @@ import { useModal } from "@/contexts";
 
 export function ModalSeeChanges({
   obs,
+  medias,
   dateOfTheFinalAdjust,
 }: IModalSeeChanges) {
   const { close } = useModal();
@@ -27,11 +28,16 @@ export function ModalSeeChanges({
         </h4>
       </S.ContainerTitle>
       <S.Description>{obs}</S.Description>
-
-      <S.ButtonBang>
-        <AiOutlineDownload color="#42A4EF" />
-        <p>Baixar Arquivos</p>
-      </S.ButtonBang>
+      <br />
+      <ul>
+        {medias.map((media) => (
+          <li key={media.id}>
+            <a href={media.link} target="_blank" rel="noopener noreferrer">
+              {media.title}
+            </a>
+          </li>
+        ))}
+      </ul>
 
       <S.ButtonFinaleira>
         <ButtonKnewave
@@ -39,7 +45,7 @@ export function ModalSeeChanges({
           variant="PRIMARY"
           onClick={close}
         >
-          Começar
+          Entendido
         </ButtonKnewave>
       </S.ButtonFinaleira>
 

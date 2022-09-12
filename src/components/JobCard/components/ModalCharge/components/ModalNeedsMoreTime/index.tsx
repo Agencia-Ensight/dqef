@@ -18,7 +18,7 @@ export function ModalNeedsMoreTime() {
 
       <S.TextInformation>
         <h3>
-          Legal! Vamos adicionar mais <span>3 horas </span>para a entrega do
+          Legal! Vamos adicionar mais <span>3 horas</span> para a entrega do
           trabalho
         </h3>
       </S.TextInformation>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Description = styled.div`
   width: 100%;
-  height: 150px;
+  padding: 10px 5px;
   border: solid #42a4ef;
   border-radius: 15px;
   margin-top: 20px;

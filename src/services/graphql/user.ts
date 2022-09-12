@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GET_USER = gql`
-  query GetUser($id: uuid!) {
+  query GetUser($id: Int!) {
     users_by_pk(id: $id) {
       id
       college_id
@@ -13,7 +13,7 @@ export const GET_USER = gql`
 
 export const UPDATE_USER = gql`
   mutation UpdateUser(
-    $userId: uuid!
+    $userId: Int!
     $formationId: Int!
     $courseId: Int!
     $collegeId: Int!

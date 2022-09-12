@@ -13,6 +13,7 @@ import {
 import { JobProps } from "@/types/Job";
 import { useState } from "react";
 import { uploadFile } from "@/services/api/upload";
+import { statusOnDbReverse } from "@/utils";
 
 type IUseUpdateJob = Omit<
   Partial<JobProps>,
@@ -79,6 +80,9 @@ export function useUpdateJob(id: string) {
             value: props.price,
             value_pay: props.editorPrice,
             words: props.words,
+            ...(props.status && {
+              job_status_id: statusOnDbReverse[props.status],
+            }),
           },
           knowledges: knowledgeIds.map((knowledgeId) => ({
             job_id: id,

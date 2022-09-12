@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
-import { addDays } from "date-fns";
+import { addDays, startOfDay } from "date-fns";
 
 import { GET_URGENT_JOBS, Job } from "@/services/graphql/jobs";
 import { toJob } from "@/utils";
 
-const currentDate = new Date();
+const currentDate = startOfDay(new Date());
 const nextTwoDays = addDays(currentDate, 2);
 
 export function useUrgentJobs() {

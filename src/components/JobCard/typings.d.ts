@@ -1,4 +1,10 @@
-import { JobMediaProps, JobProposal, JobRating } from "@/types/Job";
+import {
+  JobChange,
+  JobMediaProps,
+  JobProposal,
+  JobRating,
+  JobStatus,
+} from "@/types/Job";
 
 export type CourseVariant =
   | "DIREITO"
@@ -11,13 +17,6 @@ export type CourseVariant =
   | "ADM"
   | "PSICOLOGIA"
   | string;
-
-export type CardStatus =
-  | "waiting-proposals"
-  | "ready-to-start"
-  | "in-progress"
-  | "partial-delivery"
-  | "final-delivery";
 
 export type CardProps = {
   /**
@@ -39,7 +38,7 @@ export type ICardProps = CardProps & {
   obs?: string;
   price: number;
   deliveryAt: Date;
-  status: CardStatus;
+  status: JobStatus;
   creatorId: string;
   rating?: JobRating;
   totalProposals: number;
@@ -50,4 +49,5 @@ export type ICardProps = CardProps & {
   dateLimit: Date;
   knowledges: string[];
   medias: JobMediaProps[];
+  change?: JobChange;
 };

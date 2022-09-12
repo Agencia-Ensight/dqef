@@ -1,15 +1,8 @@
 import { useQuery } from "@apollo/client";
 
 import { GET_JOBS_BY_EDITOR, GET_JOBS_BY_USER } from "@/services/graphql/jobs";
-import { toJob } from "@/utils";
-import { statusOnDb } from "./useJobDelivery";
-
-export type JobStatus =
-  | "waiting-proposals"
-  | "ready-to-start"
-  | "in-progress"
-  | "partial-delivery"
-  | "final-delivery";
+import { statusOnDbReverse, toJob } from "@/utils";
+import { JobStatus } from "@/types/Job";
 
 export function useJobsByUser(
   userId: string,
@@ -25,7 +18,7 @@ export function useJobsByUser(
       variables: {
         userId,
         statusesId: statuses
-          ? statuses.map((status) => statusOnDb[status])
+          ? statuses.map((status) => statusOnDbReverse[status])
           : undefined,
       },
     });
@@ -43,7 +36,7 @@ export function useJobsByUser(
     variables: {
       editorId: userId,
       statusesId: statuses
-        ? statuses.map((status) => statusOnDb[status])
+        ? statuses.map((status) => statusOnDbReverse[status])
         : undefined,
     },
     pollInterval: 5000,

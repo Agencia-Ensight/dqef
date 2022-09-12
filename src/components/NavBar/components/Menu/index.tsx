@@ -70,11 +70,6 @@ function Menu() {
         <S.Title>Conta</S.Title>
         {user && (
           <>
-            <Link href="/jobs/create" passHref>
-              <ButtonKnewave variant="PRIMARY" size="sm" onClick={handleOpen}>
-                Publicar Trabalho
-              </ButtonKnewave>
-            </Link>
             <Link href="/profile" passHref>
               <S.SubTitle onClick={handleOpen}>Meu Perfil</S.SubTitle>
             </Link>
