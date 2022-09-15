@@ -14,7 +14,7 @@ export const Title = styled.h1`
   margin-bottom: 1.5rem;
 `;
 
-export const QuestionForm = styled.form`
+export const QuestionForm = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -63,7 +63,7 @@ export const QuestionHeaderRatingIcon = styled.img`
 `;
 
 export const QuestionTitle = styled.h3`
-  color: #53647E;
+  color: #53647e;
   font-size: 1rem;
 `;
 
@@ -94,7 +94,7 @@ export const AnswerText = styled.div`
 `;
 
 export const AnswerTitle = styled.h3`
-  color: #53647E;
+  color: #53647e;
   font-size: 1rem;
 `;
 

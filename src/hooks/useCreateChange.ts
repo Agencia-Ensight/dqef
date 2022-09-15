@@ -1,12 +1,22 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
-import { uploadFile } from "@/services/api/upload";
-import { INSERT_JOB_CHANGE } from "@/services/graphql/jobs";
+import {
+  GET_JOB,
+  GET_JOBS,
+  GET_JOBS_BY_EDITOR,
+  GET_JOBS_BY_USER,
+  GET_PROPOSALS_BY_JOB,
+  GET_TOP_10_JOBS,
+  GET_TOP_10_URGENT_JOBS,
+  GET_URGENT_JOBS,
+  INSERT_JOB_CHANGE,
+} from "@/services/graphql/jobs";
 
 type CreateChangeProps = {
-  media: File;
+  mediaIds: string[];
   obs: string;
+  isEditor?: boolean;
 };
 
 export function useCreateChange(jobId: string) {
@@ -14,18 +24,31 @@ export function useCreateChange(jobId: string) {
 
   const [update, { data, error }] = useMutation(INSERT_JOB_CHANGE);
 
-  async function createChange({ obs, media }: CreateChangeProps) {
+  async function createChange({
+    obs,
+    mediaIds,
+    isEditor = false,
+  }: CreateChangeProps) {
     setIsLoading(true);
-
-    const { id } = await uploadFile({ file: media, title: media.name });
 
     try {
       await update({
         variables: {
           jobId,
           obs,
-          mediaId: id,
+          medias: mediaIds.map((mediaId) => ({ media_id: mediaId })),
+          jobStatus: isEditor ? 6 : 5,
         },
+        refetchQueries: [
+          GET_JOBS,
+          GET_URGENT_JOBS,
+          GET_JOBS_BY_USER,
+          GET_JOBS_BY_EDITOR,
+          GET_JOB,
+          GET_PROPOSALS_BY_JOB,
+          GET_TOP_10_JOBS,
+          GET_TOP_10_URGENT_JOBS,
+        ],
       });
     } catch (err) {}
 

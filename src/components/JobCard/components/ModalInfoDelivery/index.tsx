@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { format } from "date-fns";
 
 import { ButtonKnewave } from "@/components";
-import { useMedia, useJobDelivery } from "@/hooks";
+import { useMedia, useUpdateJobStatus } from "@/hooks";
 import { useModal, useToast } from "@/contexts";
 import * as S from "./styles";
 import { IModalInfoDelivery } from "./typings";
@@ -15,13 +15,13 @@ export function ModalInfoDelivery({
 }: IModalInfoDelivery) {
   const [showMore, setShowMore] = useState(true);
   const isMobile = useMedia("(max-width:600px)");
-  const { delivery } = useJobDelivery();
+  const { updateJobStatus } = useUpdateJobStatus();
   const { close } = useModal();
   const { addToast } = useToast();
 
   async function onStartJob() {
     try {
-      await delivery(jobId, "IN_PROGRESS");
+      await updateJobStatus(jobId, "IN_PROGRESS");
       close();
       addToast({
         type: "success",

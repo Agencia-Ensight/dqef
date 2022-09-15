@@ -40,3 +40,29 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const GET_USER_NOTIFICATIONS = gql`
+  query GetUserNotifications($userId: Int!) {
+    notification_automations(
+      where: { user_id: { _eq: $userId }, sent: { _eq: true } }
+      order_by: { delivery_at: desc }
+    ) {
+      id
+      delivery_at
+      job_id
+      notification_type {
+        id
+        message
+        name
+      }
+      job {
+        userByEditorId {
+          name
+        }
+      }
+      user {
+        name
+      }
+    }
+  }
+`;

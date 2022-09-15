@@ -11,27 +11,24 @@ import {
   GET_URGENT_JOBS,
   INSERT_DELIVERY,
 } from "@/services/graphql/jobs";
-import { JobStatus } from "@/types/Job";
-import { statusOnDbReverse } from "@/utils";
+
+type DeliveryProps = {
+  jobId: string;
+  obs: string;
+  mediaIds: string[];
+};
 
 export function useJobDelivery() {
-  const [insert, { data, loading, error }] = useMutation(INSERT_DELIVERY, {
-    refetchQueries: ["jobs", "urgent-jobs"],
-  });
+  const [insert, { data, loading, error }] = useMutation(INSERT_DELIVERY);
 
-  async function delivery(
-    jobId: string,
-    status: JobStatus,
-    mediaIds: string[] = []
-  ) {
+  async function delivery({ jobId, obs, mediaIds = [] }: DeliveryProps) {
     await insert({
       variables: {
         jobId,
-        statusId: statusOnDbReverse[status],
         medias: mediaIds.map((mediaId) => ({
-          job_id: jobId,
           media_id: mediaId,
         })),
+        obs,
       },
       refetchQueries: [
         GET_JOBS,

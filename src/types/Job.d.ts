@@ -31,6 +31,12 @@ export type JobChange = {
   medias: JobMediaProps[];
 };
 
+export type JobCharge = {
+  dayOne?: Date;
+  dayTwo?: Date;
+  dayThree?: Date;
+};
+
 export type JobProps = {
   id: string;
   title: string;
@@ -53,9 +59,11 @@ export type JobProps = {
   format: JobGenericProps;
   status: JobStatus;
   medias: JobMediaProps[];
+  delivery?: JobChange;
   change?: JobChange;
   proposals: JobProposal[];
   rating?: JobRating;
+  charges?: JobCharge;
 };
 
 export type JobStatus =

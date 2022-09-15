@@ -1,12 +1,15 @@
+import { api } from "@/services/api";
 import { useCallback, useState } from "react";
 
 export function usePlagiarism() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const checkPLagiarism = useCallback(async () => {
+  const checkPlagiarism = useCallback(async (mediaId: string) => {
     setIsLoading(true);
 
     try {
+      await api.patch(``);
+
       return true;
     } catch (error) {
       return false;
@@ -15,5 +18,5 @@ export function usePlagiarism() {
     setIsLoading(false);
   }, []);
 
-  return { checkPLagiarism, isLoading };
+  return { checkPlagiarism, isLoading };
 }

@@ -1,5 +1,7 @@
 import {
   JobChange,
+  JobCharge,
+  JobGenericProps,
   JobMediaProps,
   JobProposal,
   JobRating,
@@ -50,4 +52,8 @@ export type ICardProps = CardProps & {
   knowledges: string[];
   medias: JobMediaProps[];
   change?: JobChange;
+  delivery?: JobChange;
+  charges?: JobCharge;
+  format: JobGenericProps;
+  maximumPlagiarism: string;
 };

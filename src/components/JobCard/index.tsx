@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import Link from "next/link";
-import { format } from "date-fns";
+import { format, isToday, startOfDay } from "date-fns";
 
 import * as S from "./styles";
 import { ICardProps } from "./typings";
@@ -17,12 +17,25 @@ import {
   ModalSeeJob,
   ModalRequestChanges,
 } from "./components";
+import { JobCharge, JobMediaProps } from "@/types/Job";
 
 function handleProblem(jobId: string) {
   const msg = `Olá, estou com um problema com o trabalho ${jobId}`;
   return `https://api.whatsapp.com/send?phone=554199959588&text=${encodeURI(
     msg
   )}`;
+}
+
+function checkCharge(charge: JobCharge) {
+  if (charge.dayOne && isToday(charge.dayOne)) {
+    return charge.dayOne;
+  } else if (charge.dayTwo && isToday(charge.dayTwo)) {
+    return charge.dayTwo;
+  } else if (charge.dayThree && isToday(charge.dayThree)) {
+    return charge.dayThree;
+  }
+
+  return false;
 }
 
 function JobCard(job: ICardProps) {
@@ -32,6 +45,11 @@ function JobCard(job: ICardProps) {
   const formattedDate = useMemo(
     () => format(job.dateLimit, "dd/MM/yyyy"),
     [job.dateLimit]
+  );
+
+  const currentCharge = useMemo(
+    () => job.charges && checkCharge(job.charges),
+    [job.charges]
   );
 
   const handleSendReview = useCallback(() => {
@@ -47,10 +65,10 @@ function JobCard(job: ICardProps) {
       content: () => (
         <ModalSendJob
           jobId={job.id}
+          jobFormatId={job.format.id}
           isLastDelivery={job.status === "REQUEST_CHANGE"}
-          acceptPlagiarism={20} //TODO
-          plagiarismOfJob={20} //TODO
-          dateLimitOfRequestChanges={new Date()} //TODO
+          acceptPlagiarism={Number(job.maximumPlagiarism)}
+          dateLimitOfRequestChanges={new Date()} // TODO
         />
       ),
     });
@@ -90,17 +108,29 @@ function JobCard(job: ICardProps) {
   }, [modal, job]);
 
   const handleSeeJob = useCallback(() => {
+    let obs = "";
+    let medias: JobMediaProps[] = [];
+
+    if (job.change) {
+      obs = job.change.obs;
+      medias = job.change.medias;
+    } else if (job.delivery) {
+      obs = job.delivery.obs;
+      medias = job.delivery.medias;
+    }
+
     modal.open(`Olá, ${user?.name}`, {
       content: () => (
         <ModalSeeJob
           jobId={job.id}
-          medias={job.medias}
+          medias={medias}
+          obs={obs}
           isFirstDelivery={job.status === "FIRST_DELIVERY"}
           dateOfChanges={new Date()} //TODO
         />
       ),
     });
-  }, [modal, job.id, job.status]);
+  }, [modal, job]);
 
   const handleStartJob = useCallback(() => {
     modal.open(`Negócio Fechado!`, {
@@ -128,7 +158,6 @@ function JobCard(job: ICardProps) {
   }, [modal, job.rating]);
 
   const handleSendChanges = useCallback(() => {
-    // TODO: Ver com o fernando
     modal.open("Solicitar alteração", {
       content: () => <ModalRequestChanges jobId={job.id} />,
     });
@@ -137,12 +166,10 @@ function JobCard(job: ICardProps) {
   const handleCharge = useCallback(() => {
     modal.open(`Olá, ${user?.name}`, {
       content: () => (
-        <ModalCharge
-          dateOfDelivery={new Date()} //TODO
-        />
+        <ModalCharge dateOfDelivery={job.deliveryAt} jobId={job.id} />
       ),
     });
-  }, [modal]);
+  }, [modal, job.deliveryAt, job.id]);
 
   return (
     <S.Wrapper>
@@ -275,17 +302,24 @@ function JobCard(job: ICardProps) {
                       Entregar
                     </S.Button>
 
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={handleProblem(job.id)}
-                    >
-                      <S.Button>Problema</S.Button>
-                    </a>
+                    {!currentCharge && (
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={handleProblem(job.id)}
+                      >
+                        <S.Button>Problema</S.Button>
+                      </a>
+                    )}
 
-                    {/* <S.Button disabled onClick={() => handleCharge()}>
-                  Cobrança
-                </S.Button> */}
+                    {currentCharge && (
+                      <S.Button
+                        onClick={() => handleCharge()}
+                        className="changes"
+                      >
+                        Cobrança
+                      </S.Button>
+                    )}
                   </>
                 )}
                 {job.status === "REQUEST_CHANGE" && (

@@ -60,7 +60,6 @@ function Answer({ refetchQuestions, questionId }: IAnswer) {
           </S.InputWrapper>
           <ButtonKnewave
             variant="PRIMARY"
-            type="submit"
             size="sm"
             loading={answerQuestion.isLoading}
             disabled={answerQuestion.isLoading}

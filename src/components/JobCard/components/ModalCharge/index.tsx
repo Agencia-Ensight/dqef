@@ -1,27 +1,25 @@
 import { useModal } from "@/contexts";
+import { useJobRequestTime } from "@/hooks";
 import { format } from "date-fns";
-import { useState } from "react";
 
 import { ButtonAlert } from "./components/ButtonAlert";
 import { ModalNeedsMoreTime } from "./components/ModalNeedsMoreTime";
 import * as S from "./styles";
 import { IModalCharge } from "./typings";
 
-type IDeliveryStatus = "success" | "warning";
-
-export function ModalCharge({ dateOfDelivery }: IModalCharge) {
+export function ModalCharge({ dateOfDelivery, jobId }: IModalCharge) {
   const { open, close } = useModal();
   const formattedDate = format(dateOfDelivery, "dd/MM 'às' HH");
-  const [deliveryStatus, setDeliveryStatus] = useState<IDeliveryStatus>();
+  const { requestMoreTime, isLoading } = useJobRequestTime(jobId);
 
   function handleSuccess() {
-    setDeliveryStatus("success");
     close();
   }
 
-  function handleWarnig() {
-    setDeliveryStatus("warning");
-    open("", { content: () => <ModalNeedsMoreTime /> });
+  async function handleWarnig() {
+    await requestMoreTime();
+    close();
+    open("Mais tempo!", { content: () => <ModalNeedsMoreTime /> });
   }
 
   return (
@@ -36,13 +34,20 @@ export function ModalCharge({ dateOfDelivery }: IModalCharge) {
         </ButtonAlert>
       </S.ButtonDiv>
       <S.ButtonDiv>
-        <ButtonAlert onClick={() => handleWarnig()} variant="WARNING">
+        <ButtonAlert
+          onClick={() => handleWarnig()}
+          variant="WARNING"
+          disabled={isLoading}
+          loading={isLoading}
+        >
           Estou com dificuldade, preciso de mais tempo!
         </ButtonAlert>
       </S.ButtonDiv>
       <S.ButtonDiv>
         <a
-          href="https://api.whatsapp.com/send?phone=554199959588"
+          href={`https://api.whatsapp.com/send?phone=554199959588&text=${encodeURI(
+            `Olá!. ID do meu trabalho: ${jobId}`
+          )}`}
           target={"_blank"}
         >
           <ButtonAlert variant="ERROR">Não vou conseguir realizar!</ButtonAlert>

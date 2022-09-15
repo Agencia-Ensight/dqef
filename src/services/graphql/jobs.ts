@@ -77,10 +77,12 @@ export const JOB_FRAGMENT = gql`
     value
     pages
     words
+    created_at
     instructions
     obs
     maximum_plagiarism
     user_id
+    request_time
     job_format {
       id
       name
@@ -93,6 +95,15 @@ export const JOB_FRAGMENT = gql`
           id
           link
           title
+        }
+      }
+    }
+    deliveries {
+      obs
+      delivery_has_medias {
+        media {
+          title
+          link
         }
       }
     }
@@ -137,6 +148,13 @@ export const JOB_FRAGMENT = gql`
     user_ratings {
       rating
       testimonial
+    }
+    notification_automations {
+      notification_deadline {
+        charge_day_1
+        charge_day_2
+        charge_day_3
+      }
     }
   }
 `;
@@ -315,18 +333,20 @@ export const INSERT_JOB = gql`
 export const INSERT_DELIVERY = gql`
   mutation InsertPartialDelivery(
     $jobId: Int!
-    $statusId: Int!
-    $medias: [job_has_medias_insert_input!]!
+    $obs: String!
+    $medias: [delivery_has_medias_insert_input!]!
   ) {
-    insert_job_has_medias(objects: $medias) {
-      returning {
-        id
+    insert_deliveries_one(
+      object: {
+        job_id: $jobId
+        obs: $obs
+        delivery_has_medias: { data: $medias }
       }
-    }
-    update_jobs(
-      where: { id: { _eq: $jobId } }
-      _set: { job_status_id: $statusId }
     ) {
+      id
+    }
+
+    update_jobs(where: { id: { _eq: $jobId } }, _set: { job_status_id: 4 }) {
       returning {
         id
       }
@@ -485,18 +505,37 @@ export const ADD_JOB_PAYMENT = gql`
 `;
 
 export const INSERT_JOB_CHANGE = gql`
-  mutation InsertJobChange($jobId: Int!, $obs: String!, $mediaId: Int!) {
+  mutation InsertJobChange(
+    $jobId: Int!
+    $obs: String!
+    $medias: [job_alteration_has_medias_insert_input]!
+    $jobStatus: Int!
+  ) {
     insert_job_alterations_one(
       object: {
         job_id: $jobId
         obs: $obs
-        job_alteration_has_medias: { data: { media_id: $mediaId } }
+        job_alteration_has_medias: { data: $medias }
       }
     ) {
       id
     }
 
-    update_jobs_by_pk(pk_columns: { id: $jobId }, _set: { job_status_id: 5 }) {
+    update_jobs_by_pk(
+      pk_columns: { id: $jobId }
+      _set: { job_status_id: $jobStatus }
+    ) {
+      id
+    }
+  }
+`;
+
+export const INSERT_JOB_REQUEST_TIME = gql`
+  mutation InsertJobRequestTime($jobId: Int!) {
+    update_jobs_by_pk(
+      pk_columns: { id: $jobId }
+      _set: { request_time: true }
+    ) {
       id
     }
   }

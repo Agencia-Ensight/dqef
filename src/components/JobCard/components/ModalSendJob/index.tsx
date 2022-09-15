@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { AiOutlineDownload } from "react-icons/ai";
 
-import { useJobDelivery, useMedia } from "@/hooks";
-import { ButtonKnewave, Dropzone, Input } from "@/components";
+import { useJobDelivery, useCreateChange, useMedia } from "@/hooks";
+import { Button, Dropzone, Input } from "@/components";
 import { useModal, useToast } from "@/contexts";
 
 import * as S from "./styles";
@@ -11,63 +10,68 @@ import { ModalApprovedJob } from "./components/ModalApprovedJob";
 import { uploadFile } from "@/services/api/upload";
 import { usePlagiarism } from "@/hooks/usePlagiarism";
 
+const formatsThatNeedTestPlagiarism = [
+  3, 5, 6, 8, 10, 11, 12, 16, 17, 18, 19, 20, 21, 23, 26, 27, 29, 30, 31, 32,
+  33, 35,
+];
+
 export function ModalSendJob({
   jobId,
   acceptPlagiarism,
-  plagiarismOfJob,
   isLastDelivery,
+  jobFormatId,
   dateLimitOfRequestChanges,
 }: IModalSendJob) {
   const isMobile = useMedia("(max-width:600px)");
   const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
+  const [obs, setObs] = useState("");
   const { close, open } = useModal();
   const { addToast } = useToast();
   const { delivery } = useJobDelivery();
-  const { checkPLagiarism } = usePlagiarism();
+  const { createChange } = useCreateChange(jobId);
+  const { checkPlagiarism } = usePlagiarism();
 
   async function uploadJobFiles() {
-    try {
-      if (!files) {
-        addToast({
-          type: "error",
-          msg: "Nenhum arquivo selecionado",
-        });
-        return;
-      }
-      const uploadIds: string[] = [];
+    const uploadIds: { name: string; id: string }[] = [];
 
-      for await (const file of files) {
-        const { id } = await uploadFile({ file, title: file.name });
-        uploadIds.push(id);
-      }
-
-      return uploadIds;
-    } catch (error) {
-      addToast({ type: "error", msg: "Aconteceu um erro ao enviar o arquivo" });
+    for await (const file of files) {
+      const { id } = await uploadFile({ file, title: file.name });
+      uploadIds.push({ id, name: file.name });
     }
+
+    return uploadIds;
   }
 
   async function handleJobApproved() {
     setIsLoading(true);
 
-    const uploadIds = await uploadJobFiles();
-
-    const checkPlag = await checkPLagiarism();
-
-    if (!checkPlag) {
+    if (!files) {
       addToast({
         type: "error",
-        msg: "Seus arquivos não passaram pelo teste de plágio.",
+        msg: "Nenhum arquivo selecionado",
       });
       return;
     }
 
-    await delivery(
-      jobId,
-      isLastDelivery ? "FINAL_DELIVERY" : "FIRST_DELIVERY",
-      uploadIds
-    );
+    const medias = await uploadJobFiles();
+
+    if (formatsThatNeedTestPlagiarism.includes(jobFormatId)) {
+      for await (const media of medias) {
+        try {
+          await checkPlagiarism(media.id);
+        } catch (err) {}
+      }
+    }
+
+    const mediaIds = medias.map((media) => media.id);
+
+    if (isLastDelivery) {
+      await createChange({ obs, mediaIds, isEditor: true });
+    } else {
+      await delivery({ obs, mediaIds, jobId });
+    }
+
     addToast({ type: "success", msg: "Sucesso! Você enviou o trabalho!" });
 
     setIsLoading(false);
@@ -144,25 +148,25 @@ export function ModalSendJob({
       <Dropzone onChange={setFiles} />
 
       <S.ButtonInputSolid>
-        <Input placeholder="Observações" className="inputsolido"></Input>
+        <Input
+          placeholder="Observações"
+          className="inputsolido"
+          onChange={(e) => setObs(e.target.value)}
+          value={obs}
+        ></Input>
       </S.ButtonInputSolid>
       <S.ButtonFinaleira>
-        <ButtonKnewave
-          size={isMobile ? "sm" : "lg"}
-          variant="SECONDARY"
-          onClick={close}
-        >
+        <Button variant="secondary" onClick={close}>
           Cancelar
-        </ButtonKnewave>
-        <ButtonKnewave
-          size={isMobile ? "sm" : "lg"}
-          variant="PRIMARY"
+        </Button>
+        <Button
+          variant="primary"
           onClick={handleJobApproved}
           loading={isLoading}
           disabled={isLoading}
         >
           Continuar
-        </ButtonKnewave>
+        </Button>
       </S.ButtonFinaleira>
     </>
   );

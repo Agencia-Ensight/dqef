@@ -1,7 +1,8 @@
-import { addDays } from "date-fns";
+import { addDays, addHours } from "date-fns";
 
 import {
   JobChange,
+  JobCharge,
   JobGenericProps,
   JobMediaProps,
   JobProposal,
@@ -75,6 +76,37 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     };
   }
 
+  function toDelivery(dbChange: Record<string, any>): JobChange | undefined {
+    if (!dbChange) return undefined;
+    return {
+      obs: dbChange.obs,
+      medias: toJobMedias(dbChange.delivery_has_medias),
+    };
+  }
+
+  function toCharge(
+    dbCharge: Record<string, any>,
+    deliveryAt: Date
+  ): JobCharge | undefined {
+    const charges = dbCharge[0] && dbCharge[0].notification_deadline;
+    if (!charges) return;
+
+    function toNextDay(chargeDay: number) {
+      return chargeDay === 0 ? undefined : addDays(deliveryAt, chargeDay);
+    }
+
+    return {
+      dayOne: toNextDay(charges.charge_day_1),
+      dayTwo: toNextDay(charges.charge_day_2),
+      dayThree: toNextDay(charges.charge_day_3),
+    };
+  }
+
+  const deliveryAt = addHours(
+    addDays(new Date(dbJob.delivery), 1),
+    dbJob.request_time ? 3 : 0
+  );
+
   return {
     id: dbJob.id,
     title: dbJob.title,
@@ -89,7 +121,7 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     medias: toJobMedias(dbJob.job_has_medias || []),
     price: dbJob.value,
     editorPrice: dbJob.value_pay,
-    deliveryAt: addDays(new Date(dbJob.delivery), 1),
+    deliveryAt,
     jobType: toJobGeneric(dbJob.job_type),
     higherCourse: toJobGeneric(dbJob.higher_course),
     knowledges: toJobKnowledges(dbJob.job_has_knowledges),
@@ -99,6 +131,14 @@ export function toJob(dbJob: Record<string, any>): JobProps {
     proposals: toJobProposals(dbJob.proposals),
     editorId: dbJob.editor_id,
     rating: dbJob?.user_ratings[0],
-    change: toJobChange(dbJob.job_alterations && dbJob.job_alterations[0]),
+    delivery: toDelivery(dbJob.deliveries && dbJob.deliveries[0]),
+    change: toJobChange(
+      dbJob.job_alterations &&
+        dbJob.job_alterations[dbJob.job_alterations.length - 1]
+    ),
+    charges: toCharge(
+      dbJob.notification_automations,
+      new Date(dbJob.created_at)
+    ),
   };
 }

@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-import { useJobDelivery, useMedia } from "@/hooks";
+import { useUpdateJobStatus, useMedia } from "@/hooks";
 import { ButtonKnewave } from "@/components";
 
 import * as S from "./styles";
@@ -17,7 +17,7 @@ export function ModalSeeJob({
 }: IModalOpenWork) {
   const isMobile = useMedia("(max-width:600px)");
   const { open, close } = useModal();
-  const { delivery } = useJobDelivery();
+  const { updateJobStatus } = useUpdateJobStatus();
   const { addToast } = useToast();
 
   const formattedDate = dateOfChanges
@@ -32,7 +32,7 @@ export function ModalSeeJob({
 
   async function handleConfirmDelivery() {
     try {
-      await delivery(jobId, "FINAL_DELIVERY");
+      await updateJobStatus(jobId, "FINAL_DELIVERY");
       close();
       addToast({ msg: "Trabalho entregue com sucesso", type: "success" });
     } catch (error) {
