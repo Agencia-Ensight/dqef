@@ -8,7 +8,9 @@ export function usePlagiarism() {
     setIsLoading(true);
 
     try {
-      await api.patch(``);
+      const { data } = await api.post(`/leaks/${mediaId}`);
+
+      console.log(data);
 
       return true;
     } catch (error) {
