@@ -44,7 +44,7 @@ export function ModalProposalInfo(data: IModalProposalInfo) {
         <div>
           <p>
             2- A negociação e o acompanhamento do trabalho serão realizados no
-            seu painel de controle (disponível para acesso no menu da home,
+            <a href="/profile">seu painel de controle</a>(disponível para acesso no menu da home,
             clicando no seu nome).
           </p>
         </div>
