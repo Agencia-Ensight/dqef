@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MdSegment, MdClose } from "react-icons/md";
 
 import { ButtonKnewave } from "@/components";
 import { useUser, useModal } from "@/contexts";
 import { ModalHoldOn } from "../ModalHoldOn";
+import {useRouter} from "next/router"
 
 import * as S from "./styles";
 
@@ -37,6 +38,12 @@ function Menu() {
   function handleOpen() {
     setIsOpen((oldIsOpen) => !oldIsOpen);
   }
+
+  const router = useRouter()
+
+  useEffect(() => {
+    setIsOpen(false)
+  }, [router.asPath])
 
   return (
     <>
@@ -71,14 +78,12 @@ function Menu() {
         {user && (
           <>
             <Link href="/profile" passHref>
-              <S.SubTitle onClick={handleOpen}>Meu Perfil</S.SubTitle>
+              <S.ProfileContainer>
+                <img src="/images/imghomepadrao.png" />
+                <h2>{user.name}</h2>
+              </S.ProfileContainer>
             </Link>
-            <Link href="/notifications" passHref>
-              <S.SubTitle onClick={handleOpen}>Notificações</S.SubTitle>
-            </Link>
-            <Link href="/config" passHref>
-              <S.SubTitle onClick={handleOpen}>Editar Perfil</S.SubTitle>
-            </Link>
+
           </>
         )}
         {user && user.type == "STUDENT" && (
@@ -121,9 +126,35 @@ function Menu() {
         </a>
 
         {user && (
-          <ButtonKnewave variant="SECONDARY" size="sm" onClick={signOut}>
-            Sair
-          </ButtonKnewave>
+          <S.ExtraInfoContainer>
+             <Link href="/notifications" passHref>
+              <img
+                height={25}
+                width={25}
+                src="/images/homebell.png"
+                alt="my image"
+              />
+            </Link>
+            
+             <Link href="/config" passHref>
+             <img
+              height={25}
+              width={25}
+              src="/images/homeconfiguraciones.png"
+              alt="my image"
+            />
+            </Link>
+            
+          </S.ExtraInfoContainer>
+        )}
+
+        {user && (
+          <div>
+            <ButtonKnewave variant="SECONDARY" size="sm" onClick={signOut}>
+              Sair
+            </ButtonKnewave>
+          </div>
+
         )}
       </S.Container>
     </>

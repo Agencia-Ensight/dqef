@@ -24,7 +24,8 @@ export const Wrapper = styled.div<Props>`
 `;
 
 export const Container = styled.div<Props>`
-  display: block;
+  display: flex;
+  flex-direction: column;
   z-index: 3;
   position: fixed;
   top: 0;
@@ -62,3 +63,36 @@ export const SubTitle = styled.h3`
   margin-top: 20px;
   font-weight: 500;
 `;
+
+export const ProfileContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+
+  h2{
+    font-size: 1.125rem;
+    color: black;
+    font-weight: 500;
+  }
+`
+
+export const ExtraInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+
+
+  img{
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
+`
+

@@ -67,7 +67,7 @@ function HowItWorks() {
             <InfoCard
               img="/images/student-fourth-step.png"
               subTitle="Passo 4"
-              title="Efetue o pagamento"
+              title="Receba a atividade"
               description={
                 <p>
                   Prontinho! Sua atividade será <span>entregue</span> com
