@@ -202,7 +202,8 @@ export const GET_URGENT_JOBS = gql`
       where: {
         job_status: { id: { _eq: 1 } }
         date_limit: { _gte: $gte, _lte: $lte }
-      }
+      },
+      order_by: {created_at: desc},
     ) {
       ...JobFragment
     }
