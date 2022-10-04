@@ -12,8 +12,8 @@ function Success() {
       <p>
         Para acompanhar todo o processo é bem simples, basta entrar <br /> no
         seu
-        <Link href="/profilestudentpublishedjobs" passHref>
-          <span>painel de controle!</span>
+        <Link href="/profile" passHref>
+          <span> painel de controle!</span>
         </Link>
       </p>
       <p>

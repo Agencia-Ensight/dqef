@@ -22,6 +22,7 @@ function Works() {
     }
   });
 
+
   return (
     <S.Wrapper>
       <S.HeaderContainer>
@@ -54,7 +55,7 @@ function Works() {
             totalChanges={0}
             wasEvaluated={!!job.rating}
             urgent={false}
-            mediaType={job.mediaType.name}
+            mediaType={job.format.name}
             knowledges={job.knowledges.map((knowledge) => knowledge.name)}
             course={job.higherCourse.name}
           />

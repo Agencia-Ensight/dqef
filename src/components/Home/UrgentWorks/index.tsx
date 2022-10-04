@@ -7,6 +7,8 @@ import { useTopUrgentJobs } from "@/hooks";
 function UrgentWorks() {
   const urgentJobs = useTopUrgentJobs();
 
+  console.log(urgentJobs.data)
+
   return (
     <S.Wrapper>
       <S.SubTitle>IMPORTANTE</S.SubTitle>
@@ -27,7 +29,7 @@ function UrgentWorks() {
             totalChanges={0}
             wasEvaluated={!!urgentJob.rating}
             urgent
-            mediaType={urgentJob.mediaType.name}
+            mediaType={urgentJob.format.name}
             knowledges={urgentJob.knowledges.map((knowledge) => knowledge.name)}
             course={urgentJob.higherCourse.name}
           />

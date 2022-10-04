@@ -7,6 +7,11 @@ export const Wrapper = styled.div`
     height: 100%;
     gap: 1rem;
 
+    span {
+        color: var(--blue);
+        cursor: pointer;
+    }
+
 
     @media (max-width: 768px){
         height: auto;

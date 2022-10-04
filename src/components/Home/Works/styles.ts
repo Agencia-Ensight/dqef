@@ -43,6 +43,7 @@ export const MainContainer = styled.div`
     @media (max-width: 700px){
         flex-wrap: nowrap;
         overflow-y: scroll;
+        padding-bottom: 2rem;
     }
 `
 

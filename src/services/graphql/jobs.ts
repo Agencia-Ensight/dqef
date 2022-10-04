@@ -175,7 +175,8 @@ export const GET_TOP_10_URGENT_JOBS = gql`
       where: {
         job_status: { id: { _eq: 1 } }
         date_limit: { _gte: $gte, _lte: $lte }
-      }
+      },
+      order_by: {created_at: desc},
     ) {
       ...JobFragment
     }
@@ -212,7 +213,8 @@ export const GET_URGENT_JOBS = gql`
 export const GET_JOBS = gql`
   query GetJobs($gte: date!) {
     jobs(
-      where: { job_status: { id: { _eq: 1 } }, date_limit: { _gte: $gte } }
+      where: { job_status: { id: { _eq: 1 } }, date_limit: { _gte: $gte } },
+      order_by: {created_at: desc},
     ) {
       ...JobFragment
     }
