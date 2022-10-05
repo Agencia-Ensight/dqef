@@ -65,39 +65,76 @@ export const CourseContainer = styled.div<CourseContainerProps>`
         return "linear-gradient(60.59deg, #3081ED 2.35%, #55CBF2 98.26%);";
     }
     switch (props.course) {
-      case "Engenharia Civil" || "Engenharia Agronômica" || "Engenharia Ambiental" || "Engenharia de Alimentos" || "Engenharia de Produção" || "Engenharia de Telecomunicações" || "Engenharia Elétrica" || "Engenharia Mecânica" || "Engenharia Química" || "Matemática" || "Química":
+      case "Engenharia Civil":
+      case "Engenharia Agronômica":
+      case "Engenharia Ambiental":
+      case "Engenharia de Alimentos":
+      case "Engenharia de Produção": 
+      case "Engenharia de Telecomunicações": 
+      case "Engenharia Elétrica": 
+      case "Engenharia Mecânica":
+      case "Engenharia Química" : 
+      case "Matemática":
+      case "Química":
+      case "Engenharia de Software":
+      case "Física":
         return "linear-gradient(60.59deg, #F83A00 2.35%, #FE8A00 98.26%);";
     }
     switch (props.course) {
-      case "Pedagogia" || "Serviço Social" || "Letras":
+      case "Pedagogia":
+      case "Serviço Social":
+      case "Letras":
         return "linear-gradient(60.59deg, #BC1F76 2.35%, #F652C3 98.26%);";
     }
     switch (props.course) {
-      case "Nutrição" || "Educação Física" || "Biomedicina" || "Agronomia":
-        return "linear-gradient(60.59deg, #01B400 2.35%, #00FE00 98.26%)";
+      case "Nutrição":
+      case "Educação Física":
+      case "Agronomia":
+      case "Ciências Biológicas":
+      case "Fisioterapia":
+        return "linear-gradient(60.59deg, #00B000 2.35%, #00FF00 98.26%)";
     }
     switch (props.course) {
-      case "Medicina" || "Odontologia" || "Enfermagem" || "Medicina Veterinária" || "Farmácia" || "Fonoaudiologia":
+      case "Medicina":
+      case "Odontologia":
+      case "Enfermagem" :
+      case "Biomedicina":
+      case "Medicina Veterinária":
+      case "Farmácia":
+      case "Fonoaudiologia":
         return "linear-gradient(60.59deg, #98291E 2.35%, #EC223A 98.26%)";
     }
     switch (props.course) {
-      case "Arquitetura e Urbanismo" || "Marketing":
+      case "Arquitetura e Urbanismo":
+      case "Marketing":
+      case "Publicidade e Propaganda":
+      case "Design do Produto":
+      case "Design Gráfico":
+      case "Design de Interiores":
         return "linear-gradient(60.59deg, #6A3096 2.35%, #9E42FB 98.26%);";
     }
     switch (props.course) {
-      case "Economia" || "Ciências Economicas" || "Ciências Contábeis":
+      case "Ciências Economicas":
+      case "Ciências Contábeis":
         return "linear-gradient(60.59deg, #EAC401 2.35%, #FAF400 98.26%)";
     }
     switch (props.course) {
-      case "Administração" || "Relações Internacionais" || "Agronegócio":
+      case "Administração":
+      case "Relações Internacionais":
+      case "Agronegócio" : 
+      case "Recursos Humanos":
         return "linear-gradient(60.59deg, #1E1E1E 2.35%, #414141 98.26%)";
     }
     switch (props.course) {
       case "Psicologia":
+      case "Jornalismo":
+      case "História":
         return "linear-gradient(60.59deg, #F0A0AB 2.35%, #FEDBDF 98.26%);";
     }
     switch (props.course) {
-      case "Sistemas de Informação" || "Ciência da Computação" || "Análise e Desenvolvimento de Sistemas" || "Engenharia de Software":
+      case "Sistemas de Informação":
+      case "Ciência da Computação" :
+      case "Análise e Desenvolvimento de Sistemas":
         return "linear-gradient(60.59deg, #FFFFFF 2.35%, #E1DCD7 98.26%);";
     }
   }};

@@ -22,6 +22,8 @@ function Works() {
     }
   });
 
+  console.log(jobs.data)
+
 
   return (
     <S.Wrapper>
