@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   margin: 0 5%;
   padding-top: 3rem;
+
+  @media(max-width: 720px){
+    padding-top: 0rem;
+  }
 `;
 
 export const Title = styled.h1`

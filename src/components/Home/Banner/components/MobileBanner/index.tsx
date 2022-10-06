@@ -13,6 +13,8 @@ export function MobileBanner() {
   return (
     <S.Banner>
       <SimpleImageSlider
+        autoPlay={true}
+        autoPlayDelay={3}
         width={100}
         height={300}
         images={images}
