@@ -305,7 +305,7 @@ function UpdateJob({ id }: IUpdateJob) {
             <Input
               label="Disposto a Pagar"
               placeholder="Insira o Valor"
-              type="text"
+              type="number"
               required
               value={price}
               onChange={(e) => setPrice(Number(e.target.value))}

@@ -77,6 +77,7 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
             placeholder="Disposto a Pagar"
             label="Disposto a Pagar"
             mandatory={true}
+            type="number"
             value={value}
             onChange={(e) => setValue(Number(e.target.value))}
           />

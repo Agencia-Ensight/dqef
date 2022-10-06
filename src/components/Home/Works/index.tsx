@@ -22,7 +22,7 @@ function Works() {
     }
   });
 
-  console.log(jobs.data)
+  console.log(jobs)
 
 
   return (
