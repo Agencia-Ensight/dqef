@@ -18,6 +18,7 @@ export function MobileBanner() {
         images={images}
         showBullets={true}
         showNavs={false}
+        style={{background: 'transparent'}}
       />
     </S.Banner>
   );

@@ -14,10 +14,14 @@ export const Banner = styled.div`
 
   div:nth-child(2) {
     width: auto !important;
+    bottom: 70px !important;
   }
+
+
+ 
   .rsis-image {
-    background-size: 100% fill !important; 
-   
+    /* background-size: 100% fill !important;  */
+    background-size: contain !important;
     background-repeat: no-repeat;
     /* width: 100% !important;
     height: 100% !important;
