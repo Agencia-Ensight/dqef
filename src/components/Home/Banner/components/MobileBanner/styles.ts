@@ -15,6 +15,11 @@ export const Banner = styled.div`
   div:nth-child(2) {
     width: auto !important;
     bottom: 70px !important;
+
+    button {
+      width: 10px !important;
+      height: 10px !important;
+    }
   }
 
 
