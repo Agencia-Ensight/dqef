@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   border-radius: 20px;
   padding: 27px 37px 35px 36px;
   width: 100%;
+  margin-top: 2rem;
 `;
 
 export const Title = styled.h1`

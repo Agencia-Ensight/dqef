@@ -26,8 +26,8 @@ function InsideJob({ id }: IInsideJob) {
           totalProposals={job.data.proposals.length}
           totalChanges={0}
           wasEvaluated={!!job.data.rating}
-          urgent
-          mediaType={job.data.mediaType.name}
+          urgent={false}
+          mediaType={job.data.format.name}
           knowledges={job.data.knowledges.map((knowledge) => knowledge.name)}
           course={job.data.higherCourse.name}
         />
@@ -37,7 +37,7 @@ function InsideJob({ id }: IInsideJob) {
           title={job.data.title}
           pages={job.data.pages}
           plagiarism={job.data.maximumPlagiarism}
-          format={job.data.format.name}
+          format={job.data.mediaType.name}
           description={job.data.instructions}
           observations={job.data.obs}
         />
