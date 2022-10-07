@@ -50,7 +50,7 @@ function UrgentWorks() {
       </S.HeaderContainer>
       <S.MainContainer>
         {urgentJobs.isLoading && <Loading />}
-        {urgentJobs.data?.map((job) => (
+        {filteredData?.map((job) => (
           <JobCard
             {...job}
             totalProposals={job.proposals.length}
