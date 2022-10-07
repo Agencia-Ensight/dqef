@@ -101,7 +101,7 @@ export function AdditionalInfo({
       <S.InputContainer>
         <ComboboxComp
           label="Faculdade"
-          value={1}
+          value={college}
           items={colleges.data || []}
           onSelectedChange={(item) => setCollege(item.id)}
           name="college"
