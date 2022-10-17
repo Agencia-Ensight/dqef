@@ -54,9 +54,20 @@ export const ProfileName = styled.h1`
   text-overflow: ellipsis;
 `;
 
+export const RatingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+
+  span {
+    font-size: 1.125rem;
+    color: black;
+  }
+`
+
 export const RatingContainer = styled.div`
   display: flex;
-  margin-top: 0.6rem;
 `;
 
 export const InfoContainer = styled.div`

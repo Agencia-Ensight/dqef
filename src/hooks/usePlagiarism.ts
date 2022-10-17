@@ -14,10 +14,9 @@ export function usePlagiarism() {
 
       return true;
     } catch (error) {
+      setIsLoading(false);
       return false;
     }
-
-    setIsLoading(false);
   }, []);
 
   return { checkPlagiarism, isLoading };

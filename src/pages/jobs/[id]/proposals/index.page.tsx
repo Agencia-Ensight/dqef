@@ -8,6 +8,7 @@ import { ProposalProps } from "./typings";
 
 function Proposals({ id }: ProposalProps) {
   const proposals = useProposals(id);
+  
 
   return (
     <S.Wrapper>
@@ -15,8 +16,10 @@ function Proposals({ id }: ProposalProps) {
       <S.Title>Propostas Recebidas</S.Title>
       <S.Container>
         {proposals.isLoading && <Loading />}
-        {proposals.data?.map((proposal) => (
-          <ProfileCardEmployee
+        {proposals.data?.map((proposal) =>
+        {
+          return(
+            <ProfileCardEmployee
             id={proposal.id}
             course={proposal.user.higherCourse}
             img={proposal.user.avatar || "/images/deal-done.png"}
@@ -27,7 +30,9 @@ function Proposals({ id }: ProposalProps) {
             jobId={proposal.job.id}
             userId={proposal.user.id}
           />
-        ))}
+          )
+        }
+        )}
       </S.Container>
     </S.Wrapper>
   );

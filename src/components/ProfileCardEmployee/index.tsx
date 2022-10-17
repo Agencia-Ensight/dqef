@@ -1,5 +1,5 @@
 import { useModal } from "@/contexts";
-import { AiFillStar } from "react-icons/ai";
+import { TiStarFullOutline } from "react-icons/ti";
 import { ModalPayment } from "./components/ModalPayment";
 
 import { TagKnowledge } from "./components/TagKnowledge";
@@ -38,6 +38,9 @@ function ProfileCardEmployee({
     });
   }
 
+
+  const arrayRating = [1,2,3,4,5]
+
   return (
     <div>
       <S.Wrapper>
@@ -47,14 +50,18 @@ function ProfileCardEmployee({
         </S.ImageWrapper>
         <S.Course>{course}</S.Course>
         <S.ProfileName>{profileName}</S.ProfileName>
+        <S.RatingWrapper>
         <S.RatingContainer>
-          {new Array(avgRating).fill(0).map((_, index) => (
-            <AiFillStar
+          {arrayRating.map((_, index) => (
+            <TiStarFullOutline
               size={20}
-              color={index < avgRating ? "#ffb200" : undefined}
+              color={index < Math.floor(avgRating) ? "#ffb200" : 'gray'}
             />
           ))}
         </S.RatingContainer>
+        <span>{avgRating.toFixed(1)}</span>
+        </S.RatingWrapper>
+       
         {/* <S.InfoContainer>
           <S.Line />
           <S.Course>{avgRating} estrelas</S.Course>
