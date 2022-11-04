@@ -24,5 +24,7 @@ export function useUser(id: string, props?: IUserProps) {
 
   const data = rawData?.users_by_pk && toUser(rawData.users_by_pk);
 
+  console.log(data)
+
   return { data, isLoading, error };
 }

@@ -45,6 +45,8 @@ function Profile() {
   const [menu, setMenu] = useState<IMenuOption>("proposals");
   const { user } = useUser();
 
+  console.log(user)
+
   return (
     <S.Wrapper>
       <S.ContainerProfileCard>
@@ -54,6 +56,7 @@ function Profile() {
           course="Medicina"
           variant="EMPLOYEE"
           onChangeMenu={(m) => setMenu(m)}
+
         />
       </S.ContainerProfileCard>
       {user && (

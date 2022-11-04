@@ -14,12 +14,15 @@ function ProfileCard({
   profileName,
   course,
   variant,
+  avgRating,
   onChangeMenu,
 }: Props) {
   const { user } = useUser();
   function handleMenuEditorChange(menu: EditorMenuProps) {
     onChangeMenu(menu);
   }
+
+  const ratingArray = [1,2,3,4,5]
 
   return (
     <S.MainWrapper>
@@ -28,14 +31,19 @@ function ProfileCard({
         <S.Course>{course}</S.Course>
         <S.ProfileName>{profileName}</S.ProfileName>
         {user?.type === "EDITOR" && (
-          <S.RatingContainer>
-            <AiFillStar size={20} color="#ffb200" />
-            <AiFillStar size={20} color="#ffb200" />
-            <AiFillStar size={20} color="#ffb200" />
-            <AiFillStar size={20} color="#ffb200" />
-            <AiFillStar size={20} color="#ffb200" />
-            <S.RatingNumber>5.0</S.RatingNumber>
-          </S.RatingContainer>
+          <>
+            {avgRating ? (
+              <S.RatingContainer>
+              {ratingArray.map((_, index) => (
+              <AiFillStar size={20}  color={index < Math.floor(avgRating) ? "#ffb200" : 'gray'} />
+
+              ))}
+              <S.RatingNumber>{avgRating}</S.RatingNumber>
+            </S.RatingContainer>
+            ) : (
+              <span>Sem nenhuma avaliação</span>
+            )}
+          </>
         )}
         <S.MainInfo>
           <S.InfoContainer>

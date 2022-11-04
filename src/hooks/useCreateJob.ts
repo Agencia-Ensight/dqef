@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation,  } from "@apollo/client";
 
 import { INSERT_JOB } from "@/services/graphql/jobs";
 import { uploadFile } from "@/services/api/upload";
+import { useJobNotificationsDeadline } from "./useJobNotificationsDeadline";
 
 type ICreateJob = {
   courseId: string;
@@ -28,6 +29,7 @@ type ICreateJob = {
 export function useCreateJob() {
   const [isLoading, setIsLoading] = useState(false);
   const [insertJob, { data, error }] = useMutation(INSERT_JOB);
+  const {getResolutionDay} = useJobNotificationsDeadline()
 
   async function createJob(data: ICreateJob) {
     setIsLoading(true);
@@ -37,6 +39,9 @@ export function useCreateJob() {
       const { id } = await uploadFile({ file, title: file.name });
       mediaIds.push({ media_id: id });
     }
+
+    const notificationDeadlineId = await getResolutionDay(data.deliveryAt);
+
 
     try {
       await insertJob({
@@ -60,6 +65,7 @@ export function useCreateJob() {
           maximum_plagiarism: data.maxPlagiarism,
           job_media_type_id: data.mediaTypeId,
           job_medias: mediaIds,
+          notification_deadline_id: notificationDeadlineId
         },
       });
     } catch {}

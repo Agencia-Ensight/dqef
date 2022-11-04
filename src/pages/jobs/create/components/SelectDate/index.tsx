@@ -2,7 +2,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useMemo, useState } from "react";
 import DatePicker from "react-datepicker";
 import pt from "date-fns/locale/pt-BR";
-import { addDays, differenceInDays, startOfDay, subDays } from "date-fns";
+import { addDays, differenceInDays, startOfDay, subDays, formatDistance } from "date-fns";
 
 import { ButtonKnewave, IRenderProps } from "@/components";
 import * as S from "./styles";
@@ -20,6 +20,9 @@ export function SelectDate({ onComplete, prevRes, onPrevStep }: IRenderProps) {
 
     return subDays(deliveryAt, daysToAdd);
   }, [deliveryAt]);
+
+  console.log(formatDistance(deliveryAt, today))
+
 
   function onSubmit() {
     onComplete({

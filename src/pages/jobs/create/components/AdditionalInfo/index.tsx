@@ -23,6 +23,8 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
   const editorPrice = value - value * 0.3;
   const { createJob, isLoading } = useCreateJob();
 
+
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
@@ -36,6 +38,7 @@ function AdditionalInfo({ onComplete, prevRes, onPrevStep }: IRenderProps) {
         editorPrice,
         userId: user!.id,
         price: value,
+        notification_deadline_id: 11,
       });
       onComplete({});
     } catch {}

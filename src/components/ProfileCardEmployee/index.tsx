@@ -50,18 +50,21 @@ function ProfileCardEmployee({
         </S.ImageWrapper>
         <S.Course>{course}</S.Course>
         <S.ProfileName>{profileName}</S.ProfileName>
-        <S.RatingWrapper>
-        <S.RatingContainer>
-          {arrayRating.map((_, index) => (
-            <TiStarFullOutline
-              size={20}
-              color={index < Math.floor(avgRating) ? "#ffb200" : 'gray'}
-            />
-          ))}
-        </S.RatingContainer>
-        <span>{avgRating.toFixed(1)}</span>
+        {avgRating === 0 ? (
+          <span>Nenhum trabalho entregue.</span>
+        ): (
+          <S.RatingWrapper>
+          <S.RatingContainer>
+            {arrayRating.map((_, index) => (
+              <TiStarFullOutline
+                size={20}
+                color={index < Math.floor(avgRating) ? "#ffb200" : 'gray'}
+              />
+            ))}
+          </S.RatingContainer>
+          <span>{avgRating.toFixed(1)}</span>
         </S.RatingWrapper>
-       
+        )}
         {/* <S.InfoContainer>
           <S.Line />
           <S.Course>{avgRating} estrelas</S.Course>

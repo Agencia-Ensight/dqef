@@ -169,7 +169,7 @@ export const GET_JOB = gql`
 `;
 
 export const GET_TOP_10_URGENT_JOBS = gql`
-  query GetTopUrgentJobs($gte: date!, $lte: date!) {
+  query GetTopUrgentJobs($gte: timestamp!, $lte: timestamp!) {
     jobs(
       limit: 10
       where: {
@@ -185,7 +185,7 @@ export const GET_TOP_10_URGENT_JOBS = gql`
 `;
 
 export const GET_TOP_10_JOBS = gql`
-  query GetTopJobs($gte: date!) {
+  query GetTopJobs($gte: timestamp!) {
     jobs(
       limit: 10
       where: { job_status: { id: { _eq: 1 } }, date_limit: { _gte: $gte } }
@@ -197,7 +197,7 @@ export const GET_TOP_10_JOBS = gql`
 `;
 
 export const GET_URGENT_JOBS = gql`
-  query GetUrgentJobs($gte: date!, $lte: date!) {
+  query GetUrgentJobs($gte: timestamp!, $lte: timestamp!) {
     jobs(
       where: {
         job_status: { id: { _eq: 1 } }
@@ -212,7 +212,7 @@ export const GET_URGENT_JOBS = gql`
 `;
 
 export const GET_JOBS = gql`
-  query GetJobs($gte: date!) {
+  query GetJobs($gte: timestamp!) {
     jobs(
       where: { job_status: { id: { _eq: 1 } }, date_limit: { _gte: $gte } },
       order_by: {created_at: desc},
@@ -291,8 +291,8 @@ export const INSERT_JOB = gql`
     $title: String!
     $value: Float!
     $value_pay: Float!
-    $date_limit: date!
-    $delivery: date!
+    $date_limit: timestamp!
+    $delivery: timestamp!
     $thema: String!
     $knowledge_id: Int!
     $user_id: Int!
@@ -304,6 +304,7 @@ export const INSERT_JOB = gql`
     $maximum_plagiarism: String!
     $job_media_type_id: Int!
     $job_medias: [job_has_medias_insert_input!]!
+    $notification_deadline_id: Int!
   ) {
     insert_jobs_one(
       object: {
@@ -326,6 +327,7 @@ export const INSERT_JOB = gql`
         delivery: $delivery
         instructions: $instructions
         job_media_type_id: $job_media_type_id
+        notification_deadline_id: $notification_deadline_id
       }
     ) {
       id
@@ -543,3 +545,11 @@ export const INSERT_JOB_REQUEST_TIME = gql`
     }
   }
 `;
+
+export const GET_JOB_NOTIFICATIONS_DEADLINES =  gql`
+  query GetJobNotificationsDeadline($resolutionDay: Int!) {
+  notification_deadlines(where: {resolution_day: {_eq: $resolutionDay}}) {
+    id
+  }
+}
+`

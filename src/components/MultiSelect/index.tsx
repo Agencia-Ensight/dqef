@@ -25,7 +25,8 @@ function MultiSelect({ options, id, name, onChange }: Props) {
         placeholder="Selecione..."
         options={options}
         filterOption={createFilter({ ignoreAccents: false, ignoreCase: true })}
-        // className="basic-multi-select"
+        className="basic-multi-select"
+        classNamePrefix="Selecione"
         onChange={(e) => handleChange(e!)}
         styles={{
           control: (provided, state) => ({

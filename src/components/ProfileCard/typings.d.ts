@@ -7,6 +7,7 @@ export type Props = {
   course: CourseVariant;
   variant: "EMPLOYEE" | "STUDENT";
   onChangeMenu: (menu: EditorMenuProps) => void;
+  avgRating?: number;
 };
 
 type CourseVariant =

@@ -124,6 +124,7 @@ export function AdditionalInfo({
           <>
             <S.Label>Áreas de conhecimento</S.Label>
             <MultiSelect
+        
               options={
                 knowledgesList.data?.map((know) => ({
                   id: know.id,
@@ -137,12 +138,12 @@ export function AdditionalInfo({
               }
             />
 
-            {/* <Input
+            <Input
               label="Forma de Pagamento"
               placeholder="Insira o seu pix ou dados de pagamento"
               value={payment}
               onChange={(e) => setPaymnet(e.target.value)}
-            /> */}
+            />
             <ComboboxComp
               value={formation}
               items={formations?.data || []}
